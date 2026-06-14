@@ -24,8 +24,8 @@ Module.onRuntimeInitialized = ()=>{
     console.log("\n======================\n");
     
     // testing
-    console.log(statistics.mean(arr.length, arr));
-    console.log(statistics.median(arr.length, arr));
+    console.log(statistics.mean(arr.length, pointer));
+    console.log(statistics.median(arr.length, pointer));
 
     // 
     Module._free(pointer);
