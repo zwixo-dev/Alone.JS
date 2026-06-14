@@ -1,5 +1,5 @@
-#ifndef MATH_H
-#define MATH_H
+#ifndef ALONE_ARRAY_UTILS_H
+#define ALONE_ARRAY_UTILS_H
 
 
 double array_sum(int size, double *arr);
