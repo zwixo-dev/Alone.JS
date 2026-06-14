@@ -1,0 +1,29 @@
+#ifndef ALONE_STATS_H
+#define ALONE_STATS_H
+
+
+double array_mean(int size, double *arr);
+
+double array_median(int size, double *arr);
+
+double array_variance(int size, double *arr);
+
+double array_stddev(int size, double *arr);
+
+double array_mode(int size, double *arr);
+
+double array_percentile(int size, double *arr);
+
+double array_quartiles(int size, double *arr);
+
+double array_iqr(int size, double *arr);
+
+double array_skewness(int size, double *arr);
+
+double array_kurtosis(int size, double *arr);
+
+double array_covariance(int size, double *arr);
+
+double array_normalize(int size, double *arr);
+
+#endif
