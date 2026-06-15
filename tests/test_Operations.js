@@ -1,4 +1,4 @@
-const Module = require('../wsam/operations.js');
+const Module = require('../wasm/operations.js');
 
 Module.onRuntimeInitialized = () => {
 

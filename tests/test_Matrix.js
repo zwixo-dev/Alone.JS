@@ -1,5 +1,5 @@
 
-const Module = require("../wsam/matrix.js");
+const Module = require("../wasm/matrix.js");
 
 Module.onRuntimeInitialized = () =>{
 

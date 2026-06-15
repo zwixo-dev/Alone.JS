@@ -1,4 +1,4 @@
-const Module = require("../wsam/statistics.js");
+const Module = require("../wasm/statistics.js");
 
 Module.onRuntimeInitialized = ()=>{
 
