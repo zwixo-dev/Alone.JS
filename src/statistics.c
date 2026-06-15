@@ -67,3 +67,32 @@ double array_stddev(int size, double *arr){
     
     return sqrt(variance);
 }
+
+
+// array_mode
+
+double array_mode(int size, double *arr) {
+    int count = 0;
+    int maxCount = 0; 
+    double maxValue = 0.0;
+    
+    for(int i = 0; i < size; i++) {
+        count = 0;
+        for (int j = 0; j < size; j++) {
+            if(arr[i] == arr[j]) {
+                count++;
+            }
+        }
+        
+        if(count > maxCount) {
+            maxCount = count;
+            maxValue = arr[i];
+        }
+    }
+    
+    if(maxCount == 1) {
+        return -1.0; 
+    }
+    
+    return maxValue;
+}
