@@ -1,4 +1,5 @@
 #include "../include/statistics.h"
+#include "../include/operations.h"
 
 // array_mean
 double array_mean(int size, double *getArr){
