@@ -57,3 +57,12 @@ double array_variance(int size, double *arr){
     
     return sum_of_subtruct_squares/(size-1);
 }
+
+//array_stddev
+
+double array_stddev(int size, double *arr){
+    
+    double variance = array_variance(size, arr); 
+    
+    return sqrt(variance);
+}
