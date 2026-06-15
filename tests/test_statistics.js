@@ -4,7 +4,10 @@ Module.onRuntimeInitialized = ()=>{
 
     const statistics = {
         mean: Module.cwrap("array_mean", "number", ["number","number"]),
-        median: Module.cwrap("array_median", "number", ["number", "number"])
+        median: Module.cwrap("array_median", "number", ["number", "number"]),
+        variance: Module.cwrap("array_variance", "number", ["number", "number"]),
+        stddev: Module.cwrap("array_stddev", "number", ["number", "number"]),
+        mode: Module.cwrap("array_mode", "number", ["number", "number"])
     }
 
     // my values  
@@ -26,6 +29,10 @@ Module.onRuntimeInitialized = ()=>{
     // testing
     console.log(statistics.mean(arr.length, pointer));
     console.log(statistics.median(arr.length, pointer));
+
+    console.log(statistics.variance(arr.length, pointer));
+    console.log(statistics.stddev(arr.length, pointer));
+    console.log(statistics.mode(arr.length, pointer));
 
     // 
     Module._free(pointer);
