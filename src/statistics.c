@@ -39,3 +39,21 @@ double array_median(int size, double *getArr) {
         return (tempArr[middle - 1] + tempArr[middle]) / 2.0; 
     }
 }
+
+// array_variance
+
+double array_variance(int size, double *arr){
+    if (size <= 1) {
+        return 0.0; 
+    }
+    
+    double mean = array_mean(size, arr);
+    
+    double sum_of_subtruct_squares = 0.0;
+    
+    for(int i=0; i<size; i++){
+        sum_of_subtruct_squares+= (arr[i]-mean) * (arr[i]-mean);
+    }
+    
+    return sum_of_subtruct_squares/(size-1);
+}
