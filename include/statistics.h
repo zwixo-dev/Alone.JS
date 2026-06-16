@@ -12,7 +12,7 @@ double array_stddev(int size, double *arr);
 
 double array_mode(int size, double *arr);
 
-double array_percentile(int size, double *arr);
+double array_percentile(int size, double *arr, double value);
 
 double array_quartiles(int size, double *arr);
 
