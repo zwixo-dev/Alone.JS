@@ -14,7 +14,7 @@ double array_mode(int size, double *arr);
 
 double array_percentile(int size, double *arr, double value);
 
-double array_quartiles(int size, double *arr);
+double array_quartiles(int size, double *arr, int Q);
 
 double array_iqr(int size, double *arr);
 
