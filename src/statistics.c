@@ -157,3 +157,19 @@ double array_iqr(int size, double *arr){
     // Q3- Q1
     return Q3-Q1;
 }
+
+double array_skewness(int size, double *arr){
+    
+    if(size<=1) return 0.0;
+    
+    double stddev = array_stddev(size, arr);
+    
+    if(stddev==0.0){
+        return 0.0;
+    }
+    
+    double mean = array_mean(size, arr);
+    double median = array_median(size, arr);
+    
+    return ((3*(mean-median))/stddev);
+}
