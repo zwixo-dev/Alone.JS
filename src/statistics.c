@@ -192,6 +192,7 @@ double array_kurtosis(int size, double *arr, double s){
     return ( (sum_fourth_moment / (size * pow(s, 4)) ) );
 }
 
+//array_covariance
 double array_covariance(int size, double *arr_x, double *arr_y){
     if(size<=1) return 0.0;
     
