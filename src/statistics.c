@@ -208,3 +208,30 @@ double array_covariance(int size, double *arr_x, double *arr_y){
     
     return (sum_of_sbustrcutValues/(size-1));
 }
+//array_normalize
+double array_normalize(int size, double *arr, double *output_arr){
+    
+    if(size<=1) return 0.0;
+    
+    double minVal = arr[0], maxVal = arr[0];
+    
+    for(int i=1; i<size; i++){
+        if(arr[i]<minVal){
+            minVal = arr[i];
+        } else{
+            maxVal = arr[i];
+        }
+    }
+    
+    double range = maxVal - minVal;
+    
+    if(range==0.0){
+        for(int i=0; i<size; i++){
+            output_arr[i] = 0.0;
+        }
+    }
+    
+    for(int i=0; i<size; i++){
+       output_arr[i] = ( (arr[i] - minVal) / range ); 
+    }
+}
