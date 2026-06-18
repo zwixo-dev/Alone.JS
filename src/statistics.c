@@ -173,3 +173,21 @@ double array_skewness(int size, double *arr){
     
     return ((3*(mean-median))/stddev);
 }
+
+
+double array_kurtosis(int size, double *arr, double s){
+    // Kurtosis very small samples
+    if (size < 4 || s <= 0.0) {
+        return 0.0; 
+    }
+    
+    double mean = array_mean(size, arr);
+    double sum_fourth_moment = 0.0;
+    
+    for(int i = 0; i < size; i++){
+        double deviation = arr[i] - mean;
+        sum_fourth_moment += pow(deviation, 4);
+    }
+    
+    return ( (sum_fourth_moment / (size * pow(s, 4)) ) );
+}
