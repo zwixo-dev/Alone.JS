@@ -7,7 +7,9 @@ Module.onRuntimeInitialized = ()=>{
         median: Module.cwrap("array_median", "number", ["number", "number"]),
         variance: Module.cwrap("array_variance", "number", ["number", "number"]),
         stddev: Module.cwrap("array_stddev", "number", ["number", "number"]),
-        mode: Module.cwrap("array_mode", "number", ["number", "number"])
+        mode: Module.cwrap("array_mode", "number", ["number", "number"]),
+        percentile: Module.cwrap("array_percentile", "number", ["number", "number"]), 
+        quartiles: Module.cwrap("array_quartiles", "number", ["number", "number"]), 
     }
 
     // my values  
@@ -32,7 +34,12 @@ Module.onRuntimeInitialized = ()=>{
 
     console.log(statistics.variance(arr.length, pointer));
     console.log(statistics.stddev(arr.length, pointer));
-    console.log(statistics.mode(arr.length, pointer));
+    console.log(statistics.mode(arr.length, pointer)); // -1 = no mode 
+    
+    console.log(statistics.percentile(arr.length, pointer, 4));
+    console.log(statistics.quartiles(arr.length, pointer, 0.25));
+    console.log(statistics.quartiles(arr.length, pointer, 0.5));
+    console.log(statistics.quartiles(arr.length, pointer, 0.75));
 
     // 
     Module._free(pointer);
