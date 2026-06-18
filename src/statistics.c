@@ -143,3 +143,17 @@ double array_quartiles(int size, double *arr, double Q){
     // (12, 3, 5, 7, 14, 21, 8\)
     return arr[lowerIndx] + fraction * (arr[upperIndx] - arr[lowerIndx]);
 }
+
+// array_iqr
+
+double array_iqr(int size, double *arr){
+    
+    if(size<=0) return -1; 
+    if(size==1) return 0.0;
+    
+    double Q1 = array_quartiles(size, arr, 0.25); 
+    double Q3 = array_quartiles(size, arr, 0.75);
+
+    // Q3- Q1
+    return Q3-Q1;
+}
