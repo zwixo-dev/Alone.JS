@@ -22,7 +22,7 @@ double array_skewness(int size, double *arr);
 
 double array_kurtosis(int size, double *arr, double s);
 
-double array_covariance(int size, double *arr);
+double array_covariance(int size, double *arr_x, double *arr_y);
 
 double array_normalize(int size, double *arr);
 
