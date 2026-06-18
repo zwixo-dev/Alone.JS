@@ -191,3 +191,19 @@ double array_kurtosis(int size, double *arr, double s){
     
     return ( (sum_fourth_moment / (size * pow(s, 4)) ) );
 }
+
+double array_covariance(int size, double *arr_x, double *arr_y){
+    if(size<=1) return 0.0;
+    
+    // \(\text{Cov}(X, Y) = \frac{\sum_{i=1}^{n} (X_i - \overline{X})(Y_i - \overline{Y})}{n - 1}\)
+  
+    double mean_x = array_mean(size, arr_x);
+    double mean_y = array_mean(size, arr_y);
+    double sum_of_sbustrcutValues = 0.0; 
+    
+    for(int i=0; i<size; i++){
+        sum_of_sbustrcutValues+= (arr_x[i] - mean_x) * (arr_y[i] - mean_y);
+    }
+    
+    return (sum_of_sbustrcutValues/(size-1));
+}
