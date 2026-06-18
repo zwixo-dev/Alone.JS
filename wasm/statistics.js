@@ -1696,6 +1696,8 @@ var _array_median = Module['_array_median'] = makeInvalidEarlyAccess('_array_med
 var _array_variance = Module['_array_variance'] = makeInvalidEarlyAccess('_array_variance');
 var _array_stddev = Module['_array_stddev'] = makeInvalidEarlyAccess('_array_stddev');
 var _array_mode = Module['_array_mode'] = makeInvalidEarlyAccess('_array_mode');
+var _array_percentile = Module['_array_percentile'] = makeInvalidEarlyAccess('_array_percentile');
+var _array_quartiles = Module['_array_quartiles'] = makeInvalidEarlyAccess('_array_quartiles');
 var _fflush = makeInvalidEarlyAccess('_fflush');
 var _strerror = makeInvalidEarlyAccess('_strerror');
 var _malloc = Module['_malloc'] = makeInvalidEarlyAccess('_malloc');
@@ -1717,6 +1719,8 @@ function assignWasmExports(wasmExports) {
   assert(typeof wasmExports['array_variance'] != 'undefined', 'missing Wasm export: array_variance');
   assert(typeof wasmExports['array_stddev'] != 'undefined', 'missing Wasm export: array_stddev');
   assert(typeof wasmExports['array_mode'] != 'undefined', 'missing Wasm export: array_mode');
+  assert(typeof wasmExports['array_percentile'] != 'undefined', 'missing Wasm export: array_percentile');
+  assert(typeof wasmExports['array_quartiles'] != 'undefined', 'missing Wasm export: array_quartiles');
   assert(typeof wasmExports['fflush'] != 'undefined', 'missing Wasm export: fflush');
   assert(typeof wasmExports['strerror'] != 'undefined', 'missing Wasm export: strerror');
   assert(typeof wasmExports['malloc'] != 'undefined', 'missing Wasm export: malloc');
@@ -1735,6 +1739,8 @@ function assignWasmExports(wasmExports) {
   _array_variance = Module['_array_variance'] = createExportWrapper('array_variance', 2);
   _array_stddev = Module['_array_stddev'] = createExportWrapper('array_stddev', 2);
   _array_mode = Module['_array_mode'] = createExportWrapper('array_mode', 2);
+  _array_percentile = Module['_array_percentile'] = createExportWrapper('array_percentile', 3);
+  _array_quartiles = Module['_array_quartiles'] = createExportWrapper('array_quartiles', 3);
   _fflush = createExportWrapper('fflush', 1);
   _strerror = createExportWrapper('strerror', 1);
   _malloc = Module['_malloc'] = createExportWrapper('malloc', 1);
