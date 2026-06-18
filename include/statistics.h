@@ -20,7 +20,7 @@ double array_iqr(int size, double *arr);
 
 double array_skewness(int size, double *arr);
 
-double array_kurtosis(int size, double *arr);
+double array_kurtosis(int size, double *arr, double s);
 
 double array_covariance(int size, double *arr);
 
