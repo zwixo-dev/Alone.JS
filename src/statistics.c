@@ -107,3 +107,39 @@ double array_mode(int size, double *arr) {
     
     return maxValue;
 }
+
+//  array_percentile
+double array_percentile(int size, double *arr, double value) {
+    if (size <= 0) return 0.0;
+
+    int index = 0;
+    
+    while (index < size && arr[index] < value) {
+        index++;
+    }
+    
+    return ((double)index / size) * 100.0;
+}
+
+// array_quartiles
+double array_quartiles(int size, double *arr, double Q){
+    if(size<=0) return -1;
+    if(size==1) return arr[0];
+    if(!(Q==0.25||Q==0.5||Q==0.75)) return -1;
+    
+    // Q1 = 0.25 * (n-1)
+    // Q2 = 0.5 * (n-1)
+    // Q3 = 0.75 * (n-1)
+    sorting(size, arr);
+    double position = Q*(size-1);
+    
+    int lowerIndx = (int)position;
+    int upperIndx = lowerIndx+1;
+    double fraction = position-lowerIndx;
+    
+    if(fraction==0.0){
+        return arr[lowerIndx];
+    }
+    // (12, 3, 5, 7, 14, 21, 8\)
+    return arr[lowerIndx] + fraction * (arr[upperIndx] - arr[lowerIndx]);
+}
