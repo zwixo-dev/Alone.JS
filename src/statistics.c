@@ -211,7 +211,7 @@ double array_covariance(int size, double *arr_x, double *arr_y){
 //array_normalize
 void array_normalize(int size, double *arr, double *output_arr){
     
-    if(size<=1) return 0.0;
+    if(size<=1) return;
     
     double minVal = arr[0], maxVal = arr[0];
     
