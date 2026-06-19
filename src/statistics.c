@@ -209,7 +209,7 @@ double array_covariance(int size, double *arr_x, double *arr_y){
     return (sum_of_sbustrcutValues/(size-1));
 }
 //array_normalize
-double array_normalize(int size, double *arr, double *output_arr){
+void array_normalize(int size, double *arr, double *output_arr){
     
     if(size<=1) return 0.0;
     
