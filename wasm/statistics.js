@@ -1698,6 +1698,11 @@ var _array_stddev = Module['_array_stddev'] = makeInvalidEarlyAccess('_array_std
 var _array_mode = Module['_array_mode'] = makeInvalidEarlyAccess('_array_mode');
 var _array_percentile = Module['_array_percentile'] = makeInvalidEarlyAccess('_array_percentile');
 var _array_quartiles = Module['_array_quartiles'] = makeInvalidEarlyAccess('_array_quartiles');
+var _array_iqr = Module['_array_iqr'] = makeInvalidEarlyAccess('_array_iqr');
+var _array_skewness = Module['_array_skewness'] = makeInvalidEarlyAccess('_array_skewness');
+var _array_kurtosis = Module['_array_kurtosis'] = makeInvalidEarlyAccess('_array_kurtosis');
+var _array_covariance = Module['_array_covariance'] = makeInvalidEarlyAccess('_array_covariance');
+var _array_normalize = Module['_array_normalize'] = makeInvalidEarlyAccess('_array_normalize');
 var _fflush = makeInvalidEarlyAccess('_fflush');
 var _strerror = makeInvalidEarlyAccess('_strerror');
 var _malloc = Module['_malloc'] = makeInvalidEarlyAccess('_malloc');
@@ -1721,6 +1726,11 @@ function assignWasmExports(wasmExports) {
   assert(typeof wasmExports['array_mode'] != 'undefined', 'missing Wasm export: array_mode');
   assert(typeof wasmExports['array_percentile'] != 'undefined', 'missing Wasm export: array_percentile');
   assert(typeof wasmExports['array_quartiles'] != 'undefined', 'missing Wasm export: array_quartiles');
+  assert(typeof wasmExports['array_iqr'] != 'undefined', 'missing Wasm export: array_iqr');
+  assert(typeof wasmExports['array_skewness'] != 'undefined', 'missing Wasm export: array_skewness');
+  assert(typeof wasmExports['array_kurtosis'] != 'undefined', 'missing Wasm export: array_kurtosis');
+  assert(typeof wasmExports['array_covariance'] != 'undefined', 'missing Wasm export: array_covariance');
+  assert(typeof wasmExports['array_normalize'] != 'undefined', 'missing Wasm export: array_normalize');
   assert(typeof wasmExports['fflush'] != 'undefined', 'missing Wasm export: fflush');
   assert(typeof wasmExports['strerror'] != 'undefined', 'missing Wasm export: strerror');
   assert(typeof wasmExports['malloc'] != 'undefined', 'missing Wasm export: malloc');
@@ -1741,6 +1751,11 @@ function assignWasmExports(wasmExports) {
   _array_mode = Module['_array_mode'] = createExportWrapper('array_mode', 2);
   _array_percentile = Module['_array_percentile'] = createExportWrapper('array_percentile', 3);
   _array_quartiles = Module['_array_quartiles'] = createExportWrapper('array_quartiles', 3);
+  _array_iqr = Module['_array_iqr'] = createExportWrapper('array_iqr', 2);
+  _array_skewness = Module['_array_skewness'] = createExportWrapper('array_skewness', 2);
+  _array_kurtosis = Module['_array_kurtosis'] = createExportWrapper('array_kurtosis', 3);
+  _array_covariance = Module['_array_covariance'] = createExportWrapper('array_covariance', 3);
+  _array_normalize = Module['_array_normalize'] = createExportWrapper('array_normalize', 3);
   _fflush = createExportWrapper('fflush', 1);
   _strerror = createExportWrapper('strerror', 1);
   _malloc = Module['_malloc'] = createExportWrapper('malloc', 1);
