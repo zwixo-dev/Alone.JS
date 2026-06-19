@@ -24,6 +24,6 @@ double array_kurtosis(int size, double *arr, double s);
 
 double array_covariance(int size, double *arr_x, double *arr_y);
 
-double array_normalize(int size, double *arr, *output_arr);
+double array_normalize(int size, double *arr, double *output_arr);
 
 #endif
