@@ -186,10 +186,10 @@ double array_kurtosis(int size, double *arr, double s){
     
     for(int i = 0; i < size; i++){
         double deviation = arr[i] - mean;
-        sum_fourth_moment += pow(deviation, 4);
+        sum_fourth_moment += power(deviation, 4);
     }
     
-    return ( (sum_fourth_moment / (size * pow(s, 4)) ) );
+    return ( (sum_fourth_moment / (size * power(s, 4)) ) );
 }
 
 //array_covariance
