@@ -235,3 +235,20 @@ void array_normalize(int size, double *arr, double *output_arr){
        output_arr[i] = ( (arr[i] - minVal) / range ); 
     }
 }
+
+//array_correlation
+double array_correlation(int size, double *arr_x, double *arr_y){
+    
+// correlation = size * (∑xy)- (∑x)(∑y)/square([n∑x^2-(∑x^2)] [n∑y^2-(∑y)^2])
+ // or 
+ // correlation = cov(x, y)/ stddv(x) X stddv(y); 
+ 
+    if(size<=1) return 0.0;
+    
+    double cov_X_Y = array_covariance(size, arr_x, arr_y);
+    double stddev_X = array_stddev(size, arr_x);
+    double stddev_Y = array_stddev(size, arr_y);
+    
+    return ( cov_X_Y/ (stddev_X * stddev_Y) );
+    
+}
