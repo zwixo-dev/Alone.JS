@@ -26,4 +26,6 @@ double array_covariance(int size, double *arr_x, double *arr_y);
 
 void array_normalize(int size, double *arr, double *output_arr);
 
+double array_correlation(int size, double *arr_x, double *arr_y);
+
 #endif
