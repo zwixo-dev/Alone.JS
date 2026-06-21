@@ -50,7 +50,8 @@ double array_median(int size, double *arr) {
 
 // array_variance
 
-double array_variance(int size, double *arr){
+double array_variance(int size, double *arr,int option){
+    // option param meanning if you want to work with sample or population one 
     if (size <= 1) {
         return 0.0; 
     }
@@ -63,7 +64,7 @@ double array_variance(int size, double *arr){
         sum_of_subtruct_squares+= (arr[i]-mean) * (arr[i]-mean);
     }
     
-    return sum_of_subtruct_squares/(size-1);
+    return sum_of_subtruct_squares/(size-option);
 }
 
 //array_stddev
