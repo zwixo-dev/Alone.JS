@@ -254,3 +254,24 @@ double array_correlation(int size, double *arr_x, double *arr_y, int option){
     return ( cov_X_Y/ (stddev_X * stddev_Y) );
     
 }
+
+//array_zscore
+void array_zscore(int size, double *arr, double *output_arr){
+    // z = (X - μ) / σ
+    if(size<=0) return;
+    
+    //z = Z-Score
+    // X = Value of Element
+    // μ = Population Mean
+    // σ = Population Standard Deviation 
+    double mean = array_mean(size, arr);
+    double populationStdDev = array_stddev(size, arr, 0);
+    
+    if(populationStdDev==0.0){
+        return;
+    }
+    
+    for(int i =0; i<size; i++){
+        output_arr[i] = ( (arr[i] - mean) / populationStdDev ); 
+    }
+}
