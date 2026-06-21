@@ -6,7 +6,7 @@ double array_mean(int size, double *arr);
 
 double array_median(int size, double *arr);
 
-double array_variance(int size, double *arr);
+double array_variance(int size, double *arr, int option);
 
 double array_stddev(int size, double *arr);
 
