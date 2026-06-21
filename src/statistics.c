@@ -69,9 +69,9 @@ double array_variance(int size, double *arr,int option){
 
 //array_stddev
 
-double array_stddev(int size, double *arr){
-    
-    double variance = array_variance(size, arr); 
+double array_stddev(int size, double *arr, int option){
+    // option param meanning if you want to work with sample or population one 
+    double variance = array_variance(size, arr, option); 
     
     return sqrt(variance);
 }
@@ -159,11 +159,11 @@ double array_iqr(int size, double *arr){
     return Q3-Q1;
 }
 
-double array_skewness(int size, double *arr){
-    
+double array_skewness(int size, double *arr, int option){
+    // option param meanning if you want to work with sample or population one 
     if(size<=1) return 0.0;
     
-    double stddev = array_stddev(size, arr);
+    double stddev = array_stddev(size, arr, option);
     
     if(stddev==0.0){
         return 0.0;
@@ -194,7 +194,7 @@ double array_kurtosis(int size, double *arr, double s){
 }
 
 //array_covariance
-double array_covariance(int size, double *arr_x, double *arr_y){
+double array_covariance(int size, double *arr_x, double *arr_y, int option){
     if(size<=1) return 0.0;
     
     // \(\text{Cov}(X, Y) = \frac{\sum_{i=1}^{n} (X_i - \overline{X})(Y_i - \overline{Y})}{n - 1}\)
@@ -207,7 +207,7 @@ double array_covariance(int size, double *arr_x, double *arr_y){
         sum_of_sbustrcutValues+= (arr_x[i] - mean_x) * (arr_y[i] - mean_y);
     }
     
-    return (sum_of_sbustrcutValues/(size-1));
+    return (sum_of_sbustrcutValues/(size - option));
 }
 //array_normalize
 void array_normalize(int size, double *arr, double *output_arr){
@@ -239,7 +239,7 @@ void array_normalize(int size, double *arr, double *output_arr){
 }
 
 //array_correlation
-double array_correlation(int size, double *arr_x, double *arr_y){
+double array_correlation(int size, double *arr_x, double *arr_y, int option){
     
 // correlation = size * (∑xy)- (∑x)(∑y)/square([n∑x^2-(∑x^2)] [n∑y^2-(∑y)^2])
  // or 
@@ -247,9 +247,9 @@ double array_correlation(int size, double *arr_x, double *arr_y){
  
     if(size<=1) return 0.0;
     
-    double cov_X_Y = array_covariance(size, arr_x, arr_y);
-    double stddev_X = array_stddev(size, arr_x);
-    double stddev_Y = array_stddev(size, arr_y);
+    double cov_X_Y = array_covariance(size, arr_x, arr_y, option);
+    double stddev_X = array_stddev(size, arr_x, option);
+    double stddev_Y = array_stddev(size, arr_y, option);
     
     return ( cov_X_Y/ (stddev_X * stddev_Y) );
     
