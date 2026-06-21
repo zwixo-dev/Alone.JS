@@ -218,7 +218,8 @@ void array_normalize(int size, double *arr, double *output_arr){
     for(int i=1; i<size; i++){
         if(arr[i]<minVal){
             minVal = arr[i];
-        } else{
+        } 
+        if(arr[i]>maxVal){
             maxVal = arr[i];
         }
     }
