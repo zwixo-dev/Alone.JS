@@ -20,7 +20,7 @@ void matrix2d_add(int rows, int columns, double *matrix_1, double *matrix_2, dou
 
 void matrix2d_subtract(int rows, int columns, double *matrix_1, double *matrix_2, double *matrix_result);
 
-double matrix2d_multiply(int rowsM1, int columnsM1, int rowsM2, int columnsM2, double *matrix_1, double *matrix_2, double *matrix_result);
+void matrix2d_multiply(int rowsM1, int columnsM1, int rowsM2, int columnsM2, double *matrix_1, double *matrix_2, double *matrix_result);
 
 
 
