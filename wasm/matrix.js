@@ -1693,11 +1693,13 @@ function checkIncomingModuleAPI() {
 // Imports from the Wasm binary.
 var _array_sum = Module['_array_sum'] = makeInvalidEarlyAccess('_array_sum');
 var _array_product = Module['_array_product'] = makeInvalidEarlyAccess('_array_product');
-var _array_divide = Module['_array_divide'] = makeInvalidEarlyAccess('_array_divide');
 var _array_average = Module['_array_average'] = makeInvalidEarlyAccess('_array_average');
 var _array_min = Module['_array_min'] = makeInvalidEarlyAccess('_array_min');
 var _array_max = Module['_array_max'] = makeInvalidEarlyAccess('_array_max');
 var _array_range = Module['_array_range'] = makeInvalidEarlyAccess('_array_range');
+var _matrix2d_add = Module['_matrix2d_add'] = makeInvalidEarlyAccess('_matrix2d_add');
+var _matrix2d_subtract = Module['_matrix2d_subtract'] = makeInvalidEarlyAccess('_matrix2d_subtract');
+var _matrix2d_multiply = Module['_matrix2d_multiply'] = makeInvalidEarlyAccess('_matrix2d_multiply');
 var _fflush = makeInvalidEarlyAccess('_fflush');
 var _strerror = makeInvalidEarlyAccess('_strerror');
 var _malloc = Module['_malloc'] = makeInvalidEarlyAccess('_malloc');
@@ -1716,11 +1718,13 @@ var wasmMemory = makeInvalidEarlyAccess('wasmMemory');
 function assignWasmExports(wasmExports) {
   assert(typeof wasmExports['array_sum'] != 'undefined', 'missing Wasm export: array_sum');
   assert(typeof wasmExports['array_product'] != 'undefined', 'missing Wasm export: array_product');
-  assert(typeof wasmExports['array_divide'] != 'undefined', 'missing Wasm export: array_divide');
   assert(typeof wasmExports['array_average'] != 'undefined', 'missing Wasm export: array_average');
   assert(typeof wasmExports['array_min'] != 'undefined', 'missing Wasm export: array_min');
   assert(typeof wasmExports['array_max'] != 'undefined', 'missing Wasm export: array_max');
   assert(typeof wasmExports['array_range'] != 'undefined', 'missing Wasm export: array_range');
+  assert(typeof wasmExports['matrix2d_add'] != 'undefined', 'missing Wasm export: matrix2d_add');
+  assert(typeof wasmExports['matrix2d_subtract'] != 'undefined', 'missing Wasm export: matrix2d_subtract');
+  assert(typeof wasmExports['matrix2d_multiply'] != 'undefined', 'missing Wasm export: matrix2d_multiply');
   assert(typeof wasmExports['fflush'] != 'undefined', 'missing Wasm export: fflush');
   assert(typeof wasmExports['strerror'] != 'undefined', 'missing Wasm export: strerror');
   assert(typeof wasmExports['malloc'] != 'undefined', 'missing Wasm export: malloc');
@@ -1736,11 +1740,13 @@ function assignWasmExports(wasmExports) {
   assert(typeof wasmExports['__indirect_function_table'] != 'undefined', 'missing Wasm export: __indirect_function_table');
   _array_sum = Module['_array_sum'] = createExportWrapper('array_sum', 2);
   _array_product = Module['_array_product'] = createExportWrapper('array_product', 2);
-  _array_divide = Module['_array_divide'] = createExportWrapper('array_divide', 2);
   _array_average = Module['_array_average'] = createExportWrapper('array_average', 2);
   _array_min = Module['_array_min'] = createExportWrapper('array_min', 2);
   _array_max = Module['_array_max'] = createExportWrapper('array_max', 2);
   _array_range = Module['_array_range'] = createExportWrapper('array_range', 2);
+  _matrix2d_add = Module['_matrix2d_add'] = createExportWrapper('matrix2d_add', 5);
+  _matrix2d_subtract = Module['_matrix2d_subtract'] = createExportWrapper('matrix2d_subtract', 5);
+  _matrix2d_multiply = Module['_matrix2d_multiply'] = createExportWrapper('matrix2d_multiply', 7);
   _fflush = createExportWrapper('fflush', 1);
   _strerror = createExportWrapper('strerror', 1);
   _malloc = Module['_malloc'] = createExportWrapper('malloc', 1);
