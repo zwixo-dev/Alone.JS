@@ -96,7 +96,7 @@ void matrix2d_add(int rows, int columns, double *matrix_1, double *matrix_2,  do
 
 }
 
-double matrix2d_subtract(int rows, int columns, double *matrix_1, double *matrix_2, double *matrix_result){
+void matrix2d_subtract(int rows, int columns, double *matrix_1, double *matrix_2, double *matrix_result){
     
         for(int x=0; x<rows; x++){
         for(int y=0; y<columns; y++){
@@ -106,7 +106,7 @@ double matrix2d_subtract(int rows, int columns, double *matrix_1, double *matrix
     }
 }
 
-double matrix2d_multiply(int rowsM1, int columnsM1, int rowsM2, int columnsM2, double *matrix_1, double *matrix_2, double *matrix_result){
+void matrix2d_multiply(int rowsM1, int columnsM1, int rowsM2, int columnsM2, double *matrix_1, double *matrix_2, double *matrix_result){
     
     for(int x=0; x<rowsM1; x++){
         for(int y=0; y<columnsM2; y++){
