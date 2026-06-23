@@ -78,3 +78,41 @@ double array_range(int size, double *getArr){
     
     return maxValue - minValue;
 }
+
+// 2D arrays
+//  
+// | 1 2 |           | 1 2 |
+// |     |  (-/+/*)  |     |
+// | 3 4 |           | 3 4 |
+
+void matrix2d_add(int rows, int columns, double *matrix_1, double *matrix_2,  double *matrix_result ){
+    
+    for(int x=0; x<rows; x++){
+        for(int y=0; y<columns; y++){
+            int index = x * columns + y;
+            matrix_result[index] = matrix_1[index] + matrix_2[index];
+        }
+    }
+
+}
+
+double matrix2d_subtract(int rows, int columns, double *matrix_1, double *matrix_2, double *matrix_result){
+    
+        for(int x=0; x<rows; x++){
+        for(int y=0; y<columns; y++){
+            int index = x * columns + y;
+            matrix_result[index] = matrix_1[index] - matrix_2[index];
+        }
+    }
+}
+
+double matrix2d_multiply(int rowsM1, int columnsM1, int rowsM2, int columnsM2, double *matrix_1, double *matrix_2, double *matrix_result){
+    
+    for(int x=0; x<rowsM1; x++){
+        for(int y=0; y<columnsM2; y++){
+            for(int k=0; k<columnsM1; k++){
+                matrix_result[x*columnsM2+y] +=  matrix_1[x*columnsM1+k] * matrix_2[k* columnsM2+y];
+            }
+        }
+    }
+}
