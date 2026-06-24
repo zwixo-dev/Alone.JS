@@ -24,4 +24,12 @@ void matrix2d_multiply(int rowsM1, int columnsM1, int rowsM2, int columnsM2, dou
 
 void matrix_transpose(int rows, int columns, double *matrix, double *matrix_result);
 
+void matrix_determinant();
+
+void matrix_inverse();
+
+void matrix_trace();
+
+void matrix_identity();
+
 #endif
