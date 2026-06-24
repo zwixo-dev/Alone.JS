@@ -24,6 +24,8 @@ void matrix2d_multiply(int rowsM1, int columnsM1, int rowsM2, int columnsM2, dou
 
 void matrix_transpose(int rows, int columns, double *matrix, double *matrix_result);
 
+void matrix2d_scalar_operation(int rows, int columns, char *operation, double value, double *matrix, double *matrix_result);
+
 void matrix_determinant();
 
 void matrix_inverse();

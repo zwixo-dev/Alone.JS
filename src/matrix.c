@@ -72,6 +72,7 @@ double array_max(int size, double *getArr){
     return max;
 }
 
+//array_range
 double array_range(int size, double *getArr){
     double maxValue  = array_max(size, getArr); 
     double minValue = array_min(size, getArr);
@@ -79,6 +80,7 @@ double array_range(int size, double *getArr){
     return maxValue - minValue;
 }
 
+//matrix_transpose
 void matrix_transpose(int rows, int columns, double *matrix, double *matrix_result){
     
     for(int x=0; x<rows; x++){
@@ -91,12 +93,49 @@ void matrix_transpose(int rows, int columns, double *matrix, double *matrix_resu
     
 }
 
+//matrix2d_scalar_operation
+void matrix2d_scalar_operation(int rows, int columns, char *operation, double value, double *matrix, double *matrix_result){
+    
+    if(strcmp(operation, "+") == 0){
+        for(int x=0; x<rows; x++){
+            for(int y=0; y<columns; y++){
+                matrix_result[x * columns + y] = value + matrix[x * columns + y];
+            }
+        }
+    } 
+    
+    if(strcmp(operation, "-") == 0){
+        for(int x=0; x<rows; x++){
+            for(int y=0; y<columns; y++){
+                matrix_result[x * columns + y] = value - matrix[x * columns + y];
+            }
+        }
+    }
+    
+    if(strcmp(operation, "*") == 0){
+        for(int x=0; x<rows; x++){
+            for(int y=0; y<columns; y++){
+                matrix_result[x * columns + y] = value * matrix[x * columns + y];
+            }
+        }    
+    }
+    
+    if(strcmp(operation, "/") == 0){
+        for(int x=0; x<rows; x++){
+            for(int y=0; y<columns; y++){
+                matrix_result[x * columns + y] = (1/value) * matrix[x * columns + y];   
+            }
+        }
+    }
+    
+} 
 // 2D arrays
 //  
 // | 1 2 |           | 1 2 |
 // |     |  (-/+/*)  |     |
 // | 3 4 |           | 3 4 |
 
+//matrix2d_add
 void matrix2d_add(int rows, int columns, double *matrix_1, double *matrix_2,  double *matrix_result ){
     
     for(int x=0; x<rows; x++){
@@ -108,6 +147,7 @@ void matrix2d_add(int rows, int columns, double *matrix_1, double *matrix_2,  do
 
 }
 
+//matrix2d_subtract
 void matrix2d_subtract(int rows, int columns, double *matrix_1, double *matrix_2, double *matrix_result){
     
         for(int x=0; x<rows; x++){
@@ -118,6 +158,7 @@ void matrix2d_subtract(int rows, int columns, double *matrix_1, double *matrix_2
     }
 }
 
+//matrix2d_multiply
 void matrix2d_multiply(int rowsM1, int columnsM1, int rowsM2, int columnsM2, double *matrix_1, double *matrix_2, double *matrix_result){
     
     for(int x=0; x<rowsM1; x++){
