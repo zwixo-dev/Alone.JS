@@ -22,6 +22,6 @@ void matrix2d_subtract(int rows, int columns, double *matrix_1, double *matrix_2
 
 void matrix2d_multiply(int rowsM1, int columnsM1, int rowsM2, int columnsM2, double *matrix_1, double *matrix_2, double *matrix_result);
 
-
+void matrix_transpose(int rows, int columns, double *matrix, double *matrix_result);
 
 #endif
