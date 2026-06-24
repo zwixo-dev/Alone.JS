@@ -79,6 +79,18 @@ double array_range(int size, double *getArr){
     return maxValue - minValue;
 }
 
+void matrix_transpose(int rows, int columns, double *matrix, double *matrix_result){
+    
+    for(int x=0; x<rows; x++){
+        for(int y=0; y<columns; y++){
+            int index_input = x * columns + y;
+            int index_output = y * rows + x;
+            matrix_result[index_output] = matrix[index_input];
+        }
+    }
+    
+}
+
 // 2D arrays
 //  
 // | 1 2 |           | 1 2 |
