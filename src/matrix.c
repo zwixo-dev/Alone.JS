@@ -1,5 +1,6 @@
 #include "../include/matrix.h"
 #include "string.h"
+#include "stdlib.h"
 
 //  array sum
 double array_sum(int size, double *getArr){
@@ -188,4 +189,60 @@ void matrix2d_multiply(int rowsM1, int columnsM1, int rowsM2, int columnsM2, dou
             }
         }
     }
+}
+
+// get Submatrices
+void get_submatrix(int size, double *matrix, double *submatrix, int excluding_row, int excluding_col) {
+    
+    if (matrix == NULL || submatrix == NULL || size <= 1) return;
+    if (excluding_row < 0 || excluding_row >= size || excluding_col < 0 || excluding_col >= size) return;
+
+    int sub_row = 0, sub_col = 0;
+    
+    for (int r = 0; r < size; r++) {
+        if (r == excluding_row) continue;
+        
+        sub_col = 0;
+        for (int c = 0; c < size; c++) {
+            if (c == excluding_col) continue;
+            
+            // Map 2D to 1D 
+            submatrix[sub_row * (size - 1) + sub_col] = matrix[r * size + c];
+            sub_col++;
+        }
+        sub_row++;
+    }
+}
+
+//Determinant Function
+double matrix_determinant(int rows, int columns, double *matrix) {
+    
+    if (rows != columns || rows <= 0 || matrix == NULL) {
+        return 0.0; 
+    }
+    
+    // Base Case 1: 1x1 Matrix
+    if (rows == 1) return matrix[0]; 
+    
+    // Base Case 2: 2x2 Matrix (ad - bc)
+    if (rows == 2) {
+        return (matrix[0] * matrix[3]) - (matrix[1] * matrix[2]); 
+    }
+    
+    double *submatrix = (double *)malloc((rows - 1) * (columns - 1) * sizeof(double));
+    if (submatrix == NULL) return 0.0;
+    
+    double det = 0.0;
+    
+    for (int y = 0; y < columns; y++) {
+        // Exclude row 0 and current column y
+        get_submatrix(rows, matrix, submatrix, 0, y);
+
+        double sign = (y % 2 == 0) ? 1.0 : -1.0;
+        
+        det += sign * matrix[y] * matrix_determinant(rows - 1, columns - 1, submatrix);
+    }
+        
+    free(submatrix);
+    return det;
 }
