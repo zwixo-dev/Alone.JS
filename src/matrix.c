@@ -1,7 +1,9 @@
 #include "../include/matrix.h"
+#include "string.h"
 
 //  array sum
 double array_sum(int size, double *getArr){
+    if (size <= 0 || getArr == NULL) return 0.0;
     double sum = 0;
     
     for(int i =0; i<size; i++){
@@ -13,6 +15,8 @@ double array_sum(int size, double *getArr){
 
 // array porduct
 double array_product(int size, double *getArr){
+    if (size <= 0 || getArr == NULL) return 0.0;
+
     double sum=1.0;
     
     for(int i=0; i<size; i++){
@@ -23,6 +27,7 @@ double array_product(int size, double *getArr){
 
 // array divide
 double array_divide(int size, double *getArr){
+    if (size <= 0 || getArr == NULL) return 0.0;
 
     double result = getArr[0];
 
@@ -40,6 +45,8 @@ double array_divide(int size, double *getArr){
 
 // array average
 double array_average(int size, double *getArr){
+    if (size <= 0 || getArr == NULL) return 0.0;
+
     double sumOfValues = array_sum(size, getArr);
     
     return sumOfValues/size;
@@ -47,7 +54,8 @@ double array_average(int size, double *getArr){
 
 // min of array 
 double array_min(int size, double *getArr){
-    
+    if (size <= 0 || getArr == NULL) return 0.0;
+
     double min = getArr[0];
     
     for(int i =1; i<size; i++){
@@ -61,6 +69,8 @@ double array_min(int size, double *getArr){
 
 // max of array 
 double array_max(int size, double *getArr){
+    if (size <= 0 || getArr == NULL) return 0.0;
+
     double max = getArr[0];
     
     for(int i=1; i<size; i++){
@@ -74,6 +84,8 @@ double array_max(int size, double *getArr){
 
 //array_range
 double array_range(int size, double *getArr){
+    if (size <= 0 || getArr == NULL) return 0.0;
+
     double maxValue  = array_max(size, getArr); 
     double minValue = array_min(size, getArr);
     
@@ -82,7 +94,8 @@ double array_range(int size, double *getArr){
 
 //matrix_transpose
 void matrix_transpose(int rows, int columns, double *matrix, double *matrix_result){
-    
+    if (rows <= 0 || columns <= 0 || matrix == NULL || matrix_result == NULL) return;
+
     for(int x=0; x<rows; x++){
         for(int y=0; y<columns; y++){
             int index_input = x * columns + y;
@@ -95,7 +108,8 @@ void matrix_transpose(int rows, int columns, double *matrix, double *matrix_resu
 
 //matrix2d_scalar_operation
 void matrix2d_scalar_operation(int rows, int columns, char *operation, double value, double *matrix, double *matrix_result){
-    
+    if (rows <= 0 || columns <= 0 || operation == NULL || matrix == NULL || matrix_result == NULL) return;
+
     if(strcmp(operation, "+") == 0){
         for(int x=0; x<rows; x++){
             for(int y=0; y<columns; y++){
@@ -137,7 +151,8 @@ void matrix2d_scalar_operation(int rows, int columns, char *operation, double va
 
 //matrix2d_add
 void matrix2d_add(int rows, int columns, double *matrix_1, double *matrix_2,  double *matrix_result ){
-    
+    if (rows <= 0 || columns <= 0 || matrix_1 == NULL || matrix_2 == NULL || matrix_result == NULL) return;
+
     for(int x=0; x<rows; x++){
         for(int y=0; y<columns; y++){
             int index = x * columns + y;
@@ -149,7 +164,8 @@ void matrix2d_add(int rows, int columns, double *matrix_1, double *matrix_2,  do
 
 //matrix2d_subtract
 void matrix2d_subtract(int rows, int columns, double *matrix_1, double *matrix_2, double *matrix_result){
-    
+    if (rows <= 0 || columns <= 0 || matrix_1 == NULL || matrix_2 == NULL || matrix_result == NULL) return;
+
         for(int x=0; x<rows; x++){
         for(int y=0; y<columns; y++){
             int index = x * columns + y;
@@ -160,7 +176,11 @@ void matrix2d_subtract(int rows, int columns, double *matrix_1, double *matrix_2
 
 //matrix2d_multiply
 void matrix2d_multiply(int rowsM1, int columnsM1, int rowsM2, int columnsM2, double *matrix_1, double *matrix_2, double *matrix_result){
-    
+    // checking the C of Matrix1 == R of Matirx2
+    if (rowsM1 <= 0 || columnsM1 <= 0 || rowsM2 <= 0 || columnsM2 <= 0) return;
+    if (columnsM1 != rowsM2) return;
+    if (matrix_1 == NULL || matrix_2 == NULL || matrix_result == NULL) return;
+
     for(int x=0; x<rowsM1; x++){
         for(int y=0; y<columnsM2; y++){
             for(int k=0; k<columnsM1; k++){
