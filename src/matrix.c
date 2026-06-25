@@ -246,3 +246,56 @@ double matrix_determinant(int rows, int columns, double *matrix) {
     free(submatrix);
     return det;
 }
+
+double matrix_determinant(int rows, int columns, double *matrix) {
+    
+    if (rows != columns || rows <= 0 || matrix == NULL) {
+        return 0.0; 
+    }
+    
+    // Base Case 1: 1x1 Matrix
+    if (rows == 1) return matrix[0]; 
+    
+    // Base Case 2: 2x2 Matrix (ad - bc)
+    if (rows == 2) {
+        return (matrix[0] * matrix[3]) - (matrix[1] * matrix[2]); 
+    }
+    
+    double *submatrix = (double *)malloc((rows - 1) * (columns - 1) * sizeof(double));
+    if (submatrix == NULL) return 0.0;
+    
+    double det = 0.0;
+    
+    for (int y = 0; y < columns; y++) {
+        // Exclude row 0 and current column y
+        get_submatrix(rows, matrix, submatrix, 0, y);
+
+        double sign = (y % 2 == 0) ? 1.0 : -1.0;
+        
+        det += sign * matrix[y] * matrix_determinant(rows - 1, columns - 1, submatrix);
+    }
+        
+    free(submatrix); // Prevent memory leak accumulator
+    return det;
+}
+
+// matrix cofactor 
+void matrix_cofactor(int rows, int columns, double *matrix, double *matrix_result) {
+    if (rows != columns || rows <= 1) return;
+    
+    int size = rows;
+    // =sub-matrix evaluations
+    double *submatrix = (double *)malloc((rows - 1) * (columns - 1) * sizeof(double));
+    if (submatrix == NULL) return;
+
+    for (int x = 0; x < rows; x++) {
+        for (int y = 0; y < columns; y++) {
+            get_submatrix(rows, matrix, submatrix, x, y);
+            
+            double sign = ((x + y) % 2 == 0) ? 1.0 : -1.0;
+            matrix_result[x * columns + y] = sign * matrix_determinant(rows - 1, columns-1, submatrix);
+        }
+    }
+    
+    free(submatrix);
+}
