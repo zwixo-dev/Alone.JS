@@ -281,7 +281,7 @@ double matrix_determinant(int rows, int columns, double *matrix) {
 
 // matrix cofactor 
 void matrix_cofactor(int rows, int columns, double *matrix, double *matrix_result) {
-    if (rows != columns || rows <= 1) return;
+    if (rows != columns || rows <= 1 || matrix_result == NULL) return;
     
     int size = rows;
     // =sub-matrix evaluations
