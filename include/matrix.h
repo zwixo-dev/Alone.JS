@@ -28,6 +28,8 @@ void matrix2d_scalar_operation(int rows, int columns, char *operation, double va
 
 double matrix_determinant(int rows, int columns, double *matrix);
 
+void matrix_cofactor(int rows, int columns, double *matrix, double *matrix_result);
+
 void matrix_inverse();
 
 void matrix_trace();
