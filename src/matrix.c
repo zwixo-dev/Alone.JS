@@ -339,3 +339,15 @@ void matrix_inverse(int rows, int columns, double *matrix, double *matrix_result
     free(cofactorMatrix);
     free(adjMatrix);
 }
+
+//matrix_trace
+double matrix_trace(int rows, int columns, double *matrix){
+    if(rows<=0 || columns <=0 || rows!=columns || matrix == NULL){
+       return 0.0; 
+    }
+    double sum = 0.0;
+    for(int x = 0; x < rows; x++){
+        sum += matrix[x*columns+x];
+    }
+    return sum;
+}
