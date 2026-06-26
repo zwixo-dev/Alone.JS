@@ -34,6 +34,6 @@ void matrix_inverse(int rows, int columns, double *matrix, double *matrix_result
 
 double matrix_trace(int rows, int columns, double *matrix);
 
-void matrix_identity();
+void matrix_identity(int rows, int columns, double *matrix_result);
 
 #endif
