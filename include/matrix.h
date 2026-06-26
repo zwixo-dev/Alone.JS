@@ -32,7 +32,7 @@ void matrix_cofactor(int rows, int columns, double *matrix, double *matrix_resul
 
 void matrix_inverse(int rows, int columns, double *matrix, double *matrix_result);
 
-void matrix_trace();
+double matrix_trace(int rows, int columns, double *matrix);
 
 void matrix_identity();
 
