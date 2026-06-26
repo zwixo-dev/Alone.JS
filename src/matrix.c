@@ -299,3 +299,43 @@ void matrix_cofactor(int rows, int columns, double *matrix, double *matrix_resul
     
     free(submatrix);
 }
+
+// matrix_inverse
+void matrix_inverse(int rows, int columns, double *matrix, double *matrix_result){
+    if(rows <= 0 || columns <= 0 || rows != columns || matrix == NULL || matrix_result == NULL) return;
+    
+    double det = matrix_determinant(rows, columns, matrix);
+    
+    if(det == 0.0) return;
+    
+    // Handle 1x1 Matrix 
+    if(rows == 1) {
+        matrix_result[0] = 1.0 / matrix[0];
+        return;
+    }
+    
+    double *cofactorMatrix = (double *)malloc(rows * columns * sizeof(double));
+    double *adjMatrix = (double *)malloc(rows * columns * sizeof(double));
+
+    if (cofactorMatrix == NULL || adjMatrix == NULL){
+        free(cofactorMatrix);
+        free(adjMatrix);
+        return;
+    }
+    
+    // cofactor of the matrix
+    matrix_cofactor(rows, columns, matrix, cofactorMatrix);
+    
+    // transpose the matrix
+    matrix_transpose(rows, columns, cofactorMatrix, adjMatrix);
+    
+    // result
+    for(int x = 0; x < rows; x++){
+        for(int y = 0; y < columns; y++){
+            matrix_result[x * columns + y] = (1.0 / det) * adjMatrix[x * columns + y];
+        }
+    }
+    
+    free(cofactorMatrix);
+    free(adjMatrix);
+}
