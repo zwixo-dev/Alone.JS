@@ -378,3 +378,19 @@ void matrixHadamard_product(int rows, int columns, double *matrix_1, double *mat
         }
     }
 }
+
+// is the matrix sigular or not
+int matrix_is_singular(int rows, int columns, double *matrix){
+    // invalid or notsquare
+    if(rows <= 0 || columns <= 0 || rows != columns || matrix == NULL) {
+        return -1; 
+    }
+    
+    double det = matrix_determinant(rows, columns, matrix);
+    
+    if(det == 0.0){
+        return 1; // true The matrix is singular
+    }
+    
+    return 0; //false The matrix is not singular/invertible
+}
