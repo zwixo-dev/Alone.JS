@@ -40,4 +40,6 @@ void matrixHadamard_product(int rows, int columns, double *matrix_1, double *mat
 
 int matrix_is_singular(int rows, int columns, double *matrix);
 
+int matrix_is_invertible(int rows, int columns, double *matrix);
+
 #endif
