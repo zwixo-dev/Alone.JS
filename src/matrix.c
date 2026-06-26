@@ -351,3 +351,18 @@ double matrix_trace(int rows, int columns, double *matrix){
     }
     return sum;
 }
+
+void matrix_identity(int rows, int columns, double *matrix_result){
+    if(rows<=0 || columns<=0 || rows!=columns || matrix_result==NULL ) return;
+    
+    for(int x=0; x<rows; x++){
+        for(int y=0; y<columns; y++){
+            if(x==y){
+                matrix_result[x * columns + y] = 1;
+            } else{
+                matrix_result[x * columns + y] = 0;
+            }
+            
+        }
+    }
+}
