@@ -247,7 +247,7 @@ double matrix_determinant(int rows, int columns, double *matrix) {
     return det;
 }
 
-double matrix_determinant(int rows, int columns, double *matrix) {
+// double matrix_determinant(int rows, int columns, double *matrix) {
     
     if (rows != columns || rows <= 0 || matrix == NULL) {
         return 0.0; 
@@ -275,7 +275,7 @@ double matrix_determinant(int rows, int columns, double *matrix) {
         det += sign * matrix[y] * matrix_determinant(rows - 1, columns - 1, submatrix);
     }
         
-    free(submatrix); // Prevent memory leak accumulator
+    free(submatrix);
     return det;
 }
 
@@ -393,4 +393,15 @@ int matrix_is_singular(int rows, int columns, double *matrix){
     }
     
     return 0; //false The matrix is not singular/invertible
+}
+
+// matrix_is_invertible
+int matrix_is_invertible(int rows, int columns, double *matrix){
+    if(rows<=0 || columns<=0 || rows!=columns || matrix==NULL) return -1; // not found
+    
+    // if the matrix singular so it's not invertible
+    // if the matrrix not singular so it's invertible
+
+    return !matrix_is_singular(rows, columns, matrix);
+    
 }
