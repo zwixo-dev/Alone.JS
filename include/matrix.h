@@ -38,4 +38,6 @@ void matrix_identity(int rows, int columns, double *matrix_result);
 
 void matrixHadamard_product(int rows, int columns, double *matrix_1, double *matrix_2, double *matrix_result);
 
+int matrix_is_singular(int rows, int columns, double *matrix);
+
 #endif
