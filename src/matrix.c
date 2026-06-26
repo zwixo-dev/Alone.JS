@@ -178,7 +178,7 @@ void matrix2d_subtract(int rows, int columns, double *matrix_1, double *matrix_2
 //matrix2d_multiply
 void matrix2d_multiply(int rowsM1, int columnsM1, int rowsM2, int columnsM2, double *matrix_1, double *matrix_2, double *matrix_result){
     // checking the C of Matrix1 == R of Matirx2
-    if (rowsM1 <= 0 || columnsM1 <= 0 || rowsM2 <= 0 || columnsM2 <= 0) return;
+    if (rowsM1 <= 0 || columnsM1 <= 0 || rowsM2 <= 0 || columnsM2 <= 0 || matrix_result == NULL) return;
     if (columnsM1 != rowsM2) return;
     if (matrix_1 == NULL || matrix_2 == NULL || matrix_result == NULL) return;
 
