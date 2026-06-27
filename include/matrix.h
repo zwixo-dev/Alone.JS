@@ -44,4 +44,28 @@ int matrix_is_invertible(int rows, int columns, double *matrix);
 
 int matrix_rank(int rows, int columns, double *matrix);
 
+//Matrix decomposition
+void matrix_lu_decomposition();
+
+void matrix_qr_decomposition();
+
+void matrix_cholesky_decomposition();
+
+void matrix_svd();
+
+void matrix_eigenvalues();
+
+void matrix_eigenvectors();
+
+// Matrix transformations
+void matrix_rotate90();
+
+void matrix_rotate180();
+
+void matrix_rotate270();
+
+void matrix_flip_horizontal();
+
+void matrix_flip_vertical();
+
 #endif
