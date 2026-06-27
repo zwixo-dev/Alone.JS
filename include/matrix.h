@@ -42,4 +42,6 @@ int matrix_is_singular(int rows, int columns, double *matrix);
 
 int matrix_is_invertible(int rows, int columns, double *matrix);
 
+int matrix_rank(int rows, int columns, double *matrix);
+
 #endif
