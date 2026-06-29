@@ -5,28 +5,17 @@ Module.onRuntimeInitialized = () => {
     mean: Module.cwrap("array_mean", "number", ["number", "number"]),
     median: Module.cwrap("array_median", "number", ["number", "number"]),
     variance: Module.cwrap("array_variance", "number", ["number", "number"]),
-    stddev: Module.cwrap("array_stddev", "number", ["number", "number"]),
+    stddev: Module.cwrap("array_stddev", "number", ["number", "number", "number"]),
     mode: Module.cwrap("array_mode", "number", ["number", "number"]),
-    percentile: Module.cwrap("array_percentile", "number", [
-      "number",
-      "number",
-    ]),
-    quartiles: Module.cwrap("array_quartiles", "number", ["number", "number"]),
+    percentile: Module.cwrap("array_percentile", "number", ["number", "number", "number"]),
+    quartiles: Module.cwrap("array_quartiles", "number", ["number", "number", "number"]),
     iqr: Module.cwrap("array_iqr", "number", ["number", "number"]),
-    skewness: Module.cwrap("array_skewness", "number", ["number", "number"]),
-    kurtosis: Module.cwrap("array_kurtosis", "number", ["number", "number"]),
-    covariance: Module.cwrap("array_covariance", "number", [
-      "number",
-      "number",
-      "number",
-      "number",
-    ]),
-    normalize: Module.cwrap("array_normalize", "number", ["number", "number"]),
-    correlation: Module.cwrap("array_correlation", "number", [
-      "number",
-      "number",
-    ]),
-    zscore: Module.cwrap("array_zscore", "number", ["number", "number"]),
+    skewness: Module.cwrap("array_skewness", "number", ["number", "number", "number"]),
+    kurtosis: Module.cwrap("array_kurtosis", "number", ["number", "number", "number"]),
+    covariance: Module.cwrap("array_covariance", "number", ["number", "number", "number", "number"]),
+    normalize: Module.cwrap("array_normalize", null, ["number", "number", "number"]),
+    correlation: Module.cwrap("array_correlation", "number", ["number","number", "number", "number"]),
+    zscore: Module.cwrap("array_zscore", null, ["number", "number", "number"]),
   };
 
   function allocateMemory(size, arr) {
