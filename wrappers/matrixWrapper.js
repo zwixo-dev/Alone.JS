@@ -14,28 +14,28 @@ Module.onRuntimeInitialized = () =>{
         matrix2d_add: Module.cwrap("matrix2d_add", null, ["number", "number", "number", "number", "number"]),
         matrix2d_subtract: Module.cwrap("matrix2d_subtract", null, ["number", "number", "number", "number", "number"]),
         matrix2d_multiply: Module.cwrap("matrix2d_multiply", null, ["number", "number", "number", "number", "number"]),
-        matrix_transpose,
-        matrix2d_scalar_operation,
-        matrix_determinant,
-        matrix_cofactor,
-        matrix_inverse,
-        matrix_trace,
-        matrix_identity,
-        matrixHadamard_product,
-        matrix_is_singular,
-        matrix_is_invertible,
-        matrix_rank,
-        matrix_lu_decomposition,
-        matrix_qr_decomposition,
-        matrix_cholesky_decomposition,
-        matrix_svd,
-        matrix_eigenvalues,
-        matrix_eigenvectors,
-        matrix_rotate90,
-        matrix_rotate180,
-        matrix_rotate270,
-        matrix_flip_horizontal,
-        matrix_flip_vertical
+        // matrix_transpose,
+        // matrix2d_scalar_operation,
+        // matrix_determinant,
+        // matrix_cofactor,
+        // matrix_inverse,
+        // matrix_trace,
+        // matrix_identity,
+        // matrixHadamard_product,
+        // matrix_is_singular,
+        // matrix_is_invertible,
+        // matrix_rank,
+        // matrix_lu_decomposition,
+        // matrix_qr_decomposition,
+        // matrix_cholesky_decomposition,
+        // matrix_svd,
+        // matrix_eigenvalues,
+        // matrix_eigenvectors,
+        // matrix_rotate90,
+        // matrix_rotate180,
+        // matrix_rotate270,
+        // matrix_flip_horizontal,
+        // matrix_flip_vertical
     }; 
 
 
@@ -185,6 +185,22 @@ function matrix2d_subtract(rows, columns, matrix_1, matrix_2){
 
 function matrix2d_multiply(rowsM1, columnsM1, rowsM2, columnsM2, matrix_1, matrix_2, matrix_result){
 
+  const inputPointer_matrix1 = Module._malloc((rowsM1*columnsM1)*8);
+  // flat the matrix 1
+  const flatMatrix_1 = matrix_1.flat();
+  Module.HEAPF64.set(flatMatrix_1, inputPointer_matrix1/8);
 
+  const inputPointer_matrix2 = Module._malloc((rowsM2*columnsM2)*8);
+  // flat the matrix 2
+  const flatMatrix_2 = matrix_1.flat();
+  Module.HEAPF64.set(flatMatrix_2, inputPointer_matrix2/8);
+
+  // output pointer
+  const outputPointer = Module._malloc((rowsM1*columnsM2)*8);
+
+  matrix.matrix2d_multiply(rowsM1, columnsM1, rowsM2, columnsM2, inputPointer_matrix1, inputPointer_matrix2, outputPointer);
+  
+  liberation(inputPointer_matrix1);
+  liberation(inputPointer_matrix2);
 
 }
