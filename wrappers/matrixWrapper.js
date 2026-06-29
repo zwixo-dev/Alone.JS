@@ -11,9 +11,9 @@ Module.onRuntimeInitialized = () =>{
         max : Module.cwrap("array_max", "number", ["number", "number"]) ,
         range: Module.cwrap("array_range", "number", ["number", "number"]),
         // 2D matrix
-        matrix2d_add,
-        matrix2d_subtract,
-        matrix2d_multiply,
+        matrix2d_add: Module.cwrap("matrix2d_add", null, ["number", "number", "number", "number", "number"]),
+        matrix2d_subtract: Module.cwrap("matrix2d_subtract", null, ["number", "number", "number", "number", "number"]),
+        matrix2d_multiply: Module.cwrap("matrix2d_multiply", null, ["number", "number", "number", "number", "number"]),
         matrix_transpose,
         matrix2d_scalar_operation,
         matrix_determinant,
