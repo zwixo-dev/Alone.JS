@@ -53,3 +53,77 @@ Module.onRuntimeInitialized = () =>{
   function liberation(pointer) {
     Module._free(pointer);
   }
+
+// array wrappers
+
+// array sum
+function sum(size, arr){
+
+  const pointer = allocateMemory(size, arr);
+
+  const sum = matrix.sum(size, pointer);
+
+  liberation(pointer);
+
+  return sum;
+}
+
+// array product
+function product(size, arr){
+
+  const pointer = allocateMemory(size, arr);
+
+  const product = matrix.product(size, pointer);
+
+  liberation(pointer);
+
+  return product;
+}
+
+// array average
+function average(size, arr){
+  
+  const pointer = allocateMemory(size, arr);
+
+  const average = matrix.average(size, pointer);
+
+  liberation(pointer);
+
+  return average;
+} 
+
+// array min
+function min(size, arr){
+  
+  const pointer = allocateMemory(size, arr);
+
+  const min = matrix.min(size, pointer);
+
+  liberation(pointer);
+
+  return min;
+}
+
+// array max
+function max(size, arr){
+
+  const pointer = allocateMemory(size, arr);
+
+  const max = matrix.max(size, pointer);
+
+  liberation(pointer);
+
+  return max;
+}
+
+// array range 
+function range(size, arr){
+  
+  const pointer = allocateMemory(size, arr);
+
+  const range = matrix.range(size, pointer);
+
+  liberation(pointer);
+
+  return range;
+}
