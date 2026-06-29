@@ -173,7 +173,7 @@ function matrix2d_subtract(rows, columns, matrix_1, matrix_2){
   // output pointer
   const outputPointer = Module._malloc((rows*columns)*8);
 
-  matrix.matrix2d_subtrac(rows, columns, inputPointer_matrix1, inputPointer_matrix2, outputPointer);
+  matrix.matrix2d_subtract(rows, columns, inputPointer_matrix1, inputPointer_matrix2, outputPointer);
 
 
   liberation(inputPointer_matrix1);
