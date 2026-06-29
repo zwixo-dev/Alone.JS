@@ -143,7 +143,7 @@ function matrix2d_add(rows, columns, matrix_1, matrix_2){
 
   const inputPointer_matrix2 = Module._malloc((rows*columns)*8);
   // flat the matrix 2
-  const flatMatrix_2 = matrix_1.flat();
+  const flatMatrix_2 = matrix_2.flat();
   Module.HEAPF64.set(flatMatrix_2, inputPointer_matrix2/8);
 
   // output pointer
@@ -167,7 +167,7 @@ function matrix2d_subtract(rows, columns, matrix_1, matrix_2){
 
   const inputPointer_matrix2 = Module._malloc((rows*columns)*8);
   // flat the matrix 2
-  const flatMatrix_2 = matrix_1.flat();
+  const flatMatrix_2 = matrix_2.flat();
   Module.HEAPF64.set(flatMatrix_2, inputPointer_matrix2/8);
 
   // output pointer
@@ -192,7 +192,7 @@ function matrix2d_multiply(rowsM1, columnsM1, rowsM2, columnsM2, matrix_1, matri
 
   const inputPointer_matrix2 = Module._malloc((rowsM2*columnsM2)*8);
   // flat the matrix 2
-  const flatMatrix_2 = matrix_1.flat();
+  const flatMatrix_2 = matrix_2.flat();
   Module.HEAPF64.set(flatMatrix_2, inputPointer_matrix2/8);
 
   // output pointer
