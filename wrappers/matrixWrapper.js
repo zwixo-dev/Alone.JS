@@ -150,6 +150,20 @@ function allocateMemory_2D(rows, columns, matrix){
   return inputPointer;
 }
 
+function displayMatrix(rows, columns, resultMatrix){
+
+    const matrix = [];
+
+    for(let i=0; i<rows; i++){
+        matrix.push(
+            resultMatrix.slice(i * columns, (i + 1) * columns)
+        )
+    }
+    return matrix;
+}
+
+// ======================================================================================================== //
+
 // matrix2d_add
 function matrix2d_add(rows, columns, matrix_1, matrix_2){
   // input pointers
@@ -160,10 +174,13 @@ function matrix2d_add(rows, columns, matrix_1, matrix_2){
   const outputPointer = Module._malloc((rows*columns)*8);
 
   matrix.matrix2d_add(rows, columns, inputPointer_matrix1, inputPointer_matrix2, outputPointer);
-  
+  // return flat result
+  const resultMatrix2d_add = Array.from(Module.HEAPF64.subarray(outputPointer/8, (outputPointer/8)+ (rows*columns)));
+
   liberation(inputPointer_matrix1);
   liberation(inputPointer_matrix2);
   liberation(outputPointer);
+  return displayMatrix(rows, columns, resultMatrix2d_add);
 }
 
 // matrix2d_subtract
@@ -174,13 +191,15 @@ function matrix2d_subtract(rows, columns, matrix_1, matrix_2){
 
   // output pointer
   const outputPointer = Module._malloc((rows*columns)*8);
-
+  
   matrix.matrix2d_subtract(rows, columns, inputPointer_matrix1, inputPointer_matrix2, outputPointer);
-
+  // return flat result
+  const resultMatrix2d_subtract = Array.from(Module.HEAPF64.subarray(outputPointer/8, (outputPointer/8)+ (rows*columns)));  
 
   liberation(inputPointer_matrix1);
   liberation(inputPointer_matrix2);
   liberation(outputPointer);
+  return displayMatrix(rows, columns, resultMatrix2d_subtract);
 }
 
 // matrix2d_multiply
@@ -194,8 +213,12 @@ function matrix2d_multiply(rowsM1, columnsM1, rowsM2, columnsM2, matrix_1, matri
   const outputPointer = Module._malloc((rowsM1*columnsM2)*8);
 
   matrix.matrix2d_multiply(rowsM1, columnsM1, rowsM2, columnsM2, inputPointer_matrix1, inputPointer_matrix2, outputPointer);
+  // return flat result
+  const resultMatrix2d_multiply = Array.from(Module.HEAPF64.subarray(outputPointer/8, (outputPointer/8)+ (rows*columns)));
   
+
   liberation(inputPointer_matrix1);
   liberation(inputPointer_matrix2);
   liberation(outputPointer);
+  return displayMatrix(rowsM1, columnsM2, resultMatrix2d_multiply);
 }
