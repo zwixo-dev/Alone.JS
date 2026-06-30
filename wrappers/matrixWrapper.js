@@ -39,10 +39,7 @@ Module.onRuntimeInitialized = () =>{
     }; 
 
 
-};
-
-
-  function allocateMemory(size, arr) {
+function allocateMemory(size, arr) {
     const pointer = Module._malloc(size * 8);
 
     Module.HEAPF64.set(arr, pointer / 8);
@@ -50,7 +47,7 @@ Module.onRuntimeInitialized = () =>{
     return pointer;
   }
 
-  function liberation(pointer) {
+function liberation(pointer) {
     Module._free(pointer);
   }
 
@@ -127,6 +124,18 @@ function range(size, arr){
 
   return range;
 }
+
+  // fast test
+  // simple arrays
+  const arr = [1, 2, 3, 4, 5];
+  console.log("sum",sum(arr.length, arr));
+  console.log("product",product(arr.length, arr));
+  console.log("average",average(arr.length, arr));
+  console.log("min",min(arr.length, arr));
+  console.log("max",max(arr.length, arr));
+  console.log("range",range(arr.length, arr));
+
+};
 
 
 
