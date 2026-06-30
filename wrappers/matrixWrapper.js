@@ -135,11 +135,8 @@ function range(size, arr){
   console.log("max",max(arr.length, arr));
   console.log("range",range(arr.length, arr));
 
-};
 
-
-
-// 2d matrix
+  // 2d matrix
 
 function allocateMemory_2D(rows, columns, matrix){
 
@@ -222,3 +219,24 @@ function matrix2d_multiply(rowsM1, columnsM1, rowsM2, columnsM2, matrix_1, matri
   liberation(outputPointer);
   return displayMatrix(rowsM1, columnsM2, resultMatrix2d_multiply);
 }
+
+
+    const matrix_1 = [
+        [1, 2, 3],
+        [4, 5, 6],
+        [7, 8, 9]
+    ];
+
+    const matrix_2 = [
+        [1, 2, 3],
+        [4, 5, 6],
+        [7, 8, 9]
+    ];
+    const rows = 3, columns = 3;
+
+    // fast testing
+    console.log(matrix2d_add(rows, columns, matrix_1, matrix_2));
+    console.log(matrix2d_subtract(rows, columns, matrix_1, matrix_2));
+    console.log(matrix2d_multiply(rows, columns, rows, columns, matrix_1, matrix_2));
+
+};
