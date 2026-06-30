@@ -132,19 +132,20 @@ function range(size, arr){
 
 // 2d matrix
 
+function allocateMemory_2D(rows, columns, matrix){
+
+  const inputPointer= Module._malloc((rows*columns)*8);
+  const flat_matrix = matrix.flat();
+  Module.HEAPF64.set(flat_matrix, inputPointer/8);
+
+  return inputPointer;
+}
+
 // matrix2d_add
-
 function matrix2d_add(rows, columns, matrix_1, matrix_2){
-
-  const inputPointer_matrix1 = Module._malloc((rows*columns)*8);
-  // flat the matrix 1
-  const flatMatrix_1 = matrix_1.flat();
-  Module.HEAPF64.set(flatMatrix_1, inputPointer_matrix1/8);
-
-  const inputPointer_matrix2 = Module._malloc((rows*columns)*8);
-  // flat the matrix 2
-  const flatMatrix_2 = matrix_2.flat();
-  Module.HEAPF64.set(flatMatrix_2, inputPointer_matrix2/8);
+  // input pointers
+  const inputPointer_matrix1 = allocateMemory_2D(rows, columns, matrix_1);
+  const inputPointer_matrix2 = allocateMemory_2(rows, columns, matrix_2)
 
   // output pointer
   const outputPointer = Module._malloc((rows*columns)*8);
@@ -153,22 +154,13 @@ function matrix2d_add(rows, columns, matrix_1, matrix_2){
   
   liberation(inputPointer_matrix1);
   liberation(inputPointer_matrix2);
-
 }
 
 // matrix2d_subtract
-
 function matrix2d_subtract(rows, columns, matrix_1, matrix_2){
-
-  const inputPointer_matrix1 = Module._malloc((rows*columns)*8);
-  // flat the matrix 1
-  const flatMatrix_1 = matrix_1.flat();
-  Module.HEAPF64.set(flatMatrix_1, inputPointer_matrix1/8);
-
-  const inputPointer_matrix2 = Module._malloc((rows*columns)*8);
-  // flat the matrix 2
-  const flatMatrix_2 = matrix_2.flat();
-  Module.HEAPF64.set(flatMatrix_2, inputPointer_matrix2/8);
+  // input pointers
+  const inputPointer_matrix1 = allocateMemory_2D(rows, columns, matrix_1);
+  const inputPointer_matrix2 = allocateMemory_2D(rows, columns, matrix_2);
 
   // output pointer
   const outputPointer = Module._malloc((rows*columns)*8);
@@ -178,22 +170,14 @@ function matrix2d_subtract(rows, columns, matrix_1, matrix_2){
 
   liberation(inputPointer_matrix1);
   liberation(inputPointer_matrix2);
-
 }
 
 // matrix2d_multiply
 
 function matrix2d_multiply(rowsM1, columnsM1, rowsM2, columnsM2, matrix_1, matrix_2, matrix_result){
-
-  const inputPointer_matrix1 = Module._malloc((rowsM1*columnsM1)*8);
-  // flat the matrix 1
-  const flatMatrix_1 = matrix_1.flat();
-  Module.HEAPF64.set(flatMatrix_1, inputPointer_matrix1/8);
-
-  const inputPointer_matrix2 = Module._malloc((rowsM2*columnsM2)*8);
-  // flat the matrix 2
-  const flatMatrix_2 = matrix_2.flat();
-  Module.HEAPF64.set(flatMatrix_2, inputPointer_matrix2/8);
+  // input pointers
+  const inputPointer_matrix1 = allocateMemory_2D(rowsM1, columnsM1, matrix_1);
+  const inputPointer_matrix2 = allocateMemory_2D(rowsM2, columnsM2, matrix_2);
 
   // output pointer
   const outputPointer = Module._malloc((rowsM1*columnsM2)*8);
@@ -202,5 +186,4 @@ function matrix2d_multiply(rowsM1, columnsM1, rowsM2, columnsM2, matrix_1, matri
   
   liberation(inputPointer_matrix1);
   liberation(inputPointer_matrix2);
-
 }
