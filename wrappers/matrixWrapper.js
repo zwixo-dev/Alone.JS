@@ -154,7 +154,7 @@ function allocateMemory_2D(rows, columns, matrix){
 function matrix2d_add(rows, columns, matrix_1, matrix_2){
   // input pointers
   const inputPointer_matrix1 = allocateMemory_2D(rows, columns, matrix_1);
-  const inputPointer_matrix2 = allocateMemory_2(rows, columns, matrix_2)
+  const inputPointer_matrix2 = allocateMemory_2D(rows, columns, matrix_2)
 
   // output pointer
   const outputPointer = Module._malloc((rows*columns)*8);
@@ -163,6 +163,7 @@ function matrix2d_add(rows, columns, matrix_1, matrix_2){
   
   liberation(inputPointer_matrix1);
   liberation(inputPointer_matrix2);
+  liberation(outputPointer);
 }
 
 // matrix2d_subtract
@@ -179,6 +180,7 @@ function matrix2d_subtract(rows, columns, matrix_1, matrix_2){
 
   liberation(inputPointer_matrix1);
   liberation(inputPointer_matrix2);
+  liberation(outputPointer);
 }
 
 // matrix2d_multiply
@@ -195,4 +197,5 @@ function matrix2d_multiply(rowsM1, columnsM1, rowsM2, columnsM2, matrix_1, matri
   
   liberation(inputPointer_matrix1);
   liberation(inputPointer_matrix2);
+  liberation(outputPointer);
 }
