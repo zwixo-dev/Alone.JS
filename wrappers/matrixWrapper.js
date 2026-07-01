@@ -251,7 +251,7 @@ function matrix_transpose(rows, columns, matrix){
 
   const outputPointer = Module._malloc((rows*columns)*8);
 
-  matrix.matrix_transpose(rows, columns, matrix);
+  matrix.matrix_transpose(rows, columns, matrix, outputPointer);
 
   const resultMatrix_transpose = Array.from(Module.HEAPF64.subarray(outputPointer/8, (outputPointer/8)+ (rows*columns)));  
 
@@ -268,12 +268,12 @@ function matrix2d_scalar_operation(rows, columns, operation, value, matrix){
   const inputPointer = allocateMemory_2D(rows, columns, matrix);
   const outputPointer = Module._malloc((rows*columns)*8);
 
-  matrix.matrix2d_scalar_operation(rows, columns, operation, value, matrix);
+  matrix.matrix2d_scalar_operation(rows, columns, operation, value, matrix, outputPointer);
   const resultMatrix2d_scalar_operation= Array.from(Module.HEAPF64.subarray(outputPointer/8, (outputPointer/8)+ (rows*columns)));
 
   liberation(inputPointer);
   liberation(outputPointer);
-  return resultMatrix2d_scalar_operation;
+  return displayMatrix(rows, columns, resultMatrix2d_scalar_operation);
 }
 
 //  matrix_determinant
