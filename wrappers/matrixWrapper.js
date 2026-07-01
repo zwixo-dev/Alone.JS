@@ -259,3 +259,19 @@ function matrix_transpose(rows, columns, matrix){
   liberation(outputPointer);
   return displayMatrix(rows, columns, resultMatrix_transpose);
 }
+
+// double matrix_determinant
+function matrix2d_scalar_operation(rows, columns, operation, value, matrix){
+
+  if(operation === "") return -1; // no operation => result not found 
+
+  const inputPointer = allocateMemory_2D(rows, columns, matrix);
+  const outputPointer = Module._malloc((rows*columns)*8);
+
+  matrix.matrix2d_scalar_operation(rows, columns, operation, value, matrix);
+  const resultMatrix2d_scalar_operation= Array.from(Module.HEAPF64.subarray(outputPointer/8, (outputPointer/8)+ (rows*columns)));
+
+  liberation(inputPointer);
+  liberation(outputPointer);
+  return resultMatrix2d_scalar_operation;
+}
