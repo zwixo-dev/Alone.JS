@@ -260,7 +260,7 @@ function matrix_transpose(rows, columns, matrix){
   return displayMatrix(rows, columns, resultMatrix_transpose);
 }
 
-// double matrix_determinant
+// matrix2d_scalar_operation
 function matrix2d_scalar_operation(rows, columns, operation, value, matrix){
 
   if(operation === "") return -1; // no operation => result not found 
@@ -274,4 +274,14 @@ function matrix2d_scalar_operation(rows, columns, operation, value, matrix){
   liberation(inputPointer);
   liberation(outputPointer);
   return resultMatrix2d_scalar_operation;
+}
+
+//  matrix_determinant
+function matrix_determinant(rows, columns, matrix){
+
+  const inputPointer = allocateMemory_2D(rows, columns, matrix);
+  const resultMatrix_determinant = matrix.matrix_determinant(rows, columns, matrix);
+
+  liberation(inputPointer);
+  return resultMatrix_determinant;
 }
