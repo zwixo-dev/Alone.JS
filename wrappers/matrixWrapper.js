@@ -201,7 +201,7 @@ function matrix2d_subtract(rows, columns, matrix_1, matrix_2){
 
 // matrix2d_multiply
 
-function matrix2d_multiply(rowsM1, columnsM1, rowsM2, columnsM2, matrix_1, matrix_2, matrix_result){
+function matrix2d_multiply(rowsM1, columnsM1, rowsM2, columnsM2, matrix_1, matrix_2){
   // input pointers
   const inputPointer_matrix1 = allocateMemory_2D(rowsM1, columnsM1, matrix_1);
   const inputPointer_matrix2 = allocateMemory_2D(rowsM2, columnsM2, matrix_2);
