@@ -136,28 +136,7 @@ function range(size, arr){
   console.log("range",range(arr.length, arr));
 
 
-  // 2d matrix
 
-function allocateMemory_2D(rows, columns, matrix){
-
-  const inputPointer= Module._malloc((rows*columns)*8);
-  const flat_matrix = matrix.flat();
-  Module.HEAPF64.set(flat_matrix, inputPointer/8);
-
-  return inputPointer;
-}
-
-function displayMatrix(rows, columns, resultMatrix){
-
-    const matrix = [];
-
-    for(let i=0; i<rows; i++){
-        matrix.push(
-            resultMatrix.slice(i * columns, (i + 1) * columns)
-        )
-    }
-    return matrix;
-}
 
 // ======================================================================================================== //
 
@@ -240,3 +219,43 @@ function matrix2d_multiply(rowsM1, columnsM1, rowsM2, columnsM2, matrix_1, matri
     console.log(matrix2d_multiply(rows, columns, rows, columns, matrix_1, matrix_2));
 
 };
+
+
+  // 2d matrix
+
+function allocateMemory_2D(rows, columns, matrix){
+
+  const inputPointer= Module._malloc((rows*columns)*8);
+  const flat_matrix = matrix.flat();
+  Module.HEAPF64.set(flat_matrix, inputPointer/8);
+
+  return inputPointer;
+}
+
+function displayMatrix(rows, columns, resultMatrix){
+
+    const matrix = [];
+
+    for(let i=0; i<rows; i++){
+        matrix.push(
+            resultMatrix.slice(i * columns, (i + 1) * columns)
+        )
+    }
+    return matrix;
+}
+
+//matrix_transpose
+function matrix_transpose(rows, columns, matrix){
+  // input pointer
+  const inputPointer = allocateMemory_2D(rows, columns, matrix);
+
+  const outputPointer = Module._malloc((rows*columns)*8);
+
+  matrix.matrix_transpose(rows, columns, matrix);
+
+  const resultMatrix_transpose = Array.from(Module.HEAPF64.subarray(outputPointer/8, (outputPointer/8)+ (rows*columns)));  
+
+  liberation(inputPointer);
+  liberation(outputPointer);
+  return displayMatrix(rows, columns, resultMatrix_transpose);
+}
