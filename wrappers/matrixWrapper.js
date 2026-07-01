@@ -245,30 +245,30 @@ function displayMatrix(rows, columns, resultMatrix){
 }
 
 //matrix_transpose
-function matrix_transpose(rows, columns, matrix){
+function matrix_transpose(rows, columns, matrix_1){
   // input pointer
-  const inputPointer = allocateMemory_2D(rows, columns, matrix);
+  const inputPointer = allocateMemory_2D(rows, columns, matrix_1);
 
   const outputPointer = Module._malloc((rows*columns)*8);
 
-  matrix.matrix_transpose(rows, columns, matrix, outputPointer);
+  matrix.matrix_transpose(rows, columns, inputPointer, outputPointer);
 
   const resultMatrix_transpose = Array.from(Module.HEAPF64.subarray(outputPointer/8, (outputPointer/8)+ (rows*columns)));  
 
   liberation(inputPointer);
   liberation(outputPointer);
-  return displayMatrix(rows, columns, resultMatrix_transpose);
+  return displayMatrix(columns, rows, resultMatrix_transpose);
 }
 
 // matrix2d_scalar_operation
-function matrix2d_scalar_operation(rows, columns, operation, value, matrix){
+function matrix2d_scalar_operation(rows, columns, operation, value, matrix_1){
 
   if(operation === "") return -1; // no operation => result not found 
 
-  const inputPointer = allocateMemory_2D(rows, columns, matrix);
+  const inputPointer = allocateMemory_2D(rows, columns, matrix_1);
   const outputPointer = Module._malloc((rows*columns)*8);
 
-  matrix.matrix2d_scalar_operation(rows, columns, operation, value, matrix, outputPointer);
+  matrix.matrix2d_scalar_operation(rows, columns, operation, value, inputPointer, outputPointer);
   const resultMatrix2d_scalar_operation= Array.from(Module.HEAPF64.subarray(outputPointer/8, (outputPointer/8)+ (rows*columns)));
 
   liberation(inputPointer);
@@ -277,10 +277,10 @@ function matrix2d_scalar_operation(rows, columns, operation, value, matrix){
 }
 
 //  matrix_determinant
-function matrix_determinant(rows, columns, matrix){
+function matrix_determinant(rows, columns, matrix_1){
 
-  const inputPointer = allocateMemory_2D(rows, columns, matrix);
-  const resultMatrix_determinant = matrix.matrix_determinant(rows, columns, matrix);
+  const inputPointer = allocateMemory_2D(rows, columns, matrix_1);
+  const resultMatrix_determinant = matrix.matrix_determinant(rows, columns, inputPointer);
 
   liberation(inputPointer);
   return resultMatrix_determinant;
