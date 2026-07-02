@@ -217,9 +217,7 @@ void get_submatrix(int size, double *matrix, double *submatrix, int excluding_ro
 //Determinant Function
 double matrix_determinant(int rows, int columns, double *matrix) {
     
-    if (rows != columns || rows <= 0 || matrix == NULL) {
-        return 0.0; 
-    }
+    if (rows != columns || rows <= 0 || matrix == NULL) return 0.0;
     
     // Base Case 1: 1x1 Matrix
     if (rows == 1) return matrix[0]; 
@@ -310,9 +308,8 @@ void matrix_inverse(int rows, int columns, double *matrix, double *matrix_result
 
 //matrix_trace
 double matrix_trace(int rows, int columns, double *matrix){
-    if(rows<=0 || columns <=0 || rows!=columns || matrix == NULL){
-       return 0.0; 
-    }
+    if(rows<=0 || columns <=0 || rows!=columns || matrix == NULL) return 0.0; 
+
     double sum = 0.0;
     for(int x = 0; x < rows; x++){
         sum += matrix[x*columns+x];
@@ -350,9 +347,7 @@ void matrixHadamard_product(int rows, int columns, double *matrix_1, double *mat
 // is the matrix sigular or not
 int matrix_is_singular(int rows, int columns, double *matrix){
     // invalid or notsquare
-    if(rows <= 0 || columns <= 0 || rows != columns || matrix == NULL) {
-        return -1; 
-    }
+    if(rows <= 0 || columns <= 0 || rows != columns || matrix == NULL) return -1;
     
     double det = matrix_determinant(rows, columns, matrix);
     
