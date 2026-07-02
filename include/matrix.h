@@ -45,7 +45,7 @@ int matrix_is_invertible(int rows, int columns, double *matrix);
 int matrix_rank(int rows, int columns, double *matrix);
 
 //Matrix decomposition
-void matrix_lu_decomposition();
+void matrix_lu_decomposition(int rows, int columns, double *matrix, double *matrix_L, double *matrix_U);
 
 void matrix_qr_decomposition();
 
