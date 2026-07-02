@@ -373,3 +373,48 @@ int matrix_is_invertible(int rows, int columns, double *matrix){
     return !matrix_is_singular(rows, columns, matrix);
     
 }
+
+// matrix_lu_decomposition
+void matrix_lu_decomposition(int rows, int columns, double *matrix, double *matrix_L, double *matrix_U) {
+    if (rows != columns || rows <= 0 || matrix == NULL || matrix_L == NULL || matrix_U == NULL) return;
+    
+    // int L and U matrices with default values
+    for (int x = 0; x < rows; x++) {
+        for (int y = 0; y < rows; y++) {
+            if (x == y) {
+                matrix_L[x * rows + y] = 1.0; // Diagonal of L
+                matrix_U[x * rows + y] = 0.0;
+            } else {
+                matrix_L[x * rows + y] = 0.0;
+                matrix_U[x * rows + y] = 0.0;
+            }
+        }
+    }
+
+    //
+    for (int x=0; x< rows; x++) {
+        // Calculate elements of the Upper Triangular Matrix (U)
+        for (int y=x; y< rows; y++) {
+            double sum = 0.0;
+            for (int k = 0; k < x; k++) {
+                sum += matrix_L[x * rows + k] * matrix_U[k * rows + y];
+            }
+            matrix_U[x * rows + y] = matrix[x * rows + y] - sum;
+        }
+
+        // elements of the Lower Triangular Matrix (L)
+        for (int y = x + 1; y < rows; y++) {
+            double sum = 0.0;
+            for (int k = 0; k < x; k++) {
+                sum += matrix_L[y * rows + k] * matrix_U[k * rows + x];
+            }
+            
+            // Check Prevent division by zero if the matrix cannot be decomposed
+            if (matrix_U[x * rows + x] == 0.0) {
+                return;
+            }
+            
+            matrix_L[y * rows + x] = (matrix[y * rows + x] - sum) / matrix_U[x * rows + x];
+        }
+    }
+}
