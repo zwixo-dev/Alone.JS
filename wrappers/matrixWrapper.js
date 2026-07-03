@@ -16,7 +16,7 @@ Module.onRuntimeInitialized = () => {
     matrix2d_subtract: Module.cwrap("matrix2d_subtract", null, ["number", "number", "number", "number", "number"]),
     matrix2d_multiply: Module.cwrap("matrix2d_multiply", null, ["number", "number", "number", "number", "number"]),
     matrix_transpose: Module.cwrap("matrix_transpose", null, ["number", "number", "number", "number"]),
-    matrix2d_scalar_operation: Module.cwrap("matrix2d_scalar_operation", null, ["number", "number", "number", "number", "number", "number"]),
+    matrix2d_scalar_operation: Module.cwrap("matrix2d_scalar_operation", null, ["number", "number", "string", "number", "number", "number"]),
     matrix_determinant: Module.cwrap("matrix_determinant", "number", ["number", "number", "number"]),
     matrix_cofactor: Module.cwrap("matrix_determinant", null, ["number", "number", "number", "number"]),
     matrix_inverse: Module.cwrap("matrix_inverse", null, ["number", "number", "number", "number"]),
@@ -70,10 +70,11 @@ Module.onRuntimeInitialized = () => {
   const rows = 3, columns = 3;
 
   // fast testing
-  console.log(matrix2d_add(rows, columns, matrix_1, matrix_2));
-  console.log(matrix2d_subtract(rows, columns, matrix_1, matrix_2));
-  console.log(matrix2d_multiply(rows, columns, rows, columns, matrix_1, matrix_2));
-
+  console.log("matrix2d_add",matrix2d_add(rows, columns, matrix_1, matrix_2));
+  console.log("matrix2d_subtract",matrix2d_subtract(rows, columns, matrix_1, matrix_2));
+  console.log("matrix2d_multiply",matrix2d_multiply(rows, columns, rows, columns, matrix_1, matrix_2));
+  console.log("matrix_transpose",matrix_transpose(rows, columns, matrix_1));
+  console.log("matrix2d_scalar_operation",matrix2d_scalar_operation(rows, columns, "+", 2, matrix_1));
 };
 
 
