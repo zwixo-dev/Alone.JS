@@ -79,7 +79,7 @@ Module.onRuntimeInitialized = () => {
   console.log("matrix2d_scalar_operation (-) :",matrix2d_scalar_operation(rows, columns, "-", 2, matrix_1));
   console.log("matrix2d_scalar_operation (*) :",matrix2d_scalar_operation(rows, columns, "*", 2, matrix_1));
   console.log("matrix2d_scalar_operation (/) :",matrix2d_scalar_operation(rows, columns, "/", 2, matrix_1));
-
+  console.log("matrix_determinant : ", matrix_determinant(rows, columns, matrix_1));
   
 
 };
