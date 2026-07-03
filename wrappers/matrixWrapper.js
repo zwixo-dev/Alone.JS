@@ -79,9 +79,9 @@ Module.onRuntimeInitialized = () => {
   console.log("matrix2d_scalar_operation (-) :",matrix2d_scalar_operation(rows, columns, "-", 2, matrix_1));
   console.log("matrix2d_scalar_operation (*) :",matrix2d_scalar_operation(rows, columns, "*", 2, matrix_1));
   console.log("matrix2d_scalar_operation (/) :",matrix2d_scalar_operation(rows, columns, "/", 2, matrix_1));
-  // console.log("matrix_determinant : ", matrix_determinant(rows, columns, matrix_1));
+  console.log("matrix_determinant : ", matrix_determinant(rows, columns, matrix_1));
   console.log("matrix_cofactor : ", matrix_cofactor(rows, columns, matrix_1));
-  
+  console.log("matrix_inverse : ", matrix_inverse(rows, columns, matrix_1));
 
 };
 
@@ -297,9 +297,7 @@ function matrix_determinant(rows, columns, matrix_1) {
   return resultMatrix_determinant;
 }
 
-// void (int rows, int columns, double *matrix, double *matrix_result);
 //matrix_cofactor
-
 function matrix_cofactor(rows, columns, matrix_1){
 
   if (rows !== columns) {
@@ -315,4 +313,19 @@ function matrix_cofactor(rows, columns, matrix_1){
   liberation(inputPointer);
   liberation(outputPointer);
   return displayMatrix(rows, columns, resultMatrix_cofactor);
+}
+
+// void matrix_inverse(int rows, int columns, double *matrix, double *matrix_result);
+//matrix_inverse
+function matrix_inverse(rows, columns, matrix_1){
+
+  const inputPointer = allocateMemory_2D(rows, columns, matrix_1);
+  const outputPointer = Module._malloc((rows * columns) * 8);
+
+  matrix.matrix_inverse(rows, columns, inputPointer, outputPointer);
+  const resultMatrix_inverse = Array.from(Module.HEAPF64.subarray(outputPointer / 8, (outputPointer / 8) + (rows * columns)));
+
+  liberation(inputPointer);
+  liberation(outputPointer);
+  return displayMatrix(rows, columns, resultMatrix_inverse);
 }
