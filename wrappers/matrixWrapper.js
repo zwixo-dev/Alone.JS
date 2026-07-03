@@ -18,7 +18,7 @@ Module.onRuntimeInitialized = () => {
     matrix_transpose: Module.cwrap("matrix_transpose", null, ["number", "number", "number", "number"]),
     matrix2d_scalar_operation: Module.cwrap("matrix2d_scalar_operation", null, ["number", "number", "string", "number", "number", "number"]),
     matrix_determinant: Module.cwrap("matrix_determinant", "number", ["number", "number", "number"]),
-    matrix_cofactor: Module.cwrap("matrix_determinant", null, ["number", "number", "number", "number"]),
+    matrix_cofactor: Module.cwrap("matrix_cofactor", null, ["number", "number", "number", "number"]),
     matrix_inverse: Module.cwrap("matrix_inverse", null, ["number", "number", "number", "number"]),
     matrix_trace: Module.cwrap("matrix_trace", "number", ["number", "number", "number"]),
     matrix_identity: Module.cwrap("matrix_identity", null, ["number", "number", "number"]),
@@ -79,7 +79,8 @@ Module.onRuntimeInitialized = () => {
   console.log("matrix2d_scalar_operation (-) :",matrix2d_scalar_operation(rows, columns, "-", 2, matrix_1));
   console.log("matrix2d_scalar_operation (*) :",matrix2d_scalar_operation(rows, columns, "*", 2, matrix_1));
   console.log("matrix2d_scalar_operation (/) :",matrix2d_scalar_operation(rows, columns, "/", 2, matrix_1));
-  console.log("matrix_determinant : ", matrix_determinant(rows, columns, matrix_1));
+  // console.log("matrix_determinant : ", matrix_determinant(rows, columns, matrix_1));
+  console.log("matrix_cofactor : ", matrix_cofactor(rows, columns, matrix_1));
   
 
 };
@@ -294,4 +295,24 @@ function matrix_determinant(rows, columns, matrix_1) {
 
   liberation(inputPointer);
   return resultMatrix_determinant;
+}
+
+// void (int rows, int columns, double *matrix, double *matrix_result);
+//matrix_cofactor
+
+function matrix_cofactor(rows, columns, matrix_1){
+
+  if (rows !== columns) {
+    throw new Error("Cofactor matrix requires a square matrix.");
+}
+
+  const inputPointer = allocateMemory_2D(rows, columns, matrix_1);
+  const outputPointer = Module._malloc((rows * columns) * 8);
+
+  matrix.matrix_cofactor(rows, columns, inputPointer, outputPointer);
+  const resultMatrix_cofactor = Array.from(Module.HEAPF64.subarray(outputPointer / 8, (outputPointer / 8) + (rows * columns)));
+
+  liberation(inputPointer);
+  liberation(outputPointer);
+  return displayMatrix(rows, columns, resultMatrix_cofactor);
 }
