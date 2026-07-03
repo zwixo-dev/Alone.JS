@@ -83,6 +83,7 @@ Module.onRuntimeInitialized = () => {
   console.log("matrix_cofactor : ", matrix_cofactor(rows, columns, matrix_1));
   console.log("matrix_inverse : ", matrix_inverse(rows, columns, matrix_1));
   console.log("matrix_trace : ", matrix_trace(rows, columns, matrix_1));
+  console.log("matrix_identity : ", matrix_identity(rows, columns));
 
 };
 
@@ -338,4 +339,20 @@ function matrix_trace(rows, columns, matrix_1){
 
   liberation(inputPointer);
   return resultMatrix_trace;
+}
+
+// void matrix_identity(int rows, int columns, double *matrix_result)
+//matrix_identity
+
+function matrix_identity(rows, columns){
+
+  const outputPointer = Module._malloc((rows * columns) * 8);
+
+  matrix.matrix_identity(rows, columns, outputPointer);
+
+  const resultMatrix_identity = Array.from(Module.HEAPF64.subarray(outputPointer / 8, (outputPointer / 8) + (rows * columns)));
+
+  liberation(outputPointer);
+
+  return displayMatrix(rows, columns, resultMatrix_identity);
 }
