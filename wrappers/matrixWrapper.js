@@ -82,6 +82,7 @@ Module.onRuntimeInitialized = () => {
   console.log("matrix_determinant : ", matrix_determinant(rows, columns, matrix_1));
   console.log("matrix_cofactor : ", matrix_cofactor(rows, columns, matrix_1));
   console.log("matrix_inverse : ", matrix_inverse(rows, columns, matrix_1));
+  console.log("matrix_trace : ", matrix_trace(rows, columns, matrix_1));
 
 };
 
@@ -315,7 +316,6 @@ function matrix_cofactor(rows, columns, matrix_1){
   return displayMatrix(rows, columns, resultMatrix_cofactor);
 }
 
-// void matrix_inverse(int rows, int columns, double *matrix, double *matrix_result);
 //matrix_inverse
 function matrix_inverse(rows, columns, matrix_1){
 
@@ -328,4 +328,14 @@ function matrix_inverse(rows, columns, matrix_1){
   liberation(inputPointer);
   liberation(outputPointer);
   return displayMatrix(rows, columns, resultMatrix_inverse);
+}
+
+// double matrix_trace
+function matrix_trace(rows, columns, matrix_1){
+
+  const inputPointer = allocateMemory_2D(rows, columns, matrix_1);
+  const resultMatrix_trace = matrix.matrix_trace(rows, columns, inputPointer);
+
+  liberation(inputPointer);
+  return resultMatrix_trace;
 }
