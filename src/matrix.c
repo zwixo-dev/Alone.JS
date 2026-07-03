@@ -369,6 +369,56 @@ int matrix_is_invertible(int rows, int columns, double *matrix){
     
 }
 
+// matrix_rank
+int matrix_rank(int rows, int columns, double *matrix) {
+    if (rows <= 0 || columns <= 0 || matrix == NULL) return -1;
+    
+    double *temp_matrix = (double *)malloc(rows * columns * sizeof(double));
+    if (temp_matrix == NULL) return -1;
+
+    for (int i = 0; i < rows * columns; i++) {
+        temp_matrix[i] = matrix[i];
+    }
+
+    int rank = columns < rows ? columns : rows; // The maximum possible rank
+
+    for (int row = 0; row < rank; row++) {
+        if (temp_matrix[row * columns + row] != 0.0) {
+            // eliminate all entries below and above
+            for (int col = 0; col < rows; col++) {
+                if (col != row) {
+                    double factor = temp_matrix[col * columns + row] / temp_matrix[row * columns + row];
+                    for (int i = row; i < columns; i++) {
+                        temp_matrix[col * columns + i] -= factor * temp_matrix[row * columns + i];
+                    }
+                }
+            }
+        } else {
+            // if pivot is zero, try to swap with a !zero row below it
+            int reduce = 1;
+            for (int i = row + 1; i < rows; i++) {
+                if (temp_matrix[i * columns + row] != 0.0) {
+                    matrix_swap_rows(rows, columns, temp_matrix, row, i);
+                    reduce = 0;
+                    break;
+                }
+            }
+            
+            //If the entire column is zero, reduce the rank estimate and check the column again
+            if (reduce) {
+                rank--;
+                for (int i = 0; i < rows; i++) {
+                    temp_matrix[i * columns + row] = temp_matrix[i * columns + rank];
+                }
+                row--; 
+            }
+        }
+    }
+
+    free(temp_matrix);
+    return rank;
+}
+
 // matrix_lu_decomposition
 void matrix_lu_decomposition(int rows, int columns, double *matrix, double *matrix_L, double *matrix_U) {
     if (rows != columns || rows <= 0 || matrix == NULL || matrix_L == NULL || matrix_U == NULL) return;
