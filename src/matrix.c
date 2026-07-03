@@ -369,6 +369,20 @@ int matrix_is_invertible(int rows, int columns, double *matrix){
     
 }
 
+void matrix_swap_rows(int rows, int columns, double *matrix, int row1, int row2) {
+    if (matrix == NULL || rows <= 0 || columns <= 0) return;
+    if (row1 < 0 || row1 >= rows || row2 < 0 || row2 >= rows || row1 == row2) return;
+
+    for (int c = 0; c < columns; c++) {
+        int idx1 = row1 * columns + c;
+        int idx2 = row2 * columns + c;
+        
+        double temp = matrix[idx1];
+        matrix[idx1] = matrix[idx2];
+        matrix[idx2] = temp;
+    }
+}
+
 // matrix_rank
 int matrix_rank(int rows, int columns, double *matrix) {
     if (rows <= 0 || columns <= 0 || matrix == NULL) return -1;
