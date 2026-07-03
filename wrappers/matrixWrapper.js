@@ -74,7 +74,14 @@ Module.onRuntimeInitialized = () => {
   console.log("matrix2d_subtract",matrix2d_subtract(rows, columns, matrix_1, matrix_2));
   console.log("matrix2d_multiply",matrix2d_multiply(rows, columns, rows, columns, matrix_1, matrix_2));
   console.log("matrix_transpose",matrix_transpose(rows, columns, matrix_1));
-  console.log("matrix2d_scalar_operation",matrix2d_scalar_operation(rows, columns, "+", 2, matrix_1));
+
+  console.log("matrix2d_scalar_operation (+) :",matrix2d_scalar_operation(rows, columns, "+", 2, matrix_1));
+  console.log("matrix2d_scalar_operation (-) :",matrix2d_scalar_operation(rows, columns, "-", 2, matrix_1));
+  console.log("matrix2d_scalar_operation (*) :",matrix2d_scalar_operation(rows, columns, "*", 2, matrix_1));
+  console.log("matrix2d_scalar_operation (/) :",matrix2d_scalar_operation(rows, columns, "/", 2, matrix_1));
+
+  
+
 };
 
 
