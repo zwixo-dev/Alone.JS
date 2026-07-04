@@ -85,7 +85,7 @@ Module.onRuntimeInitialized = () => {
   console.log("matrix_trace : ", matrix_trace(rows, columns, matrix_1));
   console.log("matrix_identity : ", matrix_identity(rows, columns));
   console.log("matrixHadamard_product : ", matrixHadamard_product(rows, columns, matrix_1, matrix_2));
-
+  console.log("matrix_is_singular : ", matrix_is_singular(rows, columns, matrix_1));
 };
 
 
@@ -356,7 +356,6 @@ function matrix_identity(rows, columns){
   return displayMatrix(rows, columns, resultMatrix_identity);
 }
 
-// void matrixHadamard_product(int rows, int columns, double *matrix_1, double *matrix_2, double *matrix_result);
 // matrixHadamard_product
 function matrixHadamard_product(rows, columns, matrix_1, matrix_2){
 
@@ -372,4 +371,14 @@ function matrixHadamard_product(rows, columns, matrix_1, matrix_2){
   liberation(inputPointer_matrix2);
   liberation(outputPointer);
   return displayMatrix(rows, columns, resultMatrixHadamard_product);
+}
+
+// matrix_is_singular
+function matrix_is_singular(rows, columns, matrix_1){
+
+  const inputPointer = allocateMemory_2D(rows, columns, matrix_1);
+  const resultMatrix_is_singular = matrix.matrix_is_singular(rows, columns, inputPointer);
+  
+  liberation(inputPointer);
+  return resultMatrix_is_singular;
 }
