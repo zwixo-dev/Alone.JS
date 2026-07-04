@@ -84,6 +84,7 @@ Module.onRuntimeInitialized = () => {
   console.log("matrix_inverse : ", matrix_inverse(rows, columns, matrix_1));
   console.log("matrix_trace : ", matrix_trace(rows, columns, matrix_1));
   console.log("matrix_identity : ", matrix_identity(rows, columns));
+  console.log("matrixHadamard_product : ", matrixHadamard_product(rows, columns, matrix_1, matrix_2));
 
 };
 
@@ -341,9 +342,7 @@ function matrix_trace(rows, columns, matrix_1){
   return resultMatrix_trace;
 }
 
-// void matrix_identity(int rows, int columns, double *matrix_result)
 //matrix_identity
-
 function matrix_identity(rows, columns){
 
   const outputPointer = Module._malloc((rows * columns) * 8);
@@ -355,4 +354,22 @@ function matrix_identity(rows, columns){
   liberation(outputPointer);
 
   return displayMatrix(rows, columns, resultMatrix_identity);
+}
+
+// void matrixHadamard_product(int rows, int columns, double *matrix_1, double *matrix_2, double *matrix_result);
+// matrixHadamard_product
+function matrixHadamard_product(rows, columns, matrix_1, matrix_2){
+
+  const inputPointer_matrix1 = allocateMemory_2D(rows, columns, matrix_1);
+  const inputPointer_matrix2 = allocateMemory_2D(rows, columns, matrix_2);
+
+  const outputPointer = Module._malloc((rows * columns) * 8);
+
+  matrix.matrixHadamard_product(rows, columns, inputPointer_matrix1, inputPointer_matrix2, outputPointer);
+  const resultMatrixHadamard_product = Array.from(Module.HEAPF64.subarray(outputPointer / 8, (outputPointer / 8) + (rows * columns)));
+
+  liberation(inputPointer_matrix1);
+  liberation(inputPointer_matrix2);
+  liberation(outputPointer);
+  return displayMatrix(rows, columns, resultMatrixHadamard_product);
 }
