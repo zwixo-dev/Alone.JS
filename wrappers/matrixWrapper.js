@@ -87,6 +87,7 @@ Module.onRuntimeInitialized = () => {
   console.log("matrixHadamard_product : ", matrixHadamard_product(rows, columns, matrix_1, matrix_2));
   console.log("matrix_is_singular : ", matrix_is_singular(rows, columns, matrix_1));
   console.log("matrix_is_invertible : ", matrix_is_invertible(rows, columns, matrix_1));
+  console.log("matrix_rank : ", matrix_rank(rows, columns, matrix_1));
 };
 
 
@@ -392,4 +393,14 @@ function matrix_is_invertible(rows, columns, matrix_1){
 
   liberation(inputPointer);
   return resultMatrix_is_invertible;
+}
+
+// int matrix_rank(int rows, int columns, double *matrix);
+function matrix_rank(rows, columns, matrix_1){
+
+  const inputPointer = allocateMemory_2D(rows, columns, matrix_1);
+  const resultMatrix_rank = matrix.matrix_rank(rows, columns, inputPointer);
+
+  liberation(inputPointer);
+  return resultMatrix_rank;
 }
