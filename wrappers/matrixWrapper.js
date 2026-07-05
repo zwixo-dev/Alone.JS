@@ -26,7 +26,7 @@ Module.onRuntimeInitialized = () => {
     matrix_is_singular: Module.cwrap("matrix_is_singular", "number", ["number", "number", "number"]),
     matrix_is_invertible: Module.cwrap("matrix_is_invertible", "number", ["number", "number", "number"]),
     matrix_rank: Module.cwrap("matrix_rank", "number", ["number", "number", "number"]),
-    // matrix_lu_decomposition,
+    matrix_lu_decomposition: Module.cwrap("matrix_lu_decomposition", "number", ["number", "number", "number"]),
     // matrix_qr_decomposition,
     // matrix_cholesky_decomposition,
     // matrix_svd,
@@ -88,6 +88,7 @@ Module.onRuntimeInitialized = () => {
   console.log("matrix_is_singular : ", matrix_is_singular(rows, columns, matrix_1));
   console.log("matrix_is_invertible : ", matrix_is_invertible(rows, columns, matrix_1));
   console.log("matrix_rank : ", matrix_rank(rows, columns, matrix_1));
+  console.log("matrix_lu_decomposition : ", matrix_lu_decomposition(rows, columns, matrix_1));
 };
 
 
@@ -405,7 +406,6 @@ function matrix_rank(rows, columns, matrix_1){
   return resultMatrix_rank;
 }
 
-// void matrix_lu_decomposition(int rows, int columns, double *matrix, double *matrix_L, double *matrix_U) {
 // matrix_lu_decomposition
 function matrix_lu_decomposition(rows, columns, matrix_1){
 
@@ -414,10 +414,14 @@ function matrix_lu_decomposition(rows, columns, matrix_1){
   const outputMatrix_U = Module._malloc((rows * columns) * 8);
 
   matrix.matrix_lu_decomposition(rows, columns, inputPointer, outputMatrix_L, outputMatrix_U);
-  const resultMatrix_lu_decomposition = Array.from(Module.HEAPF64.subarray(outputPointer / 8, (outputPointer / 8) + (rows * columns)));
+  const resultMatrix_L  = Array.from(Module.HEAPF64.subarray(outputMatrix_L / 8, (outputMatrix_L / 8) + (rows * columns)));
+  const resultMatrix_U  = Array.from(Module.HEAPF64.subarray(outputMatrix_U / 8, (outputMatrix_U / 8) + (rows * columns)));
 
   liberation(inputPointer);
   liberation(outputMatrix_L);
   liberation(outputMatrix_U);
-  return;
+  return {
+    L: displayMatrix(rows, columns, resultMatrix_L),
+    U: displayMatrix(rows, columns, resultMatrix_U)
+  };
 }
