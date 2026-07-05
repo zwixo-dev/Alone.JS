@@ -404,3 +404,20 @@ function matrix_rank(rows, columns, matrix_1){
   liberation(inputPointer);
   return resultMatrix_rank;
 }
+
+// void matrix_lu_decomposition(int rows, int columns, double *matrix, double *matrix_L, double *matrix_U) {
+// matrix_lu_decomposition
+function matrix_lu_decomposition(rows, columns, matrix_1){
+
+  const inputPointer = allocateMemory_2D(rows, columns, matrix_1);
+  const outputMatrix_L = Module._malloc((rows * columns) * 8);
+  const outputMatrix_U = Module._malloc((rows * columns) * 8);
+
+  matrix.matrix_lu_decomposition(rows, columns, inputPointer, outputMatrix_L, outputMatrix_U);
+  const resultMatrix_lu_decomposition = Array.from(Module.HEAPF64.subarray(outputPointer / 8, (outputPointer / 8) + (rows * columns)));
+
+  liberation(inputPointer);
+  liberation(outputMatrix_L);
+  liberation(outputMatrix_U);
+  return;
+}
