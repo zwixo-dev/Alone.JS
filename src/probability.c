@@ -12,3 +12,11 @@ double factorial(int n) {
     }
     return fact;
 }
+
+// permutation
+double permutation(int n, int r){
+    // formula = n! / (n-r)!
+    
+    if(n<0 || r<0) return -1; // undefined
+    return ( factorial(n) / factorial(n-r) ); 
+}
