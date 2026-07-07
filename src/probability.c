@@ -38,3 +38,9 @@ double binomial_probability(int n, int x, double p){
     double failure = pow(1-p,n-x); //= (1-p)^(n-x)
     return (combination_result * success * failure);
 }
+
+double poisson_probability(int k, double lambda) {
+
+    if (k < 0 || lambda < 0) return -1;
+    return exp(-lambda) * pow(lambda, k) / factorial(k);
+}
