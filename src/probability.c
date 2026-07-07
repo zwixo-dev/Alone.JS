@@ -27,3 +27,14 @@ double combination(int n, int r){
     if(n<0 || r<0) return -1;//undefined
     return ( factorial(n) /( factorial(r) * factorial(n-r) ) );
 }
+
+// binomial_probability
+double binomial_probability(int n, int x, double p){
+    
+    if (n < 0 || x < 0 || x > n || p < 0 || p > 1) return -1; // undefined
+    
+    double combination_result = combination(n, x);
+    double success = pow(p,x);
+    double failure = pow(1-p,n-x); //= (1-p)^(n-x)
+    return (combination_result * success * failure);
+}
