@@ -20,3 +20,10 @@ double permutation(int n, int r){
     if(n<0 || r<0) return -1; // undefined
     return ( factorial(n) / factorial(n-r) ); 
 }
+
+// combination
+double combination(int n, int r){
+    // formula = n! / r! * (n-r)!
+    if(n<0 || r<0) return -1;//undefined
+    return ( factorial(n) /( factorial(r) * factorial(n-r) ) );
+}
