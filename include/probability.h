@@ -1,5 +1,5 @@
-#ifndef ALONE_GEOMETRY_UTILS_H
-#define ALONE_GEOMETRY_UTILS_H
+#ifndef ALONE_PROBABILITY_UTILS_H
+#define ALONE_PROBABILITY_UTILS_H
 
 double factorial(int n);
 
