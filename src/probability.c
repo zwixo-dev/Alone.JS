@@ -60,3 +60,12 @@ double normal_cdf(double x, double mean, double stddev){
 
     return 0.5 * (1 + erf((x - mean) / (stddev * sqrt(2))));
 }
+
+// bernoulli
+double bernoulli(double x, double p){
+    
+    if ((x != 0.0 && x != 1.0) || p < 0.0 || p > 1.0)
+        return -1;
+
+    return pow(p, x) * pow(1 - p, 1 - x);
+}
