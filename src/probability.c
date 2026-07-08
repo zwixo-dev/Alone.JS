@@ -53,3 +53,10 @@ double normal_pdf(double x, double mean, double stddev) {
     double exponent = -((x - mean) * (x - mean)) / (2 * stddev * stddev);
     return exp(exponent) / (stddev * sqrt(2 * M_PI));
 }
+
+// normal_cdf
+double normal_cdf(double x, double mean, double stddev){
+    if (stddev <= 0) return -1;
+
+    return 0.5 * (1 + erf((x - mean) / (stddev * sqrt(2))));
+}
