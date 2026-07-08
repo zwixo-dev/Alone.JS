@@ -39,8 +39,17 @@ double binomial_probability(int n, int x, double p){
     return (combination_result * success * failure);
 }
 
+// poisson_probability
 double poisson_probability(int k, double lambda) {
 
     if (k < 0 || lambda < 0) return -1;
     return exp(-lambda) * pow(lambda, k) / factorial(k);
+}
+
+// normal_pdf
+double normal_pdf(double x, double mean, double stddev) {
+    if (stddev <= 0) return -1;
+
+    double exponent = -((x - mean) * (x - mean)) / (2 * stddev * stddev);
+    return exp(exponent) / (stddev * sqrt(2 * M_PI));
 }
