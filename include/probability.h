@@ -21,4 +21,6 @@ double geometric_probability(int k, double p);
 
 double hypergeometric_probability(int N, int K, int n, int k);
 
+double exponential_pdf(double x, double lambda);
+
 #endif
