@@ -41,4 +41,8 @@ double logistic_pdf(double x, double mean, double scale);
 
 double logistic_cdf(double x, double mean, double scale);
 
+double cauchy_pdf(double x, double x0, double gamma);
+
+double cauchy_cdf(double x, double x0, double gamma);
+
 #endif
