@@ -25,4 +25,6 @@ double exponential_pdf(double x, double lambda);
 
 double exponential_cdf(double x, double lambda);
 
+double uniform_pdf(double x, double a, double b);
+
 #endif
