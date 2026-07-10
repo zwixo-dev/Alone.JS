@@ -33,4 +33,6 @@ double standard_normal_pdf(double z);
 
 double standard_normal_cdf(double z);
 
+double weibull_pdf(double x, double shape, double scale);
+
 #endif
