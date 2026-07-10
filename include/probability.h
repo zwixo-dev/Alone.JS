@@ -45,4 +45,8 @@ double cauchy_pdf(double x, double x0, double gamma);
 
 double cauchy_cdf(double x, double x0, double gamma);
 
+double chi_square_pdf(double x, int k);
+
+double chi_square_cdf(double x, int k);
+
 #endif
