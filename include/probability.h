@@ -37,4 +37,8 @@ double weibull_pdf(double x, double shape, double scale);
 
 double weibull_cdf(double x, double shape, double scale);
 
+double logistic_pdf(double x, double mean, double scale);
+
+double logistic_cdf(double x, double mean, double scale);
+
 #endif
