@@ -29,4 +29,6 @@ double uniform_pdf(double x, double a, double b);
 
 double uniform_cdf(double x, double a, double b);
 
+double standard_normal_pdf(double z);
+
 #endif
