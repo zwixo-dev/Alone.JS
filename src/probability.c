@@ -69,3 +69,11 @@ double bernoulli(double x, double p){
 
     return pow(p, x) * pow(1 - p, 1 - x);
 }
+
+// geometric_probability
+double geometric_probability(int k, double p){
+
+    if (k <= 0 || p < 0 || p > 1) return -1;
+    
+    return pow(1 - p, k - 1) * p;
+}
