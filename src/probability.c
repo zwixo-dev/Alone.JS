@@ -97,3 +97,12 @@ double exponential_pdf(double x, double lambda){
 
     return lambda * exp(-lambda * x);
 }
+
+// exponential_cdf
+double exponential_cdf(double x, double lambda){
+
+    if (x < 0 || lambda <= 0)
+        return -1;
+
+    return 1 - exp(-lambda * x);
+}
