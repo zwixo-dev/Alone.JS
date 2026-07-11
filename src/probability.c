@@ -90,3 +90,10 @@ double hypergeometric_probability(int N, int K, int n, int k) {
             / combination(N, n);
 }
 
+// exponential_pdf
+double exponential_pdf(double x, double lambda){
+
+    if (x < 0 || lambda <= 0) return -1;
+
+    return lambda * exp(-lambda * x);
+}
