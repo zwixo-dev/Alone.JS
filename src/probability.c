@@ -77,3 +77,16 @@ double geometric_probability(int k, double p){
     
     return pow(1 - p, k - 1) * p;
 }
+
+// hypergeometric_probability
+double hypergeometric_probability(int N, int K, int n, int k) {
+
+    if (N <= 0 || K < 0 || n < 0 || k < 0) return -1;
+
+    if (K > N || n > N || k > K || k > n) return -1;
+
+    return (combination(K, k) *
+            combination(N - K, n - k))
+            / combination(N, n);
+}
+
