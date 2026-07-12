@@ -140,3 +140,14 @@ double standard_normal_pdf(double z){
 double standard_normal_cdf(double z){
     return normal_cdf(z, 0.0, 1.0);
 }
+
+// weibull_pdf
+double weibull_pdf(double x, double shape, double scale){
+
+    if (x < 0.0 || shape <= 0.0 || scale <= 0.0)
+        return -1.0;
+
+    return (shape / scale)
+           * pow(x / scale, shape - 1)
+           * exp(-pow(x / scale, shape));
+}
