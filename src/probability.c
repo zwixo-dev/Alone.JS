@@ -152,3 +152,13 @@ double weibull_pdf(double x, double shape, double scale){
            * pow(x / scale, shape - 1)
            * exp(-pow(x / scale, shape));
 }
+
+// weibull_cdf
+double weibull_cdf(double x, double shape, double scale){
+
+    if (shape <= 0.0 || scale <= 0.0) return -1.0;  //undefined
+    
+    if (x < 0.0) return 0.0;
+
+    return 1.0 - exp(-pow(x / scale, shape));
+}
