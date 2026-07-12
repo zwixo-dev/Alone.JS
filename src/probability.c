@@ -130,3 +130,7 @@ double uniform_cdf(double x, double a, double b){
 
     return 1;
 }
+
+double standard_normal_pdf(double z){
+    return exp(-(z * z) / 2.0) / sqrt(2.0 * M_PI);
+}
