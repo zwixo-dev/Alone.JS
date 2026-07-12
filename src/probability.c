@@ -106,3 +106,12 @@ double exponential_cdf(double x, double lambda){
 
     return 1 - exp(-lambda * x);
 }
+
+// uniform_pdf
+double uniform_pdf(double x, double a, double b){
+    if (a >= b) return -1;
+
+    if (x < a || x > b) return 0;
+    
+    return 1.0/(b-a);
+}
