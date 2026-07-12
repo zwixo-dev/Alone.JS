@@ -144,8 +144,9 @@ double standard_normal_cdf(double z){
 // weibull_pdf
 double weibull_pdf(double x, double shape, double scale){
 
-    if (x < 0.0 || shape <= 0.0 || scale <= 0.0)
-        return -1.0;
+    if (shape <= 0.0 || scale <= 0.0) return -1.0; // undefined
+    
+    if (x < 0.0) return 0.0;
 
     return (shape / scale)
            * pow(x / scale, shape - 1)
