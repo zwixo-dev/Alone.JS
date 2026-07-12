@@ -115,3 +115,18 @@ double uniform_pdf(double x, double a, double b){
     
     return 1.0/(b-a);
 }
+
+// uniform_cdf
+double uniform_cdf(double x, double a, double b){
+
+    if (a >= b)
+        return -1;
+
+    if (x < a)
+        return 0.0;
+
+    if (a <= x && x <= b)
+        return (x - a) / (b - a);
+
+    return 1;
+}
