@@ -188,3 +188,11 @@ double cauchy_pdf(double x, double x0, double gamma){
 
     return 1.0 / (M_PI * gamma * (1.0 + pow((x - x0) / gamma, 2)));
 }
+
+// cauchy_cdf
+double cauchy_cdf(double x, double x0, double gamma){
+
+    if (gamma <= 0.0) return -1.0;
+
+    return (1.0 / M_PI) * atan((x - x0) / gamma) + 0.5;
+}
