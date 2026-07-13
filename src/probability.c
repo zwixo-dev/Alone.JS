@@ -163,8 +163,6 @@ double weibull_cdf(double x, double shape, double scale){
     return 1.0 - exp(-pow(x / scale, shape));
 }
 
-
-
 // logistic_pdf
 double logistic_pdf(double x, double mean, double scale){
 
@@ -173,4 +171,12 @@ double logistic_pdf(double x, double mean, double scale){
     double exP = exp(-(x - mean) / scale);
 
     return exP / (scale * pow(1.0 + exP, 2));
+}
+
+// logistic_cdf
+double logistic_cdf(double x, double mean, double scale){
+
+    if (scale <= 0.0) return -1.0;
+
+    return 1.0 / (1.0 + exp(-(x - mean) / scale));
 }
