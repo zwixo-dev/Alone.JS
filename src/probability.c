@@ -144,7 +144,7 @@ double standard_normal_cdf(double z){
 // weibull_pdf
 double weibull_pdf(double x, double shape, double scale){
 
-    if (shape <= 0.0 || scale <= 0.0) return -1.0; // undefined
+    if (shape <= 0.0 || scale <= 0.0) return -1; // undefined
     
     if (x < 0.0) return 0.0;
 
@@ -161,4 +161,16 @@ double weibull_cdf(double x, double shape, double scale){
     if (x < 0.0) return 0.0;
 
     return 1.0 - exp(-pow(x / scale, shape));
+}
+
+
+
+// logistic_pdf
+double logistic_pdf(double x, double mean, double scale){
+
+    if (scale <= 0.0) return -1;
+
+    double exP = exp(-(x - mean) / scale);
+
+    return exP / (scale * pow(1.0 + exP, 2));
 }
