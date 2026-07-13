@@ -180,3 +180,11 @@ double logistic_cdf(double x, double mean, double scale){
 
     return 1.0 / (1.0 + exp(-(x - mean) / scale));
 }
+
+// cauchy_pdf
+double cauchy_pdf(double x, double x0, double gamma){
+
+    if (gamma <= 0.0) return -1.0;
+
+    return 1.0 / (M_PI * gamma * (1.0 + pow((x - x0) / gamma, 2)));
+}
