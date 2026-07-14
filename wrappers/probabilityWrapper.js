@@ -8,7 +8,7 @@ Module.onRuntimeInitialized = () =>{
 
     probability = {
     factorial:  Module.cwrap("factorial", "number", ["number"]),
-    // permutation:  Module.cwrap("permutation", "number", ["number", "number"]),
+    permutation:  Module.cwrap("permutation", "number", ["number", "number"]),
     // combination:  Module.cwrap("combination", "number", ["number", "number"]),
     // binomial_probability:  Module.cwrap("binomial_probability", "number", ["number", "number"]),
     // poisson_probability:  Module.cwrap("poisson_probability", "number", ["number", "number"]),
@@ -36,6 +36,10 @@ Module.onRuntimeInitialized = () =>{
     }
 
 
+    // fast test
+    console.log(probability.factorial(3))
+    console.log(probability.permutation(10,3))
+    
 }
 
 
