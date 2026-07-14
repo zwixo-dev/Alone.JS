@@ -1,5 +1,6 @@
 #include "../include/probability.h"
-
+#include "../include/operations.h"
+#include <math.h>
 
 // factorial
 double factorial(int n) {
@@ -34,8 +35,8 @@ double binomial_probability(int n, int x, double p){
     if (n < 0 || x < 0 || x > n || p < 0 || p > 1) return -1; // undefined
     
     double combination_result = combination(n, x);
-    double success = pow(p,x);
-    double failure = pow(1-p,n-x); //= (1-p)^(n-x)
+    double success = power(p,x);
+    double failure = power(1-p,n-x); //= (1-p)^(n-x)
     return (combination_result * success * failure);
 }
 
@@ -43,7 +44,7 @@ double binomial_probability(int n, int x, double p){
 double poisson_probability(int k, double lambda) {
 
     if (k < 0 || lambda < 0) return -1;
-    return exp(-lambda) * pow(lambda, k) / factorial(k);
+    return exp(-lambda) * power(lambda, k) / factorial(k);
 }
 
 // normal_pdf
@@ -67,7 +68,7 @@ double bernoulli(double x, double p){
     if ((x != 0.0 && x != 1.0) || p < 0.0 || p > 1.0)
         return -1;
 
-    return pow(p, x) * pow(1 - p, 1 - x);
+    return power(p, x) * power(1 - p, 1 - x);
 }
 
 // geometric_probability
@@ -75,7 +76,7 @@ double geometric_probability(int k, double p){
 
     if (k <= 0 || p < 0 || p > 1) return -1;
     
-    return pow(1 - p, k - 1) * p;
+    return power(1 - p, k - 1) * p;
 }
 
 // hypergeometric_probability
@@ -149,8 +150,8 @@ double weibull_pdf(double x, double shape, double scale){
     if (x < 0.0) return 0.0;
 
     return (shape / scale)
-           * pow(x / scale, shape - 1)
-           * exp(-pow(x / scale, shape));
+           * power(x / scale, shape - 1)
+           * exp(-power(x / scale, shape));
 }
 
 // weibull_cdf
@@ -160,7 +161,7 @@ double weibull_cdf(double x, double shape, double scale){
     
     if (x < 0.0) return 0.0;
 
-    return 1.0 - exp(-pow(x / scale, shape));
+    return 1.0 - exp(-power(x / scale, shape));
 }
 
 // logistic_pdf
@@ -170,7 +171,7 @@ double logistic_pdf(double x, double mean, double scale){
 
     double exP = exp(-(x - mean) / scale);
 
-    return exP / (scale * pow(1.0 + exP, 2));
+    return exP / (scale * power(1.0 + exP, 2));
 }
 
 // logistic_cdf
@@ -186,7 +187,7 @@ double cauchy_pdf(double x, double x0, double gamma){
 
     if (gamma <= 0.0) return -1.0;
 
-    return 1.0 / (M_PI * gamma * (1.0 + pow((x - x0) / gamma, 2)));
+    return 1.0 / (M_PI * gamma * (1.0 + power((x - x0) / gamma, 2)));
 }
 
 // cauchy_cdf
