@@ -11,9 +11,9 @@ Module.onRuntimeInitialized = () =>{
     permutation:  Module.cwrap("permutation", "number", ["number", "number"]),
     combination:  Module.cwrap("combination", "number", ["number", "number"]),
     binomial_probability:  Module.cwrap("binomial_probability", "number", ["number", "number", "number"]),
-    // poisson_probability:  Module.cwrap("poisson_probability", "number", ["number", "number"]),
-    // normal_pdf:  Module.cwrap("normal_pdf", "number", ["number", "number"]),
-    // normal_cdf:  Module.cwrap("normal_cdf", "number", ["number", "number"]),
+    poisson_probability:  Module.cwrap("poisson_probability", "number", ["number", "number"]),
+    normal_pdf:  Module.cwrap("normal_pdf", "number", ["number", "number", "number"]),
+    normal_cdf:  Module.cwrap("normal_cdf", "number", ["number", "number", "number"]),
     // bernoulli:  Module.cwrap("bernoulli", "number", ["number", "number"]),
     // geometric_probability:  Module.cwrap("geometric_probability", "number", ["number", "number"]),
     // hypergeometric_probability:  Module.cwrap("hypergeometric_probability", "number", ["number", "number"]),
@@ -41,6 +41,10 @@ Module.onRuntimeInitialized = () =>{
     console.log("permutation : ",probability.permutation(10,3));
     console.log("combination : ",probability.combination(5, 2));
     console.log("binomial_probability : ",probability.binomial_probability(5, 3, 0.25));
+    console.log("poisson_probability : ", probability.poisson_probability(5, 3));
+    console.log("normal_pdf : ", probability.normal_pdf(100, 100, 15));
+    console.log("normal_cdf : ", probability.normal_cdf(115, 100, 15));
+
 }
 
 
