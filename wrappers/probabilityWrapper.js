@@ -9,8 +9,8 @@ Module.onRuntimeInitialized = () =>{
     probability = {
     factorial:  Module.cwrap("factorial", "number", ["number"]),
     permutation:  Module.cwrap("permutation", "number", ["number", "number"]),
-    // combination:  Module.cwrap("combination", "number", ["number", "number"]),
-    // binomial_probability:  Module.cwrap("binomial_probability", "number", ["number", "number"]),
+    combination:  Module.cwrap("combination", "number", ["number", "number"]),
+    binomial_probability:  Module.cwrap("binomial_probability", "number", ["number", "number", "number"]),
     // poisson_probability:  Module.cwrap("poisson_probability", "number", ["number", "number"]),
     // normal_pdf:  Module.cwrap("normal_pdf", "number", ["number", "number"]),
     // normal_cdf:  Module.cwrap("normal_cdf", "number", ["number", "number"]),
@@ -37,9 +37,10 @@ Module.onRuntimeInitialized = () =>{
 
 
     // fast test
-    console.log(probability.factorial(3))
-    console.log(probability.permutation(10,3))
-    
+    console.log("factorial : ",probability.factorial(3));
+    console.log("permutation : ",probability.permutation(10,3));
+    console.log("combination : ",probability.combination(5, 2));
+    console.log("binomial_probability : ",probability.binomial_probability(5, 3, 0.25));
 }
 
 
