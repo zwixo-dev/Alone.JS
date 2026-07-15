@@ -55,7 +55,7 @@ Module.onRuntimeInitialized = () =>{
     console.log("standard_normal_cdf : ", probability.standard_normal_cdf(0));
     console.log("weibull_pdf : ", probability.weibull_pdf(8, 2, 10));
     console.log("weibull_cdf : ", probability.weibull_cdf(8, 2, 10));
-    // console.log("logistic_pdf : ", probability.logistic_pdf(0, 0, 1));
+    console.log("logistic_pdf : ", probability.logistic_pdf(0, 0, 1));
     console.log("logistic_cdf", probability.logistic_cdf(0, 0, 1));
     console.log("cauchy_pdf", probability.cauchy_pdf());
     console.log("cauchy_cdf", probability.cauchy_cdf());
