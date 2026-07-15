@@ -21,8 +21,8 @@ Module.onRuntimeInitialized = () =>{
     exponential_cdf:  Module.cwrap("exponential_cdf", "number", ["number", "number"]),
     uniform_pdf:  Module.cwrap("uniform_pdf", "number", ["number", "number", "number"]),
     uniform_cdf:  Module.cwrap("uniform_cdf", "number", ["number", "number", "number"]),
-    // standard_normal_pdf:  Module.cwrap("standard_normal_pdf", "number", ["number", "number"]),
-    // standard_normal_cdf:  Module.cwrap("standard_normal_cdf", "number", ["number", "number"]),
+    standard_normal_pdf:  Module.cwrap("standard_normal_pdf", "number", ["number"]),
+    standard_normal_cdf:  Module.cwrap("standard_normal_cdf", "number", ["number"]),
     // weibull_pdf:  Module.cwrap("weibull_pdf", "number", ["number", "number"]),
     // weibull_cdf:  Module.cwrap("weibull_cdf", "number", ["number", "number"]),
     // logistic_pdf:  Module.cwrap("logistic_pdf", "number", ["number", "number"]),
@@ -51,7 +51,8 @@ Module.onRuntimeInitialized = () =>{
     console.log("exponential_cdf : ", probability.exponential_cdf(2, 0.5));
     console.log("uniform_pdf : ", probability.uniform_pdf(6, 2, 10));
     console.log("uniform_cdf : ", probability.uniform_cdf(6, 2, 10  ));
-
+    console.log("standard_normal_pdf : ", probability.standard_normal_pdf(0));
+    console.log("standard_normal_cdf : ", probability.standard_normal_cdf(0));
 }
 
 
