@@ -1709,6 +1709,7 @@ var _standard_normal_pdf = Module['_standard_normal_pdf'] = makeInvalidEarlyAcce
 var _standard_normal_cdf = Module['_standard_normal_cdf'] = makeInvalidEarlyAccess('_standard_normal_cdf');
 var _weibull_pdf = Module['_weibull_pdf'] = makeInvalidEarlyAccess('_weibull_pdf');
 var _weibull_cdf = Module['_weibull_cdf'] = makeInvalidEarlyAccess('_weibull_cdf');
+var _logistic_pdf = Module['_logistic_pdf'] = makeInvalidEarlyAccess('_logistic_pdf');
 var _logistic_cdf = Module['_logistic_cdf'] = makeInvalidEarlyAccess('_logistic_cdf');
 var _cauchy_pdf = Module['_cauchy_pdf'] = makeInvalidEarlyAccess('_cauchy_pdf');
 var _cauchy_cdf = Module['_cauchy_cdf'] = makeInvalidEarlyAccess('_cauchy_cdf');
@@ -1746,6 +1747,7 @@ function assignWasmExports(wasmExports) {
   assert(typeof wasmExports['standard_normal_cdf'] != 'undefined', 'missing Wasm export: standard_normal_cdf');
   assert(typeof wasmExports['weibull_pdf'] != 'undefined', 'missing Wasm export: weibull_pdf');
   assert(typeof wasmExports['weibull_cdf'] != 'undefined', 'missing Wasm export: weibull_cdf');
+  assert(typeof wasmExports['logistic_pdf'] != 'undefined', 'missing Wasm export: logistic_pdf');
   assert(typeof wasmExports['logistic_cdf'] != 'undefined', 'missing Wasm export: logistic_cdf');
   assert(typeof wasmExports['cauchy_pdf'] != 'undefined', 'missing Wasm export: cauchy_pdf');
   assert(typeof wasmExports['cauchy_cdf'] != 'undefined', 'missing Wasm export: cauchy_cdf');
@@ -1780,6 +1782,7 @@ function assignWasmExports(wasmExports) {
   _standard_normal_cdf = Module['_standard_normal_cdf'] = createExportWrapper('standard_normal_cdf', 1);
   _weibull_pdf = Module['_weibull_pdf'] = createExportWrapper('weibull_pdf', 3);
   _weibull_cdf = Module['_weibull_cdf'] = createExportWrapper('weibull_cdf', 3);
+  _logistic_pdf = Module['_logistic_pdf'] = createExportWrapper('logistic_pdf', 3);
   _logistic_cdf = Module['_logistic_cdf'] = createExportWrapper('logistic_cdf', 3);
   _cauchy_pdf = Module['_cauchy_pdf'] = createExportWrapper('cauchy_pdf', 3);
   _cauchy_cdf = Module['_cauchy_cdf'] = createExportWrapper('cauchy_cdf', 3);
