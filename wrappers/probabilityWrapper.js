@@ -17,8 +17,8 @@ Module.onRuntimeInitialized = () =>{
     bernoulli:  Module.cwrap("bernoulli", "number", ["number", "number"]),
     geometric_probability:  Module.cwrap("geometric_probability", "number", ["number", "number"]),
     hypergeometric_probability:  Module.cwrap("hypergeometric_probability", "number", ["number", "number", "number", "number"]),
-    // exponential_pdf:  Module.cwrap("exponential_pdf", "number", ["number", "number"]),
-    // exponential_cdf:  Module.cwrap("exponential_cdfexponential_cdf", "number", ["number", "number"]),
+    exponential_pdf:  Module.cwrap("exponential_pdf", "number", ["number", "number"]),
+    exponential_cdf:  Module.cwrap("exponential_cdf", "number", ["number", "number"]),
     // uniform_pdf:  Module.cwrap("uniform_pdf", "number", ["number", "number"]),
     // uniform_cdf:  Module.cwrap("uniform_cdf", "number", ["number", "number"]),
     // standard_normal_pdf:  Module.cwrap("standard_normal_pdf", "number", ["number", "number"]),
@@ -47,6 +47,8 @@ Module.onRuntimeInitialized = () =>{
     console.log("bernoulli : ", probability.bernoulli(1, 0.7));
     console.log("geometric_probability : ", probability.geometric_probability(3, 0.5));
     console.log("hypergeometric_probability : ", probability.hypergeometric_probability(52, 4, 5, 3));
+    console.log("exponential_pdf : ", probability.exponential_pdf(2, 0.5));
+    console.log("exponential_cdf : ", probability.exponential_cdf(2, 0.5));
 }
 
 
