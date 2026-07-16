@@ -27,10 +27,10 @@ Module.onRuntimeInitialized = () =>{
     weibull_cdf:  Module.cwrap("weibull_cdf", "number", ["number", "number", "number"]),
     logistic_pdf:  Module.cwrap("logistic_pdf", "number", ["number", "number", "number"]),
     logistic_cdf:  Module.cwrap("logistic_cdf", "number", ["number", "number", "number"]),
-    cauchy_pdf:  Module.cwrap("cauchy_pdf", "number", ["number", "number"]),
-    cauchy_cdf:  Module.cwrap("cauchy_cdf", "number", ["number", "number"]),
-    // chi_square_pdf:  Module.cwrap("chi_square_pdf", "number", ["number", "number"]),
-    // chi_square_cdf:  Module.cwrap("chi_square_cdf", "number", ["number", "number"]),
+    cauchy_pdf:  Module.cwrap("cauchy_pdf", "number", ["number", "number", "number"]),
+    cauchy_cdf:  Module.cwrap("cauchy_cdf", "number", ["number", "number", "number"]),
+    chi_square_pdf:  Module.cwrap("chi_square_pdf", "number", ["number", "number"]),
+    chi_square_cdf:  Module.cwrap("chi_square_cdf", "number", ["number", "number"]),
     // f_distribution_pdf:  Module.cwrap("f_distribution_pdf", "number", ["number", "number"]),
     // f_distribution_cdf:  Module.cwrap("f_distribution_cdf", "number", ["number", "number"]),
     }
@@ -57,8 +57,8 @@ Module.onRuntimeInitialized = () =>{
     console.log("weibull_cdf : ", probability.weibull_cdf(8, 2, 10));
     console.log("logistic_pdf : ", probability.logistic_pdf(0, 0, 1));
     console.log("logistic_cdf", probability.logistic_cdf(0, 0, 1));
-    console.log("cauchy_pdf", probability.cauchy_pdf());
-    console.log("cauchy_cdf", probability.cauchy_cdf());
+    console.log("cauchy_pdf", probability.cauchy_pdf(5, 0, 1));
+    console.log("cauchy_cdf", probability.cauchy_cdf(5, 0, 1));
 }
 
 
