@@ -49,7 +49,7 @@ double chi_square_pdf(double x, int k);
 
 double chi_square_cdf(double x, int k);
 
-double f_distribution_pdf(double x, int d1, int d2);
+double f_distribution_pdf(double x, double d1, double d2);
 
 double f_distribution_cdf(double x, int d1, int d2);
 
