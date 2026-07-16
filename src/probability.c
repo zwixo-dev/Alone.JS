@@ -240,6 +240,7 @@ double complete_gamma(double z) {
     return sqrt(2.0 * M_PI) * pow(t, z + 0.5) * exp(-t) * x;
 }
 
+// chi_square_pdf
 double chi_square_pdf(double x, int k) {
     if (x < 0 || k <= 0) return -1.0; // undefined
     
@@ -248,4 +249,15 @@ double chi_square_pdf(double x, int k) {
     double denominator = pow(2.0, k / 2.0) * complete_gamma(k / 2.0);
     
     return numerator / denominator;
+}
+
+// chi_square_cdf
+double chi_square_cdf(double x, int k) {
+    if (x < 0 || k <= 0) return -1.0; // undefined
+    
+    //  s = k/2.0 and x = x/2.0
+    double numerator = lower_incomplete_gamma((k / 2.0), (x / 2.0));
+    double denominator = complete_gamma(k / 2.0); 
+    
+    return numerator / denominator;  
 }
