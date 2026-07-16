@@ -239,3 +239,13 @@ double complete_gamma(double z) {
     double t = z + 7.5;
     return sqrt(2.0 * M_PI) * pow(t, z + 0.5) * exp(-t) * x;
 }
+
+double chi_square_pdf(double x, int k) {
+    if (x < 0 || k <= 0) return -1.0; // undefined
+    
+    double numerator = pow(x, (k / 2.0) - 1.0) * exp(-x / 2.0);
+    
+    double denominator = pow(2.0, k / 2.0) * complete_gamma(k / 2.0);
+    
+    return numerator / denominator;
+}
