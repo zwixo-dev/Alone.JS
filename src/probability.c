@@ -217,3 +217,25 @@ double lower_incomplete_gamma(double s, double x) {
     
     return sum * pow(x, s) * exp(-x);
 }
+
+// complete_gamma
+double complete_gamma(double z) {
+    if (z < 0.5) {
+        return M_PI / (sin(M_PI * z) * complete_gamma(1.0 - z));
+    }
+    
+    z -= 1.0;
+    double p[] = {
+        0.99999999999980993, 676.5203681218851, -1259.1392167224028,
+        771.32342877765313, -176.61502916214059, 12.507343278686905,
+        -0.13857109526572012, 9.9843695780195716e-6, 1.5056327351493116e-7
+    };
+    
+    double x = p[0];
+    for (int i = 1; i < 9; i++) {
+        x += p[i] / (z + i);
+    }
+    
+    double t = z + 7.5;
+    return sqrt(2.0 * M_PI) * pow(t, z + 0.5) * exp(-t) * x;
+}
