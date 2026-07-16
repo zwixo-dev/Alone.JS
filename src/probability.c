@@ -197,3 +197,23 @@ double cauchy_cdf(double x, double x0, double gamma){
 
     return (1.0 / M_PI) * atan((x - x0) / gamma) + 0.5;
 }
+
+
+// lower_incomplete_gamma
+double lower_incomplete_gamma(double s, double x) {
+    if (x < 0.0 || s <= 0.0) return 0.0;
+    
+    double sum = 1.0 / s;
+    double term = 1.0 / s;
+    
+    for (int n = 1; n < 100; n++) {
+        term = (term * x) / (s + n);
+        sum += term;
+        // (1e-15)
+        if (fabs(term) < fabs(sum) * 1e-15) {
+            break;
+        }
+    }
+    
+    return sum * pow(x, s) * exp(-x);
+}
