@@ -261,3 +261,16 @@ double chi_square_cdf(double x, int k) {
     
     return numerator / denominator;  
 }
+
+// f_distribution_pdf
+double f_distribution_pdf(double x, double d1, double d2){
+    
+    if(x<0 || d1<=0 || d2 <=0 ) return -1; //undefined 
+    
+    
+    double numerator = complete_gamma( ( (d1 + d2) / 2.0 ) );
+    double denominator = complete_gamma(d1 / 2.0) * complete_gamma(d2 / 2.0);
+    
+    return (numerator / denominator ) * pow((d1/d2), d1 / 2.0) * pow(x, (d1 / 2.0) - 1.0) * pow((1 + (d1/d2)*x), -((d1+d2) / 2.0) );
+}
+
