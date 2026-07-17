@@ -27,4 +27,12 @@ void vector_projection(int size, double *vector1, double *vector2, double *resul
 
 void vector_rejection(int size, double *vector1, double *vector2, double *result);
 
+double vector_sum(int size, double *vector);
+
+double vector_mean(int size, double *vector);
+
+double vector_max(int size, double *vector);
+
+double vector_min(int size, double *vector);
+
 #endif
