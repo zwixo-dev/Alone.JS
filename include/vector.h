@@ -23,4 +23,8 @@ double vector_angle(int size, double *vector1, double *vector2);
 
 double vector_cosine_similarity(int size, double *vector1, double *vector2);
 
+void vector_projection(int size, double *vector1, double *vector2, double *result);
+
+void vector_rejection(int size, double *vector1, double *vector2, double *result);
+
 #endif
