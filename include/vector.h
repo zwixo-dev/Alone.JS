@@ -35,4 +35,8 @@ double vector_max(int size, double *vector);
 
 double vector_min(int size, double *vector);
 
+double vector_l1_norm(int size, double *vector);
+
+double vector_infinity_norm(int size, double *vector);
+
 #endif
