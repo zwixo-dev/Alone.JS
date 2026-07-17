@@ -17,4 +17,10 @@ void vector_scalar_multiply(int size, double scalar, double *vector, double *res
 
 void vector_scalar_divide(int size, double scalar, double *vector, double *result);
 
+double vector_distance(int size, double *vector1, double *vector2);
+
+double vector_angle(int size, double *vector1, double *vector2);
+
+double vector_cosine_similarity(int size, double *vector1, double *vector2);
+
 #endif
