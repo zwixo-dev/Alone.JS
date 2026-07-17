@@ -60,4 +60,9 @@ void vector_sort_ascending(int size, double *vector, double *result);
 
 void vector_sort_descending(int size, double *vector, double *result);
 
+// Products
+double vector_hadamard_product_sum(int size, double *vector1, double *vector2);
+
+void vector_hadamard_product(int size, double *vector1, double *vector2, double *result);
+
 #endif
