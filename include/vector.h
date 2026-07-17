@@ -53,5 +53,11 @@ double vector_variance(int size, double *vector);
 
 double vector_standard_deviation(int size, double *vector);
 
+// Transformations
+void vector_reverse(int size, double *vector, double *result);
+
+void vector_sort_ascending(int size, double *vector, double *result);
+
+void vector_sort_descending(int size, double *vector, double *result);
 
 #endif
