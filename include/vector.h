@@ -65,4 +65,13 @@ double vector_hadamard_product_sum(int size, double *vector1, double *vector2);
 
 void vector_hadamard_product(int size, double *vector1, double *vector2, double *result);
 
+// Element-wise operations
+void vector_abs(int size, double *vector, double *result);
+
+void vector_negate(int size, double *vector, double *result);
+
+void vector_power(int size, double *vector, double exponent, double *result);
+
+void vector_sqrt(int size, double *vector, double *result);
+
 #endif
