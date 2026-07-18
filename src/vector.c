@@ -25,3 +25,17 @@ void vector_normalize(int size, double *vector, double *result_vectors){
         result_vectors[i] = ( vector[i] / Vmagnitude);
     }
 }
+
+// vector_dot_product
+double vector_dot_product(int size, double *vectorA, double *vectorB){
+    
+    if(size<=0 || vectorA == NULL || vectorB == NULL) return 0.0;
+    
+    double vector_dot_product_result = 0.0;
+    
+    for(int i=0; i<size; i++){
+        vector_dot_product_result += vectorA[i] * vectorB[i]; 
+    }
+    
+    return vector_dot_product_result;
+}
