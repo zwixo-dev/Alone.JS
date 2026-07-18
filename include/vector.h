@@ -7,7 +7,7 @@ void vector_normalize(int size, double *vector, double *result_vectors);
 
 double vector_dot_product(int size, double *vectorA, double *vectorB);
 
-void vector_cross_product(double *vector1, double *vector2, double *result);
+void vector_cross_product(double *vectorA, double *vectorB, double *result);
 
 void vector_add(int size, double *vector1, double *vector2, double *result);
 
