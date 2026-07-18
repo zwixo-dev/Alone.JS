@@ -21,6 +21,14 @@ void vector_normalize(int size, double *vector, double *result_vectors){
 
     double Vmagnitude = vector_magnitude(size, vector);
     
+    if(Vmagnitude == 0.0){
+        for(int i=0; i<size; i++){
+            result_vectors[i] = 0.0;
+            return;
+        }
+    }
+    
+    // if not
     for(int i=0; i<size; i++){
         result_vectors[i] = ( vector[i] / Vmagnitude);
     }
