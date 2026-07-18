@@ -27,7 +27,7 @@ void vector_normalize(int size, double *vector, double *result_vectors){
             return;
         }
     }
-    
+
     // if not
     for(int i=0; i<size; i++){
         result_vectors[i] = ( vector[i] / Vmagnitude);
@@ -47,3 +47,24 @@ double vector_dot_product(int size, double *vectorA, double *vectorB){
     
     return vector_dot_product_result;
 }
+
+// vector_cross_product
+void vector_cross_product(double *vectorA, double *vectorB, double *result_vectors){
+    // x : (y1 x z2) - (z1 x y2)
+    // y : (z1 x x2) - (x1 x z2)
+    // z : (x1 x y2) - (y1 x x2)
+
+    // vectorA[x1, y1, z1]
+    // vectorB[x2, y2, z2]
+
+    if(vectorA == NULL || vectorB == NULL || result_vectors == NULL) return;
+    
+    double res_x = ( vectorA[1] * vectorB[2] ) - ( vectorA[2] * vectorB[1] );
+    double res_y = ( vectorA[2] * vectorB[0] ) - ( vectorA[0] * vectorB[2] );
+    double res_z = ( vectorA[0] * vectorB[1] ) - ( vectorA[1] * vectorB[0] );
+
+    result_vectors[0] = res_x;
+    result_vectors[1] = res_y;
+    result_vectors[2] = res_z;
+}
+
