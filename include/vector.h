@@ -3,7 +3,7 @@
 
 double vector_magnitude(int size, double *vector);
 
-double vector_normalize(int size, double *vector, double *result);
+void vector_normalize(int size, double *vector, double *result_vectors);
 
 double vector_dot_product(int size, double *vector1, double *vector2);
 
