@@ -68,3 +68,17 @@ void vector_cross_product(double *vectorA, double *vectorB, double *result_vecto
     result_vectors[2] = res_z;
 }
 
+// vector_add 
+void vector_add(int size, double *vectorA, double *vectorB, double *result_vectors){
+    // vA :(x1, y1, z1)
+    // vB : (x2, y2, z2)
+    // V  : (x1+x2, y1+y2, z1+z2)
+    
+    if(size<=0 || vectorA == NULL || vectorB == NULL || result_vectors == NULL) return;
+    
+    for(int i=0; i<size; i++){
+        result_vectors[i] = vectorA[i] + vectorB[i];
+    }
+    
+}
+
