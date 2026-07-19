@@ -105,3 +105,12 @@ void vector_scalar_multiply(int size, double scalar, double *vector, double *res
     }
     
 }
+
+// vector_scalar_divide
+void vector_scalar_divide(int size, double scalar, double *vector, double *result_vectors){
+    if(size <= 0 || scalar == 0.0 || vector == NULL || result_vectors == NULL) return;
+    
+    for(int i = 0; i < size; i++){
+        result_vectors[i] = vector[i] / scalar;
+    }
+}
