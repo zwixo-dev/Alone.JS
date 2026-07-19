@@ -114,3 +114,19 @@ void vector_scalar_divide(int size, double scalar, double *vector, double *resul
         result_vectors[i] = vector[i] / scalar;
     }
 }
+
+// vector_distance
+double vector_distance(int size, double *vectorA, double *vectorB){
+
+    if(size<=0 || vectorA == NULL || vectorB == NULL) return 0.0;
+    
+    double vector_distance_sum = 0.0;
+    
+    for(int i=0; i<size; i++){
+        double diff = vectorA[i] - vectorB[i];
+        vector_distance_sum += diff * diff;
+    }
+    
+    return sqrt(vector_distance_sum);
+}
+
