@@ -95,3 +95,13 @@ void vector_subtract(int size, double *vectorA, double *vectorB, double *result_
     }
     
 }
+
+// vector_scalar_multiply
+void vector_scalar_multiply(int size, double scalar, double *vector, double *result_vectors){
+    if(size<=0 || vector == NULL || result_vectors == NULL) return;
+    
+    for(int i=0; i<size; i++){
+        result_vectors[i] = scalar * vector[i];
+    }
+    
+}
