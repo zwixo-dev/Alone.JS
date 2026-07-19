@@ -130,3 +130,19 @@ double vector_distance(int size, double *vectorA, double *vectorB){
     return sqrt(vector_distance_sum);
 }
 
+// vector_angle
+double vector_angle(int size, double *vectorA, double *vectorB){
+    if(size <= 0 || vectorA == NULL || vectorB == NULL) return 0.0;
+
+    double magA = vector_magnitude(size, vectorA);
+    double magB = vector_magnitude(size, vectorB);
+    
+    if(magA == 0.0 || magB == 0.0) return 0.0; 
+    
+    double cos_theta = vector_dot_product(size, vectorA, vectorB) / (magA * magB);
+    
+    if(cos_theta > 1.0) cos_theta = 1.0;
+    if(cos_theta < -1.0) cos_theta = -1.0;
+    
+    return acos(cos_theta);
+}
