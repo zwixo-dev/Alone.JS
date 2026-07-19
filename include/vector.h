@@ -9,9 +9,9 @@ double vector_dot_product(int size, double *vectorA, double *vectorB);
 
 void vector_cross_product(double *vectorA, double *vectorB, double *result);
 
-void vector_add(int size, double *vector1, double *vector2, double *result);
+void vector_add(int size, double *vectorA, double *vectorB, double *result);
 
-void vector_subtract(int size, double *vector1, double *vector2, double *result);
+void vector_subtract(int size, double *vectorA, double *vectorB, double *result);
 
 void vector_scalar_multiply(int size, double scalar, double *vector, double *result);
 
