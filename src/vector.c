@@ -254,7 +254,7 @@ double vector_min(int size, double *vector){
 
 // vector_l1_norm
 double vector_l1_norm(int size, double *vector){
-    if(size <= 0 || vector == NULL) return NAN;
+    if(size <= 0 || vector == NULL) return -1;
 
     double V_l1_norm_sum = 0.0;
 
@@ -263,4 +263,18 @@ double vector_l1_norm(int size, double *vector){
     }
 
     return V_l1_norm_sum;
+}
+
+// vector_infinity_norm
+double vector_infinity_norm(int size, double *vector){
+    if(size <= 0 || vector == NULL) return -1;
+
+    double V_infinity_norm = fabs(vector[0]);
+
+    for(int i = 1; i < size; i++){
+        if(fabs(vector[i]) > V_infinity_norm)
+            V_infinity_norm = fabs(vector[i]);
+    }
+
+    return V_infinity_norm;
 }
