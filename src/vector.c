@@ -225,3 +225,16 @@ double vector_mean(int size, double *vector){
     
     return vector_sum(size, vector) /size;
 }
+
+// vector_max
+double vector_max(int size, double *vector){
+    if(size<=0 || vector == NULL) return NAN;
+    
+    double V_max = vector[0];
+    
+    for(int i=1; i<size; i++){
+        if(vector[i] > V_max) V_max = vector[i];
+    }
+    
+    return V_max;
+}
