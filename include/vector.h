@@ -25,7 +25,7 @@ double vector_cosine_similarity(int size, double *vectorA, double *vectorB);
 
 void vector_projection(int size, double *vectorA, double *vectorB, double *result_vectors);
 
-void vector_rejection(int size, double *vector1, double *vector2, double *result_vectors);
+void vector_rejection(int size, double *vectorA, double *vectorB, double *result_vectors);
 
 double vector_sum(int size, double *vector);
 
