@@ -251,3 +251,16 @@ double vector_min(int size, double *vector){
     
     return V_min;
 }
+
+// vector_l1_norm
+double vector_l1_norm(int size, double *vector){
+    if(size <= 0 || vector == NULL) return NAN;
+
+    double V_l1_norm_sum = 0.0;
+
+    for(int i = 0; i < size; i++){
+        V_l1_norm_sum += fabs(vector[i]);
+    }
+
+    return V_l1_norm_sum;
+}
