@@ -218,3 +218,10 @@ double vector_sum(int size, double *vector){
     // sum of all the vectors
     return V_sum;
 }
+
+// vector_mean
+double vector_mean(int size, double *vector){
+    if(size<=0 || vector == NULL) return NAN;
+    
+    return vector_sum(size, vector) /size;
+}
