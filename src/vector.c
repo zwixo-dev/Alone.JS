@@ -208,7 +208,7 @@ void vector_rejection(int size, double *vectorA, double *vectorB, double *result
 
 // vector_sum
 double vector_sum(int size, double *vector){
-    if(size<=0 || vector == NULL) return NAN;
+    if(size<=0 || vector == NULL) return -1;
     
     double V_sum = 0.0;
     
@@ -221,14 +221,14 @@ double vector_sum(int size, double *vector){
 
 // vector_mean
 double vector_mean(int size, double *vector){
-    if(size<=0 || vector == NULL) return NAN;
+    if(size<=0 || vector == NULL) return -1;
     
     return vector_sum(size, vector) /size;
 }
 
 // vector_max
 double vector_max(int size, double *vector){
-    if(size<=0 || vector == NULL) return NAN;
+    if(size<=0 || vector == NULL) return -1;
     
     double V_max = vector[0];
     
@@ -241,7 +241,7 @@ double vector_max(int size, double *vector){
 
 // vector_min
 double vector_min(int size, double *vector){
-    if(size<=0 || vector == NULL) return NAN;
+    if(size<=0 || vector == NULL) return -1;
     
     double V_min = vector[0];
     
