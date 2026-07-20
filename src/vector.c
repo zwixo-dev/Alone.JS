@@ -164,3 +164,22 @@ double vector_cosine_similarity(int size, double *vectorA, double *vectorB) {
     
     return cos_sim;
 }
+
+// vector_projection
+void vector_projection(int size, double *vectorA, double *vectorB, double *result_vectors){
+    if(size <= 0 || vectorA == NULL || vectorB == NULL || result_vectors == NULL) return;
+    
+    // We project A onto B, magnitude squared of B
+    double magB = vector_magnitude(size, vectorB);
+    
+    // project zero vector undefined     
+    if(magB == 0.0) return;
+    
+    double dot = vector_dot_product(size, vectorA, vectorB);
+    double scalar = dot / (magB * magB); // (A · B) / ||B||²
+    
+    for(int i = 0; i < size; i++){
+        result_vectors[i] = scalar * vectorB[i];
+    }
+    
+}
