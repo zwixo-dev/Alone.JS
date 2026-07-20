@@ -183,3 +183,26 @@ void vector_projection(int size, double *vectorA, double *vectorB, double *resul
     }
     
 }
+
+// vector_rejection
+void vector_rejection(int size, double *vectorA, double *vectorB, double *result_vectors) {
+    if (size <= 0 || vectorA == NULL || vectorB == NULL || result_vectors == NULL) return;
+    
+    // Magnitude squared of vector B (||B||^2)
+    double magB = vector_magnitude(size, vectorB);
+    
+    // Cannot reject to a zero vector
+    if (magB == 0.0) return;
+    
+    double magB_sq = magB * magB;
+    double dot = vector_dot_product(size, vectorA, vectorB);
+    
+    // Projection scalar: k = (A · B) / ||B||²
+    double k = dot / magB_sq;
+    
+    //  A - (k * B)
+    for (int i = 0; i < size; i++) {
+        result_vectors[i] = vectorA[i] - (k * vectorB[i]);
+    }
+}
+
