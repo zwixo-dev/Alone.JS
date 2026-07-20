@@ -146,3 +146,21 @@ double vector_angle(int size, double *vectorA, double *vectorB){
     
     return acos(cos_theta);
 }
+
+// vector_cosine_similarity
+double vector_cosine_similarity(int size, double *vectorA, double *vectorB) {
+    if (size <= 0 || vectorA == NULL || vectorB == NULL) return 0.0;
+    
+    double magA = vector_magnitude(size, vectorA);
+    double magB = vector_magnitude(size, vectorB);
+    
+    if (magA == 0.0 || magB == 0.0) return 0.0;
+    
+    double cos_sim = vector_dot_product(size, vectorA, vectorB) / (magA * magB);
+    
+    // valid range [-1.0, 1.0]
+    if (cos_sim > 1.0) return 1.0;
+    if (cos_sim < -1.0) return -1.0;
+    
+    return cos_sim;
+}
