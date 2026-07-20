@@ -206,3 +206,15 @@ void vector_rejection(int size, double *vectorA, double *vectorB, double *result
     }
 }
 
+// vector_sum
+double vector_sum(int size, double *vector){
+    if(size<=0 || vector == NULL) return NAN;
+    
+    double V_sum = 0.0;
+    
+    for(int i=0; i<size; i++){
+        V_sum += vector[i]; 
+    }
+    // sum of all the vectors
+    return V_sum;
+}
