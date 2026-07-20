@@ -238,3 +238,16 @@ double vector_max(int size, double *vector){
     
     return V_max;
 }
+
+// vector_min
+double vector_min(int size, double *vector){
+    if(size<=0 || vector == NULL) return NAN;
+    
+    double V_min = vector[0];
+    
+    for(int i=1; i<size; i++){
+        if(vector[i] < V_min ) V_min = vector[i];
+    }
+    
+    return V_min;
+}
