@@ -46,7 +46,7 @@ int vector_is_unit(int size, double *vector);
 
 int vector_is_orthogonal(int size, double *vectorA, double *vectorB);
 
-int vector_is_parallel(int size, double *vector1, double *vector2);
+int vector_is_parallel(int size, double *vectorA, double *vectorB);
 
 // statistics 
 double vector_variance(int size, double *vector);
