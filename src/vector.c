@@ -301,3 +301,14 @@ int vector_is_unit(int size, double *vector){
     return 0; // false
 }
 
+// vector_is_orthogonal
+int vector_is_orthogonal(int size, double *vectorA, double *vectorB){
+
+    if(size <= 0 || vectorA == NULL || vectorB == NULL)
+        return -1; // undefined
+
+    if(fabs(vector_dot_product(size, vectorA, vectorB)) < 1e-9)
+        return 1; // true
+
+    return 0; // false
+}
