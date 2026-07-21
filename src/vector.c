@@ -278,3 +278,13 @@ double vector_infinity_norm(int size, double *vector){
 
     return V_infinity_norm;
 }
+
+// vector_is_zero
+int vector_is_zero(int size, double *vector){
+    
+    if(size<=0 || vector == NULL) return -1; // undefined 
+    
+    if(vector_magnitude(size, vector) == 0) return 1; // true
+    // else
+    return 0; // false 
+}
