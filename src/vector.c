@@ -281,10 +281,11 @@ double vector_infinity_norm(int size, double *vector){
 
 // vector_is_zero
 int vector_is_zero(int size, double *vector){
-    
-    if(size<=0 || vector == NULL) return -1; // undefined 
-    
-    if(vector_magnitude(size, vector) == 0) return 1; // true
-    // else
-    return 0; // false 
+
+    if(size <= 0 || vector == NULL) return -1; // undefined
+
+    if(fabs(vector_magnitude(size, vector)) < 1e-9)
+        return 1; // true
+
+    return 0; // false
 }
