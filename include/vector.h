@@ -63,7 +63,7 @@ void vector_sort_descending(int size, double *vector, double *result_vectors);
 // Products
 double vector_hadamard_product_sum(int size, double *vectorA, double *vectorB);
 
-void vector_hadamard_product(int size, double *vector1, double *vector2, double *result_vectors);
+void vector_hadamard_product(int size, double *vectorA, double *vectorB, double *result_vectors);
 
 // Element-wise operations
 void vector_abs(int size, double *vector, double *result_vectors);
