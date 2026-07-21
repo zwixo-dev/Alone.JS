@@ -312,3 +312,9 @@ int vector_is_orthogonal(int size, double *vectorA, double *vectorB){
 
     return 0; // false
 }
+
+// vector_is_parallel
+int vector_is_parallel(int size, double *vectorA, double *vectorB){
+
+}
+
