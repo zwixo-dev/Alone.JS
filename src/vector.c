@@ -289,3 +289,15 @@ int vector_is_zero(int size, double *vector){
 
     return 0; // false
 }
+
+// vector_is_unit
+int vector_is_unit(int size, double *vector){
+
+    if(size <= 0 || vector == NULL) return -1; // undefined
+
+    if(fabs(vector_magnitude(size, vector) - 1.0) < 1e-9)
+        return 1; // true
+
+    return 0; // false
+}
+
