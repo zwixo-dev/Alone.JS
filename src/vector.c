@@ -346,3 +346,23 @@ int vector_is_parallel(int size, double *vectorA, double *vectorB){
     return 1;
 }
 
+// statistics 
+
+// vector_variance
+double vector_variance(int size, double *vector, int option){
+
+    if(size <= 0 || vector == NULL) return -1;
+
+    if(option != 0 && option != 1) return -1;
+
+    if(option == 1 && size < 2) return -1;
+
+    double vector_mean_result = vector_mean(size, vector);
+    double sum_of_subtruct_squares = 0.0;
+
+    for(int i = 0; i < size; i++){
+        sum_of_subtruct_squares += (vector[i] - vector_mean_result) * (vector[i] - vector_mean_result);
+    }
+
+    return sum_of_subtruct_squares / (size - option);
+}
