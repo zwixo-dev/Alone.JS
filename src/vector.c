@@ -391,3 +391,26 @@ void vector_reverse(int size, double *vector, double *result_vectors){
         result_vectors[i] = vector[size - 1 - i];
     }
 }
+
+// vector_sort_ascending
+void vector_sort_ascending(int size, const double *vector, double *result_vectors){
+    
+    if(size <= 0 || vector == NULL || result_vectors == NULL) return;
+    
+    // Copy original data into result_vectors
+    for(int i = 0; i < size; i++){
+        result_vectors[i] = vector[i];
+    }
+    
+    // Sort the result_vectors
+    double temp = 0.0;
+    for(int i = 0; i < size - 1; i++){
+        for(int j = i + 1; j < size; j++){
+            if(result_vectors[i] > result_vectors[j]){
+                temp = result_vectors[i];
+                result_vectors[i] = result_vectors[j];
+                result_vectors[j] = temp;
+            }
+        }
+    }
+}
