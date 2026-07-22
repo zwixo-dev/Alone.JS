@@ -366,3 +366,18 @@ double vector_variance(int size, double *vector, int option){
 
     return sum_of_subtruct_squares / (size - option);
 }
+
+// vector_standard_deviation
+double vector_standard_deviation(int size, double *vector, int option){
+    if(size <= 0 || vector == NULL) return -1;
+
+    if(option != 0 && option != 1) return -1;
+
+    if(option == 1 && size < 2) return -1;
+
+    // option = 1 -> sample
+    // option = 0 -> population
+    double V_variance = vector_variance(size, vector, option);
+
+    return sqrt(V_variance);
+}
