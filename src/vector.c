@@ -316,5 +316,33 @@ int vector_is_orthogonal(int size, double *vectorA, double *vectorB){
 // vector_is_parallel
 int vector_is_parallel(int size, double *vectorA, double *vectorB){
 
+    if(size <= 0 || vectorA == NULL || vectorB == NULL)
+        return -1; // undefined
+
+    double ratio = 0.0;
+    int ratioFound = 0;
+
+    for(int i = 0; i < size; i++){
+
+        // Both are zero -> skip
+        if(fabs(vectorA[i]) < 1e-9 && fabs(vectorB[i]) < 1e-9)
+            continue;
+
+        // One is zero and the other isn't
+        if((fabs(vectorA[i]) < 1e-9 && fabs(vectorB[i]) >= 1e-9) ||
+           (fabs(vectorA[i]) >= 1e-9 && fabs(vectorB[i]) < 1e-9))
+            return 0;
+
+        if(!ratioFound){
+            ratio = vectorA[i] / vectorB[i];
+            ratioFound = 1;
+        }
+        else{
+            if(fabs((vectorA[i] / vectorB[i]) - ratio) > 1e-9)
+                return 0;
+        }
+    }
+
+    return 1;
 }
 
