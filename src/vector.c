@@ -381,3 +381,13 @@ double vector_standard_deviation(int size, double *vector, int option){
 
     return sqrt(V_variance);
 }
+
+// Transformations vectors funcs 
+// vector_reverse
+void vector_reverse(int size, double *vector, double *result_vectors){
+    if(size <= 0 || vector == NULL || result_vectors == NULL) return;
+    
+    for(int i = 0; i < size; i++){
+        result_vectors[i] = vector[size - 1 - i];
+    }
+}
