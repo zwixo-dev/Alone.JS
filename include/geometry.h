@@ -22,4 +22,11 @@ int triangle_is_isosceles(double a, double b, double c);
 int triangle_is_scalene(double a, double b, double c);
 int triangle_is_right(double a, double b, double c);
 
+//Rectangle
+
+double rectangle_area(double length, double width);
+double rectangle_perimeter(double length, double width);
+double rectangle_diagonal(double length, double width);
+
+
 #endif
