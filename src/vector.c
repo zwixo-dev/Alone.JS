@@ -437,3 +437,12 @@ void vector_sort_descending(int size, double *vector, double *result_vectors){
         }
     }
 }
+
+// vector_hadamard_product
+void vector_hadamard_product(int size, double *vectorA, double *vectorB, double *result_vectors){
+    if(size<=0 || vectorA == NULL || vectorB == NULL || result_vectors == NULL) return; 
+    
+    for(int i = 0; i<size; i++){
+       result_vectors[i] = vectorA[i] * vectorB[i];
+    }
+}
