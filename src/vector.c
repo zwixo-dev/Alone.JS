@@ -455,3 +455,12 @@ void vector_abs(int size, double *vector, double *result_vectors){
         result_vectors[i] = fabs(vector[i]);
     }
 }
+
+// vector_negate
+void vector_negate(int size, const double *vector, double *result_vectors){
+    if(size <= 0 || vector == NULL || result_vectors == NULL) return; 
+    
+    for(int i = 0; i < size; i++){
+        result_vectors[i] = -vector[i];
+    }
+}
