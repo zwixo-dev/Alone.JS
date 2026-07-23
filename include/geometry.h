@@ -46,4 +46,12 @@ double circle_sector_area(double radius, double angle);
 double ellipse_area(double a, double b);
 double ellipse_perimeter(double a, double b);
 
+// polygon
+
+double regular_polygon_perimeter(int sides, double side_length);
+double regular_polygon_area(int sides, double side_length);
+double polygon_interior_angle_sum(int sides);
+double regular_polygon_interior_angle(int sides);
+
+
 #endif
