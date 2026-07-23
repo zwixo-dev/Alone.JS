@@ -71,4 +71,9 @@ double cylinder_volume(double radius, double height);
 double cylinder_surface_area(double radius, double height);
 double cylinder_lateral_area(double radius, double height);
 
+// sphere
+
+double sphere_volume(double radius);
+double sphere_surface_area(double radius);
+
 #endif
