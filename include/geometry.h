@@ -82,4 +82,9 @@ double cone_volume(double radius, double height);
 double cone_surface_area(double radius, double height);
 double cone_slant_height(double radius, double height);
 
+// unit Conversion
+
+double degrees_to_radians(double degrees);
+double radians_to_degrees(double radians);
+
 #endif
