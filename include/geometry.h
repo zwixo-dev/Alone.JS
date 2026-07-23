@@ -65,4 +65,10 @@ double cuboid_volume(double length, double width, double height);
 double cuboid_surface_area(double length, double width, double height);
 double cuboid_space_diagonal(double length, double width, double height);
 
+// Cylinder
+
+double cylinder_volume(double radius, double height);
+double cylinder_surface_area(double radius, double height);
+double cylinder_lateral_area(double radius, double height);
+
 #endif
