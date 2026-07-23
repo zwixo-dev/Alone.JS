@@ -76,4 +76,10 @@ double cylinder_lateral_area(double radius, double height);
 double sphere_volume(double radius);
 double sphere_surface_area(double radius);
 
+// cone
+
+double cone_volume(double radius, double height);
+double cone_surface_area(double radius, double height);
+double cone_slant_height(double radius, double height);
+
 #endif
