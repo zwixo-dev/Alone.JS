@@ -464,3 +464,24 @@ void vector_negate(int size, const double *vector, double *result_vectors){
         result_vectors[i] = -vector[i];
     }
 }
+
+// vector_power
+void vector_power(int size, const double *vector, double exponent, double *result_vectors){
+    if(size<=0 || vector == NULL || result_vectors == NULL) return; 
+    
+    for(int i=0;  i<size; i++){
+        result_vectors[i] = pow(vector[i], exponent);
+    }
+}
+
+// vector_sqrt
+void vector_sqrt(int size, const double *vector, double *result_vectors){
+    if(size <= 0 || vector == NULL || result_vectors == NULL) return;
+
+    for(int i = 0; i < size; i++){
+        if(vector[i] < 0.0)
+            result_vectors[i] = 0.0;
+        else
+            result_vectors[i] = sqrt(vector[i]);
+    }
+}
