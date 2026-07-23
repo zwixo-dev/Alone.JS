@@ -42,4 +42,8 @@ double circle_diameter(double radius);
 double circle_arc_length(double radius, double angle);
 double circle_sector_area(double radius, double angle);
 
+// ellipse
+double ellipse_area(double a, double b);
+double ellipse_perimeter(double a, double b);
+
 #endif
