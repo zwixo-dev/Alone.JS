@@ -53,5 +53,11 @@ double regular_polygon_area(int sides, double side_length);
 double polygon_interior_angle_sum(int sides);
 double regular_polygon_interior_angle(int sides);
 
+// cube
+
+double cube_volume(double side);
+double cube_surface_area(double side);
+double cube_space_diagonal(double side);
+
 
 #endif
