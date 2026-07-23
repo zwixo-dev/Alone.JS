@@ -470,7 +470,7 @@ void vector_power(int size, const double *vector, double exponent, double *resul
     if(size<=0 || vector == NULL || result_vectors == NULL) return; 
     
     for(int i=0;  i<size; i++){
-        result_vectors[i] = pow(vector[i], exponent);
+        result_vectors[i] = power(vector[i], exponent);
     }
 }
 
