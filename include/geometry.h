@@ -34,4 +34,12 @@ double square_area(double side);
 double square_perimeter(double side);
 double square_diagonal(double side);
 
+// circle
+
+double circle_area(double radius);
+double circle_circumference(double radius);
+double circle_diameter(double radius);
+double circle_arc_length(double radius, double angle);
+double circle_sector_area(double radius, double angle);
+
 #endif
