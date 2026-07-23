@@ -59,5 +59,10 @@ double cube_volume(double side);
 double cube_surface_area(double side);
 double cube_space_diagonal(double side);
 
+//Rectangular Prism
+
+double cuboid_volume(double length, double width, double height);
+double cuboid_surface_area(double length, double width, double height);
+double cuboid_space_diagonal(double length, double width, double height);
 
 #endif
