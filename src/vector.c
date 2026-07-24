@@ -1,5 +1,6 @@
 #include "../include/vector.h"
 #include "../include/operations.h"
+#include <math.h>
 #include <stdlib.h>
 
 // vector_magnitude
@@ -394,7 +395,7 @@ void vector_reverse(int size, double *vector, double *result_vectors){
 }
 
 // vector_sort_ascending
-void vector_sort_ascending(int size, const double *vector, double *result_vectors){
+void vector_sort_ascending(int size, double *vector, double *result_vectors){
     
     if(size <= 0 || vector == NULL || result_vectors == NULL) return;
     
