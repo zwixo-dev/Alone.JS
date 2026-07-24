@@ -1,5 +1,6 @@
 #include "../include/vector.h"
 #include "../include/operations.h"
+#include <stdlib.h>
 
 // vector_magnitude
 double vector_magnitude(int size, double *vector){
