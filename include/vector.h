@@ -49,9 +49,9 @@ int vector_is_orthogonal(int size, double *vectorA, double *vectorB);
 int vector_is_parallel(int size, double *vectorA, double *vectorB);
 
 // statistics 
-double vector_variance(int size, double *vector);
+double vector_variance(int size, double *vector, int option);
 
-double vector_standard_deviation(int size, double *vector);
+double vector_standard_deviation(int size, double *vector, int option);
 
 // Transformations
 void vector_reverse(int size, double *vector, double *result_vectors);
