@@ -1,5 +1,5 @@
 #include "../include/vector.h"
-
+#include "../include/operations.h"
 
 // vector_magnitude
 double vector_magnitude(int size, double *vector){
@@ -259,7 +259,7 @@ double vector_l1_norm(int size, double *vector){
     double V_l1_norm_sum = 0.0;
 
     for(int i = 0; i < size; i++){
-        V_l1_norm_sum += fabs(vector[i]);
+        V_l1_norm_sum += aBs(vector[i]);
     }
 
     return V_l1_norm_sum;
@@ -269,11 +269,11 @@ double vector_l1_norm(int size, double *vector){
 double vector_infinity_norm(int size, double *vector){
     if(size <= 0 || vector == NULL) return -1;
 
-    double V_infinity_norm = fabs(vector[0]);
+    double V_infinity_norm = aBs(vector[0]);
 
     for(int i = 1; i < size; i++){
-        if(fabs(vector[i]) > V_infinity_norm)
-            V_infinity_norm = fabs(vector[i]);
+        if(aBs(vector[i]) > V_infinity_norm)
+            V_infinity_norm = aBs(vector[i]);
     }
 
     return V_infinity_norm;
@@ -284,7 +284,7 @@ int vector_is_zero(int size, double *vector){
 
     if(size <= 0 || vector == NULL) return -1; // undefined
 
-    if(fabs(vector_magnitude(size, vector)) < 1e-9)
+    if(aBs(vector_magnitude(size, vector)) < 1e-9)
         return 1; // true
 
     return 0; // false
@@ -295,7 +295,7 @@ int vector_is_unit(int size, double *vector){
 
     if(size <= 0 || vector == NULL) return -1; // undefined
 
-    if(fabs(vector_magnitude(size, vector) - 1.0) < 1e-9)
+    if(aBs(vector_magnitude(size, vector) - 1.0) < 1e-9)
         return 1; // true
 
     return 0; // false
@@ -307,7 +307,7 @@ int vector_is_orthogonal(int size, double *vectorA, double *vectorB){
     if(size <= 0 || vectorA == NULL || vectorB == NULL)
         return -1; // undefined
 
-    if(fabs(vector_dot_product(size, vectorA, vectorB)) < 1e-9)
+    if(aBs(vector_dot_product(size, vectorA, vectorB)) < 1e-9)
         return 1; // true
 
     return 0; // false
@@ -325,12 +325,12 @@ int vector_is_parallel(int size, double *vectorA, double *vectorB){
     for(int i = 0; i < size; i++){
 
         // Both are zero -> skip
-        if(fabs(vectorA[i]) < 1e-9 && fabs(vectorB[i]) < 1e-9)
+        if(aBs(vectorA[i]) < 1e-9 && aBs(vectorB[i]) < 1e-9)
             continue;
 
         // One is zero and the other isn't
-        if((fabs(vectorA[i]) < 1e-9 && fabs(vectorB[i]) >= 1e-9) ||
-           (fabs(vectorA[i]) >= 1e-9 && fabs(vectorB[i]) < 1e-9))
+        if((aBs(vectorA[i]) < 1e-9 && aBs(vectorB[i]) >= 1e-9) ||
+           (aBs(vectorA[i]) >= 1e-9 && aBs(vectorB[i]) < 1e-9))
             return 0;
 
         if(!ratioFound){
@@ -338,7 +338,7 @@ int vector_is_parallel(int size, double *vectorA, double *vectorB){
             ratioFound = 1;
         }
         else{
-            if(fabs((vectorA[i] / vectorB[i]) - ratio) > 1e-9)
+            if(aBs((vectorA[i] / vectorB[i]) - ratio) > 1e-9)
                 return 0;
         }
     }
@@ -452,7 +452,7 @@ void vector_abs(int size, double *vector, double *result_vectors){
     if(size<=0 || vector == NULL || result_vectors == NULL) return; 
     
     for(int i=0; i<size; i++){
-        result_vectors[i] = fabs(vector[i]);
+        result_vectors[i] = aBs(vector[i]);
     }
 }
 
