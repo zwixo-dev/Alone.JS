@@ -459,7 +459,7 @@ void vector_abs(int size, double *vector, double *result_vectors){
 }
 
 // vector_negate
-void vector_negate(int size, const double *vector, double *result_vectors){
+void vector_negate(int size, double *vector, double *result_vectors){
     if(size <= 0 || vector == NULL || result_vectors == NULL) return; 
     
     for(int i = 0; i < size; i++){
@@ -468,7 +468,7 @@ void vector_negate(int size, const double *vector, double *result_vectors){
 }
 
 // vector_power
-void vector_power(int size, const double *vector, double exponent, double *result_vectors){
+void vector_power(int size, double *vector, double exponent, double *result_vectors){
     if(size<=0 || vector == NULL || result_vectors == NULL) return; 
     
     for(int i=0;  i<size; i++){
@@ -477,7 +477,7 @@ void vector_power(int size, const double *vector, double exponent, double *resul
 }
 
 // vector_sqrt
-void vector_sqrt(int size, const double *vector, double *result_vectors){
+void vector_sqrt(int size, double *vector, double *result_vectors){
     if(size <= 0 || vector == NULL || result_vectors == NULL) return;
 
     for(int i = 0; i < size; i++){
