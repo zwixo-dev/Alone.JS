@@ -45,6 +45,7 @@ Module.onRuntimeInitialized = () => {
     const vA = [1, 2, 3];
     const vB = [4, 5, 6];
     console.log("vector_magnitude : ",vector_magnitude(v.length, v));
+    console.log("vector_normalize", vector_normalize(v.length, vA, vB));
     console.log("vector_cross_product:", vector_cross_product(vA, vB));
 
 }
