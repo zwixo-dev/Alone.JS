@@ -73,7 +73,7 @@ function vector_normalize(size, vector ){
     const inputPointer = allocateMemory(size, vector);
     const outputPointer = allocateMemory(size, vector);
 
-    vector.vector_normalize(size, inputPointer, outputPointer);
+    vectors.vector_normalize(size, inputPointer, outputPointer);
 
     const vector_normalize = Array.from(
         Module.HEAPF64.subarray(
