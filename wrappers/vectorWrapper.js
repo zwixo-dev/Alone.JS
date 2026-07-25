@@ -5,7 +5,7 @@ let vectors;
 Module.onRuntimeInitialized = () => {
     vectors = {
         vector_magnitude: Module.cwrap("vector_magnitude", "number", ["number", "number"]),
-        vector_normalize: Module.cwrap("vector_normalize", "number", ["number", "number"]),
+        vector_normalize: Module.cwrap("vector_normalize", null, ["number", "number", "number"]),
         vector_dot_product: Module.cwrap("vector_dot_product", "number", ["number", "number"]),
         vector_cross_product: Module.cwrap("vector_cross_product", "number", ["number", "number"]),
         vector_add: Module.cwrap("vector_add", "number", ["number", "number"]),
@@ -67,4 +67,25 @@ function vector_magnitude(size, vector){
 
     return vector_magnitude;
 }
+
+// vector_normalize
+function vector_normalize(size, vector ){
+    const inputPointer = allocateMemory(size, vector);
+    const outputPointer = allocateMemory(size, vector);
+
+    vector.vector_normalize(size, inputPointer, outputPointer);
+
+    const vector_normalize = Array.from(
+        Module.HEAPF64.subarray(
+            outputPointer / 8, 
+            outputPointer / 8 + vector.length, 
+        )
+    );
+
+    liberation(inputPointer);
+    liberation(outputPointer);
+
+    return vector_normalize;
+}
+
 
