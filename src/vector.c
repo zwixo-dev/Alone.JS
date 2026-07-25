@@ -62,7 +62,7 @@ void vector_cross_product(double *vectorA, double *vectorB, double *result_vecto
     if(vectorA == NULL || vectorB == NULL || result_vectors == NULL) return;
     
     double res_x = ( vectorA[1] * vectorB[2] ) - ( vectorA[2] * vectorB[1] );
-    double res_y = ( vectorA[2] * vectorB[0] ) - ( vectorA[0] * vectorB[2] );
+    double res_y = ( vectorA[0] * vectorB[2] ) - ( vectorA[2] * vectorB[0] );
     double res_z = ( vectorA[0] * vectorB[1] ) - ( vectorA[1] * vectorB[0] );
 
     result_vectors[0] = res_x;
