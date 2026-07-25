@@ -7,7 +7,7 @@ Module.onRuntimeInitialized = () => {
         vector_magnitude: Module.cwrap("vector_magnitude", "number", ["number", "number"]),
         vector_normalize: Module.cwrap("vector_normalize", null, ["number", "number", "number"]),
         vector_dot_product: Module.cwrap("vector_dot_product", "number", ["number", "number", "number"]),
-        vector_cross_product: Module.cwrap("vector_cross_product", "number", ["number", "number"]),
+        vector_cross_product: Module.cwrap("vector_cross_product", null, ["number", "number", "number"]),
         vector_add: Module.cwrap("vector_add", "number", ["number", "number"]),
         vector_subtract: Module.cwrap("vector_subtract", "number", ["number", "number"]),
         vector_scalar_multiply: Module.cwrap("vector_scalar_multiply", "number", ["number", "number"]),
@@ -39,6 +39,14 @@ Module.onRuntimeInitialized = () => {
         vector_power: Module.cwrap("vector_power", "number", ["number", "number"]),
         vector_sqrt: Module.cwrap("vector_sqrt", "number", ["number", "number"]),
     }
+
+
+
+    const vA = [1, 2, 3];
+    const vB = [4, 5, 6];
+
+    console.log("vector_cross_product:", vector_cross_product(vA, vB));
+
 }
 
 // func to allocate memory
@@ -100,4 +108,31 @@ function vector_dot_product(size, vectorA, vectorB){
     liberation(pointerB);
 
     return vector_dot_product;
+}
+
+// vector_cross_product
+function vector_cross_product(vectorA, vectorB) {
+    // test the length of the vectors not 3
+    if(vectorA.length !=3 || vectorB.length != 3 ) return NaN;
+    // else
+    vectorLength = vectorA.length;
+
+    const pointerA = allocateMemory(vectorA.length, vectorA);
+    const pointerB = allocateMemory(vectorB.length, vectorB);
+    const outputPointer = Module._malloc(vectorLength * 8);
+
+    vectors.vector_cross_product(pointerA, pointerB, outputPointer);
+
+    const result = Array.from(
+        Module.HEAPF64.subarray(
+            outputPointer / 8,
+            outputPointer / 8 + vectorLength
+        )
+    );
+
+    liberation(pointerA);
+    liberation(pointerB);
+    liberation(outputPointer);
+
+    return result;
 }
