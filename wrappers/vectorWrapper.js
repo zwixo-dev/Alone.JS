@@ -41,10 +41,10 @@ Module.onRuntimeInitialized = () => {
     }
 
 
-
+    const v =  [1, 2, 3];
     const vA = [1, 2, 3];
     const vB = [4, 5, 6];
-
+    console.log("vector_magnitude : ",vector_magnitude(v.length, v));
     console.log("vector_cross_product:", vector_cross_product(vA, vB));
 
 }
