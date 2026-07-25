@@ -6,7 +6,7 @@ Module.onRuntimeInitialized = () => {
     vectors = {
         vector_magnitude: Module.cwrap("vector_magnitude", "number", ["number", "number"]),
         vector_normalize: Module.cwrap("vector_normalize", null, ["number", "number", "number"]),
-        vector_dot_product: Module.cwrap("vector_dot_product", "number", ["number", "number"]),
+        vector_dot_product: Module.cwrap("vector_dot_product", "number", ["number", "number", "number"]),
         vector_cross_product: Module.cwrap("vector_cross_product", "number", ["number", "number"]),
         vector_add: Module.cwrap("vector_add", "number", ["number", "number"]),
         vector_subtract: Module.cwrap("vector_subtract", "number", ["number", "number"]),
@@ -89,3 +89,15 @@ function vector_normalize(size, vector ){
 }
 
 
+// vector_dot_product
+function vector_dot_product(size, vectorA, vectorB){
+    const pointerA = allocateMemory(size, vectorA);
+    const pointerB = allocateMemory(size, vectorB);
+    
+    const vector_dot_product = vectors.vector_dot_product(size, pointerA, pointerB);
+
+    liberation(pointerA);
+    liberation(pointerB);
+
+    return vector_dot_product;
+}
