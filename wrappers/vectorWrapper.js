@@ -61,9 +61,10 @@ function vector_magnitude(size, vector){
 
     const pointer = allocateMemory(size, vector);
 
-    const vector_magnitude = vector_magnitude(size, pointer);
+    const vector_magnitude = vectors.vector_magnitude(size, pointer);
 
     liberation(pointer);
 
     return vector_magnitude;
 }
+
