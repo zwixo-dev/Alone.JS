@@ -16,7 +16,7 @@ Module.onRuntimeInitialized = () => {
         vector_angle: Module.cwrap("vector_angle", "number", ["number", "number"]),
         vector_cosine_similarity: Module.cwrap("vector_cosine_similarity", "number", ["number", "number"]),
         vector_projection: Module.cwrap("vector_projection", null, ["number", "number", "number", "number"]),
-        vector_rejection: Module.cwrap("vector_rejection", "number", ["number", "number"]),
+        vector_rejection: Module.cwrap("vector_rejection", null, ["number", "number", "number", "number"]),
         vector_sum: Module.cwrap("vector_sum", "number", ["number", "number"]),
         vector_mean: Module.cwrap("vector_mean", "number", ["number", "number"]),
         vector_max: Module.cwrap("vector_max", "number", ["number", "number"]),
@@ -56,6 +56,7 @@ Module.onRuntimeInitialized = () => {
     console.log("vector_angle : ", vector_angle(vA.length, vA, vB));
     console.log("vector_cosine_similarity : ", vector_cosine_similarity(vA.length, vA, vB));
     console.log("vector_projection : ", vector_projection(vA.length, vA, vB));
+    console.log("vector_rejection : ", vector_rejection(vA.length, vA, vB));
 }
 
 // func to allocate memory
@@ -311,4 +312,28 @@ function vector_projection(size, vectorA, vectorB){
     liberation(outputPointer);
 
     return vector_projection;
+}
+
+// vector_rejection
+function vector_rejection(size, vectorA, vectorB){
+    if(vectorA.length !== size || vectorB.length !== size) return NaN;
+
+    const inputPointerA = allocateMemory(size, vectorA);
+    const inputPointerB = allocateMemory(size, vectorB);
+    const outputPointer = Module._malloc(size * 8);
+
+    vectors.vector_rejection(size, inputPointerA, inputPointerB, outputPointer);
+
+    const vector_rejection = Array.from(
+        Module.HEAPF64.subarray(
+            outputPointer / 8,
+            outputPointer / 8 + size
+        )
+    );
+
+    liberation(inputPointerA);
+    liberation(inputPointerB);
+    liberation(outputPointer);
+
+    return vector_rejection;
 }
