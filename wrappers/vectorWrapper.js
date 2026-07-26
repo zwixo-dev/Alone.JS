@@ -68,6 +68,7 @@ function liberation(pointer){
 
 // vector_magnitude
 function vector_magnitude(size, vector){
+    if (vector.length !== size) return NaN;
 
     const pointer = allocateMemory(size, vector);
 
@@ -79,16 +80,18 @@ function vector_magnitude(size, vector){
 }
 
 // vector_normalize
-function vector_normalize(size, vector ){
+function vector_normalize(size, vector) {
+    if (vector.length !== size) return NaN;
+
     const inputPointer = allocateMemory(size, vector);
-    const outputPointer = allocateMemory(size, vector);
+    const outputPointer = Module._malloc(size * 8);
 
     vectors.vector_normalize(size, inputPointer, outputPointer);
 
     const vector_normalize = Array.from(
         Module.HEAPF64.subarray(
-            outputPointer / 8, 
-            outputPointer / 8 + vector.length, 
+            outputPointer / 8,
+            outputPointer / 8 + size
         )
     );
 
