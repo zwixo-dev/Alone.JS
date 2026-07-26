@@ -53,6 +53,7 @@ Module.onRuntimeInitialized = () => {
     console.log("vector_scalar_multiply : ", vector_scalar_multiply(v.length, 3, v));
     console.log("vector_scalar_divide :", vector_scalar_divide(v.length, 2, v));
     console.log("vector_distance : ", vector_distance(vA.length, vA, vB));
+    console.log("vector_angle : ", vector_angle(vA.length, vA, vB));
 }
 
 // func to allocate memory
@@ -241,7 +242,6 @@ function vector_scalar_divide(size, scalar, vector){
     return vector_scalar_divide;
 }
 
-// double vector_distance(int size, double *vectorA, double *vectorB);
 // vector_distance
 function vector_distance(size, vectorA, vectorB){
     if(vectorA.length !== size || vectorB.length !== size) return NaN;
@@ -255,4 +255,19 @@ function vector_distance(size, vectorA, vectorB){
     liberation(inputPointerB);
 
     return vector_distance;
+}
+
+// vector_angle
+function vector_angle(size, vectorA, vectorB){
+    if(vectorA.length !== size || vectorB.length !== size) return NaN;
+
+    const inputPointerA = allocateMemory(size, vectorA);
+    const inputPointerB = allocateMemory(size, vectorB);
+
+    const vector_angle = vectors.vector_angle(size, inputPointerA, inputPointerB);
+
+    liberation(inputPointerA);
+    liberation(inputPointerB);
+
+    return vector_angle;
 }
