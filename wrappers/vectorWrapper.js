@@ -54,6 +54,7 @@ Module.onRuntimeInitialized = () => {
     console.log("vector_scalar_divide :", vector_scalar_divide(v.length, 2, v));
     console.log("vector_distance : ", vector_distance(vA.length, vA, vB));
     console.log("vector_angle : ", vector_angle(vA.length, vA, vB));
+    console.log("vector_cosine_similarity : ", vector_cosine_similarity(vA.length, vA, vB));
 }
 
 // func to allocate memory
@@ -270,4 +271,20 @@ function vector_angle(size, vectorA, vectorB){
     liberation(inputPointerB);
 
     return vector_angle;
+}
+
+// double vector_cosine_similarity(int size, double *vectorA, double *vectorB);
+// vector_cosine_similarity
+function vector_cosine_similarity(size, vectorA, vectorB){
+    if(vectorA.length !== size || vectorB.length !== size) return NaN;
+
+    const inputPointerA = allocateMemory(size, vectorA);
+    const inputPointerB = allocateMemory(size, vectorB);
+
+    const vector_cosine_similarity = vectors.vector_cosine_similarity(size, inputPointerA, inputPointerB);
+
+    liberation(inputPointerA);
+    liberation(inputPointerB);
+
+    return vector_cosine_similarity;
 }
