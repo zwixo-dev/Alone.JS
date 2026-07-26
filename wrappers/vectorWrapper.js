@@ -101,9 +101,10 @@ function vector_normalize(size, vector) {
     return vector_normalize;
 }
 
-
 // vector_dot_product
 function vector_dot_product(size, vectorA, vectorB){
+    if(vectorA.length !== size || vectorB.length !== size) return NaN;
+
     const pointerA = allocateMemory(size, vectorA);
     const pointerB = allocateMemory(size, vectorB);
     
