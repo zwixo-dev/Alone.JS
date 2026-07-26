@@ -8,7 +8,7 @@ Module.onRuntimeInitialized = () => {
         vector_normalize: Module.cwrap("vector_normalize", null, ["number", "number", "number"]),
         vector_dot_product: Module.cwrap("vector_dot_product", "number", ["number", "number", "number"]),
         vector_cross_product: Module.cwrap("vector_cross_product", null, ["number", "number", "number"]),
-        vector_add: Module.cwrap("vector_add", "number", ["number", "number"]),
+        vector_add: Module.cwrap("vector_add", null, ["number", "number", "number", "number"]),
         vector_subtract: Module.cwrap("vector_subtract", "number", ["number", "number"]),
         vector_scalar_multiply: Module.cwrap("vector_scalar_multiply", "number", ["number", "number"]),
         vector_scalar_divide: Module.cwrap("vector_scalar_divide", "number", ["number", "number"]),
@@ -48,7 +48,7 @@ Module.onRuntimeInitialized = () => {
     console.log("vector_normalize", vector_normalize(v.length, vA));
     console.log("vector_dot_product : ", vector_dot_product(vA.length, vA, vB));
     console.log("vector_cross_product:", vector_cross_product(vA, vB));
-
+    console.log("vector_add : ", vector_add(vA.length, vA, vB)); 
 }
 
 // func to allocate memory
@@ -137,4 +137,30 @@ function vector_cross_product(vectorA, vectorB) {
     liberation(outputPointer);
 
     return result;
+}
+
+// vector_add
+function vector_add(size, vectorA, vectorB){
+    // if the vectors with diff length 
+    if(vectorA.length !== size || vectorB.length !== size ) return NaN;
+    // else : we complete
+
+    const inputPointerA = allocateMemory(vectorA.length, vectorA);
+    const inputPointerB = allocateMemory(vectorB.length, vectorB);
+    const outputPointer = Module._malloc(size * 8);
+
+    vectors.vector_add(size, inputPointerA, inputPointerB, outputPointer);
+
+    const vector_add = Array.from(
+        Module.HEAPF64.subarray(
+            outputPointer / 8,
+            outputPointer / 8 + size
+        )
+    );
+
+    liberation(inputPointerA);
+    liberation(inputPointerB);
+    liberation(outputPointer);
+
+    return vector_add;
 }
