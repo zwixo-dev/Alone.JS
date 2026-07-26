@@ -121,7 +121,7 @@ function vector_cross_product(vectorA, vectorB) {
     // test the length of the vectors not 3
     if(vectorA.length !=3 || vectorB.length != 3 ) return NaN;
     // else
-    vectorLength = vectorA.length;
+    const vectorLength = vectorA.length;
 
     const pointerA = allocateMemory(vectorA.length, vectorA);
     const pointerB = allocateMemory(vectorB.length, vectorB);
