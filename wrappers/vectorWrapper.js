@@ -57,6 +57,7 @@ Module.onRuntimeInitialized = () => {
     console.log("vector_cosine_similarity : ", vector_cosine_similarity(vA.length, vA, vB));
     console.log("vector_projection : ", vector_projection(vA.length, vA, vB));
     console.log("vector_rejection : ", vector_rejection(vA.length, vA, vB));
+    console.log("vector_sum : ", vector_sum(v.length, v));
 }
 
 // func to allocate memory
@@ -336,4 +337,17 @@ function vector_rejection(size, vectorA, vectorB){
     liberation(outputPointer);
 
     return vector_rejection;
+}
+
+// vector_sum
+function vector_sum(size, vector){
+    if(vector.length !== size) return NaN;
+
+    const inputPointer = allocateMemory(size, vector);
+
+    const vector_sum = vectors.vector_sum(size, inputPointer);
+
+    liberation(inputPointer);
+
+    return vector_sum;
 }
