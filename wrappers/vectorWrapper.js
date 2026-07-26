@@ -9,8 +9,8 @@ Module.onRuntimeInitialized = () => {
         vector_dot_product: Module.cwrap("vector_dot_product", "number", ["number", "number", "number"]),
         vector_cross_product: Module.cwrap("vector_cross_product", null, ["number", "number", "number"]),
         vector_add: Module.cwrap("vector_add", null, ["number", "number", "number", "number"]),
-        vector_subtract: Module.cwrap("vector_subtract", "number", ["number", "number"]),
-        vector_scalar_multiply: Module.cwrap("vector_scalar_multiply", "number", ["number", "number"]),
+        vector_subtract: Module.cwrap("vector_subtract", null, ["number", "number", "number", "number"]),
+        vector_scalar_multiply: Module.cwrap("vector_scalar_multiply", null, ["number", "number", "number", "number"]),
         vector_scalar_divide: Module.cwrap("vector_scalar_divide", "number", ["number", "number"]),
         vector_distance: Module.cwrap("vector_distance", "number", ["number", "number"]),
         vector_angle: Module.cwrap("vector_angle", "number", ["number", "number"]),
@@ -49,6 +49,7 @@ Module.onRuntimeInitialized = () => {
     console.log("vector_dot_product : ", vector_dot_product(vA.length, vA, vB));
     console.log("vector_cross_product:", vector_cross_product(vA, vB));
     console.log("vector_add : ", vector_add(vA.length, vA, vB)); 
+    console.log("vector_subtract : ", vector_subtract(vA.length, vA, vB));
 }
 
 // func to allocate memory
@@ -167,4 +168,28 @@ function vector_add(size, vectorA, vectorB){
     liberation(outputPointer);
 
     return vector_add;
+}
+
+// vector_subtract
+function vector_subtract(size, vectorA, vectorB){
+    if(vectorA.length !== size || vectorB.length !== size) return NaN;
+
+    const inputPointerA = allocateMemory(size, vectorA);
+    const inputPointerB = allocateMemory(size, vectorB);
+    const outputPointer = Module._malloc(size * 8);
+
+    vectors.vector_subtract(size, inputPointerA, inputPointerB, outputPointer);
+
+    const vector_subtract = Array.from(
+        Module.HEAPF64.subarray(
+            outputPointer / 8,
+            outputPointer / 8 + size 
+        )
+    );
+
+    liberation(inputPointerA);
+    liberation(inputPointerB);
+    liberation(outputPointer);
+
+    return vector_subtract
 }
