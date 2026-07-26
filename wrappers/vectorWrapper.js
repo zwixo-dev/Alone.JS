@@ -58,6 +58,7 @@ Module.onRuntimeInitialized = () => {
     console.log("vector_projection : ", vector_projection(vA.length, vA, vB));
     console.log("vector_rejection : ", vector_rejection(vA.length, vA, vB));
     console.log("vector_sum : ", vector_sum(v.length, v));
+    console.log("vector_mean :", vector_mean(vA.length, vA));
 }
 
 // func to allocate memory
@@ -350,4 +351,17 @@ function vector_sum(size, vector){
     liberation(inputPointer);
 
     return vector_sum;
+}
+
+// vector_mean
+function vector_mean(size, vector){
+    if(vector.length !== size) return NaN;
+
+    const inputPointer = allocateMemory(size, vector);
+
+    const vector_mean = vectors.vector_mean(size, inputPointer);
+
+    liberation(inputPointer);
+
+    return vector_mean;
 }
