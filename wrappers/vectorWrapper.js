@@ -15,7 +15,7 @@ Module.onRuntimeInitialized = () => {
         vector_distance: Module.cwrap("vector_distance", "number", ["number", "number", "number"]),
         vector_angle: Module.cwrap("vector_angle", "number", ["number", "number"]),
         vector_cosine_similarity: Module.cwrap("vector_cosine_similarity", "number", ["number", "number"]),
-        vector_projection: Module.cwrap("vector_projection", "number", ["number", "number"]),
+        vector_projection: Module.cwrap("vector_projection", null, ["number", "number", "number", "number"]),
         vector_rejection: Module.cwrap("vector_rejection", "number", ["number", "number"]),
         vector_sum: Module.cwrap("vector_sum", "number", ["number", "number"]),
         vector_mean: Module.cwrap("vector_mean", "number", ["number", "number"]),
@@ -55,6 +55,7 @@ Module.onRuntimeInitialized = () => {
     console.log("vector_distance : ", vector_distance(vA.length, vA, vB));
     console.log("vector_angle : ", vector_angle(vA.length, vA, vB));
     console.log("vector_cosine_similarity : ", vector_cosine_similarity(vA.length, vA, vB));
+    console.log("vector_projection : ", vector_projection(vA.length, vA, vB));
 }
 
 // func to allocate memory
@@ -273,7 +274,6 @@ function vector_angle(size, vectorA, vectorB){
     return vector_angle;
 }
 
-// double vector_cosine_similarity(int size, double *vectorA, double *vectorB);
 // vector_cosine_similarity
 function vector_cosine_similarity(size, vectorA, vectorB){
     if(vectorA.length !== size || vectorB.length !== size) return NaN;
@@ -287,4 +287,28 @@ function vector_cosine_similarity(size, vectorA, vectorB){
     liberation(inputPointerB);
 
     return vector_cosine_similarity;
+}
+
+// vector_projection
+function vector_projection(size, vectorA, vectorB){
+    if(vectorA.length !== size || vectorB.length !== size) return NaN;
+
+    const inputPointerA = allocateMemory(size, vectorA);
+    const inputPointerB = allocateMemory(size, vectorB);
+    const outputPointer = Module._malloc(size * 8);
+
+    vectors.vector_projection(size, inputPointerA, inputPointerB, outputPointer);
+
+    const vector_projection = Array.from(
+        Module.HEAPF64.subarray(
+            outputPointer / 8,
+            outputPointer / 8 + size
+        )
+    );
+
+    liberation(inputPointerA);
+    liberation(inputPointerB);
+    liberation(outputPointer);
+
+    return vector_projection;
 }
