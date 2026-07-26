@@ -50,6 +50,7 @@ Module.onRuntimeInitialized = () => {
     console.log("vector_cross_product:", vector_cross_product(vA, vB));
     console.log("vector_add : ", vector_add(vA.length, vA, vB)); 
     console.log("vector_subtract : ", vector_subtract(vA.length, vA, vB));
+    console.log("vector_scalar_multiply : ", vector_scalar_multiply(v.length, 3, v));
 }
 
 // func to allocate memory
@@ -192,4 +193,26 @@ function vector_subtract(size, vectorA, vectorB){
     liberation(outputPointer);
 
     return vector_subtract
+}
+
+// vector_scalar_multiply
+function vector_scalar_multiply(size, scalar, vector){
+    if(vector.length !==  size) return NaN;
+
+    const inputPointer = allocateMemory(size, vector);
+    const outputPointer = Module._malloc(size * 8);
+
+    vectors.vector_scalar_multiply(size, scalar, inputPointer, outputPointer);
+
+    const vector_scalar_multiply = Array.from(
+        Module.HEAPF64.subarray(
+            outputPointer / 8,
+            outputPointer / 8 + size 
+        )
+    );
+
+    liberation(inputPointer);
+    liberation(outputPointer);
+    
+    return vector_scalar_multiply;
 }
