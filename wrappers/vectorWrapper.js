@@ -11,7 +11,7 @@ Module.onRuntimeInitialized = () => {
         vector_add: Module.cwrap("vector_add", null, ["number", "number", "number", "number"]),
         vector_subtract: Module.cwrap("vector_subtract", null, ["number", "number", "number", "number"]),
         vector_scalar_multiply: Module.cwrap("vector_scalar_multiply", null, ["number", "number", "number", "number"]),
-        vector_scalar_divide: Module.cwrap("vector_scalar_divide", "number", ["number", "number"]),
+        vector_scalar_divide: Module.cwrap("vector_scalar_divide", null, ["number", "number", "number", "number"]),
         vector_distance: Module.cwrap("vector_distance", "number", ["number", "number"]),
         vector_angle: Module.cwrap("vector_angle", "number", ["number", "number"]),
         vector_cosine_similarity: Module.cwrap("vector_cosine_similarity", "number", ["number", "number"]),
@@ -51,6 +51,7 @@ Module.onRuntimeInitialized = () => {
     console.log("vector_add : ", vector_add(vA.length, vA, vB)); 
     console.log("vector_subtract : ", vector_subtract(vA.length, vA, vB));
     console.log("vector_scalar_multiply : ", vector_scalar_multiply(v.length, 3, v));
+    console.log("vector_scalar_divide :", vector_scalar_divide(v.length, 2, v));
 }
 
 // func to allocate memory
@@ -215,4 +216,26 @@ function vector_scalar_multiply(size, scalar, vector){
     liberation(outputPointer);
     
     return vector_scalar_multiply;
+}
+
+// vector_scalar_divide
+function vector_scalar_divide(size, scalar, vector){
+    if(vector.length !== size) return NaN;
+
+    const inputPointer = allocateMemory(size, vector);
+    const outputPointer = Module._malloc(size * 8);
+
+    vectors.vector_scalar_divide(size, scalar, inputPointer, outputPointer);
+
+    const vector_scalar_divide = Array.from(
+        Module.HEAPF64.subarray(
+            outputPointer / 8,
+            outputPointer / 8 + size 
+        )
+    ); 
+
+    liberation(inputPointer);
+    liberation(outputPointer);
+
+    return vector_scalar_divide;
 }
