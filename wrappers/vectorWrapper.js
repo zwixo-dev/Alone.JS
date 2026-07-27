@@ -60,7 +60,8 @@ Module.onRuntimeInitialized = () => {
     console.log("vector_sum : ", vector_sum(v.length, v));
     console.log("vector_mean :", vector_mean(vA.length, vA));
     console.log("vector_max : ", vector_max(vA.length, vA));
-    console.log("vector_min : ", vector_min(vA.length, vA)); 
+    console.log("vector_min : ", vector_min(vA.length, vA));
+    console.log("vector_l1_norm :", vector_l1_norm(vA.length, vA));
 }
 
 // func to allocate memory
@@ -393,3 +394,20 @@ function vector_min(size, vector){
 
     return vector_min;
 }
+
+// double vector_l1_norm(int size, double *vector); 
+// vector_l1_norm
+
+function vector_l1_norm(size, vector){
+    if(vector.length !== size)return NaN;
+
+    const inputPointer = allocateMemory(size, vector);
+
+    const vector_l1_norm = vectors.vector_l1_norm(size, inputPointer);
+
+    liberation(inputPointer);
+
+    return vector_l1_norm;
+}
+
+// double vector_infinity_norm(int size, double *vector);
