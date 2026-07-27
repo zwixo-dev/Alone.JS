@@ -29,9 +29,9 @@ Module.onRuntimeInitialized = () => {
         vector_is_parallel: Module.cwrap("vector_is_parallel", "number", ["number", "number", "number"]),
         vector_variance: Module.cwrap("vector_variance", "number", ["number", "number"]),
         vector_standard_deviation: Module.cwrap("vector_standard_deviation", "number", ["number", "number", "number"]),
-        vector_reverse: Module.cwrap("vector_reverse", "number", ["number", "number"]),
-        vector_sort_ascending: Module.cwrap("vector_sort_ascending", "number", ["number", "number"]),
-        vector_sort_descending: Module.cwrap("vector_sort_descending", "number", ["number", "number"]),
+        vector_reverse: Module.cwrap("vector_reverse", null, ["number", "number", "number"]),
+        vector_sort_ascending: Module.cwrap("vector_sort_ascending", null, ["number", "number", "number"]),
+        vector_sort_descending: Module.cwrap("vector_sort_descending", null, ["number", "number", "number"]),
         vector_hadamard_product_sum: Module.cwrap("vector_hadamard_product_sum", "number", ["number", "number"]),
         vector_hadamard_product: Module.cwrap("vector_hadamard_product", "number", ["number", "number"]),
         vector_abs: Module.cwrap("vector_abs", "number", ["number", "number"]),
@@ -517,3 +517,9 @@ function vector_standard_deviation(size, vector, option){
 
     return vector_standard_deviation;
 }
+
+// Transformations
+// void vector_reverse(int size, double *vector,null*result_vectors);
+
+// void vector_sort, / void v_asnullint size, double *vector, double *result_vectornull
+// void vector_sort_descending(int size, double *vector, double *result_vector, / void vs);
