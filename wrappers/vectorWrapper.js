@@ -62,6 +62,7 @@ Module.onRuntimeInitialized = () => {
     console.log("vector_max : ", vector_max(vA.length, vA));
     console.log("vector_min : ", vector_min(vA.length, vA));
     console.log("vector_l1_norm :", vector_l1_norm(vA.length, vA));
+    console.log("vector_infinity_norm : ", vector_infinity_norm(vA.length, vA));
 }
 
 // func to allocate memory
@@ -411,3 +412,14 @@ function vector_l1_norm(size, vector){
 }
 
 // double vector_infinity_norm(int size, double *vector);
+function vector_infinity_norm(size, vector){
+    if(vector.length !== size)return NaN;
+
+    const inputPointer = allocateMemory(size, vector);
+
+    const vector_infinity_norm = vectors.vector_infinity_norm(size, inputPointer);
+
+    liberation(inputPointer);
+
+    return vector_infinity_norm;
+}
