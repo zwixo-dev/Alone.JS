@@ -28,7 +28,7 @@ Module.onRuntimeInitialized = () => {
         vector_is_orthogonal: Module.cwrap("vector_is_orthogonal", "number", ["number", "number", "number"]),
         vector_is_parallel: Module.cwrap("vector_is_parallel", "number", ["number", "number", "number"]),
         vector_variance: Module.cwrap("vector_variance", "number", ["number", "number"]),
-        vector_standard_deviation: Module.cwrap("vector_standard_deviation", "number", ["number", "number"]),
+        vector_standard_deviation: Module.cwrap("vector_standard_deviation", "number", ["number", "number", "number"]),
         vector_reverse: Module.cwrap("vector_reverse", "number", ["number", "number"]),
         vector_sort_ascending: Module.cwrap("vector_sort_ascending", "number", ["number", "number"]),
         vector_sort_descending: Module.cwrap("vector_sort_descending", "number", ["number", "number"]),
@@ -68,7 +68,9 @@ Module.onRuntimeInitialized = () => {
     console.log("vector_is_orthogonal : ", vector_is_orthogonal(vA.length, vA, vB));
     console.log("vector_is_parallel : ", vector_is_parallel(vA.length, vA, vB));
     console.log("vector_variance sample : ", vector_variance(vA.length, vA, 1));
-    console.log("vector_variance sample : ", vector_variance(vA.length, vA, 0));
+    console.log("vector_variance popu... : ", vector_variance(vA.length, vA, 0));
+    console.log("vector_standard_deviation sample : ",vector_standard_deviation(vA.length, vA, 1));
+    console.log("vector_standard_deviation popu.. : ",vector_standard_deviation(vA.length, vA, 0));
 }
 
 // func to allocate memory
@@ -490,7 +492,6 @@ function vector_is_parallel(size, vectorA, vectorB){
     return vector_is_parallel;
 }
 
-// double vector_variance(int size, double *vector, int option);
 // vector_variance
 function vector_variance(size, vector, option){
     if(vector.length !== size || (option !== 1 && option !== 0) ) return NaN;
@@ -504,4 +505,15 @@ function vector_variance(size, vector, option){
     return vector_variance;
 }
 
-// double vector_standard_deviation(int size, double *vector, int option);
+// vector_standard_deviation
+function vector_standard_deviation(size, vector, option){
+    if(vector.length !== size || (option !== 1 && option !== 0)) return NaN;
+
+    const inputPointer = allocateMemory(size, vector);
+
+    const vector_standard_deviation = vectors.vector_standard_deviation(size, inputPointer, option);
+
+    liberation(inputPointer);
+
+    return vector_standard_deviation;
+}
