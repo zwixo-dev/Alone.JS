@@ -25,7 +25,7 @@ Module.onRuntimeInitialized = () => {
         vector_infinity_norm: Module.cwrap("vector_infinity_norm", "number", ["number", "number"]),
         vector_is_zero: Module.cwrap("vector_is_zero", "number", ["number", "number"]),
         vector_is_unit: Module.cwrap("vector_is_unit", "number", ["number", "number"]),
-        vector_is_orthogonal: Module.cwrap("vector_is_orthogonal", "number", ["number", "number"]),
+        vector_is_orthogonal: Module.cwrap("vector_is_orthogonal", "number", ["number", "number", "number"]),
         vector_is_parallel: Module.cwrap("vector_is_parallel", "number", ["number", "number"]),
         vector_variance: Module.cwrap("vector_variance", "number", ["number", "number"]),
         vector_standard_deviation: Module.cwrap("vector_standard_deviation", "number", ["number", "number"]),
@@ -65,6 +65,7 @@ Module.onRuntimeInitialized = () => {
     console.log("vector_infinity_norm : ", vector_infinity_norm(vA.length, vA));
     console.log("vector_is_zero : ", vector_is_zero(vA.length, vA));
     console.log("vector_is_unit : ", vector_is_unit(vA.length, vA));
+    console.log("vector_is_orthogonal : ", vector_is_orthogonal(vA.length, vA, vB));
 }
 
 // func to allocate memory
@@ -454,5 +455,20 @@ function vector_is_unit(size, vector){
 }
 
 // int vector_is_orthogonal(int size, double *vectorA, double *vectorB);
+// vector_is_orthogonal
+function vector_is_orthogonal(size, vectorA, vectorB){
+
+    if(vectorA.length !== size || vectorB.length !== size) return NaN;
+
+    const inputPointerA = allocateMemory(size, vectorA);
+    const inputPointerB = allocateMemory(size, vectorB); 
+
+    const vector_is_orthogonal = vectors.vector_is_orthogonal(size, inputPointerA, inputPointerB);
+
+    liberation(inputPointerA);
+    liberation(inputPointerB);
+
+    return vector_is_orthogonal;
+}
 
 // int vector_is_parallel(int size, double *vectorA, double *vectorB);
