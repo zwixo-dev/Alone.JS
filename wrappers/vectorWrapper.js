@@ -643,6 +643,25 @@ function vector_abs(size, vector){
 }
 
 // void vector_negate(int size, double *vector, double *result_vectors);
+// vector_negate
+function vector_negate(size, vector){
+    if(vector.length !== size) return NaN;
+
+    const inputPointer = allocateMemory(size, vector);
+    const outputPointer = Module._malloc(size * 8);
+
+    vectors.vector_negate(size, inputPointer, outputPointer);
+
+    vectors.vector_negate = Array.from(
+        outputPointer / 8,
+        outputPointer / 8 + size
+    );
+
+    liberation(inputPointer);
+    liberation(outputPointer);
+
+    return vector_negate;
+}
 
 // void vector_power(int size, double *vector, double exponent, double *result_vectors);
 
