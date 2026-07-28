@@ -619,6 +619,28 @@ function vector_hadamard_product(size, vectorA, vectorB){
 
 // Element-wise operations
 // void vector_abs(int size, double *vector, double *result_vectors);
+// vector_abs
+
+function vector_abs(size, vector){
+    if(vector.length !== size) return NaN;
+
+    const inputPointer = allocateMemory(size, vector);
+    const outputPointer = Module._malloc(size * 8);
+
+    vectors.vector_abs(size, inputPointer, outputPointer);
+
+    const vector_abs = Array.from(
+        Module.HEAPF64.subarray(
+            outputPointer / 8,
+            outputPointer / 8 + size
+        )
+    ); 
+
+    liberation(inputPointer);
+    liberation(outputPointer);
+
+    return vector_abs
+}
 
 // void vector_negate(int size, double *vector, double *result_vectors);
 
