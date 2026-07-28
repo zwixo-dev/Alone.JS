@@ -33,7 +33,7 @@ Module.onRuntimeInitialized = () => {
         vector_sort_ascending: Module.cwrap("vector_sort_ascending", null, ["number", "number", "number"]),
         vector_sort_descending: Module.cwrap("vector_sort_descending", null, ["number", "number", "number"]),
         vector_hadamard_product_sum: Module.cwrap("vector_hadamard_product_sum", "number", ["number", "number"]),
-        vector_hadamard_product: Module.cwrap("vector_hadamard_product", "number", ["number", "number"]),
+        vector_hadamard_product: Module.cwrap("vector_hadamard_product", null, ["number", "number", "number", "number"]),
         vector_abs: Module.cwrap("vector_abs", "number", ["number", "number"]),
         vector_negate: Module.cwrap("vector_negate", "number", ["number", "number"]),
         vector_power: Module.cwrap("vector_power", "number", ["number", "number"]),
@@ -590,3 +590,15 @@ function vector_sort_descending(size, vector){
 
     return vector_sort_descending;
 }
+
+// Products
+// void vector_hadamard_product(int size, double *vectorA, double *vectorB, double *result_vectors);
+
+// Element-wise operations
+// void vector_abs(int size, double *vector, double *result_vectors);
+
+// void vector_negate(int size, double *vector, double *result_vectors);
+
+// void vector_power(int size, double *vector, double exponent, double *result_vectors);
+
+// void vector_sqrt(int size, double *vector, double *result_vectors);
