@@ -687,3 +687,24 @@ function vector_power(size, vector, exponent){
 }
 
 // void vector_sqrt(int size, double *vector, double *result_vectors);
+// vector_sqrt
+function vector_sqrt(size, vector){
+    if(vector.length !== size) return NaN; 
+
+    const inputPointer = allocateMemory(size, vector);
+    const outputPointer = Module._malloc(size * 8);
+
+    vectors.vector_sqrt(size, vector, outputPointer);
+
+    const vector_sqrt = Array.from(
+        Module.HEAPF64.subarray(
+            outputPointer / 8,
+            outputPointer / 8 + size
+        )
+    );
+
+    liberation(inputPointer);
+    liberation(outputPointer);
+
+    return vector_sqrt;
+}
