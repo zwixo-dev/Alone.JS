@@ -74,6 +74,8 @@ Module.onRuntimeInitialized = () => {
     console.log("vector_standard_deviation popu.. : ",vector_standard_deviation(vA.length, vA, 0));
     console.log("vector_reverse : ", vector_reverse(v.length, v));
     console.log("vector_sort_ascending : ", vector_sort_ascending(vC.length, vC));
+    console.log("vector_sort_descending : ", vector_sort_descending(vC.length, vC));
+    
 }
 
 // func to allocate memory
@@ -569,7 +571,7 @@ function vector_sort_ascending(size, vector){
 
 // vector_sort_descending
 function vector_sort_descending(size, vector){
-    if(vector.length != size) return NaN;
+    if(vector.length !== size) return NaN;
 
     const inputPointer = allocateMemory(size, vector);
     const outputPointer = Module._malloc(size * 8);
@@ -586,5 +588,5 @@ function vector_sort_descending(size, vector){
     liberation(inputPointer);
     liberation(outputPointer);
 
-    return vector_sort_descending
+    return vector_sort_descending;
 }
