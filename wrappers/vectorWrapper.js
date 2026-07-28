@@ -593,6 +593,29 @@ function vector_sort_descending(size, vector){
 
 // Products
 // void vector_hadamard_product(int size, double *vectorA, double *vectorB, double *result_vectors);
+// vector_hadamard_product
+function vector_hadamard_product(size, vectorA, vectorB){
+    if(vectorA.length !== size || vectorB !== size) return NaN;
+
+    const inputPointerA = allocateMemory(size, vectorA);
+    const inputPointerB = allocateMemory(size, vectorB);
+    const outputPointer = Module._malloc(size * 8);
+
+    vectors.vector_hadamard_product(size, inputPointerA, inputPointerB, outputPointer);
+
+    const vector_hadamard_product = Array.from(
+        Module.HEAPF64.subarray(
+            outputPointer / 8,
+            outputPointer / 8 + size
+        )
+    );
+
+    liberation(inputPointerA);
+    liberation(inputPointerB);
+    liberation(outputPointer);
+
+    return vector_hadamard_product;
+}
 
 // Element-wise operations
 // void vector_abs(int size, double *vector, double *result_vectors);
