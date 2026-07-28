@@ -71,6 +71,7 @@ Module.onRuntimeInitialized = () => {
     console.log("vector_variance popu... : ", vector_variance(vA.length, vA, 0));
     console.log("vector_standard_deviation sample : ",vector_standard_deviation(vA.length, vA, 1));
     console.log("vector_standard_deviation popu.. : ",vector_standard_deviation(vA.length, vA, 0));
+    console.log("vector_reverse : ", vector_reverse(v.length, v));
 }
 
 // func to allocate memory
@@ -520,6 +521,27 @@ function vector_standard_deviation(size, vector, option){
 
 // Transformations
 // void vector_reverse(int size, double *vector,null*result_vectors);
+// vector_reverse
+function vector_reverse(size, vector){
+    if(vector.length!== size) return NaN;
+
+    const inputPointer = allocateMemory(size, vector);
+    const outputPointer = Module._malloc(size * 8);
+
+    vectors.vector_reverse(size, inputPointer, outputPointer);
+
+    const vector_reverse = Array.from(
+        Module.HEAPF64.subarray(
+            outputPointer / 8,
+            outputPointer / 8 + size
+        )
+    );
+
+    liberation(inputPointer);
+    liberation(outputPointer);
+
+    return vector_reverse;
+}
 
 // void vector_sort, / void v_asnullint size, double *vector, double *result_vectornull
 // void vector_sort_descending(int size, double *vector, double *result_vector, / void vs);
