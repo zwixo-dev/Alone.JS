@@ -523,7 +523,7 @@ function vector_standard_deviation(size, vector, option){
 // void vector_reverse(int size, double *vector,null*result_vectors);
 // vector_reverse
 function vector_reverse(size, vector){
-    if(vector.length!== size) return NaN;
+    if(vector.length !== size) return NaN;
 
     const inputPointer = allocateMemory(size, vector);
     const outputPointer = Module._malloc(size * 8);
@@ -543,5 +543,25 @@ function vector_reverse(size, vector){
     return vector_reverse;
 }
 
-// void vector_sort, / void v_asnullint size, double *vector, double *result_vectornull
+// void vector_sort_ascending(int size, double *vector, double *result_vectors);
+// vector_sort_ascending
+function vector_sort_ascending(size, vector){
+    if(vector.length !== size) return NaN;
+
+    const inputPointer = allocateMemory(size, vector);
+    const outputPointer = Module._malloc(size * 8);
+
+    vectors.vector_sort_ascending(size, inputPointer, outputPointer);
+    const vector_sort_ascending = Array.from(
+        Module.HEAPF64.subarray(
+            outputPointer / 8,
+            outputPointer / 8 + size
+        )
+    );
+
+    liberation(inputPointer); 
+    liberation(outputPointer); 
+
+    return vector_sort_ascending;
+}
 // void vector_sort_descending(int size, double *vector, double *result_vector, / void vs);
