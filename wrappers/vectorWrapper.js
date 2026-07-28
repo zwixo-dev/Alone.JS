@@ -34,7 +34,7 @@ Module.onRuntimeInitialized = () => {
         vector_sort_descending: Module.cwrap("vector_sort_descending", null, ["number", "number", "number"]),
         vector_hadamard_product_sum: Module.cwrap("vector_hadamard_product_sum", "number", ["number", "number"]),
         vector_hadamard_product: Module.cwrap("vector_hadamard_product", null, ["number", "number", "number", "number"]),
-        vector_abs: Module.cwrap("vector_abs", "number", ["number", "number"]),
+        vector_abs: Module.cwrap("vector_abs", null, ["number", "number", "number"]]),
         vector_negate: Module.cwrap("vector_negate", "number", ["number", "number"]),
         vector_power: Module.cwrap("vector_power", "number", ["number", "number"]),
         vector_sqrt: Module.cwrap("vector_sqrt", "number", ["number", "number"]),
