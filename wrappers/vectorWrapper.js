@@ -44,6 +44,7 @@ Module.onRuntimeInitialized = () => {
     const v =  [1, 2, 3];
     const vA = [1, 2, 3];
     const vB = [4, 5, 6];
+    const vC = [1, 3, 5, 7, 9, 10, 19]
     console.log("vector_magnitude : ",vector_magnitude(v.length, v));
     console.log("vector_normalize", vector_normalize(v.length, vA));
     console.log("vector_dot_product : ", vector_dot_product(vA.length, vA, vB));
@@ -72,6 +73,7 @@ Module.onRuntimeInitialized = () => {
     console.log("vector_standard_deviation sample : ",vector_standard_deviation(vA.length, vA, 1));
     console.log("vector_standard_deviation popu.. : ",vector_standard_deviation(vA.length, vA, 0));
     console.log("vector_reverse : ", vector_reverse(v.length, v));
+    console.log("vector_sort_ascending : ", vector_sort_ascending(vC.length, vC));
 }
 
 // func to allocate memory
