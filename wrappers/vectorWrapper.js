@@ -664,5 +664,26 @@ function vector_negate(size, vector){
 }
 
 // void vector_power(int size, double *vector, double exponent, double *result_vectors);
+// vector_power
+function vector_power(size, vector, exponent){
+    if(vector.length !== size) return NaN;
+
+    const inputPointer = allocateMemory(size, vector);
+    const outputPointer = Module._malloc(size * 8); 
+
+    vectors.vector_power(size, inputPointer, exponent, outputPointer);
+
+    const vector_power = Array.from(
+        Module.HEAPF64.subarray(
+            outputPointer / 8,
+            outputPointer / 8 + size 
+        )
+    );
+
+    liberation(inputPointer);
+    liberation(outputPointer);
+
+    return vector_power;
+}
 
 // void vector_sqrt(int size, double *vector, double *result_vectors);
