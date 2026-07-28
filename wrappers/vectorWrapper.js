@@ -75,6 +75,7 @@ Module.onRuntimeInitialized = () => {
     console.log("vector_reverse : ", vector_reverse(v.length, v));
     console.log("vector_sort_ascending : ", vector_sort_ascending(vC.length, vC));
     console.log("vector_sort_descending : ", vector_sort_descending(vC.length, vC));
+    console.log("vector_hadamard_product : ", vector_hadamard_product(vA.length, vA, vB));
     
 }
 
@@ -595,7 +596,7 @@ function vector_sort_descending(size, vector){
 // void vector_hadamard_product(int size, double *vectorA, double *vectorB, double *result_vectors);
 // vector_hadamard_product
 function vector_hadamard_product(size, vectorA, vectorB){
-    if(vectorA.length !== size || vectorB !== size) return NaN;
+    if(vectorA.length !== size || vectorB.length !== size) return NaN;
 
     const inputPointerA = allocateMemory(size, vectorA);
     const inputPointerB = allocateMemory(size, vectorB);
