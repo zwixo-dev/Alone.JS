@@ -653,8 +653,10 @@ function vector_negate(size, vector){
     vectors.vector_negate(size, inputPointer, outputPointer);
 
     vectors.vector_negate = Array.from(
-        outputPointer / 8,
-        outputPointer / 8 + size
+        Module.HEAPF64.subarray(
+            outputPointer / 8,
+            outputPointer / 8 + size
+        )
     );
 
     liberation(inputPointer);
