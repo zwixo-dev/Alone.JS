@@ -79,6 +79,7 @@ Module.onRuntimeInitialized = () => {
     console.log("vector_hadamard_product : ", vector_hadamard_product(vA.length, vA, vB));    
     console.log("vector_abs : ", vector_abs(vD.length, vD));
     console.log("vector_negate : ", vector_negate(vD.length, vD));
+    console.log("vector_power : ", vector_power(vA.length, vA, 2));
 }
 
 // func to allocate memory
