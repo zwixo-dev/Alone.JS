@@ -45,6 +45,7 @@ Module.onRuntimeInitialized = () => {
     const vA = [1, 2, 3];
     const vB = [4, 5, 6];
     const vC = [1, 3, 5, 7, 9, 10, 19]
+    const vD = [-1, 19, -18, 19]
     console.log("vector_magnitude : ",vector_magnitude(v.length, v));
     console.log("vector_normalize", vector_normalize(v.length, vA));
     console.log("vector_dot_product : ", vector_dot_product(vA.length, vA, vB));
@@ -75,8 +76,7 @@ Module.onRuntimeInitialized = () => {
     console.log("vector_reverse : ", vector_reverse(v.length, v));
     console.log("vector_sort_ascending : ", vector_sort_ascending(vC.length, vC));
     console.log("vector_sort_descending : ", vector_sort_descending(vC.length, vC));
-    console.log("vector_hadamard_product : ", vector_hadamard_product(vA.length, vA, vB));
-    
+    console.log("vector_hadamard_product : ", vector_hadamard_product(vA.length, vA, vB));    
 }
 
 // func to allocate memory
@@ -621,7 +621,6 @@ function vector_hadamard_product(size, vectorA, vectorB){
 // Element-wise operations
 // void vector_abs(int size, double *vector, double *result_vectors);
 // vector_abs
-
 function vector_abs(size, vector){
     if(vector.length !== size) return NaN;
 
