@@ -78,6 +78,7 @@ Module.onRuntimeInitialized = () => {
     console.log("vector_sort_descending : ", vector_sort_descending(vC.length, vC));
     console.log("vector_hadamard_product : ", vector_hadamard_product(vA.length, vA, vB));    
     console.log("vector_abs : ", vector_abs(vD.length, vD));
+    console.log("vector_negate : ", vector_negate(vD.length, vD));
 }
 
 // func to allocate memory
@@ -653,7 +654,7 @@ function vector_negate(size, vector){
 
     vectors.vector_negate(size, inputPointer, outputPointer);
 
-    vectors.vector_negate = Array.from(
+    const vector_negate = Array.from(
         Module.HEAPF64.subarray(
             outputPointer / 8,
             outputPointer / 8 + size
