@@ -77,6 +77,7 @@ Module.onRuntimeInitialized = () => {
     console.log("vector_sort_ascending : ", vector_sort_ascending(vC.length, vC));
     console.log("vector_sort_descending : ", vector_sort_descending(vC.length, vC));
     console.log("vector_hadamard_product : ", vector_hadamard_product(vA.length, vA, vB));    
+    console.log("vector_abs : ", vector_abs(vD.length, vD));
 }
 
 // func to allocate memory
