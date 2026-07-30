@@ -60,4 +60,18 @@ void rotate_around_point_3d(double x, double y, double z, double cx, double cy, 
 
 void transform_point_3d(double x, double y, double z, double tx, double ty, double tz, double rx, double ry, double rz, double sx, double sy, double sz, double *result);
 
+// Coordinate-space conversions
+
+void cartesian_to_polar(double x, double y, double *radius, double *angle);
+
+void polar_to_cartesian(double radius, double angle, double *x, double *y);
+
+void cartesian_to_spherical(double x, double y, double z, double *radius, double *theta, double *phi);
+
+void spherical_to_cartesian(double radius, double theta, double phi, double *x, double *y, double *z);
+
+void cartesian_to_cylindrical(double x, double y, double z, double *radius, double *angle, double *height);
+
+void cylindrical_to_cartesian(double radius, double angle, double height, double *x, double *y, double *z);
+
 #endif
