@@ -38,4 +38,20 @@ void rotate_around_point_2d(double x, double y, double center_x, double center_y
 
 void rotate_vector_2d(double x, double y, double angle, double *result_x, double *result_y);
 
+// 3D coordinate transformations
+
+void rotate_point_3d_x(double x, double y, double z, double angle, double *result);
+
+void rotate_point_3d_y(double x, double y, double z, double angle, double *result);
+
+void rotate_point_3d_z(double x, double y, double z, double angle, double *result);
+
+void rotate_point_3d(double x, double y, double z, double angle_x, double angle_y, double angle_z, double *result);
+
+void scale_point_3d(double x, double y, double z, double scale_x, double scale_y, double scale_z, double *result);
+
+void translate_point_3d(double x, double y, double z, double tx, double ty, double tz, double *result);
+
+void reflect_point_3d(double x, double y, double z, double nx, double ny, double nz, double *result);
+
 #endif
