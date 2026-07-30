@@ -54,4 +54,10 @@ void translate_point_3d(double x, double y, double z, double tx, double ty, doub
 
 void reflect_point_3d(double x, double y, double z, double nx, double ny, double nz, double *result);
 
+void rotate_around_axis_3d(double x, double y, double z, double ax, double ay, double az, double angle, double *result);
+
+void rotate_around_point_3d(double x, double y, double z, double cx, double cy, double cz, double angle_x, double angle_y, double angle_z, double *result);
+
+void transform_point_3d(double x, double y, double z, double tx, double ty, double tz, double rx, double ry, double rz, double sx, double sy, double sz, double *result);
+
 #endif
