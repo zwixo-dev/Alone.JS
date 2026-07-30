@@ -99,4 +99,32 @@ void ndc_to_screen(double x, double y,
 void screen_to_ndc(double x, double y,
                    double screen_width, double screen_height,
                    double *ndc_x, double *ndc_y);
+
+// Projection
+
+void perspective_project(double x, double y, double z,
+                         double focal_length,
+                         double *projected_x,
+                         double *projected_y);
+
+void perspective_divide(double x, double y, double z,
+                        double *result);
+
+void orthographic_project(double x, double y, double z,
+                          double left, double right,
+                          double bottom, double top,
+                          double near_plane, double far_plane,
+                          double *result);
+
+void perspective_project_screen(double x, double y, double z,
+                                double fov,
+                                double aspect_ratio,
+                                double near_plane,
+                                double far_plane,
+                                double screen_width,
+                                double screen_height,
+                                double *screen_x,
+                                double *screen_y);
+
+                                
 #endif
