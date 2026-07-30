@@ -20,4 +20,16 @@ void lerp_points_2d(const double *a, const double *b, double t, double *result);
 
 void lerp_points_3d(const double *a, const double *b, double t, double *result);
 
+// 2D coordinate transformations
+
+void rotate_point_2d(double x, double y, double angle, double *result_x, double *result_y);
+
+void scale_point_2d(double x, double y, double scale_x, double scale_y, double *result_x, double *result_y);
+
+void translate_point_2d(double x, double y, double tx, double ty, double *result_x, double *result_y);
+
+void shear_point_2d(double x, double y, double shear_x, double shear_y, double *result_x, double *result_y);
+
+void reflect_point_2d(double x, double y, double axis_x, double axis_y, double *result_x, double *result_y);
+
 #endif
