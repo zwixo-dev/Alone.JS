@@ -46,3 +46,12 @@ double triangle_area(double base, double height){
         
     return (base * height) / 2.0;
 }
+
+// triangle_perimeter
+double triangle_perimeter(double a, double b, double c){
+    if (a <= 0.0 || b <= 0.0 || c <= 0.0) return -1;
+    
+    if ((a + b <= c) || (a + c <= b) || (b + c <= a)) return -1;
+    
+    return a + b + c;
+}
