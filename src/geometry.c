@@ -27,3 +27,15 @@ double geometry_midpoint_x(double x1, double x2){
 double geometry_midpoint_y(double y1, double y2){
     return (y1 + y2) / 2.0;
 }
+
+// geometry_slope
+double geometry_slope(double x1, double y1, double x2, double y2) {
+    if (x1 == x2) {
+        if (y1 == y2) {
+            return NAN; 
+        }
+        return (y2 > y1) ? INFINITY : -INFINITY;
+    }
+    
+    return (y2 - y1) / (x2 - x1);
+}
