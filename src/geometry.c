@@ -22,3 +22,8 @@ double geometry_distance_3d(double x1, double y1, double z1, double x2, double y
 double geometry_midpoint_x(double x1, double x2){
     return (x1 + x2) / 2.0; 
 }
+
+// geometry_midpoint_y
+double geometry_midpoint_y(double y1, double y2){
+    return (y1 + y2) / 2.0;
+}
