@@ -109,3 +109,15 @@ int triangle_is_scalene(double a, double b, double c){
      
      return 0;
 }
+
+// triangle_is_right
+int triangle_is_right(double a, double b, double c){
+     if(a <= 0 || b <= 0 || c <= 0) return 0;
+     double a2 = a * a;
+     double b2 = b * b;
+     double c2 = c * c;
+     
+     if ((a2 + b2 == c2) || (a2 + c2 == b2) || (b2 + c2 == a2)) return 1;
+
+     return 0;
+}
