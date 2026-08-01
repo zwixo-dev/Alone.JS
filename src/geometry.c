@@ -86,3 +86,13 @@ int triangle_is_valid(double a, double b, double c){
     // else
     return 0;  // false 
 }
+
+// triangle_is_equilateral
+int triangle_is_equilateral(double a, double b, double c){
+    if(a <= 0 || b <= 0 || c <= 0) return 0;
+    
+    if(a == b && b == c) return 1; // true
+    
+    // else
+    return 0; // false
+}
