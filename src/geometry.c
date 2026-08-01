@@ -55,3 +55,14 @@ double triangle_perimeter(double a, double b, double c){
     
     return a + b + c;
 }
+
+// triangle_semiperimeter
+double triangle_semiperimeter(double a, double b, double c) {
+    // if positifs
+    if (a <= 0.0 || b <= 0.0 || c <= 0.0) return -1.0;
+    
+    // check
+    if ((a + b <= c) || (a + c <= b) || (b + c <= a)) return -1.0;
+    
+    return (a + b + c) / 2.0;
+}
