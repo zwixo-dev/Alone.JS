@@ -76,3 +76,13 @@ double triangle_heron_area(double a, double b, double c) {
     // 2. Application de la formule de Héron
     return sqrt(s * (s - a) * (s - b) * (s - c));
 }
+
+// triangle_is_valid
+int triangle_is_valid(double a, double b, double c){
+    if(a <= 0 || b <= 0 || c <= 0) return 0;
+    
+    if ((a + b > c) && (a + c > b) && (b + c > a)) return 1; // true 
+    
+    // else
+    return 0;  // false 
+}
