@@ -66,3 +66,13 @@ double triangle_semiperimeter(double a, double b, double c) {
     
     return (a + b + c) / 2.0;
 }
+
+// triangle_heron_area
+double triangle_heron_area(double a, double b, double c) {
+    
+    double s = triangle_semiperimeter(a, b, c);
+    if (s < 0.0) return -1.0; // Invalide 
+    
+    // 2. Application de la formule de Héron
+    return sqrt(s * (s - a) * (s - b) * (s - c));
+}
