@@ -97,6 +97,17 @@ int triangle_is_equilateral(double a, double b, double c){
     return 0; // false
 }
 
+// triangle_is_isosceles
+int triangle_is_isosceles(double a, double b, double c){
+    if(a <= 0 || b <= 0 || c <= 0) return 0;
+    
+    if (!(a + b > c && a + c > b && b + c > a)) return 0;
+    
+    if (a == b || b == c || a == c) return 1; // true
+    // else
+    return 0;
+}
+
 // triangle_is_scalene
 int triangle_is_scalene(double a, double b, double c){
     if(a <= 0 || b <= 0 || c <= 0) return 0;
