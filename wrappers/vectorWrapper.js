@@ -58,7 +58,7 @@ Module.onRuntimeInitialized = () => {
     console.log("vector_angle : ", vector_angle(vA, vB));
     console.log("vector_cosine_similarity : ", vector_cosine_similarity(vA, vB));
     console.log("vector_projection : ", vector_projection(vA, vB));
-    // console.log("vector_rejection : ", vector_rejection(vA.length, vA, vB));
+    console.log("vector_rejection : ", vector_rejection(vA, vB));
     // console.log("vector_sum : ", vector_sum(v.length, v));
     // console.log("vector_mean :", vector_mean(vA.length, vA));
     // console.log("vector_max : ", vector_max(vA.length, vA));
@@ -336,19 +336,19 @@ function vector_projection(vectorA, vectorB){
 }
 
 // vector_rejection
-function vector_rejection(size, vectorA, vectorB){
-    if(vectorA.length !== size || vectorB.length !== size) return NaN;
+function vector_rejection(vectorA, vectorB){
+    if(!Array.isArray(vectorA) || !Array.isArray(vectorB) || vectorA.length !== vectorB.length) return NaN;
 
-    const inputPointerA = allocateMemory(size, vectorA);
-    const inputPointerB = allocateMemory(size, vectorB);
-    const outputPointer = Module._malloc(size * 8);
+    const inputPointerA = allocateMemory(vectorA.length, vectorA);
+    const inputPointerB = allocateMemory(vectorB.length, vectorB);
+    const outputPointer = Module._malloc(vectorA.length * 8);
 
-    vectors.vector_rejection(size, inputPointerA, inputPointerB, outputPointer);
+    vectors.vector_rejection(vectorA.length, inputPointerA, inputPointerB, outputPointer);
 
     const vector_rejection = Array.from(
         Module.HEAPF64.subarray(
             outputPointer / 8,
-            outputPointer / 8 + size
+            outputPointer / 8 + vectorA.length
         )
     );
 
