@@ -46,41 +46,41 @@ Module.onRuntimeInitialized = () => {
     const vB = [4, 5, 6];
     const vC = [1, 3, 5, 7, 9, 10, 19]
     const vD = [-1, 19, -18, 19]
-    console.log("vector_magnitude : ",vector_magnitude(v.length, v));
-    console.log("vector_normalize", vector_normalize(v.length, vA));
-    console.log("vector_dot_product : ", vector_dot_product(vA.length, vA, vB));
-    console.log("vector_cross_product:", vector_cross_product(vA, vB));
-    console.log("vector_add : ", vector_add(vA.length, vA, vB)); 
-    console.log("vector_subtract : ", vector_subtract(vA.length, vA, vB));
-    console.log("vector_scalar_multiply : ", vector_scalar_multiply(v.length, 3, v));
-    console.log("vector_scalar_divide :", vector_scalar_divide(v.length, 2, v));
-    console.log("vector_distance : ", vector_distance(vA.length, vA, vB));
-    console.log("vector_angle : ", vector_angle(vA.length, vA, vB));
-    console.log("vector_cosine_similarity : ", vector_cosine_similarity(vA.length, vA, vB));
-    console.log("vector_projection : ", vector_projection(vA.length, vA, vB));
-    console.log("vector_rejection : ", vector_rejection(vA.length, vA, vB));
-    console.log("vector_sum : ", vector_sum(v.length, v));
-    console.log("vector_mean :", vector_mean(vA.length, vA));
-    console.log("vector_max : ", vector_max(vA.length, vA));
-    console.log("vector_min : ", vector_min(vA.length, vA));
-    console.log("vector_l1_norm :", vector_l1_norm(vA.length, vA));
-    console.log("vector_infinity_norm : ", vector_infinity_norm(vA.length, vA));
-    console.log("vector_is_zero : ", vector_is_zero(vA.length, vA));
-    console.log("vector_is_unit : ", vector_is_unit(vA.length, vA));
-    console.log("vector_is_orthogonal : ", vector_is_orthogonal(vA.length, vA, vB));
-    console.log("vector_is_parallel : ", vector_is_parallel(vA.length, vA, vB));
-    console.log("vector_variance sample : ", vector_variance(vA.length, vA, 1));
-    console.log("vector_variance popu... : ", vector_variance(vA.length, vA, 0));
-    console.log("vector_standard_deviation sample : ",vector_standard_deviation(vA.length, vA, 1));
-    console.log("vector_standard_deviation popu.. : ",vector_standard_deviation(vA.length, vA, 0));
-    console.log("vector_reverse : ", vector_reverse(v.length, v));
-    console.log("vector_sort_ascending : ", vector_sort_ascending(vC.length, vC));
-    console.log("vector_sort_descending : ", vector_sort_descending(vC.length, vC));
-    console.log("vector_hadamard_product : ", vector_hadamard_product(vA.length, vA, vB));    
-    console.log("vector_abs : ", vector_abs(vD.length, vD));
-    console.log("vector_negate : ", vector_negate(vD.length, vD));
-    console.log("vector_power : ", vector_power(vA.length, vA, 2));
-    console.log("vector_sqrt : ", vector_sqrt(vA.length, vA));
+    console.log("vector_magnitude : ",vector_magnitude(v));
+    // console.log("vector_normalize", vector_normalize(v.length, vA));
+    // console.log("vector_dot_product : ", vector_dot_product(vA.length, vA, vB));
+    // console.log("vector_cross_product:", vector_cross_product(vA, vB));
+    // console.log("vector_add : ", vector_add(vA.length, vA, vB)); 
+    // console.log("vector_subtract : ", vector_subtract(vA.length, vA, vB));
+    // console.log("vector_scalar_multiply : ", vector_scalar_multiply(v.length, 3, v));
+    // console.log("vector_scalar_divide :", vector_scalar_divide(v.length, 2, v));
+    // console.log("vector_distance : ", vector_distance(vA.length, vA, vB));
+    // console.log("vector_angle : ", vector_angle(vA.length, vA, vB));
+    // console.log("vector_cosine_similarity : ", vector_cosine_similarity(vA.length, vA, vB));
+    // console.log("vector_projection : ", vector_projection(vA.length, vA, vB));
+    // console.log("vector_rejection : ", vector_rejection(vA.length, vA, vB));
+    // console.log("vector_sum : ", vector_sum(v.length, v));
+    // console.log("vector_mean :", vector_mean(vA.length, vA));
+    // console.log("vector_max : ", vector_max(vA.length, vA));
+    // console.log("vector_min : ", vector_min(vA.length, vA));
+    // console.log("vector_l1_norm :", vector_l1_norm(vA.length, vA));
+    // console.log("vector_infinity_norm : ", vector_infinity_norm(vA.length, vA));
+    // console.log("vector_is_zero : ", vector_is_zero(vA.length, vA));
+    // console.log("vector_is_unit : ", vector_is_unit(vA.length, vA));
+    // console.log("vector_is_orthogonal : ", vector_is_orthogonal(vA.length, vA, vB));
+    // console.log("vector_is_parallel : ", vector_is_parallel(vA.length, vA, vB));
+    // console.log("vector_variance sample : ", vector_variance(vA.length, vA, 1));
+    // console.log("vector_variance popu... : ", vector_variance(vA.length, vA, 0));
+    // console.log("vector_standard_deviation sample : ",vector_standard_deviation(vA.length, vA, 1));
+    // console.log("vector_standard_deviation popu.. : ",vector_standard_deviation(vA.length, vA, 0));
+    // console.log("vector_reverse : ", vector_reverse(v.length, v));
+    // console.log("vector_sort_ascending : ", vector_sort_ascending(vC.length, vC));
+    // console.log("vector_sort_descending : ", vector_sort_descending(vC.length, vC));
+    // console.log("vector_hadamard_product : ", vector_hadamard_product(vA.length, vA, vB));    
+    // console.log("vector_abs : ", vector_abs(vD.length, vD));
+    // console.log("vector_negate : ", vector_negate(vD.length, vD));
+    // console.log("vector_power : ", vector_power(vA.length, vA, 2));
+    // console.log("vector_sqrt : ", vector_sqrt(vA.length, vA));
 }
 
 // func to allocate memory
@@ -99,12 +99,10 @@ function liberation(pointer){
 
 
 // vector_magnitude
-function vector_magnitude(size, vector){
-    if (vector.length !== size) return NaN;
+function vector_magnitude(vector){
+    const pointer = allocateMemory(vector.length, vector);
 
-    const pointer = allocateMemory(size, vector);
-
-    const vector_magnitude = vectors.vector_magnitude(size, pointer);
+    const vector_magnitude = vectors.vector_magnitude(vector.length, pointer);
 
     liberation(pointer);
 
