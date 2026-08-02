@@ -49,7 +49,7 @@ Module.onRuntimeInitialized = () => {
     console.log("vector_magnitude : ",vector_magnitude(v));
     console.log("vector_normalize", vector_normalize(vA));
     console.log("vector_dot_product : ", vector_dot_product(vA, vB));
-    // console.log("vector_cross_product:", vector_cross_product(vA, vB));
+    console.log("vector_cross_product:", vector_cross_product(vA, vB));
     // console.log("vector_add : ", vector_add(vA.length, vA, vB)); 
     // console.log("vector_subtract : ", vector_subtract(vA.length, vA, vB));
     // console.log("vector_scalar_multiply : ", vector_scalar_multiply(v.length, 3, v));
@@ -150,21 +150,18 @@ function vector_dot_product(vectorA, vectorB){
 
 // vector_cross_product
 function vector_cross_product(vectorA, vectorB) {
-    // test the length of the vectors not 3
-    if(vectorA.length !=3 || vectorB.length != 3 ) return NaN;
-    // else
-    const vectorLength = vectorA.length;
+    if(!Array.isArray(vectorA) || !Array.isArray(vectorB) || vectorA.length !== vectorB.length) return NaN;
 
     const pointerA = allocateMemory(vectorA.length, vectorA);
     const pointerB = allocateMemory(vectorB.length, vectorB);
-    const outputPointer = Module._malloc(vectorLength * 8);
+    const outputPointer = Module._malloc(vectorA.length * 8); // so they have the same length : we can use the lengt of one of them
 
     vectors.vector_cross_product(pointerA, pointerB, outputPointer);
 
     const result = Array.from(
         Module.HEAPF64.subarray(
             outputPointer / 8,
-            outputPointer / 8 + vectorLength
+            outputPointer / 8 + vectorA.length
         )
     );
 
