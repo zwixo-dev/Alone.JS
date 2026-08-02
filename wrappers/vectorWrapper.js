@@ -50,7 +50,7 @@ Module.onRuntimeInitialized = () => {
     console.log("vector_normalize", vector_normalize(vA));
     console.log("vector_dot_product : ", vector_dot_product(vA, vB));
     console.log("vector_cross_product:", vector_cross_product(vA, vB));
-    // console.log("vector_add : ", vector_add(vA.length, vA, vB)); 
+    console.log("vector_add : ", vector_add(vA, vB)); 
     // console.log("vector_subtract : ", vector_subtract(vA.length, vA, vB));
     // console.log("vector_scalar_multiply : ", vector_scalar_multiply(v.length, 3, v));
     // console.log("vector_scalar_divide :", vector_scalar_divide(v.length, 2, v));
@@ -154,7 +154,7 @@ function vector_cross_product(vectorA, vectorB) {
 
     const pointerA = allocateMemory(vectorA.length, vectorA);
     const pointerB = allocateMemory(vectorB.length, vectorB);
-    const outputPointer = Module._malloc(vectorA.length * 8); // so they have the same length : we can use the lengt of one of them
+    const outputPointer = Module._malloc(vectorA.length * 8); // so they have the same length : we can use the length of one of them
 
     vectors.vector_cross_product(pointerA, pointerB, outputPointer);
 
@@ -173,21 +173,21 @@ function vector_cross_product(vectorA, vectorB) {
 }
 
 // vector_add
-function vector_add(size, vectorA, vectorB){
-    // if the vectors with diff length 
-    if(vectorA.length !== size || vectorB.length !== size ) return NaN;
+function vector_add(vectorA, vectorB){
+    if(!Array.isArray(vectorA) || !Array.isArray(vectorB) || vectorA.length !== vectorB.length) return NaN;
+
     // else : we complete
 
     const inputPointerA = allocateMemory(vectorA.length, vectorA);
     const inputPointerB = allocateMemory(vectorB.length, vectorB);
-    const outputPointer = Module._malloc(size * 8);
+    const outputPointer = Module._malloc(vectorA.length * 8);
 
-    vectors.vector_add(size, inputPointerA, inputPointerB, outputPointer);
+    vectors.vector_add(vectorA.length, inputPointerA, inputPointerB, outputPointer);
 
     const vector_add = Array.from(
         Module.HEAPF64.subarray(
             outputPointer / 8,
-            outputPointer / 8 + size
+            outputPointer / 8 + vectorA.length
         )
     );
 
