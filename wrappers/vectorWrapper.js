@@ -68,7 +68,7 @@ Module.onRuntimeInitialized = () => {
     console.log("vector_is_zero : ", vector_is_zero(vA));
     console.log("vector_is_unit : ", vector_is_unit(vA));
     console.log("vector_is_orthogonal : ", vector_is_orthogonal(vA, vB));
-    // console.log("vector_is_parallel : ", vector_is_parallel(vA.length, vA, vB));
+    console.log("vector_is_parallel : ", vector_is_parallel(vA, vB));
     // console.log("vector_variance sample : ", vector_variance(vA.length, vA, 1));
     // console.log("vector_variance popu... : ", vector_variance(vA.length, vA, 0));
     // console.log("vector_standard_deviation sample : ",vector_standard_deviation(vA.length, vA, 1));
@@ -484,13 +484,13 @@ function vector_is_orthogonal(vectorA, vectorB){
 
 // int vector_is_parallel(int size, double *vectorA, double *vectorB);
 //vector_is_parallel
-function vector_is_parallel(size, vectorA, vectorB){
-    if(vectorA.length !== size || vectorB.length !== size) return NaN;
+function vector_is_parallel(vectorA, vectorB){
+    if(!Array.isArray(vectorA) || !Array.isArray(vectorB) || vectorA.length !== vectorB.length) return NaN;
 
-    const inputPointerA = allocateMemory(size, vectorA);
-    const inputPointerB = allocateMemory(size, vectorB);
+    const inputPointerA = allocateMemory(vectorA.length, vectorA);
+    const inputPointerB = allocateMemory(vectorB.length, vectorB);
 
-    const vector_is_parallel = vectors.vector_is_parallel(size, inputPointerA, inputPointerB);
+    const vector_is_parallel = vectors.vector_is_parallel(vectorA.length, inputPointerA, inputPointerB);
 
     liberation(inputPointerA);
     liberation(inputPointerB);
