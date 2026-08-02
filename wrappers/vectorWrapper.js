@@ -41,13 +41,13 @@ Module.onRuntimeInitialized = () => {
     }
 
 
-    const v =  [];
+    const v =  [1, 2, 3];
     const vA = [1, 2, 3];
     const vB = [4, 5, 6];
     const vC = [1, 3, 5, 7, 9, 10, 19]
     const vD = [-1, 19, -18, 19]
-    console.log("vector_magnitude : ",vector_magnitude(null));
-    // console.log("vector_normalize", vector_normalize(v.length, vA));
+    console.log("vector_magnitude : ",vector_magnitude(v));
+    console.log("vector_normalize", vector_normalize(vA));
     // console.log("vector_dot_product : ", vector_dot_product(vA.length, vA, vB));
     // console.log("vector_cross_product:", vector_cross_product(vA, vB));
     // console.log("vector_add : ", vector_add(vA.length, vA, vB)); 
@@ -112,18 +112,18 @@ function vector_magnitude(vector){
 }
 
 // vector_normalize
-function vector_normalize(size, vector) {
-    if (vector.length !== size) return NaN;
+function vector_normalize(vector) {
+    if( !Array.isArray(vector) ||vector.length === 0) return NaN;
 
-    const inputPointer = allocateMemory(size, vector);
-    const outputPointer = Module._malloc(size * 8);
+    const inputPointer = allocateMemory(vector.length, vector);
+    const outputPointer = Module._malloc(vector.length * 8);
 
-    vectors.vector_normalize(size, inputPointer, outputPointer);
+    vectors.vector_normalize(vector.length, inputPointer, outputPointer);
 
     const vector_normalize = Array.from(
         Module.HEAPF64.subarray(
             outputPointer / 8,
-            outputPointer / 8 + size
+            outputPointer / 8 + vector.length
         )
     );
 
