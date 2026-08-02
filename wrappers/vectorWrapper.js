@@ -54,7 +54,7 @@ Module.onRuntimeInitialized = () => {
     console.log("vector_subtract : ", vector_subtract(vA, vB));
     console.log("vector_scalar_multiply : ", vector_scalar_multiply(3, v));
     console.log("vector_scalar_divide :", vector_scalar_divide(2, v));
-    // console.log("vector_distance : ", vector_distance(vA.length, vA, vB));
+    console.log("vector_distance : ", vector_distance(vA, vB));
     // console.log("vector_angle : ", vector_angle(vA.length, vA, vB));
     // console.log("vector_cosine_similarity : ", vector_cosine_similarity(vA.length, vA, vB));
     // console.log("vector_projection : ", vector_projection(vA.length, vA, vB));
@@ -267,13 +267,13 @@ function vector_scalar_divide(scalar, vector){
 }
 
 // vector_distance
-function vector_distance(size, vectorA, vectorB){
-    if(vectorA.length !== size || vectorB.length !== size) return NaN;
+function vector_distance(vectorA, vectorB){
+    if(!Array.isArray(vectorA) || !Array.isArray(vectorB) || vectorA.length !== vectorB.length) return NaN;
 
-    const inputPointerA = allocateMemory(size, vectorA); 
-    const inputPointerB = allocateMemory(size, vectorB);
+    const inputPointerA = allocateMemory(vectorA.length, vectorA); 
+    const inputPointerB = allocateMemory(vectorB.length, vectorB);
 
-    const vector_distance = vectors.vector_distance(size, inputPointerA, inputPointerB);
+    const vector_distance = vectors.vector_distance(vectorA.length, inputPointerA, inputPointerB);
 
     liberation(inputPointerA);
     liberation(inputPointerB);
