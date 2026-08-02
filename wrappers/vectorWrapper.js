@@ -41,12 +41,12 @@ Module.onRuntimeInitialized = () => {
     }
 
 
-    const v =  [1, 2, 3];
+    const v =  [];
     const vA = [1, 2, 3];
     const vB = [4, 5, 6];
     const vC = [1, 3, 5, 7, 9, 10, 19]
     const vD = [-1, 19, -18, 19]
-    console.log("vector_magnitude : ",vector_magnitude(v));
+    console.log("vector_magnitude : ",vector_magnitude(null));
     // console.log("vector_normalize", vector_normalize(v.length, vA));
     // console.log("vector_dot_product : ", vector_dot_product(vA.length, vA, vB));
     // console.log("vector_cross_product:", vector_cross_product(vA, vB));
@@ -100,6 +100,8 @@ function liberation(pointer){
 
 // vector_magnitude
 function vector_magnitude(vector){
+    if( !Array.isArray(vector) ||vector.length === 0) return NaN;
+    
     const pointer = allocateMemory(vector.length, vector);
 
     const vector_magnitude = vectors.vector_magnitude(vector.length, pointer);
