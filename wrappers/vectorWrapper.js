@@ -48,7 +48,7 @@ Module.onRuntimeInitialized = () => {
     const vD = [-1, 19, -18, 19]
     console.log("vector_magnitude : ",vector_magnitude(v));
     console.log("vector_normalize", vector_normalize(vA));
-    // console.log("vector_dot_product : ", vector_dot_product(vA.length, vA, vB));
+    console.log("vector_dot_product : ", vector_dot_product(vA, vB));
     // console.log("vector_cross_product:", vector_cross_product(vA, vB));
     // console.log("vector_add : ", vector_add(vA.length, vA, vB)); 
     // console.log("vector_subtract : ", vector_subtract(vA.length, vA, vB));
@@ -100,7 +100,7 @@ function liberation(pointer){
 
 // vector_magnitude
 function vector_magnitude(vector){
-    if( !Array.isArray(vector) ||vector.length === 0) return NaN;
+    if(!Array.isArray(vector) || vector.length === 0) return NaN;
     
     const pointer = allocateMemory(vector.length, vector);
 
@@ -113,7 +113,7 @@ function vector_magnitude(vector){
 
 // vector_normalize
 function vector_normalize(vector) {
-    if( !Array.isArray(vector) ||vector.length === 0) return NaN;
+    if(!Array.isArray(vector) || vector.length === 0) return NaN;
 
     const inputPointer = allocateMemory(vector.length, vector);
     const outputPointer = Module._malloc(vector.length * 8);
@@ -134,13 +134,13 @@ function vector_normalize(vector) {
 }
 
 // vector_dot_product
-function vector_dot_product(size, vectorA, vectorB){
-    if(vectorA.length !== size || vectorB.length !== size) return NaN;
+function vector_dot_product(vectorA, vectorB){
+    if(!Array.isArray(vectorA) || !Array.isArray(vectorB) || vectorA.length !== vectorB.length) return NaN;
 
-    const pointerA = allocateMemory(size, vectorA);
-    const pointerB = allocateMemory(size, vectorB);
+    const pointerA = allocateMemory(vectorA.length, vectorA);
+    const pointerB = allocateMemory(vectorB.length, vectorB);
     
-    const vector_dot_product = vectors.vector_dot_product(size, pointerA, pointerB);
+    const vector_dot_product = vectors.vector_dot_product(vectorA.length, pointerA, pointerB);
 
     liberation(pointerA);
     liberation(pointerB);
