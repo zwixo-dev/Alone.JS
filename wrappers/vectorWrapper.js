@@ -56,7 +56,7 @@ Module.onRuntimeInitialized = () => {
     console.log("vector_scalar_divide :", vector_scalar_divide(2, v));
     console.log("vector_distance : ", vector_distance(vA, vB));
     console.log("vector_angle : ", vector_angle(vA, vB));
-    // console.log("vector_cosine_similarity : ", vector_cosine_similarity(vA.length, vA, vB));
+    console.log("vector_cosine_similarity : ", vector_cosine_similarity(vA, vB));
     // console.log("vector_projection : ", vector_projection(vA.length, vA, vB));
     // console.log("vector_rejection : ", vector_rejection(vA.length, vA, vB));
     // console.log("vector_sum : ", vector_sum(v.length, v));
@@ -297,13 +297,13 @@ function vector_angle(vectorA, vectorB){
 }
 
 // vector_cosine_similarity
-function vector_cosine_similarity(size, vectorA, vectorB){
-    if(vectorA.length !== size || vectorB.length !== size) return NaN;
+function vector_cosine_similarity(vectorA, vectorB){
+    if(!Array.isArray(vectorA) || !Array.isArray(vectorB) || vectorA.length !== vectorB.length) return NaN;
 
-    const inputPointerA = allocateMemory(size, vectorA);
-    const inputPointerB = allocateMemory(size, vectorB);
+    const inputPointerA = allocateMemory(vectorA.length, vectorA);
+    const inputPointerB = allocateMemory(vectorB.length, vectorB);
 
-    const vector_cosine_similarity = vectors.vector_cosine_similarity(size, inputPointerA, inputPointerB);
+    const vector_cosine_similarity = vectors.vector_cosine_similarity(vectorA.length, inputPointerA, inputPointerB);
 
     liberation(inputPointerA);
     liberation(inputPointerB);
