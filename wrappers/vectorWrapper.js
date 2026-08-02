@@ -52,7 +52,7 @@ Module.onRuntimeInitialized = () => {
     console.log("vector_cross_product:", vector_cross_product(vA, vB));
     console.log("vector_add : ", vector_add(vA, vB)); 
     console.log("vector_subtract : ", vector_subtract(vA, vB));
-    // console.log("vector_scalar_multiply : ", vector_scalar_multiply(v.length, 3, v));
+    console.log("vector_scalar_multiply : ", vector_scalar_multiply(3, v));
     // console.log("vector_scalar_divide :", vector_scalar_divide(v.length, 2, v));
     // console.log("vector_distance : ", vector_distance(vA.length, vA, vB));
     // console.log("vector_angle : ", vector_angle(vA.length, vA, vB));
@@ -223,18 +223,18 @@ function vector_subtract(vectorA, vectorB){
 }
 
 // vector_scalar_multiply
-function vector_scalar_multiply(size, scalar, vector){
-    if(vector.length !==  size) return NaN;
+function vector_scalar_multiply(scalar, vector){
+    if(!Array.isArray(vector) || vector.length === 0) return NaN;
 
-    const inputPointer = allocateMemory(size, vector);
-    const outputPointer = Module._malloc(size * 8);
+    const inputPointer = allocateMemory(vector.length, vector);
+    const outputPointer = Module._malloc(vector.length * 8);
 
-    vectors.vector_scalar_multiply(size, scalar, inputPointer, outputPointer);
+    vectors.vector_scalar_multiply(vector.length, scalar, inputPointer, outputPointer);
 
     const vector_scalar_multiply = Array.from(
         Module.HEAPF64.subarray(
             outputPointer / 8,
-            outputPointer / 8 + size 
+            outputPointer / 8 + vector.length
         )
     );
 
