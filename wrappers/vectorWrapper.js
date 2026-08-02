@@ -51,7 +51,7 @@ Module.onRuntimeInitialized = () => {
     console.log("vector_dot_product : ", vector_dot_product(vA, vB));
     console.log("vector_cross_product:", vector_cross_product(vA, vB));
     console.log("vector_add : ", vector_add(vA, vB)); 
-    // console.log("vector_subtract : ", vector_subtract(vA.length, vA, vB));
+    console.log("vector_subtract : ", vector_subtract(vA, vB));
     // console.log("vector_scalar_multiply : ", vector_scalar_multiply(v.length, 3, v));
     // console.log("vector_scalar_divide :", vector_scalar_divide(v.length, 2, v));
     // console.log("vector_distance : ", vector_distance(vA.length, vA, vB));
@@ -199,19 +199,19 @@ function vector_add(vectorA, vectorB){
 }
 
 // vector_subtract
-function vector_subtract(size, vectorA, vectorB){
-    if(vectorA.length !== size || vectorB.length !== size) return NaN;
+function vector_subtract(vectorA, vectorB){
+    if(!Array.isArray(vectorA) || !Array.isArray(vectorB) || vectorA.length !== vectorB.length) return NaN;
 
-    const inputPointerA = allocateMemory(size, vectorA);
-    const inputPointerB = allocateMemory(size, vectorB);
-    const outputPointer = Module._malloc(size * 8);
+    const inputPointerA = allocateMemory(vectorA.length, vectorA);
+    const inputPointerB = allocateMemory(vectorA.length, vectorB);
+    const outputPointer = Module._malloc(vectorA.length * 8);
 
-    vectors.vector_subtract(size, inputPointerA, inputPointerB, outputPointer);
+    vectors.vector_subtract(vectorA.length, inputPointerA, inputPointerB, outputPointer);
 
     const vector_subtract = Array.from(
         Module.HEAPF64.subarray(
             outputPointer / 8,
-            outputPointer / 8 + size 
+            outputPointer / 8 + vectorA.length
         )
     );
 
