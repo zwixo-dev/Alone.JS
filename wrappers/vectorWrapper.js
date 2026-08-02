@@ -65,7 +65,7 @@ Module.onRuntimeInitialized = () => {
     console.log("vector_min : ", vector_min(vA));
     console.log("vector_l1_norm :", vector_l1_norm(vA));
     console.log("vector_infinity_norm : ", vector_infinity_norm(vA));
-    // console.log("vector_is_zero : ", vector_is_zero(vA.length, vA));
+    console.log("vector_is_zero : ", vector_is_zero(vA));
     // console.log("vector_is_unit : ", vector_is_unit(vA.length, vA));
     // console.log("vector_is_orthogonal : ", vector_is_orthogonal(vA.length, vA, vB));
     // console.log("vector_is_parallel : ", vector_is_parallel(vA.length, vA, vB));
@@ -441,12 +441,12 @@ function vector_infinity_norm(vector){
 
 // // cheks
 // vector_is_zero
-function vector_is_zero(size, vector){
-    if(vector.length !== size)return NaN;
+function vector_is_zero(vector){
+    if(!Array.isArray(vector) || vector.length === 0) return NaN;
 
-    const inputPointer = allocateMemory(size, vector);
+    const inputPointer = allocateMemory(vector.length, vector);
 
-    const vector_is_zero = vectors.vector_is_zero(size, inputPointer);
+    const vector_is_zero = vectors.vector_is_zero(vector.length, inputPointer);
 
     liberation(inputPointer);
 
