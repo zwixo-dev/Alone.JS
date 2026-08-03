@@ -69,8 +69,8 @@ Module.onRuntimeInitialized = () => {
     console.log("vector_is_unit : ", vector_is_unit(vA));
     console.log("vector_is_orthogonal : ", vector_is_orthogonal(vA, vB));
     console.log("vector_is_parallel : ", vector_is_parallel(vA, vB));
-    // console.log("vector_variance sample : ", vector_variance(vA.length, vA, 1));
-    // console.log("vector_variance popu... : ", vector_variance(vA.length, vA, 0));
+    console.log("vector_variance sample : ", vector_variance(vA, 1));
+    console.log("vector_variance popu... : ", vector_variance(vA, 0));
     // console.log("vector_standard_deviation sample : ",vector_standard_deviation(vA.length, vA, 1));
     // console.log("vector_standard_deviation popu.. : ",vector_standard_deviation(vA.length, vA, 0));
     // console.log("vector_reverse : ", vector_reverse(v.length, v));
@@ -499,12 +499,12 @@ function vector_is_parallel(vectorA, vectorB){
 }
 
 // vector_variance
-function vector_variance(size, vector, option){
-    if(vector.length !== size || (option !== 1 && option !== 0) ) return NaN;
+function vector_variance(vector, option){
+    if(!Array.isArray(vector) || (option !== 1 && option !== 0) ) return NaN;
 
-    const inputPointer = allocateMemory(size, vector);
+    const inputPointer = allocateMemory(vector.length, vector);
     
-    const vector_variance = vectors.vector_variance(size, inputPointer, option);
+    const vector_variance = vectors.vector_variance(vector.length, inputPointer, option);
 
     liberation(inputPointer);
 
