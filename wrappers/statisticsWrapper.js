@@ -41,8 +41,8 @@ Module.onRuntimeInitialized = () => {
   console.log("iqr", iqr(arr));
   console.log("sample skewness : ", skewness(arr, 1));
   console.log("pop.. skewness : ", skewness(arr, 0));
-  // console.log("kurtosis with sample stddev: ", kurtosis(arr.length, arr, stddev(arr.length, arr, 1)));
-  // console.log("kurtosis with pop.. stddev: ", kurtosis(arr.length, arr, stddev(arr.length, arr, 0)));
+  console.log("kurtosis with sample stddev: ", kurtosis(arr, stddev(arr, 1)));
+  console.log("kurtosis with pop.. stddev: ", kurtosis(arr, stddev(arr, 0)));
   // console.log("sample covariance: ", covariance(arr_x.length, arr_x, arr_y, 1));
   // console.log("pop.. covariance: ", covariance(arr_x.length, arr_x, arr_y, 0));
   // console.log("normalize: ", normalize(arr.length, arr));
@@ -192,10 +192,12 @@ function skewness(arr, option) {
 
 // kurtosis
 
-function kurtosis(size, arr, s) {
-  const pointer = allocateMemory(size, arr);
+function kurtosis(arr, s) {
+  if(!Array.isArray(arr) || arr.length === 0 ) return NaN;
 
-  const kurtosis = statistics.skewness(size, pointer, s);
+  const pointer = allocateMemory(arr.length, arr);
+
+  const kurtosis = statistics.skewness(arr.length, pointer, s);
 
   liberation(pointer);
 
