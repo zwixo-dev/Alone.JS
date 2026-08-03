@@ -46,8 +46,8 @@ Module.onRuntimeInitialized = () => {
   console.log("sample covariance: ", covariance(arr_x, arr_y, 1));
   console.log("pop.. covariance: ", covariance(arr_x, arr_y, 0));
   console.log("normalize: ", normalize(arr));
-  // console.log("sample correlation :", correlation(arr_x.length, arr_x, arr_y, 1));
-  // console.log("pop.. correlation :", correlation(arr_x.length, arr_x, arr_y, 0));
+  console.log("sample correlation :", correlation(arr_x, arr_y, 1));
+  console.log("pop.. correlation :", correlation(arr_x, arr_y, 0));
   // console.log("zscore : ", zscore(arr.length, arr));
 };
 
@@ -249,12 +249,14 @@ function normalize(arr) {
 
 // correlation
 
-function correlation(size, arr_x, arr_y, option) {
-  const pointer_x = allocateMemory(size, arr_x);
-  const pointer_y = allocateMemory(size, arr_y);
+function correlation(arr_x, arr_y, option) {
+  if(!Array.isArray(arr_x) || !Array.isArray(arr_y) || arr_x.length !== arr_y.length ) return NaN;
+
+  const pointer_x = allocateMemory(arr_x.length, arr_x);
+  const pointer_y = allocateMemory(arr_y.length, arr_y);
 
   const correlation = statistics.correlation(
-    size,
+    arr_x.length,
     pointer_x,
     pointer_y,
     option,
