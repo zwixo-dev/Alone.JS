@@ -27,28 +27,28 @@ Module.onRuntimeInitialized = () => {
   const arr_x = [1, 2, 3, 4, 5, 6, 7];
   const arr_y = [8, 9, 10, 11, 12, 13, 14];
 
-  console.log(mean(arr.length, arr));
-  console.log(median(arr.length, arr));
-  console.log("sample variance :", variance(arr.length, arr, 1));
-  console.log("pop.. variance :", variance(arr.length, arr, 0));
-  console.log("sample stddev", stddev(arr.length, arr, 1));
-  console.log("pop.. stddev", stddev(arr.length, arr, 0));
-  console.log("mode", mode(arr.length, arr));
-  console.log("percentile", percentile(arr.length, arr, 4));
-  console.log("quartiles 0.25", quartiles(arr.length, arr, 0.25));
-  console.log("quartiles 0.5", quartiles(arr.length, arr, 0.5));
-  console.log("quartiles 0.75", quartiles(arr.length, arr, 0.75));
-  console.log("iqr", iqr(arr.length, arr));
-  console.log("sample skewness : ", skewness(arr.length, arr, 1));
-  console.log("pop.. skewness : ", skewness(arr.length, arr, 0));
-  console.log("kurtosis with sample stddev: ", kurtosis(arr.length, arr, stddev(arr.length, arr, 1)));
-  console.log("kurtosis with pop.. stddev: ", kurtosis(arr.length, arr, stddev(arr.length, arr, 0)));
-  console.log("sample covariance: ", covariance(arr_x.length, arr_x, arr_y, 1));
-  console.log("pop.. covariance: ", covariance(arr_x.length, arr_x, arr_y, 0));
-  console.log("normalize: ", normalize(arr.length, arr));
-  console.log("sample correlation :", correlation(arr_x.length, arr_x, arr_y, 1));
-  console.log("pop.. correlation :", correlation(arr_x.length, arr_x, arr_y, 0));
-  console.log("zscore : ", zscore(arr.length, arr));
+  console.log(mean(arr));
+  // console.log(median(arr.length, arr));
+  // console.log("sample variance :", variance(arr.length, arr, 1));
+  // console.log("pop.. variance :", variance(arr.length, arr, 0));
+  // console.log("sample stddev", stddev(arr.length, arr, 1));
+  // console.log("pop.. stddev", stddev(arr.length, arr, 0));
+  // console.log("mode", mode(arr.length, arr));
+  // console.log("percentile", percentile(arr.length, arr, 4));
+  // console.log("quartiles 0.25", quartiles(arr.length, arr, 0.25));
+  // console.log("quartiles 0.5", quartiles(arr.length, arr, 0.5));
+  // console.log("quartiles 0.75", quartiles(arr.length, arr, 0.75));
+  // console.log("iqr", iqr(arr.length, arr));
+  // console.log("sample skewness : ", skewness(arr.length, arr, 1));
+  // console.log("pop.. skewness : ", skewness(arr.length, arr, 0));
+  // console.log("kurtosis with sample stddev: ", kurtosis(arr.length, arr, stddev(arr.length, arr, 1)));
+  // console.log("kurtosis with pop.. stddev: ", kurtosis(arr.length, arr, stddev(arr.length, arr, 0)));
+  // console.log("sample covariance: ", covariance(arr_x.length, arr_x, arr_y, 1));
+  // console.log("pop.. covariance: ", covariance(arr_x.length, arr_x, arr_y, 0));
+  // console.log("normalize: ", normalize(arr.length, arr));
+  // console.log("sample correlation :", correlation(arr_x.length, arr_x, arr_y, 1));
+  // console.log("pop.. correlation :", correlation(arr_x.length, arr_x, arr_y, 0));
+  // console.log("zscore : ", zscore(arr.length, arr));
 };
 
 
@@ -67,10 +67,11 @@ function liberation(pointer) {
 
 // mean
 
-function mean(size, arr) {
-  const pointer = allocateMemory(size, arr);
+function mean(arr) {
+  if(!Array.isArray(arr) || arr.length === 0 ) return NaN;
+  const pointer = allocateMemory(arr.length, arr);
 
-  const mean = statistics.mean(size, pointer);
+  const mean = statistics.mean(arr.length, pointer);
 
   liberation(pointer);
 
