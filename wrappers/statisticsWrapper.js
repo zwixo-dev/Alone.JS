@@ -45,7 +45,7 @@ Module.onRuntimeInitialized = () => {
   console.log("kurtosis with pop.. stddev: ", kurtosis(arr, stddev(arr, 0)));
   console.log("sample covariance: ", covariance(arr_x, arr_y, 1));
   console.log("pop.. covariance: ", covariance(arr_x, arr_y, 0));
-  // console.log("normalize: ", normalize(arr.length, arr));
+  console.log("normalize: ", normalize(arr));
   // console.log("sample correlation :", correlation(arr_x.length, arr_x, arr_y, 1));
   // console.log("pop.. correlation :", correlation(arr_x.length, arr_x, arr_y, 0));
   // console.log("zscore : ", zscore(arr.length, arr));
@@ -227,11 +227,13 @@ function covariance(arr_x, arr_y, option) {
 
 // normalize
 
-function normalize(size, arr) {
-  const inputPointer = allocateMemory(size, arr);
-  const outputPointer = allocateMemory(size, arr);
+function normalize(arr) {
+  if(!Array.isArray(arr) || arr.length === 0 ) return NaN;
 
-  statistics.normalize(size, inputPointer, outputPointer);
+  const inputPointer = allocateMemory(arr.length, arr);
+  const outputPointer = allocateMemory(arr.length, arr);
+
+  statistics.normalize(arr.length, inputPointer, outputPointer);
   const normalize = Array.from(
     Module.HEAPF64.subarray(
       outputPointer / 8,
