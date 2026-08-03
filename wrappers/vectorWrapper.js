@@ -79,7 +79,7 @@ Module.onRuntimeInitialized = () => {
     console.log("vector_hadamard_product : ", vector_hadamard_product(vA, vB));    
     console.log("vector_abs : ", vector_abs(vD));
     console.log("vector_negate : ", vector_negate(vD));
-    // console.log("vector_power : ", vector_power(vA.length, vA, 2));
+    console.log("vector_power : ", vector_power(vA, 2));
     // console.log("vector_sqrt : ", vector_sqrt(vA.length, vA));
 }
 
@@ -667,18 +667,18 @@ function vector_negate(vector){
 
 // void vector_power(int size, double *vector, double exponent, double *result_vectors);
 // vector_power
-function vector_power(size, vector, exponent){
-    if(vector.length !== size) return NaN;
+function vector_power(vector, exponent){
+    if(!Array.isArray(vector) || vector.length === 0) return NaN;
 
-    const inputPointer = allocateMemory(size, vector);
-    const outputPointer = Module._malloc(size * 8); 
+    const inputPointer = allocateMemory(vector.length, vector);
+    const outputPointer = Module._malloc(vector.length * 8); 
 
-    vectors.vector_power(size, inputPointer, exponent, outputPointer);
+    vectors.vector_power(vector.length, inputPointer, exponent, outputPointer);
 
     const vector_power = Array.from(
         Module.HEAPF64.subarray(
             outputPointer / 8,
-            outputPointer / 8 + size 
+            outputPointer / 8 + vector.length
         )
     );
 
