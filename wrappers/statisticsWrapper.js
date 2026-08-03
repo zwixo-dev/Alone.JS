@@ -43,8 +43,8 @@ Module.onRuntimeInitialized = () => {
   console.log("pop.. skewness : ", skewness(arr, 0));
   console.log("kurtosis with sample stddev: ", kurtosis(arr, stddev(arr, 1)));
   console.log("kurtosis with pop.. stddev: ", kurtosis(arr, stddev(arr, 0)));
-  // console.log("sample covariance: ", covariance(arr_x.length, arr_x, arr_y, 1));
-  // console.log("pop.. covariance: ", covariance(arr_x.length, arr_x, arr_y, 0));
+  console.log("sample covariance: ", covariance(arr_x, arr_y, 1));
+  console.log("pop.. covariance: ", covariance(arr_x, arr_y, 0));
   // console.log("normalize: ", normalize(arr.length, arr));
   // console.log("sample correlation :", correlation(arr_x.length, arr_x, arr_y, 1));
   // console.log("pop.. correlation :", correlation(arr_x.length, arr_x, arr_y, 0));
@@ -206,12 +206,14 @@ function kurtosis(arr, s) {
 
 // covariance
 
-function covariance(size, arr_x, arr_y, option) {
-  const pointer_x = allocateMemory(size, arr_x);
-  const pointer_y = allocateMemory(size, arr_y);
+function covariance(arr_x, arr_y, option) {
+  if(!Array.isArray(arr_x) || !Array.isArray(arr_y) || arr_x.length !== arr_y.length ) return NaN;
+
+  const pointer_x = allocateMemory(arr_x.length, arr_x);
+  const pointer_y = allocateMemory(arr_y.length, arr_y);
 
   const covariance = statistics.covariance(
-    size,
+    arr_x.length,
     pointer_x,
     pointer_y,
     option,
