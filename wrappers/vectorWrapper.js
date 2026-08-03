@@ -71,8 +71,8 @@ Module.onRuntimeInitialized = () => {
     console.log("vector_is_parallel : ", vector_is_parallel(vA, vB));
     console.log("vector_variance sample : ", vector_variance(vA, 1));
     console.log("vector_variance popu... : ", vector_variance(vA, 0));
-    // console.log("vector_standard_deviation sample : ",vector_standard_deviation(vA.length, vA, 1));
-    // console.log("vector_standard_deviation popu.. : ",vector_standard_deviation(vA.length, vA, 0));
+    console.log("vector_standard_deviation sample : ",vector_standard_deviation(vA, 1));
+    console.log("vector_standard_deviation popu.. : ",vector_standard_deviation(vA, 0));
     // console.log("vector_reverse : ", vector_reverse(v.length, v));
     // console.log("vector_sort_ascending : ", vector_sort_ascending(vC.length, vC));
     // console.log("vector_sort_descending : ", vector_sort_descending(vC.length, vC));
@@ -512,12 +512,12 @@ function vector_variance(vector, option){
 }
 
 // vector_standard_deviation
-function vector_standard_deviation(size, vector, option){
-    if(vector.length !== size || (option !== 1 && option !== 0)) return NaN;
+function vector_standard_deviation(vector, option){
+    if(!Array.isArray(vector) || (option !== 1 && option !== 0)) return NaN;
 
-    const inputPointer = allocateMemory(size, vector);
+    const inputPointer = allocateMemory(vector.length, vector);
 
-    const vector_standard_deviation = vectors.vector_standard_deviation(size, inputPointer, option);
+    const vector_standard_deviation = vectors.vector_standard_deviation(vector.length, inputPointer, option);
 
     liberation(inputPointer);
 
