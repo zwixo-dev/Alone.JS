@@ -35,9 +35,9 @@ Module.onRuntimeInitialized = () => {
   console.log("pop.. stddev", stddev(arr, 0));
   console.log("mode", mode(arr));
   console.log("percentile", percentile(arr, 4));
-  // console.log("quartiles 0.25", quartiles(arr.length, arr, 0.25));
-  // console.log("quartiles 0.5", quartiles(arr.length, arr, 0.5));
-  // console.log("quartiles 0.75", quartiles(arr.length, arr, 0.75));
+  console.log("quartiles 0.25", quartiles(arr, 0.25));
+  console.log("quartiles 0.5", quartiles(arr, 0.5));
+  console.log("quartiles 0.75", quartiles(arr, 0.75));
   // console.log("iqr", iqr(arr.length, arr));
   // console.log("sample skewness : ", skewness(arr.length, arr, 1));
   // console.log("pop.. skewness : ", skewness(arr.length, arr, 0));
@@ -150,10 +150,12 @@ function percentile(arr, value) {
 
 // quartiles
 
-function quartiles(size, arr, Q) {
-  const pointer = allocateMemory(size, arr);
+function quartiles(arr, Q) {
+  if(!Array.isArray(arr) || arr.length === 0 ) return NaN;
 
-  const quartiles = statistics.quartiles(size, pointer, Q);
+  const pointer = allocateMemory(arr.length, arr);
+
+  const quartiles = statistics.quartiles(arr.length, pointer, Q);
 
   liberation(pointer);
 
