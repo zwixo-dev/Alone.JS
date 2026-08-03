@@ -78,7 +78,7 @@ Module.onRuntimeInitialized = () => {
     console.log("vector_sort_descending : ", vector_sort_descending(vC));
     console.log("vector_hadamard_product : ", vector_hadamard_product(vA, vB));    
     console.log("vector_abs : ", vector_abs(vD));
-    // console.log("vector_negate : ", vector_negate(vD.length, vD));
+    console.log("vector_negate : ", vector_negate(vD));
     // console.log("vector_power : ", vector_power(vA.length, vA, 2));
     // console.log("vector_sqrt : ", vector_sqrt(vA.length, vA));
 }
@@ -644,18 +644,18 @@ function vector_abs(vector){
 
 // void vector_negate(int size, double *vector, double *result_vectors);
 // vector_negate
-function vector_negate(size, vector){
-    if(vector.length !== size) return NaN;
+function vector_negate(vector){
+    if(!Array.isArray(vector) || vector.length === 0) return NaN;
 
-    const inputPointer = allocateMemory(size, vector);
-    const outputPointer = Module._malloc(size * 8);
+    const inputPointer = allocateMemory(vector.length, vector);
+    const outputPointer = Module._malloc(vector.length * 8);
 
-    vectors.vector_negate(size, inputPointer, outputPointer);
+    vectors.vector_negate(vector.length, inputPointer, outputPointer);
 
     const vector_negate = Array.from(
         Module.HEAPF64.subarray(
             outputPointer / 8,
-            outputPointer / 8 + size
+            outputPointer / 8 + vector.length
         )
     );
 
