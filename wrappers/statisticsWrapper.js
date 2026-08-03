@@ -38,7 +38,7 @@ Module.onRuntimeInitialized = () => {
   console.log("quartiles 0.25", quartiles(arr, 0.25));
   console.log("quartiles 0.5", quartiles(arr, 0.5));
   console.log("quartiles 0.75", quartiles(arr, 0.75));
-  // console.log("iqr", iqr(arr.length, arr));
+  console.log("iqr", iqr(arr));
   // console.log("sample skewness : ", skewness(arr.length, arr, 1));
   // console.log("pop.. skewness : ", skewness(arr.length, arr, 0));
   // console.log("kurtosis with sample stddev: ", kurtosis(arr.length, arr, stddev(arr.length, arr, 1)));
@@ -164,10 +164,12 @@ function quartiles(arr, Q) {
 
 // iqr
 
-function iqr(size, arr) {
-  const pointer = allocateMemory(size, arr);
+function iqr(arr) {
+  if(!Array.isArray(arr) || arr.length === 0 ) return NaN;
 
-  const iqr = statistics.iqr(size, pointer);
+  const pointer = allocateMemory(arr.length, arr);
+
+  const iqr = statistics.iqr(arr.length, pointer);
 
   liberation(pointer);
 
