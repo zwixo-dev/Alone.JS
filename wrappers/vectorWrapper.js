@@ -80,7 +80,7 @@ Module.onRuntimeInitialized = () => {
     console.log("vector_abs : ", vector_abs(vD));
     console.log("vector_negate : ", vector_negate(vD));
     console.log("vector_power : ", vector_power(vA, 2));
-    // console.log("vector_sqrt : ", vector_sqrt(vA.length, vA));
+    console.log("vector_sqrt : ", vector_sqrt(vA));
 }
 
 // func to allocate memory
@@ -690,18 +690,18 @@ function vector_power(vector, exponent){
 
 // void vector_sqrt(int size, double *vector, double *result_vectors);
 // vector_sqrt
-function vector_sqrt(size, vector){
-    if(vector.length !== size) return NaN; 
+function vector_sqrt(vector){
+    if(!Array.isArray(vector) || vector.length === 0) return NaN;
 
-    const inputPointer = allocateMemory(size, vector);
-    const outputPointer = Module._malloc(size * 8);
+    const inputPointer = allocateMemory(vector.length, vector);
+    const outputPointer = Module._malloc(vector.length * 8);
 
-    vectors.vector_sqrt(size, inputPointer, outputPointer);
+    vectors.vector_sqrt(vector.length, inputPointer, outputPointer);
 
     const vector_sqrt = Array.from(
         Module.HEAPF64.subarray(
             outputPointer / 8,
-            outputPointer / 8 + size
+            outputPointer / 8 + vector.length
         )
     );
 
