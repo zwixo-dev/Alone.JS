@@ -75,7 +75,7 @@ Module.onRuntimeInitialized = () => {
     console.log("vector_standard_deviation popu.. : ",vector_standard_deviation(vA, 0));
     console.log("vector_reverse : ", vector_reverse(v));
     console.log("vector_sort_ascending : ", vector_sort_ascending(vC));
-    // console.log("vector_sort_descending : ", vector_sort_descending(vC.length, vC));
+    console.log("vector_sort_descending : ", vector_sort_descending(vC));
     // console.log("vector_hadamard_product : ", vector_hadamard_product(vA.length, vA, vB));    
     // console.log("vector_abs : ", vector_abs(vD.length, vD));
     // console.log("vector_negate : ", vector_negate(vD.length, vD));
@@ -571,18 +571,18 @@ function vector_sort_ascending(vector){
 }
 
 // vector_sort_descending
-function vector_sort_descending(size, vector){
-    if(vector.length !== size) return NaN;
+function vector_sort_descending(vector){
+    if(!Array.isArray(vector) || vector.length === 0) return NaN;
 
-    const inputPointer = allocateMemory(size, vector);
-    const outputPointer = Module._malloc(size * 8);
+    const inputPointer = allocateMemory(vector.length, vector);
+    const outputPointer = Module._malloc(vector.length * 8);
 
-    vectors.vector_sort_descending(size, inputPointer, outputPointer);
+    vectors.vector_sort_descending(vector.length, inputPointer, outputPointer);
 
     const vector_sort_descending = Array.from(
         Module.HEAPF64.subarray(
             outputPointer / 8,
-            outputPointer / 8 + size
+            outputPointer / 8 + vector.length
         )
     );
 
