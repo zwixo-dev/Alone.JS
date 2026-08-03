@@ -33,8 +33,8 @@ Module.onRuntimeInitialized = () => {
   console.log("pop.. variance :", variance(arr, 0));
   console.log("sample stddev", stddev(arr, 1));
   console.log("pop.. stddev", stddev(arr, 0));
-  // console.log("mode", mode(arr.length, arr));
-  // console.log("percentile", percentile(arr.length, arr, 4));
+  console.log("mode", mode(arr));
+  // console.log("percentile", percentile(arr, 4));
   // console.log("quartiles 0.25", quartiles(arr.length, arr, 0.25));
   // console.log("quartiles 0.5", quartiles(arr.length, arr, 0.5));
   // console.log("quartiles 0.75", quartiles(arr.length, arr, 0.75));
@@ -122,10 +122,12 @@ function stddev(arr, option) {
 
 // mode
 
-function mode(size, arr) {
-  const pointer = allocateMemory(size, arr);
+function mode(arr) {
+  if(!Array.isArray(arr) || arr.length === 0 ) return NaN;
 
-  const mode = statistics.mode(size, pointer);
+  const pointer = allocateMemory(arr.length, arr);
+
+  const mode = statistics.mode(arr.length, pointer);
 
   liberation(pointer);
 
