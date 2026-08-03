@@ -48,7 +48,7 @@ Module.onRuntimeInitialized = () => {
   console.log("normalize: ", normalize(arr));
   console.log("sample correlation :", correlation(arr_x, arr_y, 1));
   console.log("pop.. correlation :", correlation(arr_x, arr_y, 0));
-  // console.log("zscore : ", zscore(arr.length, arr));
+  console.log("zscore : ", zscore(arr));
 };
 
 
@@ -270,11 +270,13 @@ function correlation(arr_x, arr_y, option) {
 
 // zscore
 
-function zscore(size, arr) {
-  const inputPointer = allocateMemory(size, arr);
-  const outputPointer = allocateMemory(size, arr);
+function zscore(arr) {
+  if(!Array.isArray(arr) || arr.length === 0 ) return NaN;
 
-  statistics.zscore(size, inputPointer, outputPointer);
+  const inputPointer = allocateMemory(arr.length, arr);
+  const outputPointer = allocateMemory(arr.length, arr);
+
+  statistics.zscore(arr.length, inputPointer, outputPointer);
   const zscore = Array.from(
     Module.HEAPF64.subarray(
       outputPointer / 8,
