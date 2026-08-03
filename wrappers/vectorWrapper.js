@@ -73,7 +73,7 @@ Module.onRuntimeInitialized = () => {
     console.log("vector_variance popu... : ", vector_variance(vA, 0));
     console.log("vector_standard_deviation sample : ",vector_standard_deviation(vA, 1));
     console.log("vector_standard_deviation popu.. : ",vector_standard_deviation(vA, 0));
-    // console.log("vector_reverse : ", vector_reverse(v.length, v));
+    console.log("vector_reverse : ", vector_reverse(v));
     // console.log("vector_sort_ascending : ", vector_sort_ascending(vC.length, vC));
     // console.log("vector_sort_descending : ", vector_sort_descending(vC.length, vC));
     // console.log("vector_hadamard_product : ", vector_hadamard_product(vA.length, vA, vB));    
@@ -527,18 +527,18 @@ function vector_standard_deviation(vector, option){
 // Transformations
 // void vector_reverse(int size, double *vector,null*result_vectors);
 // vector_reverse
-function vector_reverse(size, vector){
-    if(vector.length !== size) return NaN;
+function vector_reverse(vector){
+    if(!Array.isArray(vector) || vector.length === 0) return NaN;
 
-    const inputPointer = allocateMemory(size, vector);
-    const outputPointer = Module._malloc(size * 8);
+    const inputPointer = allocateMemory(vector.length, vector);
+    const outputPointer = Module._malloc(vector.length * 8);
 
-    vectors.vector_reverse(size, inputPointer, outputPointer);
+    vectors.vector_reverse(vector.length, inputPointer, outputPointer);
 
     const vector_reverse = Array.from(
         Module.HEAPF64.subarray(
             outputPointer / 8,
-            outputPointer / 8 + size
+            outputPointer / 8 + vector.length
         )
     );
 
