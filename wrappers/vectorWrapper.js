@@ -76,7 +76,7 @@ Module.onRuntimeInitialized = () => {
     console.log("vector_reverse : ", vector_reverse(v));
     console.log("vector_sort_ascending : ", vector_sort_ascending(vC));
     console.log("vector_sort_descending : ", vector_sort_descending(vC));
-    // console.log("vector_hadamard_product : ", vector_hadamard_product(vA.length, vA, vB));    
+    console.log("vector_hadamard_product : ", vector_hadamard_product(vA, vB));    
     // console.log("vector_abs : ", vector_abs(vD.length, vD));
     // console.log("vector_negate : ", vector_negate(vD.length, vD));
     // console.log("vector_power : ", vector_power(vA.length, vA, 2));
@@ -595,19 +595,19 @@ function vector_sort_descending(vector){
 // Products
 // void vector_hadamard_product(int size, double *vectorA, double *vectorB, double *result_vectors);
 // vector_hadamard_product
-function vector_hadamard_product(size, vectorA, vectorB){
-    if(vectorA.length !== size || vectorB.length !== size) return NaN;
+function vector_hadamard_product(vectorA, vectorB){
+    if(!Array.isArray(vectorA) || !Array.isArray(vectorB) || vectorA.length !== vectorB.length) return NaN;
 
-    const inputPointerA = allocateMemory(size, vectorA);
-    const inputPointerB = allocateMemory(size, vectorB);
-    const outputPointer = Module._malloc(size * 8);
+    const inputPointerA = allocateMemory(vectorA.length, vectorA);
+    const inputPointerB = allocateMemory(vectorB.length, vectorB);
+    const outputPointer = Module._malloc(vectorA.length * 8);
 
-    vectors.vector_hadamard_product(size, inputPointerA, inputPointerB, outputPointer);
+    vectors.vector_hadamard_product(vectorA.length, inputPointerA, inputPointerB, outputPointer);
 
     const vector_hadamard_product = Array.from(
         Module.HEAPF64.subarray(
             outputPointer / 8,
-            outputPointer / 8 + size
+            outputPointer / 8 + vectorA.length
         )
     );
 
