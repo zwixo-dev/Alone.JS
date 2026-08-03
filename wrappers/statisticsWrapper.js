@@ -28,7 +28,7 @@ Module.onRuntimeInitialized = () => {
   const arr_y = [8, 9, 10, 11, 12, 13, 14];
 
   console.log(mean(arr));
-  // console.log(median(arr.length, arr));
+  console.log(median(arr));
   // console.log("sample variance :", variance(arr.length, arr, 1));
   // console.log("pop.. variance :", variance(arr.length, arr, 0));
   // console.log("sample stddev", stddev(arr.length, arr, 1));
@@ -80,10 +80,12 @@ function mean(arr) {
 
 // median
 
-function median(size, arr) {
-  const pointer = allocateMemory(size, arr);
+function median(arr) {
+  if(!Array.isArray(arr) || arr.length === 0 ) return NaN;
 
-  const median = statistics.median(size, pointer);
+  const pointer = allocateMemory(arr.length, arr);
+
+  const median = statistics.median(arr.length, pointer);
 
   liberation(pointer);
 
