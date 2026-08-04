@@ -46,7 +46,7 @@ Module.onRuntimeInitialized = () => {
   console.log("sum", sum(arr));
   console.log("product", product(arr));
   console.log("average", average(arr));
-  console.log("min", min(arr.length, arr));
+  console.log("min", min(arr));
   console.log("max", max(arr.length, arr));
   console.log("range", range(arr.length, arr));
 
@@ -145,11 +145,12 @@ function average(arr) {
 }
 
 // array min
-function min(size, arr) {
+function min(arr) {
+  if(!Array.isArray(arr) || arr.length === 0) return NaN;
 
-  const pointer = allocateMemory(size, arr);
+  const pointer = allocateMemory(arr.length, arr);
 
-  const min = matrix.min(size, pointer);
+  const min = matrix.min(arr.length, pointer);
 
   liberation(pointer);
 
