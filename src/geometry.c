@@ -148,3 +148,10 @@ double rectangle_perimeter(double length, double width){
 double rectangle_diagonal(double length, double width) {
     return sqrt((width * width) + (length * length));
 }
+
+// square
+
+// square_area
+double square_area(double side){
+    return side * side;
+}
