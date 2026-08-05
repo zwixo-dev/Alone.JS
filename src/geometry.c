@@ -232,3 +232,9 @@ double ellipse_area(double a, double b){
     return M_PI * a * b;
 }
 
+// ellipse_perimeter_basic
+double ellipse_perimeter_basic(double a, double b) {
+    if (a <= 0.0 || b <= 0.0) return -1.0;
+    // 2 * PI √(a^2 + b^2) / 2.0
+    return 2.0 * M_PI * sqrt((a * a + b * b) / 2.0);
+}
