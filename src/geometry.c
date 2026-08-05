@@ -193,3 +193,9 @@ double circle_arc_length(double radius, double angle){
     // s = (Angle_theta/360) * 2 PI  * r
     return (angle / 360.0) * 2 * M_PI * radius;
 }
+
+// circle_sector_area
+double circle_sector_area(double radius, double angle){
+    // (angle / 360) * PI * r^2
+    return ((angle / 360.0) * M_PI) * (radius * radius);
+}
