@@ -167,3 +167,11 @@ double square_diagonal(double side){
     // √2 * side
     return sqrt(2) * side;
 }
+
+// circle
+
+// circle_area
+double circle_area(double radius){
+    // A = PI * r^2
+    return M_PI * (radius * radius);
+}
