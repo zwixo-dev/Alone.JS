@@ -143,3 +143,8 @@ double rectangle_perimeter(double length, double width){
     // P = 2(l + w)
     return 2.0 *(length + width);
 }
+
+// rectangle_diagonal
+double rectangle_diagonal(double length, double width) {
+    return sqrt((width * width) + (length * length));
+}
