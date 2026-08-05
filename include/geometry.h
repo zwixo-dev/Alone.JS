@@ -44,7 +44,7 @@ double circle_sector_area(double radius, double angle);
 
 // ellipse
 double ellipse_area(double a, double b);
-double ellipse_perimeter(double a, double b);
+double ellipse_perimeter_basic(double a, double b);
 
 // polygon
 
