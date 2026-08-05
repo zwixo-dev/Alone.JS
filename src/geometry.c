@@ -187,3 +187,9 @@ double circle_diameter(double radius){
     // d=2r
     return 2.0 * radius;
 }
+
+// circle_arc_length
+double circle_arc_length(double radius, double angle){
+    // s = (Angle_theta/360) * 2 PI  * r
+    return (angle / 360.0) * 2 * M_PI * radius;
+}
