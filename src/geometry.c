@@ -132,3 +132,8 @@ int triangle_is_right(double a, double b, double c){
 
      return 0;
 }
+
+// rectangle_area
+double rectangle_area(double length, double width){
+    return width * length;
+}
