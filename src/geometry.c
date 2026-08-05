@@ -175,3 +175,9 @@ double circle_area(double radius){
     // A = PI * r^2
     return M_PI * (radius * radius);
 }
+
+// circle_circumference
+double circle_circumference(double radius){
+    // C = 2 * Pi * r 
+    return 2.0 * M_PI * radius;
+}
