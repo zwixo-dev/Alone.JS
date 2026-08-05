@@ -161,3 +161,9 @@ double square_perimeter(double side){
         // P = 4 * side
     return 4.0 * side;
 }
+
+// square_diagonal
+double square_diagonal(double side){
+    // √2 * side
+    return sqrt(2) * side;
+}
