@@ -155,3 +155,9 @@ double rectangle_diagonal(double length, double width) {
 double square_area(double side){
     return side * side;
 }
+
+// square_perimeter
+double square_perimeter(double side){
+        // P = 4 * side
+    return 4.0 * side;
+}
