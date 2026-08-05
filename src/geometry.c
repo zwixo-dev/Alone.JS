@@ -215,7 +215,20 @@ double circle_arc_length(double radius, double angle){
 // circle_sector_area
 double circle_sector_area(double radius, double angle){
     if (radius <= 0.0 || angle < 0.0) return -1.0;
-    
+
     // (angle / 360) * PI * r^2
     return ((angle / 360.0) * M_PI) * (radius * radius);
 }
+
+
+
+// ellipse funcs
+
+// ellipse_area
+double ellipse_area(double a, double b){
+    // A=Pi ab
+    
+    if (a <= 0.0 || b <= 0.0) return -1;
+    return M_PI * a * b;
+}
+
