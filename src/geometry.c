@@ -181,3 +181,9 @@ double circle_circumference(double radius){
     // C = 2 * Pi * r 
     return 2.0 * M_PI * radius;
 }
+
+// circle_diameter
+double circle_diameter(double radius){
+    // d=2r
+    return 2.0 * radius;
+}
