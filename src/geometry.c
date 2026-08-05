@@ -135,17 +135,23 @@ int triangle_is_right(double a, double b, double c){
 
 // rectangle_area
 double rectangle_area(double length, double width){
+    if (length <= 0.0 || width <= 0.0) return -1.0;
+
     return width * length;
 }
 
 // rectangle_perimeter
 double rectangle_perimeter(double length, double width){
+    if (length <= 0.0 || width <= 0.0) return -1.0;
+
     // P = 2(l + w)
     return 2.0 *(length + width);
 }
 
 // rectangle_diagonal
 double rectangle_diagonal(double length, double width) {
+    if (length <= 0.0 || width <= 0.0) return -1.0;
+
     return sqrt((width * width) + (length * length));
 }
 
@@ -153,17 +159,23 @@ double rectangle_diagonal(double length, double width) {
 
 // square_area
 double square_area(double side){
+    if (side <= 0.0) return -1.0;
+
     return side * side;
 }
 
 // square_perimeter
 double square_perimeter(double side){
+    if (side <= 0.0) return -1.0;
+
         // P = 4 * side
     return 4.0 * side;
 }
 
 // square_diagonal
 double square_diagonal(double side){
+    if (side <= 0.0) return -1.0;
+
     // √2 * side
     return sqrt(2) * side;
 }
@@ -178,24 +190,32 @@ double circle_area(double radius){
 
 // circle_circumference
 double circle_circumference(double radius){
+    if (radius <= 0.0) return -1.0;
+
     // C = 2 * Pi * r 
     return 2.0 * M_PI * radius;
 }
 
 // circle_diameter
 double circle_diameter(double radius){
+     if (radius <= 0.0) return -1.0;
+
     // d=2r
     return 2.0 * radius;
 }
 
 // circle_arc_length
 double circle_arc_length(double radius, double angle){
+    if (radius <= 0.0 || angle < 0.0) return -1.0;
+
     // s = (Angle_theta/360) * 2 PI  * r
     return (angle / 360.0) * 2 * M_PI * radius;
 }
 
 // circle_sector_area
 double circle_sector_area(double radius, double angle){
+    if (radius <= 0.0 || angle < 0.0) return -1.0;
+    
     // (angle / 360) * PI * r^2
     return ((angle / 360.0) * M_PI) * (radius * radius);
 }
