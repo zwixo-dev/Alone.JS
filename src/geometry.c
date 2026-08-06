@@ -333,3 +333,10 @@ double cylinder_surface_area(double radius, double height){
     // A = 2*π*r*h + 2*π*r²
     return (2.0 * M_PI * radius * height) + (2.0 * M_PI * radius * radius); 
 }
+
+// cylinder_lateral_area
+double cylinder_lateral_area(double radius, double height){
+    if(radius <= 0.0 || height <= 0.0) return -1.0;
+    // AL = 2*π*r*h
+    return 2.0 * M_PI * radius * height;
+}
