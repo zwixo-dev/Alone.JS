@@ -283,3 +283,11 @@ double cube_volume(double side) {
     }
     return side * side * side;
 }
+
+// cube_surface_area
+double cube_surface_area(double side) {
+    if (side <= 0.0) {
+        return -1.0;
+    }
+    return 6.0 * (side * side);
+}
