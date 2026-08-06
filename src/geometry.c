@@ -302,3 +302,11 @@ double cuboid_volume(double length, double width, double height){
     
     return length * width * height;
 }
+
+// cuboid_surface_area
+double cuboid_surface_area(double length, double width, double height){
+   if(length <= 0.0 || width <= 0.0 || height <= 0.0) return -1; 
+    //  \(2(lw + wh + lh)\) 
+    
+    return 2 * (length * width + width * height + length * height);
+}
