@@ -273,3 +273,13 @@ double regular_polygon_interior_angle(int sides) {
     
     return (sides - 2) * 180.0 / (double)sides;
 }
+
+
+// Cube
+// cube_volume
+double cube_volume(double side) {
+    if (side <= 0.0) {
+        return -1.0;
+    }
+    return side * side * side;
+}
