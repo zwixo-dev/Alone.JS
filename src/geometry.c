@@ -316,3 +316,13 @@ double cuboid_space_diagonal(double length, double width, double height){
     
     return sqrt(length * length + width * width + height * height);
 }
+
+// Cylinder
+
+
+// cylinder_volume
+double cylinder_volume(double radius, double height){
+    // V = π * r² * h
+    if(radius <= 0.0 || height <= 0.0) return -1.0;
+    return M_PI * radius * radius * height;
+}
