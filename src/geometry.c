@@ -238,3 +238,16 @@ double ellipse_perimeter_basic(double a, double b) {
     // 2 * PI √(a^2 + b^2) / 2.0
     return 2.0 * M_PI * sqrt((a * a + b * b) / 2.0);
 }
+
+
+
+//polygon
+
+// regular_polygon_perimeter
+double regular_polygon_perimeter(int sides, double side_length) {
+    if (sides < 3 || side_length <= 0.0) return -1.0;
+        
+    return sides * side_length;
+}
+
+
