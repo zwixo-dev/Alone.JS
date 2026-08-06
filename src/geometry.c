@@ -278,24 +278,27 @@ double regular_polygon_interior_angle(int sides) {
 // Cube
 // cube_volume
 double cube_volume(double side) {
-    if (side <= 0.0) {
-        return -1.0;
-    }
+    if (side <= 0.0)  return -1.0;
     return side * side * side;
 }
 
 // cube_surface_area
 double cube_surface_area(double side) {
-    if (side <= 0.0) {
-        return -1.0;
-    }
+    if (side <= 0.0) return -1.0;
     return 6.0 * (side * side);
 }
 
 // cube_space_diagonal
 double cube_space_diagonal(double side) {
-    if (side <= 0.0) {
-        return -1.0;
-    }
+    if (side <= 0.0) return -1.0;
     return sqrt(3.0) * side;
+}
+
+//Rectangular Prism
+
+// cuboid_volume
+double cuboid_volume(double length, double width, double height){
+    if(length <= 0.0 || width <= 0.0 || height <= 0.0) return -1;
+    
+    return length * width * height;
 }
