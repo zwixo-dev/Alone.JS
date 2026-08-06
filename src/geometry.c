@@ -266,3 +266,10 @@ double polygon_interior_angle_sum(int sides) {
     
     return (sides - 2) * 180.0;
 }
+
+// regular_polygon_interior_angle
+double regular_polygon_interior_angle(int sides) {
+    if (sides < 3) return -1.0;
+    
+    return (sides - 2) * 180.0 / (double)sides;
+}
