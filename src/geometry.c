@@ -291,3 +291,11 @@ double cube_surface_area(double side) {
     }
     return 6.0 * (side * side);
 }
+
+// cube_space_diagonal
+double cube_space_diagonal(double side) {
+    if (side <= 0.0) {
+        return -1.0;
+    }
+    return sqrt(3.0) * side;
+}
