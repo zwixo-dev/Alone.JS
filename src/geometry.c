@@ -260,3 +260,9 @@ double regular_polygon_area(int sides, double side_length) {
     return 0.5 * perimeter * apothem;
 }
 
+// polygon_interior_angle_sum
+double polygon_interior_angle_sum(int sides) {
+    if (sides < 3) return -1.0;
+    
+    return (sides - 2) * 180.0;
+}
