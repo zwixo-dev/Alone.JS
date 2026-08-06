@@ -250,4 +250,13 @@ double regular_polygon_perimeter(int sides, double side_length) {
     return sides * side_length;
 }
 
+// regular_polygon_area
+double regular_polygon_area(int sides, double side_length) {
+    if (sides < 3 || side_length <= 0.0) {
+        return -1.0;
+    }
+    double perimeter = regular_polygon_perimeter(sides, side_length);
+    double apothem = side_length / (2.0 * tan(M_PI / sides));
+    return 0.5 * perimeter * apothem;
+}
 
