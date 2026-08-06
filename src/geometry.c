@@ -245,16 +245,15 @@ double ellipse_perimeter_basic(double a, double b) {
 
 // regular_polygon_perimeter
 double regular_polygon_perimeter(int sides, double side_length) {
-    if (sides < 3 || side_length <= 0.0) return -1.0;
+    if (sides < 3 || side_length <= 0.0) return -1;
         
     return sides * side_length;
 }
 
 // regular_polygon_area
 double regular_polygon_area(int sides, double side_length) {
-    if (sides < 3 || side_length <= 0.0) {
-        return -1.0;
-    }
+    if (sides < 3 || side_length <= 0.0) return -1;
+
     double perimeter = regular_polygon_perimeter(sides, side_length);
     double apothem = side_length / (2.0 * tan(M_PI / sides));
     return 0.5 * perimeter * apothem;
@@ -262,14 +261,14 @@ double regular_polygon_area(int sides, double side_length) {
 
 // polygon_interior_angle_sum
 double polygon_interior_angle_sum(int sides) {
-    if (sides < 3) return -1.0;
+    if (sides < 3) return -1;
     
     return (sides - 2) * 180.0;
 }
 
 // regular_polygon_interior_angle
 double regular_polygon_interior_angle(int sides) {
-    if (sides < 3) return -1.0;
+    if (sides < 3) return -1;
     
     return (sides - 2) * 180.0 / (double)sides;
 }
@@ -278,19 +277,19 @@ double regular_polygon_interior_angle(int sides) {
 // Cube
 // cube_volume
 double cube_volume(double side) {
-    if (side <= 0.0)  return -1.0;
+    if (side <= 0.0)  return -1;
     return side * side * side;
 }
 
 // cube_surface_area
 double cube_surface_area(double side) {
-    if (side <= 0.0) return -1.0;
+    if (side <= 0.0) return -1;
     return 6.0 * (side * side);
 }
 
 // cube_space_diagonal
 double cube_space_diagonal(double side) {
-    if (side <= 0.0) return -1.0;
+    if (side <= 0.0) return -1;
     return sqrt(3.0) * side;
 }
 
@@ -309,4 +308,11 @@ double cuboid_surface_area(double length, double width, double height){
     //  \(2(lw + wh + lh)\) 
     
     return 2 * (length * width + width * height + length * height);
+}
+
+// cuboid_space_diagonal
+double cuboid_space_diagonal(double length, double width, double height){
+    if(length <= 0.0 || width <= 0.0 || height <= 0.0) return -1;
+    
+    return sqrt(length * length + width * width + height * height);
 }
