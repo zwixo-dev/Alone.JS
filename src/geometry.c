@@ -340,3 +340,11 @@ double cylinder_lateral_area(double radius, double height){
     // AL = 2*π*r*h
     return 2.0 * M_PI * radius * height;
 }
+
+// sphere
+
+double sphere_volume(double radius){
+    if(radius <= 0.0) return -1;
+    // v = (4/3) * PI  * r^3
+    return (4.0 / 3.0) * M_PI *  radius * radius * radius;
+}
