@@ -348,3 +348,10 @@ double sphere_volume(double radius){
     // v = (4/3) * PI  * r^3
     return (4.0 / 3.0) * M_PI *  radius * radius * radius;
 }
+
+double sphere_surface_area(double radius){
+    // A=4πr^2
+    if(radius <= 0.0) return -1;
+    
+    return 4 * M_PI * radius * radius; 
+}
