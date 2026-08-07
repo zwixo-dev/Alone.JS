@@ -355,3 +355,11 @@ double sphere_surface_area(double radius){
     
     return 4 * M_PI * radius * radius; 
 }
+
+// cone
+
+double cone_volume(double radius, double height){
+    if(radius <= 0.0 || height <= 0.0) return -1;
+    
+    return M_PI * radius * radius * (height / 3.0);
+}
