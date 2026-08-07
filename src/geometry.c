@@ -375,3 +375,9 @@ double cone_slant_height(double radius, double height){
     // l=r2+h2
     return sqrt( (radius * radius) + (height * height) );
 }
+
+// unit Conversion
+
+double degrees_to_radians(double degrees){
+    return degrees * (M_PI / 180.0);
+}
