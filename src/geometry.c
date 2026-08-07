@@ -363,3 +363,9 @@ double cone_volume(double radius, double height){
     
     return M_PI * radius * radius * (height / 3.0);
 }
+
+double cone_surface_area(double radius, double height){
+    if(radius <= 0 || height <= 0) return -1;
+    // A=πr(r+√(h^2+r^2)
+    return M_PI * radius * (radius + sqrt( (height * height) + (radius * radius) ));
+}
