@@ -8,7 +8,7 @@ Module.onRuntimeInitialized = () => {
 
     geometry = {
         geometry_distance_2d: Module.cwrap("geometry_distance_2d", "number", ["number", "number", "number", "number"]),
-        geometry_distance_3d: Module.cwrap("geometry_distance_3d", "number", ["number", "number"]),
+        geometry_distance_3d: Module.cwrap("geometry_distance_3d", "number", ["number", "number", "number", "number", "number", "number"]),
         geometry_midpoint_x: Module.cwrap("geometry_midpoint_x", "number", ["number", "number"]),
         geometry_midpoint_y: Module.cwrap("geometry_midpoint_y", "number", ["number", "number"]),
         geometry_slope: Module.cwrap("geometry_slope", "number", ["number", "number"]),
@@ -60,7 +60,7 @@ Module.onRuntimeInitialized = () => {
     const coordB = [2, 4]
 
     console.log(geometry_distance_2d(coordA, coordB));
-
+    console.log(geometry_distance_3d([1, 2, 3], [4, 5, 6]));
 }
 
 
@@ -74,3 +74,19 @@ function geometry_distance_2d(coordA, coordB){
     
     return geometry.geometry_distance_2d(coordA[0], coordA[1], coordB[0], coordB[1]);
 }
+
+// double geometry_distance_3d(double x1, double y1, double z1, double x2, double y2, double z2);
+// geometry_distance_3d
+function geometry_distance_3d(coordA, coordB){
+    if(!Array.isArray(coordA) || !Array.isArray(coordB) || 
+        coordA.length !== coordB.length ) return NaN;
+
+
+
+    return geometry.geometry_distance_3d(coordA[0], coordA[1], coordA[2],
+                                         coordB[0], coordB[1], coordB[2]);
+}
+
+// double geometry_midpoint_x(double x1, double x2);
+// double geometry_midpoint_y(double y1, double y2);
+// double geometry_slope(double x1, double y1, double x2, double y2);
