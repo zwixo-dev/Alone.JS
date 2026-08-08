@@ -62,6 +62,7 @@ Module.onRuntimeInitialized = () => {
     console.log("geometry_distance_2d: ",geometry_distance_2d(coordA, coordB));
     console.log("geometry_distance_3d: ",geometry_distance_3d([1, 2, 3], [4, 5, 6]));
     console.log("geometry_midpoint_x: ",geometry_midpoint_x([1, 2]));
+    console.log("geometry_midpoint_y : ", geometry_midpoint_y([2, 4]));
 }
 
 
@@ -98,4 +99,9 @@ function geometry_midpoint_x(coord){
 
 
 // double geometry_midpoint_y(double y1, double y2);
+function geometry_midpoint_y(coord){
+    if(!Array.isArray(coord) || coord.length !== 2) return NaN;
+
+    return geometry.geometry_midpoint_y(coord[0], coord[1]);
+}
 // double geometry_slope(double x1, double y1, double x2, double y2);
