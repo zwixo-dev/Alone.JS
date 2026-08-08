@@ -7,8 +7,8 @@ let geometry;
 Module.onRuntimeInitialized = () => {
 
     geometry = {
-        geometry_distance_2d: Module.cwrap("geometry_distance_2d", "number", ["number", "number", "number", "number"]),
-        geometry_distance_3d: Module.cwrap("geometry_distance_3d", "number", ["number", "number", "number", "number", "number", "number"]),
+        geometry_distance_2d: Module.cwrap("geometry_distance_2d", "number", ["number", "number"]),
+        geometry_distance_3d: Module.cwrap("geometry_distance_3d", "number", ["number", "number"]),
         geometry_midpoint_x: Module.cwrap("geometry_midpoint_x", "number", ["number", "number"]),
         geometry_midpoint_y: Module.cwrap("geometry_midpoint_y", "number", ["number", "number"]),
         geometry_slope: Module.cwrap("geometry_slope", "number", ["number", "number"]),
@@ -64,6 +64,7 @@ Module.onRuntimeInitialized = () => {
     console.log("geometry_midpoint_x: ",geometry_midpoint_x([1, 2]));
     console.log("geometry_midpoint_y : ", geometry_midpoint_y([2, 4]));
     console.log("geometry_slope : ", geometry_slope(coordA, coordB));
+    console.log("triangle_area : ", triangle_area(12, 18));
 }
 
 
@@ -114,3 +115,20 @@ function geometry_slope(coordA, coordB){
     return geometry.geometry_slope(coordA[0], coordA[1],
                                     coordB[0], coordB[1]);
 }
+
+// Triangle
+
+// double triangle_area(double base, double height);
+// triangle_area
+function triangle_area(base, height){
+    return geometry.triangle_area(base, height);
+}
+
+// double triangle_perimeter(double a, double b, double c);
+// double triangle_heron_area(double a, double b, double c);
+// double triangle_semiperimeter(double a, double b, double c);
+// int triangle_is_valid(double a, double b, double c);
+// int triangle_is_equilateral(double a, double b, double c);
+// int triangle_is_isosceles(double a, double b, double c);
+// int triangle_is_scalene(double a, double b, double c);
+// int triangle_is_right(double a, double b, double c);
