@@ -13,7 +13,7 @@ Module.onRuntimeInitialized = () => {
         geometry_midpoint_y: Module.cwrap("geometry_midpoint_y", "number", ["number", "number"]),
         geometry_slope: Module.cwrap("geometry_slope", "number", ["number", "number"]),
         triangle_area: Module.cwrap("triangle_area", "number", ["number", "number"]),
-        triangle_perimeter: Module.cwrap("triangle_perimeter", "number", ["number", "number"]),
+        triangle_perimeter: Module.cwrap("triangle_perimeter", "number", ["number", "number", "number"]),
         triangle_semiperimeter: Module.cwrap("triangle_semiperimeter", "number", ["number", "number"]),
         triangle_heron_area: Module.cwrap("triangle_heron_area", "number", ["number", "number"]),
         triangle_is_valid: Module.cwrap("triangle_is_valid", "number", ["number", "number"]),
@@ -65,6 +65,7 @@ Module.onRuntimeInitialized = () => {
     console.log("geometry_midpoint_y : ", geometry_midpoint_y([2, 4]));
     console.log("geometry_slope : ", geometry_slope(coordA, coordB));
     console.log("triangle_area : ", triangle_area(12, 18));
+    console.log("triangle_perimeter : ", triangle_perimeter(3, 3, 4));
 }
 
 
@@ -125,6 +126,10 @@ function triangle_area(base, height){
 }
 
 // double triangle_perimeter(double a, double b, double c);
+// triangle_perimeter
+function triangle_perimeter(a, b, c){
+    return geometry.triangle_perimeter(a, b, c);   
+}
 // double triangle_heron_area(double a, double b, double c);
 // double triangle_semiperimeter(double a, double b, double c);
 // int triangle_is_valid(double a, double b, double c);
