@@ -14,7 +14,7 @@ Module.onRuntimeInitialized = () => {
         geometry_slope: Module.cwrap("geometry_slope", "number", ["number", "number"]),
         triangle_area: Module.cwrap("triangle_area", "number", ["number", "number"]),
         triangle_perimeter: Module.cwrap("triangle_perimeter", "number", ["number", "number", "number"]),
-        triangle_semiperimeter: Module.cwrap("triangle_semiperimeter", "number", ["number", "number"]),
+        triangle_semiperimeter: Module.cwrap("triangle_semiperimeter", "number", ["number", "number", "number"]),
         triangle_heron_area: Module.cwrap("triangle_heron_area", "number", ["number", "number", "number"]),
         triangle_is_valid: Module.cwrap("triangle_is_valid", "number", ["number", "number"]),
         triangle_is_equilateral: Module.cwrap("triangle_is_equilateral", "number", ["number", "number"]),
@@ -67,6 +67,7 @@ Module.onRuntimeInitialized = () => {
     console.log("triangle_area : ", triangle_area(12, 18));
     console.log("triangle_perimeter : ", triangle_perimeter(3, 3, 4));
     console.log("triangle_heron_area : ", triangle_heron_area(5, 6, 7));
+    console.log("triangle_semiperimeter : ", triangle_semiperimeter(7, 8, 9));
 }
 
 
@@ -137,6 +138,11 @@ function triangle_heron_area(a, b, c){
 }
 
 // double triangle_semiperimeter(double a, double b, double c);
+// triangle_semiperimeter
+function triangle_semiperimeter(a, b, c){
+    return geometry.triangle_semiperimeter(a, b, c);
+}
+
 // int triangle_is_valid(double a, double b, double c);
 // int triangle_is_equilateral(double a, double b, double c);
 // int triangle_is_isosceles(double a, double b, double c);
