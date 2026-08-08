@@ -7,7 +7,7 @@ let geometry;
 Module.onRuntimeInitialized = () => {
 
     geometry = {
-        geometry_distance_2d: Module.cwrap("geometry_distance_2d", "number", ["number", "number"]),
+        geometry_distance_2d: Module.cwrap("geometry_distance_2d", "number", ["number", "number", "number", "number"]),
         geometry_distance_3d: Module.cwrap("geometry_distance_3d", "number", ["number", "number"]),
         geometry_midpoint_x: Module.cwrap("geometry_midpoint_x", "number", ["number", "number"]),
         geometry_midpoint_y: Module.cwrap("geometry_midpoint_y", "number", ["number", "number"]),
@@ -55,6 +55,22 @@ Module.onRuntimeInitialized = () => {
         degrees_to_radians: Module.cwrap("degrees_to_radians", "number", ["number", "number"]),
         radians_to_degrees: Module.cwrap("radians_to_degrees", "number", ["number", "number"]),
 }
+
+    const coordA = [1, 2]
+    const coordB = [2, 4]
+
+    console.log(geometry_distance_2d(coordA, coordB));
+
 }
 
 
+
+// geometry_distance_2d
+// double geometry_distance_2d(double x1, double y1, double x2, double y2);
+function geometry_distance_2d(coordA, coordB){
+    if(!Array.isArray(coordA) || !Array.isArray(coordB) || 
+        coordA.length !== coordB.length ) return NaN;
+
+    
+    return geometry.geometry_distance_2d(coordA[0], coordA[1], coordB[0], coordB[1]);
+}
