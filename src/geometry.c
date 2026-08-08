@@ -1,4 +1,5 @@
 #include "../include/geometry.h"
+#include "../include/operations.h"
 #include <math.h>
 
 
@@ -184,13 +185,14 @@ double square_diagonal(double side){
 
 // circle_area
 double circle_area(double radius){
+    if (radius <= 0.0) return -1;
     // A = PI * r^2
     return M_PI * (radius * radius);
 }
 
 // circle_circumference
 double circle_circumference(double radius){
-    if (radius <= 0.0) return -1.0;
+    if (radius <= 0.0) return -1;
 
     // C = 2 * Pi * r 
     return 2.0 * M_PI * radius;
@@ -206,7 +208,7 @@ double circle_diameter(double radius){
 
 // circle_arc_length
 double circle_arc_length(double radius, double angle){
-    if (radius <= 0.0 || angle < 0.0) return -1.0;
+    if (radius <= 0.0 || angle < 0.0) return -1;
 
     // s = (Angle_theta/360) * 2 PI  * r
     return (angle / 360.0) * 2 * M_PI * radius;
@@ -214,7 +216,7 @@ double circle_arc_length(double radius, double angle){
 
 // circle_sector_area
 double circle_sector_area(double radius, double angle){
-    if (radius <= 0.0 || angle < 0.0) return -1.0;
+    if (radius <= 0.0 || angle < 0.0) return -1;
 
     // (angle / 360) * PI * r^2
     return ((angle / 360.0) * M_PI) * (radius * radius);
@@ -234,7 +236,7 @@ double ellipse_area(double a, double b){
 
 // ellipse_perimeter_basic
 double ellipse_perimeter_basic(double a, double b) {
-    if (a <= 0.0 || b <= 0.0) return -1.0;
+    if (a <= 0.0 || b <= 0.0) return -1;
     // 2 * PI √(a^2 + b^2) / 2.0
     return 2.0 * M_PI * sqrt((a * a + b * b) / 2.0);
 }
@@ -323,20 +325,20 @@ double cuboid_space_diagonal(double length, double width, double height){
 // cylinder_volume
 double cylinder_volume(double radius, double height){
     // V = π * r² * h
-    if(radius <= 0.0 || height <= 0.0) return -1.0;
+    if(radius <= 0.0 || height <= 0.0) return -1;
     return M_PI * radius * radius * height;
 }
 
 // cylinder_surface_area
 double cylinder_surface_area(double radius, double height){
-    if(radius <= 0.0 || height <= 0.0) return -1.0;
+    if(radius <= 0.0 || height <= 0.0) return -1;
     // A = 2*π*r*h + 2*π*r²
     return (2.0 * M_PI * radius * height) + (2.0 * M_PI * radius * radius); 
 }
 
 // cylinder_lateral_area
 double cylinder_lateral_area(double radius, double height){
-    if(radius <= 0.0 || height <= 0.0) return -1.0;
+    if(radius <= 0.0 || height <= 0.0) return -1;
     // AL = 2*π*r*h
     return 2.0 * M_PI * radius * height;
 }
