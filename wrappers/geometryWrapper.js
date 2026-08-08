@@ -18,7 +18,7 @@ Module.onRuntimeInitialized = () => {
         triangle_heron_area: Module.cwrap("triangle_heron_area", "number", ["number", "number", "number"]),
         triangle_is_valid: Module.cwrap("triangle_is_valid", "number", ["number", "number", "number"]),
         triangle_is_equilateral: Module.cwrap("triangle_is_equilateral", "number", ["number", "number", "number"]),
-        triangle_is_isosceles: Module.cwrap("triangle_is_isosceles", "number", ["number", "number"]),
+        triangle_is_isosceles: Module.cwrap("triangle_is_isosceles", "number", ["number", "number", "number"]),
         triangle_is_scalene: Module.cwrap("triangle_is_scalene", "number", ["number", "number"]),
         triangle_is_right: Module.cwrap("triangle_is_right", "number", ["number", "number"]),
         rectangle_area: Module.cwrap("rectangle_area", "number", ["number", "number"]),
@@ -69,7 +69,8 @@ Module.onRuntimeInitialized = () => {
     console.log("triangle_heron_area : ", triangle_heron_area(5, 6, 7));
     console.log("triangle_semiperimeter : ", triangle_semiperimeter(7, 8, 9));
     console.log("triangle_is_valid : ", triangle_is_valid(3, 4, 5));
-    console.log("triangle_is_equilateral : ", triangle_is_equilateral(5, 5, 6))
+    console.log("triangle_is_equilateral : ", triangle_is_equilateral(5, 5, 6));
+    console.log("triangle_is_isosceles : ", triangle_is_isosceles(2, 2, 2))
 }
 
 
@@ -162,5 +163,12 @@ function triangle_is_equilateral(a, b, c){
 }
 
 // int triangle_is_isosceles(double a, double b, double c);
+// triangle_is_isosceles
+function triangle_is_isosceles(a, b, c){
+    const triangle_is_isosceles_result = geometry.triangle_is_isosceles(a, b, c);
+
+    return triangle_is_isosceles_result ? true : false;
+}
+
 // int triangle_is_scalene(double a, double b, double c);
 // int triangle_is_right(double a, double b, double c);
