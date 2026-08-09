@@ -73,6 +73,7 @@ Module.onRuntimeInitialized = () => {
     console.log("triangle_is_isosceles : ", triangle_is_isosceles(2, 2, 2));
     console.log("triangle_is_scalene : ", triangle_is_scalene(5, 5, 8)); 
     console.log("triangle_is_right : ", triangle_is_right(3, 4, 5));
+    console.log("rectangle_area : ", rectangle_area(10, 4));
 }
 
 
@@ -187,3 +188,28 @@ function triangle_is_right(a, b, c){
 
     return triangle_is_right_result ? true : false;
 }
+
+// Rectangle
+
+// double rectangle_area(double length, double width);
+// rectangle_area
+function rectangle_area(length, width){
+    return geometry.rectangle_area(length, width);
+}
+
+// double rectangle_perimeter(double length, double width);
+// double rectangle_diagonal(double length, double width);
+
+// square
+
+// double square_area(double side);
+// double square_perimeter(double side);
+// double square_diagonal(double side);
+
+// circle
+
+// double circle_area(double radius);
+// double circle_circumference(double radius);
+// double circle_diameter(double radius);
+// double circle_arc_length(double radius, double angle);
+// double circle_sector_area(double radius, double angle);
