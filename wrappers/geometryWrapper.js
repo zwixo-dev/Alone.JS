@@ -74,8 +74,9 @@ Module.onRuntimeInitialized = () => {
     console.log("triangle_is_scalene : ", triangle_is_scalene(5, 5, 8)); 
     console.log("triangle_is_right : ", triangle_is_right(3, 4, 5));
     console.log("rectangle_area : ", rectangle_area(10, 4));
+    console.log("rectangle_perimeter : ", rectangle_perimeter(4, 6));
 }
-
+    
 
 
 // geometry_distance_2d
@@ -198,6 +199,11 @@ function rectangle_area(length, width){
 }
 
 // double rectangle_perimeter(double length, double width);
+// rectangle_perimeter
+function rectangle_perimeter(length, width){
+    return geometry.rectangle_perimeter(length, width);
+}
+
 // double rectangle_diagonal(double length, double width);
 
 // square
