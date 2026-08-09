@@ -82,6 +82,7 @@ Module.onRuntimeInitialized = () => {
     console.log("circle_area : ", circle_area(3));
     console.log("circle_circumference : ", circle_circumference(2));
     console.log("circle_diameter : ", circle_diameter(4));
+    console.log("circle_arc_length : ", circle_arc_length(7, 90));
 }
 
 
@@ -258,4 +259,9 @@ function circle_diameter(radius){
 }
 
 // double circle_arc_length(double radius, double angle);
+// circle_arc_length
+function circle_arc_length(radius, angle){
+    return geometry.circle_arc_length(radius, angle);
+}
+
 // double circle_sector_area(double radius, double angle);
