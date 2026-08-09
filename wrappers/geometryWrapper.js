@@ -84,7 +84,8 @@ Module.onRuntimeInitialized = () => {
     console.log("circle_diameter : ", circle_diameter(4));
     console.log("circle_arc_length : ", circle_arc_length(7, 90));
     console.log("circle_sector_area : ", circle_sector_area(7, 45))
-    console.log("ellipse_area : ", ellipse_area(5, 3)); 
+    console.log("ellipse_area : ", ellipse_area(5, 3));
+    console.log("ellipse_perimeter_basic : ", ellipse_perimeter_basic(5, 4));
 }
 
 
@@ -281,7 +282,10 @@ function ellipse_area(a, b){
 }
 
 // double ellipse_perimeter_basic(double a, double b);
-
+// ellipse_perimeter_basic
+function ellipse_perimeter_basic(a, b){
+    return geometry.ellipse_perimeter_basic(a, b);
+}
 // // polygon
 
 // double regular_polygon_perimeter(int sides, double side_length);
