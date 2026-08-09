@@ -80,6 +80,7 @@ Module.onRuntimeInitialized = () => {
     console.log("square_perimeter : ", square_perimeter(5));
     console.log("square_diagonal : ", square_diagonal(4));
     console.log("circle_area : ", circle_area(3));
+    console.log("circle_circumference : ", circle_circumference(2));
 }
 
 
@@ -242,7 +243,14 @@ function square_diagonal(side){
 function circle_area(radius){
     return geometry.circle_area(radius);
 }
+
 // double circle_circumference(double radius);
+// circle_circumference
+function circle_circumference(radius){
+    return geometry.circle_circumference(radius);
+}
+
 // double circle_diameter(double radius);
+
 // double circle_arc_length(double radius, double angle);
 // double circle_sector_area(double radius, double angle);
