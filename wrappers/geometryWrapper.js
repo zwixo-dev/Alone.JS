@@ -78,6 +78,7 @@ Module.onRuntimeInitialized = () => {
     console.log("rectangle_diagonal : ", rectangle_diagonal(5, 8));
     console.log("square_area : ", square_area(4));
     console.log("square_perimeter : ", square_perimeter(5));
+    console.log("square_diagonal : ", square_diagonal(4));
 }
 
 
@@ -228,6 +229,10 @@ function square_perimeter(side){
 }
 
 // double square_diagonal(double side);
+// square_diagonal
+function square_diagonal(side){
+    return geometry.square_diagonal(side);
+}
 
 // circle
 
