@@ -349,7 +349,13 @@ function cube_space_diagonal(side){
 function cuboid_volume(length, width, height){
     return geometry.cuboid_volume(length, width, height);
 }
+
 // double cuboid_surface_area(double length, double width, double height);
+// cuboid_surface_area
+function cuboid_surface_area(length, width, height){
+    return geometry.cuboid_surface_area(length, width, height);
+}
+
 // double cuboid_space_diagonal(double length, double width, double height);
 
 // Cylinder
