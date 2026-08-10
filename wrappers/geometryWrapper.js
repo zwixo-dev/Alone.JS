@@ -91,6 +91,7 @@ Module.onRuntimeInitialized = () => {
     console.log("polygon_interior_angle_sum : ", polygon_interior_angle_sum(5));
     console.log("regular_polygon_interior_angle : ", regular_polygon_interior_angle(4));
     console.log("cube_volume : ", cube_volume(4));
+    console.log("cube_surface_area : ", cube_surface_area(4));
 }
 
 
@@ -328,6 +329,11 @@ function cube_volume(side){
 }
 
 // double cube_surface_area(double side);
+// cube_surface_area
+function cube_surface_area(side){
+    return geometry.cube_surface_area(side);
+}
+
 // double cube_space_diagonal(double side);
 
 //Rectangular Prism
