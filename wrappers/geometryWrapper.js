@@ -43,7 +43,7 @@ Module.onRuntimeInitialized = () => {
         cube_space_diagonal: Module.cwrap("cube_space_diagonal", "number", ["number", "number"]),
         cuboid_volume: Module.cwrap("cuboid_volume", "number", ["number", "number", "number"]),
         cuboid_surface_area: Module.cwrap("cuboid_surface_area", "number", ["number", "number", "number"]),
-        cuboid_space_diagonal: Module.cwrap("cuboid_space_diagonal", "number", ["number", "number"]),
+        cuboid_space_diagonal: Module.cwrap("cuboid_space_diagonal", "number", ["number", "number", "number"]),
         cylinder_volume: Module.cwrap("cylinder_volume", "number", ["number", "number"]),
         cylinder_surface_area: Module.cwrap("cylinder_surface_area", "number", ["number", "number"]),
         cylinder_lateral_area: Module.cwrap("cylinder_lateral_area", "number", ["number", "number"]),
@@ -95,6 +95,7 @@ Module.onRuntimeInitialized = () => {
     console.log("cube_space_diagonal : ", cube_space_diagonal(4));
     console.log("cuboid_volume : ", cuboid_volume(2, 4, 5));
     console.log("cuboid_surface_area : ", cuboid_surface_area(4, 5, 8));
+    console.log("cuboid_space_diagonal : ", cuboid_space_diagonal(4, 5, 8));
 }
 
 
@@ -359,6 +360,9 @@ function cuboid_surface_area(length, width, height){
 
 // double cuboid_space_diagonal(double length, double width, double height);
 // cuboid_space_diagonal
+function cuboid_space_diagonal(length, width, height){
+    return geometry.cuboid_space_diagonal(length, width, height);
+}
 
 // Cylinder
 
