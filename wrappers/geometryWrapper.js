@@ -90,6 +90,7 @@ Module.onRuntimeInitialized = () => {
     console.log("regular_polygon_area : ", regular_polygon_area(4, 8));
     console.log("polygon_interior_angle_sum : ", polygon_interior_angle_sum(5));
     console.log("regular_polygon_interior_angle : ", regular_polygon_interior_angle(4));
+    console.log("cube_volume : ", cube_volume(4));
 }
 
 
@@ -316,3 +317,27 @@ function polygon_interior_angle_sum(sides){
 function regular_polygon_interior_angle(sides){
     return geometry.regular_polygon_interior_angle(sides);
 }
+
+
+// cube
+
+// double cube_volume(double side);
+// cube_volume
+function cube_volume(side){
+    return geometry.cube_volume(side);
+}
+
+// double cube_surface_area(double side);
+// double cube_space_diagonal(double side);
+
+//Rectangular Prism
+
+// double cuboid_volume(double length, double width, double height);
+// double cuboid_surface_area(double length, double width, double height);
+// double cuboid_space_diagonal(double length, double width, double height);
+
+// Cylinder
+
+// double cylinder_volume(double radius, double height);
+// double cylinder_surface_area(double radius, double height);
+// double cylinder_lateral_area(double radius, double height);
