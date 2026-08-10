@@ -97,6 +97,7 @@ Module.onRuntimeInitialized = () => {
     console.log("cuboid_surface_area : ", cuboid_surface_area(4, 5, 8));
     console.log("cuboid_space_diagonal : ", cuboid_space_diagonal(4, 5, 8));
     console.log("cylinder_volume : ", cylinder_volume(5, 10));
+    console.log("cylinder_surface_area : ", cylinder_surface_area(2, 4));
 }
 
 
@@ -374,4 +375,8 @@ function cylinder_volume(radius, height){
 }
 
 // double cylinder_surface_area(double radius, double height);
+// cylinder_surface_area
+function cylinder_surface_area(radius, height){
+    return geometry.cylinder_surface_area(radius, height);
+}
 // double cylinder_lateral_area(double radius, double height);
