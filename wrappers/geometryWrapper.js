@@ -41,7 +41,7 @@ Module.onRuntimeInitialized = () => {
         cube_volume: Module.cwrap("cube_volume", "number", ["number", "number"]),
         cube_surface_area: Module.cwrap("cube_surface_area", "number", ["number", "number"]),
         cube_space_diagonal: Module.cwrap("cube_space_diagonal", "number", ["number", "number"]),
-        cuboid_volume: Module.cwrap("cuboid_volume", "number", ["number", "number"]),
+        cuboid_volume: Module.cwrap("cuboid_volume", "number", ["number", "number", "number"]),
         cuboid_surface_area: Module.cwrap("cuboid_surface_area", "number", ["number", "number"]),
         cuboid_space_diagonal: Module.cwrap("cuboid_space_diagonal", "number", ["number", "number"]),
         cylinder_volume: Module.cwrap("cylinder_volume", "number", ["number", "number"]),
@@ -93,6 +93,7 @@ Module.onRuntimeInitialized = () => {
     console.log("cube_volume : ", cube_volume(4));
     console.log("cube_surface_area : ", cube_surface_area(4));
     console.log("cube_space_diagonal : ", cube_space_diagonal(4));
+    console.log("cuboid_volume : ", cuboid_volume(2, 4, 5));
 }
 
 
@@ -344,6 +345,10 @@ function cube_space_diagonal(side){
 //Rectangular Prism
 
 // double cuboid_volume(double length, double width, double height);
+// cuboid_volume
+function cuboid_volume(length, width, height){
+    return geometry.cuboid_volume(length, width, height);
+}
 // double cuboid_surface_area(double length, double width, double height);
 // double cuboid_space_diagonal(double length, double width, double height);
 
