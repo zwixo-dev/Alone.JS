@@ -100,6 +100,7 @@ Module.onRuntimeInitialized = () => {
     console.log("cylinder_surface_area : ", cylinder_surface_area(2, 4));
     console.log("cylinder_lateral_area : ", cylinder_lateral_area(2, 4));
     console.log("sphere_volume : ", sphere_volume(3));
+    console.log("sphere_surface_area : ", sphere_surface_area(4));
 }
 
 
@@ -394,7 +395,12 @@ function cylinder_lateral_area(radius, height){
 function sphere_volume(radius){
     return geometry.sphere_volume(radius);
 }
+
 // double sphere_surface_area(double radius);
+// sphere_surface_area
+function sphere_surface_area(radius){
+    return geometry.sphere_surface_area(radius);
+} 
 
 // cone
 
