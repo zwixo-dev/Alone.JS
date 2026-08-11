@@ -103,6 +103,7 @@ Module.onRuntimeInitialized = () => {
     console.log("sphere_surface_area : ", sphere_surface_area(4));
     console.log("cone_volume : ", cone_volume(4, 8));
     console.log("cone_surface_area : ", cone_surface_area(4, 10));
+    console.log("cone_slant_height : ", cone_slant_height(4, 5));
 }
 
 
@@ -417,6 +418,10 @@ function cone_surface_area(radius, height){
     return geometry.cone_surface_area(radius, height);
 }
 // double cone_slant_height(double radius, double height);
+// cone_slant_height
+function cone_slant_height(radius, height){
+    return geometry.cone_slant_height(radius, height);
+}
 
 // unit Conversion
 
