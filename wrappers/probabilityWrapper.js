@@ -51,7 +51,7 @@ Module.onRuntimeInitialized = () =>{
     console.log("exponential_cdf : ", exponential_cdf(2, 0.5));
     console.log("uniform_pdf : ", uniform_pdf(6, 2, 10));
     console.log("uniform_cdf : ", uniform_cdf(6, 2, 10));
-    console.log("standard_normal_pdf : ", probability.standard_normal_pdf(0));
+    console.log("standard_normal_pdf : ", standard_normal_pdf(0));
     console.log("standard_normal_cdf : ", probability.standard_normal_cdf(0));
     console.log("weibull_pdf : ", probability.weibull_pdf(8, 2, 10));
     console.log("weibull_cdf : ", probability.weibull_cdf(8, 2, 10));
@@ -148,5 +148,9 @@ function uniform_cdf(x, a, b){
 }
 
 // double standard_normal_pdf(double z);
+// standard_normal_pdf
+function standard_normal_pdf(z){
+    return probability.standard_normal_pdf(z);
+}
 
 // double standard_normal_cdf(double z);
