@@ -46,7 +46,7 @@ Module.onRuntimeInitialized = () =>{
     console.log("normal_cdf : ", normal_cdf(115, 100, 15));
     console.log("bernoulli : ", bernoulli(1, 0.7));
     console.log("geometric_probability : ", geometric_probability(3, 0.5));
-    console.log("hypergeometric_probability : ", probability.hypergeometric_probability(52, 4, 5, 3));
+    console.log("hypergeometric_probability : ", hypergeometric_probability(52, 4, 5, 3));
     console.log("exponential_pdf : ", probability.exponential_pdf(2, 0.5));
     console.log("exponential_cdf : ", probability.exponential_cdf(2, 0.5));
     console.log("uniform_pdf : ", probability.uniform_pdf(6, 2, 10));
@@ -118,6 +118,10 @@ function geometric_probability(k, p){
 }
 
 // double hypergeometric_probability(int N, int K, int n, int k);
+// hypergeometric_probability
+function hypergeometric_probability(N, K, n, k){
+    return probability.hypergeometric_probability(N, K, n, k)
+}
 
 // double exponential_pdf(double x, double lambda);
 
