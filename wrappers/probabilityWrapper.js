@@ -44,7 +44,7 @@ Module.onRuntimeInitialized = () =>{
     console.log("poisson_probability : ", poisson_probability(5, 3));
     console.log("normal_pdf : ", normal_pdf(100, 100, 15));
     console.log("normal_cdf : ", normal_cdf(115, 100, 15));
-    console.log("bernoulli : ", probability.bernoulli(1, 0.7));
+    console.log("bernoulli : ", bernoulli(1, 0.7));
     console.log("geometric_probability : ", probability.geometric_probability(3, 0.5));
     console.log("hypergeometric_probability : ", probability.hypergeometric_probability(52, 4, 5, 3));
     console.log("exponential_pdf : ", probability.exponential_pdf(2, 0.5));
@@ -106,3 +106,7 @@ function normal_cdf(x, mean, stddev){
 }
 
 // double bernoulli(double x, double p);
+// bernoulli
+function bernoulli(x, p){
+    return probability.bernoulli(x, p);
+}
