@@ -40,7 +40,7 @@ Module.onRuntimeInitialized = () =>{
     console.log("factorial : ", factorial(3));
     console.log("permutation : ", permutation(10,3));
     console.log("combination : ", combination(5, 2));
-    console.log("binomial_probability : ",probability.binomial_probability(5, 3, 0.25));
+    console.log("binomial_probability : ", binomial_probability(5, 3, 0.25));
     console.log("poisson_probability : ", probability.poisson_probability(5, 3));
     console.log("normal_pdf : ", probability.normal_pdf(100, 100, 15));
     console.log("normal_cdf : ", probability.normal_cdf(115, 100, 15));
@@ -80,7 +80,13 @@ function permutation(n, r){
 function combination(n, r){
     return probability.combination(n, r);
 }
+
 // double binomial_probability(int n, int x, double p);
+// binomial_probability
+function binomial_probability(n, x, p){
+    return probability.binomial_probability(n, x, p);
+}
+
 // double poisson_probability(int k, double lambda);
 // double normal_pdf(double x, double mean, double stddev);
 // double normal_cdf(double x, double mean, double stddev);
