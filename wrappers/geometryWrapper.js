@@ -104,6 +104,8 @@ Module.onRuntimeInitialized = () => {
     console.log("cone_volume : ", cone_volume(4, 8));
     console.log("cone_surface_area : ", cone_surface_area(4, 10));
     console.log("cone_slant_height : ", cone_slant_height(4, 5));
+    console.log("degrees_to_radians : ", degrees_to_radians(45));
+    console.log("radians_to_degrees : ", radians_to_degrees(30));
 }
 
 
@@ -426,4 +428,12 @@ function cone_slant_height(radius, height){
 // unit Conversion
 
 // double degrees_to_radians(double degrees);
+// degrees_to_radians
+function degrees_to_radians(degrees){
+    return geometry.degrees_to_radians(degrees);
+}
+
 // double radians_to_degrees(double radians);
+function radians_to_degrees(radians){
+    return geometry.radians_to_degrees(radians);
+}
