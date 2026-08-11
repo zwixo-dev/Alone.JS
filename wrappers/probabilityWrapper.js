@@ -49,7 +49,7 @@ Module.onRuntimeInitialized = () =>{
     console.log("hypergeometric_probability : ", hypergeometric_probability(52, 4, 5, 3));
     console.log("exponential_pdf : ", exponential_pdf(2, 0.5));
     console.log("exponential_cdf : ", exponential_cdf(2, 0.5));
-    console.log("uniform_pdf : ", probability.uniform_pdf(6, 2, 10));
+    console.log("uniform_pdf : ", uniform_pdf(6, 2, 10));
     console.log("uniform_cdf : ", probability.uniform_cdf(6, 2, 10  ));
     console.log("standard_normal_pdf : ", probability.standard_normal_pdf(0));
     console.log("standard_normal_cdf : ", probability.standard_normal_cdf(0));
@@ -136,6 +136,10 @@ function exponential_cdf(x, lambda){
 }
 
 // double uniform_pdf(double x, double a, double b);
+// uniform_pdf
+function uniform_pdf(x, a, b){
+    return probability.uniform_pdf(x, a, b);
+}
 
 // double uniform_cdf(double x, double a, double b);
 
