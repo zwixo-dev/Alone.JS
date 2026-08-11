@@ -37,7 +37,7 @@ Module.onRuntimeInitialized = () =>{
 
 
     // fast test
-    console.log("factorial : ",probability.factorial(3));
+    console.log("factorial : ", factorial(3));
     console.log("permutation : ",probability.permutation(10,3));
     console.log("combination : ",probability.combination(5, 2));
     console.log("binomial_probability : ",probability.binomial_probability(5, 3, 0.25));
@@ -62,3 +62,17 @@ Module.onRuntimeInitialized = () =>{
 }
 
 
+
+// double factorial(int n);
+// factorial
+function factorial(n){
+    return probability.factorial(n);
+}
+
+// double permutation(int n, int r);
+// double combination(int n, int r);
+// double binomial_probability(int n, int x, double p);
+// double poisson_probability(int k, double lambda);
+// double normal_pdf(double x, double mean, double stddev);
+// double normal_cdf(double x, double mean, double stddev);
+// double bernoulli(double x, double p);
