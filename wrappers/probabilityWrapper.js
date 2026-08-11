@@ -45,7 +45,7 @@ Module.onRuntimeInitialized = () =>{
     console.log("normal_pdf : ", normal_pdf(100, 100, 15));
     console.log("normal_cdf : ", normal_cdf(115, 100, 15));
     console.log("bernoulli : ", bernoulli(1, 0.7));
-    console.log("geometric_probability : ", probability.geometric_probability(3, 0.5));
+    console.log("geometric_probability : ", geometric_probability(3, 0.5));
     console.log("hypergeometric_probability : ", probability.hypergeometric_probability(52, 4, 5, 3));
     console.log("exponential_pdf : ", probability.exponential_pdf(2, 0.5));
     console.log("exponential_cdf : ", probability.exponential_cdf(2, 0.5));
@@ -110,3 +110,23 @@ function normal_cdf(x, mean, stddev){
 function bernoulli(x, p){
     return probability.bernoulli(x, p);
 }
+
+// double geometric_probability(int k, double p);
+// geometric_probability
+function geometric_probability(k, p){
+    return probability.geometric_probability(k, p);
+}
+
+// double hypergeometric_probability(int N, int K, int n, int k);
+
+// double exponential_pdf(double x, double lambda);
+
+// double exponential_cdf(double x, double lambda);
+
+// double uniform_pdf(double x, double a, double b);
+
+// double uniform_cdf(double x, double a, double b);
+
+// double standard_normal_pdf(double z);
+
+// double standard_normal_cdf(double z);
