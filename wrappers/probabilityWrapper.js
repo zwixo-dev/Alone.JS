@@ -41,7 +41,7 @@ Module.onRuntimeInitialized = () =>{
     console.log("permutation : ", permutation(10,3));
     console.log("combination : ", combination(5, 2));
     console.log("binomial_probability : ", binomial_probability(5, 3, 0.25));
-    console.log("poisson_probability : ", probability.poisson_probability(5, 3));
+    console.log("poisson_probability : ", poisson_probability(5, 3));
     console.log("normal_pdf : ", probability.normal_pdf(100, 100, 15));
     console.log("normal_cdf : ", probability.normal_cdf(115, 100, 15));
     console.log("bernoulli : ", probability.bernoulli(1, 0.7));
@@ -88,6 +88,11 @@ function binomial_probability(n, x, p){
 }
 
 // double poisson_probability(int k, double lambda);
+// poisson_probability
+function poisson_probability(k, lambda){
+    return probability.poisson_probability(k, lambda);
+}
+
 // double normal_pdf(double x, double mean, double stddev);
 // double normal_cdf(double x, double mean, double stddev);
 // double bernoulli(double x, double p);
