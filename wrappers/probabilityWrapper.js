@@ -3,6 +3,7 @@ const Module = require('../wasm/probability.js');
 
 let probability;
 
+console.log(Module);
 
 Module.onRuntimeInitialized = () =>{
 
@@ -59,6 +60,7 @@ Module.onRuntimeInitialized = () =>{
     console.log("logistic_cdf", logistic_cdf(0, 0, 1));
     console.log("cauchy_pdf", cauchy_pdf(5, 0, 1));
     console.log("cauchy_cdf", cauchy_cdf(5, 0, 1));
+    console.log("chi_square_pdf : ", chi_square_pdf(6, 3));
 }
 
 
@@ -196,6 +198,11 @@ function cauchy_cdf(x, x0, gamma){
 }
 
 // double chi_square_pdf(double x, int k);
+// chi_square_pdf
+function chi_square_pdf(x, k){
+    return probability.chi_square_pdf(x, k);
+}
+
 // double chi_square_cdf(double x, int k);
 // double f_distribution_pdf(double x, double d1, double d2);
 // double f_distribution_cdf(double x, double d1, double d2);
