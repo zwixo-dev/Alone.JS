@@ -58,7 +58,7 @@ Module.onRuntimeInitialized = () =>{
     console.log("logistic_pdf : ", logistic_pdf(0, 0, 1));
     console.log("logistic_cdf", logistic_cdf(0, 0, 1));
     console.log("cauchy_pdf", cauchy_pdf(5, 0, 1));
-    console.log("cauchy_cdf", probability.cauchy_cdf(5, 0, 1));
+    console.log("cauchy_cdf", cauchy_cdf(5, 0, 1));
 }
 
 
@@ -190,6 +190,11 @@ function cauchy_pdf(x, x0, gamma){
 }
 
 // double cauchy_cdf(double x, double x0, double gamma);
+// cauchy_cdf
+function cauchy_cdf(x, x0, gamma){
+    return probability.cauchy_cdf(x, x0, gamma);
+}
+
 // double chi_square_pdf(double x, int k);
 // double chi_square_cdf(double x, int k);
 // double f_distribution_pdf(double x, double d1, double d2);
