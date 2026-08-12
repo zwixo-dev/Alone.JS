@@ -53,7 +53,7 @@ Module.onRuntimeInitialized = () =>{
     console.log("uniform_cdf : ", uniform_cdf(6, 2, 10));
     console.log("standard_normal_pdf : ", standard_normal_pdf(0));
     console.log("standard_normal_cdf : ", standard_normal_cdf(0));
-    console.log("weibull_pdf : ", probability.weibull_pdf(8, 2, 10));
+    console.log("weibull_pdf : ", weibull_pdf(8, 2, 10));
     console.log("weibull_cdf : ", probability.weibull_cdf(8, 2, 10));
     console.log("logistic_pdf : ", probability.logistic_pdf(0, 0, 1));
     console.log("logistic_cdf", probability.logistic_cdf(0, 0, 1));
@@ -158,3 +158,19 @@ function standard_normal_pdf(z){
 function standard_normal_cdf(z){
     return probability.standard_normal_cdf(z);
 }
+
+// double weibull_pdf(double x, double shape, double scale);
+// weibull_pdf
+function weibull_pdf(x, shape, scale){
+    return probability.weibull_pdf(x, shape, scale);
+}
+
+// double weibull_cdf(double x, double shape, double scale);
+// double logistic_pdf(double x, double mean, double scale);
+// double logistic_cdf(double x, double mean, double scale);
+// double cauchy_pdf(double x, double x0, double gamma);
+// double cauchy_cdf(double x, double x0, double gamma);
+// double chi_square_pdf(double x, int k);
+// double chi_square_cdf(double x, int k);
+// double f_distribution_pdf(double x, double d1, double d2);
+// double f_distribution_cdf(double x, double d1, double d2);
