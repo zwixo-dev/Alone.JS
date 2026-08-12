@@ -61,6 +61,7 @@ Module.onRuntimeInitialized = () =>{
     console.log("cauchy_pdf", cauchy_pdf(5, 0, 1));
     console.log("cauchy_cdf", cauchy_cdf(5, 0, 1));
     console.log("chi_square_pdf : ", chi_square_pdf(6, 3));
+    console.log("chi_square_cdf : ", chi_square_cdf(10, 2));
 }
 
 
@@ -204,5 +205,9 @@ function chi_square_pdf(x, k){
 }
 
 // double chi_square_cdf(double x, int k);
+// chi_square_cdf
+function chi_square_cdf(x, k){
+    return probability.chi_square_cdf(x, k);
+}
 // double f_distribution_pdf(double x, double d1, double d2);
 // double f_distribution_cdf(double x, double d1, double d2);
