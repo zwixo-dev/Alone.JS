@@ -56,7 +56,7 @@ Module.onRuntimeInitialized = () =>{
     console.log("weibull_pdf : ", weibull_pdf(8, 2, 10));
     console.log("weibull_cdf : ", weibull_cdf(8, 2, 10));
     console.log("logistic_pdf : ", logistic_pdf(0, 0, 1));
-    console.log("logistic_cdf", probability.logistic_cdf(0, 0, 1));
+    console.log("logistic_cdf", logistic_cdf(0, 0, 1));
     console.log("cauchy_pdf", probability.cauchy_pdf(5, 0, 1));
     console.log("cauchy_cdf", probability.cauchy_cdf(5, 0, 1));
 }
@@ -178,6 +178,11 @@ function logistic_pdf(x, mean, scale){
 }
 
 // double logistic_cdf(double x, double mean, double scale);
+// logistic_cdf(x, mean, scale)
+function logistic_cdf(x, mean, scale){
+    return probability.logistic_cdf(x, mean, scale);
+}
+
 // double cauchy_pdf(double x, double x0, double gamma);
 // double cauchy_cdf(double x, double x0, double gamma);
 // double chi_square_pdf(double x, int k);
