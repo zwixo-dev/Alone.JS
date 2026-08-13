@@ -46,3 +46,8 @@ function power(base, exponent){
 function square(n){
     return operations.square(n);
 }
+
+// cube
+function cube(n){
+    return operations.cube(n);
+}
