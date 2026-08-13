@@ -42,3 +42,7 @@ function power(base, exponent){
     return operations.power(base, exponent);
 }
 
+// square
+function square(n){
+    return operations.square(n);
+}
