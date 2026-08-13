@@ -26,3 +26,8 @@ function addition(a, b){
 function subtract(a, b){
     return operations.subtract(a, b);
 }
+
+// multiply
+function multiply(a, b){
+    return operations.multiply(a, b);
+}
