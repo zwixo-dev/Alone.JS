@@ -51,3 +51,8 @@ function square(n){
 function cube(n){
     return operations.cube(n);
 }
+
+// sqrt
+function sqrt(n){
+    return operations.sqrt(n);
+}
