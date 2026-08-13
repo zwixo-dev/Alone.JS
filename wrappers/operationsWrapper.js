@@ -22,5 +22,7 @@ function addition(a, b){
     return operations.addition(a, b);
 }
 
-
-
+// subtract
+function subtract(a, b){
+    return operations.subtract(a, b);
+}
