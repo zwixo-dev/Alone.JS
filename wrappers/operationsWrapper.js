@@ -15,3 +15,12 @@ Module.onRuntimeInitialized = () => {
     }
     
 };
+
+
+// addition
+function addition(a, b){
+    return operations.addition(a, b);
+}
+
+
+
