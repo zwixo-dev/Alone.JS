@@ -31,3 +31,8 @@ function subtract(a, b){
 function multiply(a, b){
     return operations.multiply(a, b);
 }
+
+// divide
+function divide(a, b){
+    return operations.divide(a, b);
+}
