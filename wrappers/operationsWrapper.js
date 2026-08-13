@@ -56,3 +56,8 @@ function cube(n){
 function sqrt(n){
     return operations.sqrt(n);
 }
+
+// aBs
+function aBs(n){
+    return operations.aBs(n);
+}
