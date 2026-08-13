@@ -1,8 +1,10 @@
 const Module = require('../wasm/operations.js');
 
+let operations;
+
 Module.onRuntimeInitialized = () => {
 
-    const operations = {
+    operations = {
         addition: Module.cwrap("addition", "number", ["number","number"]),
         subtract: Module.cwrap("subtract", "number", ["number","number"]),
         multiply: Module.cwrap("multiply", "number", ["number","number"]),
@@ -14,6 +16,15 @@ Module.onRuntimeInitialized = () => {
         aBs: Module.cwrap("aBs", "number", ["number","number"]),
     }
     
+    console.log("addition : ", addition(9, 9));
+    console.log("subtract : ", subtract(20, 1));
+    console.log("multiply : ", multiply(9, 4));
+    console.log("divide : ", divide(16, 4));
+    console.log("power : ", power(2, 3));
+    console.log("square : ", square(2));
+    console.log("cube : ", cube(3));
+    console.log("sqrt : ", sqrt(16));
+    console.log("aBs : ", aBs(-1));
 };
 
 
