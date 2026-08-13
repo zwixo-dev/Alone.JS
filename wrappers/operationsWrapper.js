@@ -36,3 +36,9 @@ function multiply(a, b){
 function divide(a, b){
     return operations.divide(a, b);
 }
+
+// power
+function power(base, exponent){
+    return operations.power(base, exponent);
+}
+
