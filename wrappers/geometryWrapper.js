@@ -52,7 +52,7 @@ Module.onRuntimeInitialized = () => {
         cone_volume: Module.cwrap("cone_volume", "number", ["number", "number"]),
         cone_surface_area: Module.cwrap("cone_surface_area", "number", ["number", "number"]),
         cone_slant_height: Module.cwrap("cone_slant_height", "number", ["number", "number"]),
-        degrees_to_radians: Module.cwrap("degrees_to_radians", "number", ["number", "number"]),
+        degrees_to_radians: Module.cwrap("degrees_to_radians", "number", ["number"]),
         radians_to_degrees: Module.cwrap("radians_to_degrees", "number", ["number", "number"]),
 }
 
