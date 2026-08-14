@@ -37,7 +37,7 @@ Module.onRuntimeInitialized = () => {
         regular_polygon_perimeter: Module.cwrap("regular_polygon_perimeter", "number", ["number", "number"]),
         regular_polygon_area: Module.cwrap("regular_polygon_area", "number", ["number", "number"]),
         polygon_interior_angle_sum: Module.cwrap("polygon_interior_angle_sum", "number", ["number", "number"]),
-        regular_polygon_interior_angle: Module.cwrap("regular_polygon_interior_angle", "number", ["number", "number"]),
+        regular_polygon_interior_angle: Module.cwrap("regular_polygon_interior_angle", "number", ["number"]),
         cube_volume: Module.cwrap("cube_volume", "number", ["number", "number"]),
         cube_surface_area: Module.cwrap("cube_surface_area", "number", ["number", "number"]),
         cube_space_diagonal: Module.cwrap("cube_space_diagonal", "number", ["number", "number"]),
