@@ -27,7 +27,7 @@ Module.onRuntimeInitialized = () => {
         square_area: Module.cwrap("square_area", "number", ["number", "number"]),
         square_perimeter: Module.cwrap("square_perimeter", "number", ["number"]),
         square_diagonal: Module.cwrap("square_diagonal", "number", ["number"]),
-        circle_area: Module.cwrap("circle_area", "number", ["number", "number"]),
+        circle_area: Module.cwrap("circle_area", "number", ["number"]),
         circle_circumference: Module.cwrap("circle_circumference", "number", ["number", "number"]),
         circle_diameter: Module.cwrap("circle_diameter", "number", ["number", "number"]),
         circle_arc_length: Module.cwrap("circle_arc_length", "number", ["number", "number"]),
