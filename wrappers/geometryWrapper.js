@@ -9,7 +9,7 @@ Module.onRuntimeInitialized = () => {
     geometry = {
         geometry_distance_2d: Module.cwrap("geometry_distance_2d", "number", ["number", "number"]),
         geometry_distance_3d: Module.cwrap("geometry_distance_3d", "number", ["number", "number"]),
-        geometry_midpoint_x: Module.cwrap("geometry_midpoint_x", "number", ["number", "number"]),
+        geometry_midpoint_x: Module.cwrap("geometry_midpoint_x", "number", ["number"]),
         geometry_midpoint_y: Module.cwrap("geometry_midpoint_y", "number", ["number", "number"]),
         geometry_slope: Module.cwrap("geometry_slope", "number", ["number", "number"]),
         triangle_area: Module.cwrap("triangle_area", "number", ["number", "number"]),
