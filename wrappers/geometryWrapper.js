@@ -48,7 +48,7 @@ Module.onRuntimeInitialized = () => {
         cylinder_surface_area: Module.cwrap("cylinder_surface_area", "number", ["number", "number"]),
         cylinder_lateral_area: Module.cwrap("cylinder_lateral_area", "number", ["number", "number"]),
         sphere_volume: Module.cwrap("sphere_volume", "number", ["number"]),
-        sphere_surface_area: Module.cwrap("sphere_surface_area", "number", ["number", "number"]),
+        sphere_surface_area: Module.cwrap("sphere_surface_area", "number", ["number"]),
         cone_volume: Module.cwrap("cone_volume", "number", ["number", "number"]),
         cone_surface_area: Module.cwrap("cone_surface_area", "number", ["number", "number"]),
         cone_slant_height: Module.cwrap("cone_slant_height", "number", ["number", "number"]),
