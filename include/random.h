@@ -40,6 +40,6 @@ char random_letter(void);
 char random_digit_range(char min, char max);
 char random_letter_case(int uppercase);
 int random_bool(void);
-
+int random_sign(void);
 
 #endif
