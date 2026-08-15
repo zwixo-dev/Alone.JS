@@ -34,4 +34,9 @@ void random_coord_3d(double min_x, double max_x,
 void random_seed(unsigned int seed);
 void random_seed_time(void);
 
+// Character
+char random_digit(void);
+char random_letter(void);
+
+
 #endif
