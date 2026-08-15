@@ -25,5 +25,9 @@ void random_sample(int size, const double *array, int sample_size, double *resul
 void random_coord_2d(double min_x, double max_x,
                      double min_y, double max_y,
                      double *result);
+void random_coord_3d(double min_x, double max_x,
+                     double min_y, double max_y,
+                     double min_z, double max_z,
+                     double *result);
 
 #endif
