@@ -11,4 +11,9 @@ int random_sign(void);
 int random_int_range(int min, int max);
 double random_double_range(double min, double max);
 
+// Arrays
+void random_fill_int(int size, int *array, int min, int max);
+void random_fill_double(int size, double *array, double min, double max);
+void random_shuffle(int size, double *array);
+
 #endif
