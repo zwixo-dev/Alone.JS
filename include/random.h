@@ -37,6 +37,7 @@ void random_seed_time(void);
 // Character
 char random_digit(void);
 char random_letter(void);
+char random_digit_range(char min, char max);
 
 
 #endif
