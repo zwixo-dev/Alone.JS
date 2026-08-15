@@ -21,4 +21,9 @@ int random_index(int size);
 double random_choice(int size, const double *array);
 void random_sample(int size, const double *array, int sample_size, double *result);
 
+// Coordinates
+void random_coord_2d(double min_x, double max_x,
+                     double min_y, double max_y,
+                     double *result);
+
 #endif
