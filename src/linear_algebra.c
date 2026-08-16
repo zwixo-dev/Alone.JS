@@ -14,3 +14,13 @@ double inverse_lerp(double a, double b, double value) {
     double result = (value - a) / (b - a);
     return clamp(result, 0.0, 1.0);
 }
+
+double remap(double value, double in_min, double in_max, double out_min, double out_max) {
+    if (in_min == in_max) return -1.0; // Undefined
+    
+    //get the percentage position
+    double t = (value - in_min) / (in_max - in_min);
+    t = clamp(t, 0.0, 1.0);
+    
+    return out_min + t * (out_max - out_min);
+}
