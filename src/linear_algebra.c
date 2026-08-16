@@ -34,3 +34,14 @@ double smoothstep(double edge0, double edge1, double x) {
 
     return t * t * (3.0 - 2.0 * t);
 }
+
+double smootherstep(double edge0, double edge1, double x) {
+    if (edge0 == edge1) return -1.0; // Undefined
+    
+    // norm and clamp 
+    double t = (x - edge0) / (edge1 - edge0);
+    t = clamp(t, 0.0, 1.0);
+    
+
+    return t * t * t * (t * (t * 6.0 - 15.0) + 10.0);
+}
