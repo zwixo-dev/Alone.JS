@@ -24,3 +24,13 @@ double remap(double value, double in_min, double in_max, double out_min, double 
     
     return out_min + t * (out_max - out_min);
 }
+
+double smoothstep(double edge0, double edge1, double x) {
+    if (edge0 == edge1) return -1.0; // Undefined
+    
+    // norm and clamp 
+    double t = (x - edge0) / (edge1 - edge0);
+    t = clamp(t, 0.0, 1.0);
+
+    return t * t * (3.0 - 2.0 * t);
+}
