@@ -8,4 +8,9 @@ double lerp(double a, double b, double t) {
     return (1.0 - t) * a + t * b;
 }
 
-
+double inverse_lerp(double a, double b, double value) {
+    if (a == b) return -1.0; // Undefined
+    
+    double result = (value - a) / (b - a);
+    return clamp(result, 0.0, 1.0);
+}
