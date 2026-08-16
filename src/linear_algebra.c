@@ -1,6 +1,19 @@
 #include "../include/linear_algebra.h"
 
 
+// clamp 
+double clamp(double value, double min, double max) {
+
+    if (min > max) {
+        double temp = min;
+        min = max;
+        max = temp;
+    }
+    if (value < min) return min;
+    if (value > max) return max;
+    return value;
+}
+
 double lerp(double a, double b, double t) {
     if (t < 0.0) t = 0.0;
     if (t > 1.0) t = 1.0;
