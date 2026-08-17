@@ -98,3 +98,12 @@ void rotate_point_2d(double x, double y, double angle, double *result) {
     // y′=xsin(θ)+ycos(θ)
     result[1] = x * sin(angle) + y * cos(angle);
 }
+
+// scale_point_2d
+void scale_point_2d(double x, double y, double scale_x, double scale_y, double *result){
+  if (!result) return;
+    // x' = x * sx 
+    result[0] = x * scale_x;  
+    // y' = y * sy 
+    result[1] = y * scale_y;
+}
