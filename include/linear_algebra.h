@@ -22,7 +22,7 @@ void lerp_points_3d(const double *vectorA, const double *vectorB, double t, doub
 
 // 2D coordinate transformations
 
-void rotate_point_2d(double x, double y, double angle, double *result_x, double *result_y);
+void rotate_point_2d(double x, double y, double angle, double *result);
 
 void scale_point_2d(double x, double y, double scale_x, double scale_y, double *result_x, double *result_y);
 
