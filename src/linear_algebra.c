@@ -62,3 +62,12 @@ double smootherstep(double edge0, double edge1, double x) {
 
     return t * t * t * (t * (t * 6.0 - 15.0) + 10.0);
 }
+
+// lerp_vector
+void lerp_vector(int size, const double *vectorA, const double *vectorB, double t, double *result) {
+    if (size <= 0 || !vectorA || !vectorB || !result) return;
+    
+    for (int i = 0; i < size; i++) {
+        result[i] = lerp(vectorA[i], vectorB[i], t);
+    }
+}
