@@ -14,7 +14,7 @@ double smootherstep(double edge0, double edge1, double x);
 
 double clamp(double value, double min, double max);
 
-void lerp_vector(int size, const double *a, const double *b, double t, double *result);
+void lerp_vector(int size, const double *vectorA, const double *vectorB, double t, double *result);
 
 void lerp_points_2d(const double *a, const double *b, double t, double *result);
 
