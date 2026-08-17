@@ -26,7 +26,7 @@ void rotate_point_2d(double x, double y, double angle, double *result);
 
 void scale_point_2d(double x, double y, double scale_x, double scale_y, double *result);
 
-void translate_point_2d(double x, double y, double tx, double ty, double *result_x, double *result_y);
+void translate_point_2d(double x, double y, double tx, double ty, double *result);
 
 void shear_point_2d(double x, double y, double shear_x, double shear_y, double *result_x, double *result_y);
 
