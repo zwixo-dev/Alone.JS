@@ -71,3 +71,11 @@ void lerp_vector(int size, const double *vectorA, const double *vectorB, double 
         result[i] = lerp(vectorA[i], vectorB[i], t);
     }
 }
+
+// lerp_points_2d
+void lerp_points_2d(const double *vectorA, const double *vectorB, double t, double *result) {
+    if (!vectorA || !vectorB || !result) return;
+
+    result[0] = lerp(vectorA[0], vectorB[0], t);
+    result[1] = lerp(vectorA[1], vectorB[1], t);
+}
