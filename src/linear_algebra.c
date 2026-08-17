@@ -87,3 +87,14 @@ void lerp_points_3d(const double *vectorA, const double *vectorB, double t, doub
     result[1] = lerp(vectorA[1], vectorB[1], t);
     result[2] = lerp(vectorA[2], vectorB[2], t);
 }
+
+// rotate_point_2d
+void rotate_point_2d(double x, double y, double angle, double *result) {
+    if (!result) return;
+
+    // x′ = x * cos(θ) - y * sin(θ)
+    result[0] = x * cos(angle) - y * sin(angle); 
+    
+    // y′=xsin(θ)+ycos(θ)
+    result[1] = x * sin(angle) + y * cos(angle);
+}
