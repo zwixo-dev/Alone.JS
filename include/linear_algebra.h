@@ -18,7 +18,7 @@ void lerp_vector(int size, const double *vectorA, const double *vectorB, double 
 
 void lerp_points_2d(const double *vectorA, const double *vectorB, double t, double *result);
 
-void lerp_points_3d(const double *a, const double *b, double t, double *result);
+void lerp_points_3d(const double *vectorA, const double *vectorB, double t, double *result);
 
 // 2D coordinate transformations
 
