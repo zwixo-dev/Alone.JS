@@ -108,10 +108,18 @@ void scale_point_2d(double x, double y, double scale_x, double scale_y, double *
     result[1] = y * scale_y;
 }
 
+// translate_point_2d
 void translate_point_2d(double x, double y, double tx, double ty, double *result){
     if(!result) return;
     // x' = x + dx
     result[0] = x + tx;
     // y' = y + dy 
     result[1] = y + ty;
+}
+
+// shear_point_2d
+void shear_point_2d(double x, double y, double shear_x, double shear_y, double *result){ 
+    if(!result) return; 
+    result[0] = x + shear_x * y; 
+    result[1] = y + shear_y * x; 
 }
