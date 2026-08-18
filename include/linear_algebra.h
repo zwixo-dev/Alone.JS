@@ -36,7 +36,7 @@ void transform_point_2d(double x, double y, double tx, double ty, double rotatio
 
 void rotate_around_point_2d(double x, double y, double center_x, double center_y, double angle, double *result);
 
-void rotate_vector_2d(double x, double y, double angle, double *result_x, double *result_y);
+void rotate_vector_2d(double x, double y, double angle, double *result);
 
 // 3D coordinate transformations
 
