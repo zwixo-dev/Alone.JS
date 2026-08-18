@@ -32,7 +32,7 @@ void shear_point_2d(double x, double y, double shear_x, double shear_y, double *
 
 void reflect_point_2d(double x, double y, double axis_x, double axis_y, double *result);
 
-void transform_point_2d(double x, double y, double tx, double ty, double rotation, double scale_x, double scale_y, double *result_x, double *result_y);
+void transform_point_2d(double x, double y, double tx, double ty, double rotation, double scale_x, double scale_y, double *result);
 
 void rotate_around_point_2d(double x, double y, double center_x, double center_y, double angle, double *result_x, double *result_y);
 
