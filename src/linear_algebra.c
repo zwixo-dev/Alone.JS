@@ -155,3 +155,13 @@ void transform_point_2d(double x, double y, double tx, double ty, double rotatio
     result[0] = x_rotated + tx;
     result[1] = y_rotated + ty;
 }
+
+
+void rotate_around_point_2d(double x, double y, double center_x, double center_y, double angle, double *result){
+
+    if(!result) return;
+
+    // 
+    result[0] = center_x + (x - center_x) * cos(angle) - (y - center_y) * sin(angle);
+    result[1] = center_y + (x - center_x) * sin(angle) + (y - center_y) * cos(angle);
+}
