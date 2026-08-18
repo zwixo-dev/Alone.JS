@@ -123,3 +123,15 @@ void shear_point_2d(double x, double y, double shear_x, double shear_y, double *
     result[0] = x + shear_x * y; 
     result[1] = y + shear_y * x; 
 }
+
+// reflect_point_2d
+void reflect_point_2d(double x, double y, double axis_x, double axis_y, double *result){
+
+    if(!result) return;
+
+    double axis_squared_length = axis_x * axis_x + axis_y * axis_y;
+    if (axis_squared_length == 0.0) return; 
+
+    result[0] = ((axis_x * axis_x - axis_y * axis_y) * x + 2.0 * axis_x * axis_y * y) / axis_squared_length;
+    result[1] = (2.0 * axis_x * axis_y * x + (axis_y * axis_y - axis_x * axis_x) * y) / axis_squared_length;
+}
