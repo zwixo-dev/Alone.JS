@@ -135,3 +135,23 @@ void reflect_point_2d(double x, double y, double axis_x, double axis_y, double *
     result[0] = ((axis_x * axis_x - axis_y * axis_y) * x + 2.0 * axis_x * axis_y * y) / axis_squared_length;
     result[1] = (2.0 * axis_x * axis_y * x + (axis_y * axis_y - axis_x * axis_x) * y) / axis_squared_length;
 }
+
+
+void transform_point_2d(double x, double y, double tx, double ty, double rotation, double scale_x, double scale_y, double *result){
+
+    if(!result) return;
+
+    // x and Scaled
+    double x_scaled = x * scale_x;
+    double y_scaled = y * scale_y;
+
+    double cos_r = cos(rotation);
+    double sin_r = sin(rotation);
+
+    double x_rotated = x_scaled * cos_r - y_scaled * sin_r;
+    double y_rotated = x_scaled * sin_r + y_scaled * cos_r;
+
+    // result
+    result[0] = x_rotated + tx;
+    result[1] = y_rotated + ty;
+}
