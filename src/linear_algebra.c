@@ -168,7 +168,7 @@ void rotate_around_point_2d(double x, double y, double center_x, double center_y
 
 // rotate_vector_2d
 void rotate_vector_2d(double x, double y, double angle, double *result){
-    
+
     if(!result) return;
 
     // x = ycos(teta) - ysin(teta)
@@ -180,11 +180,16 @@ void rotate_vector_2d(double x, double y, double angle, double *result){
 // rotate_point_3d_x
 void rotate_point_3d_x(double x, double y, double z, double angle, double *result){
 
-    if(!result) return;
+    if (!result) return;
+
+    double out_x = x;
+    double out_y = y * cos(angle) - z * sin(angle);
+    double out_z = y * sin(angle) + z * cos(angle); 
+
     // x'
-    result[0] = x;
+    result[0] = out_x;
     // y'
-    result[0] = y * cos(angle) - z * sin(angle);
+    result[1] = out_y;
     // z'
-    result[0] = y * sin(angle) + z * cos(angle); 
+    result[2] = out_z;
 }
