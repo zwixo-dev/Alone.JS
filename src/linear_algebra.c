@@ -136,7 +136,7 @@ void reflect_point_2d(double x, double y, double axis_x, double axis_y, double *
     result[1] = (2.0 * axis_x * axis_y * x + (axis_y * axis_y - axis_x * axis_x) * y) / axis_squared_length;
 }
 
-
+// transform_point_2d
 void transform_point_2d(double x, double y, double tx, double ty, double rotation, double scale_x, double scale_y, double *result){
 
     if(!result) return;
@@ -156,7 +156,7 @@ void transform_point_2d(double x, double y, double tx, double ty, double rotatio
     result[1] = y_rotated + ty;
 }
 
-
+// rotate_around_point_2d
 void rotate_around_point_2d(double x, double y, double center_x, double center_y, double angle, double *result){
 
     if(!result) return;
@@ -166,11 +166,25 @@ void rotate_around_point_2d(double x, double y, double center_x, double center_y
     result[1] = center_y + (x - center_x) * sin(angle) + (y - center_y) * cos(angle);
 }
 
+// rotate_vector_2d
 void rotate_vector_2d(double x, double y, double angle, double *result){
+    
     if(!result) return;
 
     // x = ycos(teta) - ysin(teta)
     result[0] = x * cos(angle) -  y * sin(angle)  ;
     // y = ysin(teta) + xcos(teta)
     result[1] = y * sin(angle) +  x * cos(angle) ;
+}
+
+// rotate_point_3d_x
+void rotate_point_3d_x(double x, double y, double z, double angle, double *result){
+
+    if(!result) return;
+    // x'
+    result[0] = x;
+    // y'
+    result[0] = y * cos(angle) - z * sin(angle);
+    // z'
+    result[0] = y * sin(angle) + z * cos(angle); 
 }
