@@ -167,5 +167,10 @@ void rotate_around_point_2d(double x, double y, double center_x, double center_y
 }
 
 void rotate_vector_2d(double x, double y, double angle, double *result){
-    
+    if(!result) return;
+
+    // x = ycos(teta) - ysin(teta)
+    result[0] = x * cos(angle) -  y * sin(angle)  ;
+    // y = ysin(teta) + xcos(teta)
+    result[1] = y * sin(angle) +  x * cos(angle) ;
 }
