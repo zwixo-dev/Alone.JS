@@ -193,3 +193,20 @@ void rotate_point_3d_x(double x, double y, double z, double angle, double *resul
     // z'
     result[2] = out_z;
 }
+
+// rotate_point_3d_y
+void rotate_point_3d_y(double x, double y, double z, double angle, double *result){
+    if (!result) return;
+
+    double out_x = x * cos(angle) + z * sin(angle);
+    double out_y = y;
+    double out_z = z * cos(angle) - x * sin(angle); 
+
+    // x'
+    result[0] = out_x;
+    // y'
+    result[1] = out_y;
+    // z'
+    result[2] = out_z;
+}
+
