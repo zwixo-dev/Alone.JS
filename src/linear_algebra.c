@@ -238,3 +238,20 @@ void rotate_point_3d(double x, double y, double z, double angle_x, double angle_
     
     rotate_point_3d_z(current[0], current[1], current[2], angle_z, result);
 }
+
+// scale_point_3d
+void scale_point_3d(double x, double y, double z, double scale_x, double scale_y, double scale_z, double *result){
+    if(!result) return; 
+    
+    // x'
+    double out_x = x * scale_x;
+    // y'
+    double out_y = y * scale_y;
+    // z'
+    double out_z = z * scale_z;
+
+    // result
+    result[0] = out_x;
+    result[1] = out_y;
+    result[2] = out_z;
+}
