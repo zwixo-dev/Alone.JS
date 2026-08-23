@@ -229,7 +229,7 @@ void rotate_point_3d_z(double x, double y, double z, double angle, double *resul
 // rotate_point_3d_x
 void rotate_point_3d(double x, double y, double z, double angle_x, double angle_y, double angle_z, double *result){
     if(!result) return;
-    
+
     double current[3];
     
     rotate_point_3d_x(x, y, z, angle_x, current);
@@ -250,6 +250,23 @@ void scale_point_3d(double x, double y, double z, double scale_x, double scale_y
     // z'
     double out_z = z * scale_z;
 
+    // result
+    result[0] = out_x;
+    result[1] = out_y;
+    result[2] = out_z;
+}
+
+// translate_point_3d
+void translate_point_3d(double x, double y, double z, double tx, double ty, double tz, double *result){
+    if(!result) return;
+    
+    // x
+    double out_x = x + tx;
+    // y
+    double out_y = y + ty;
+    // z
+    double out_z = z + tz;
+    
     // result
     result[0] = out_x;
     result[1] = out_y;
