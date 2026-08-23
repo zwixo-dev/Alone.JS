@@ -272,3 +272,20 @@ void translate_point_3d(double x, double y, double z, double tx, double ty, doub
     result[1] = out_y;
     result[2] = out_z;
 }
+
+void reflect_point_3d(double x, double y, double z, double nx, double ny, double nz, double *result){
+    if(!result) return;
+
+    // distance
+    double dist = (x * nx) + (y * ny) + (z * nz);
+    // x
+    double out_x = x - 2 * dist * nx;
+    // y
+    double out_y = y - 2 * dist * ny;
+    // z
+    double out_z = z - 2 * dist * nz;
+    
+    result[0] = out_x; 
+    result[1] = out_y;
+    result[2] = out_z; 
+}
