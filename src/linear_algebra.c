@@ -289,3 +289,35 @@ void reflect_point_3d(double x, double y, double z, double nx, double ny, double
     result[1] = out_y;
     result[2] = out_z; 
 }
+
+// rotate_around_point_3d
+void rotate_around_point_3d(double x, double y, double z, double cx, double cy, double cz, double angle_x, double angle_y, double angle_z, double *result){
+    if(!result) return;
+    
+    // Center the points
+    
+    double x1 = x-cx;
+    double y1 = y-cy;
+    double z1 = z-cz;
+    
+    // the successive rotations 
+        //rotation around X
+    double x2 = x1;
+    double y2 = y1 * cos(angle_x) - z1 * sin(angle_x);
+    double z2 = y1 * sin(angle_x) + z1 * cos(angle_x);
+        // rotation around Y
+    double x3 = x2 * cos(angle_y) + z2 * sin(angle_y);
+    double y3 = y2;
+    double z3 = z2 * cos(angle_y) - x2 * sin(angle_y);    
+    
+        // rotation around z
+    double x4 = x3 * cos(angle_z) - y3 * sin(angle_z); 
+    double y4 = x3 * sin(angle_z) + y3 * cos(angle_z);
+    double z4 = z3;
+    
+    // reverse translation
+    // result
+    result[0] = x4 + cx;
+    result[1] = y4 + cy;
+    result[2] = z4 + cz;
+}
