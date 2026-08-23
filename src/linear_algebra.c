@@ -225,3 +225,16 @@ void rotate_point_3d_z(double x, double y, double z, double angle, double *resul
     // z'
     result[2] = out_z;
 }
+
+// rotate_point_3d_x
+void rotate_point_3d(double x, double y, double z, double angle_x, double angle_y, double angle_z, double *result){
+    if(!result) return;
+    
+    double current[3];
+    
+    rotate_point_3d_x(x, y, z, angle_x, current);
+    
+    rotate_point_3d_y(current[0], current[1], current[2], angle_y, current);
+    
+    rotate_point_3d_z(current[0], current[1], current[2], angle_z, result);
+}
