@@ -62,7 +62,7 @@ void transform_point_3d(double x, double y, double z, double tx, double ty, doub
 
 // Coordinate-space conversions
 
-void cartesian_to_polar(double x, double y, double *radius, double *angle);
+void cartesian_to_polar(double x, double y, double *result);
 
 void polar_to_cartesian(double radius, double angle, double *x, double *y);
 
