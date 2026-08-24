@@ -73,7 +73,8 @@ void cartesian_to_spherical(double x, double y, double z, double *result);
 // void spherical_to_cartesian(double radius, double theta, double phi, double *x, double *y, double *z);
 void spherical_to_cartesian(double radius, double theta, double phi, double *result);
 
-void cartesian_to_cylindrical(double x, double y, double z, double *radius, double *angle, double *height);
+// void cartesian_to_cylindrical(double x, double y, double z, double *radius, double *angle, double *height);
+void cartesian_to_cylindrical(double x, double y, double z, double *result);
 
 void cylindrical_to_cartesian(double radius, double angle, double height, double *x, double *y, double *z);
 
