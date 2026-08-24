@@ -402,8 +402,20 @@ void spherical_to_cartesian(double radius, double theta, double phi, double *res
 }
 
 
-void cartesian_to_cylindrical(double x, double y, double z, double *radius, double *angle, double *height){
+void cartesian_to_cylindrical(double x, double y, double z, double *result){
+    if(!result) return;
     
+    // radius
+    double radius = sqrt((x*x) + (y*y)); 
+    //angle
+    double angle = atan2(y, x);
+    //height
+    double height = z;
+    
+    // resutl
+    result[0] = radius;
+    result[1] = angle;
+    result[2] = height;
 }
 
 void cylindrical_to_cartesian(double radius, double angle, double height, double *x, double *y, double *z){
