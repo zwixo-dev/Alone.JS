@@ -321,3 +321,29 @@ void rotate_around_point_3d(double x, double y, double z, double cx, double cy, 
     result[1] = y4 + cy;
     result[2] = z4 + cz;
 }
+
+// transform_point_3d
+void transform_point_3d(double x, double y, double z, double tx, double ty, double tz, double rx, double ry, double rz, double sx, double sy, double sz, double *result){
+    if(!result) return;
+    
+    // temp arrays
+    double scaled[3]; 
+    double rot_x[3];
+    double rot_y[3];
+    double rot_z[3];
+    
+    // Scale
+    scale_point_3d(x, y, z, sx, sy, sz, scaled);
+    
+    // Rotate around X
+    rotate_point_3d_x(scaled[0], scaled[1], scaled[2], rx, rot_x);
+    
+    // Rotate around Y
+    rotate_point_3d_y(rot_x[0], rot_x[1], rot_x[2], ry, rot_y);
+    
+    // Rotate around Z
+    rotate_point_3d_z(rot_y[0], rot_y[1], rot_y[2], rz, rot_z);
+    
+    // Translate
+    translate_point_3d(rot_z[0], rot_z[1], rot_z[2], tx, ty, tz, result);
+}
