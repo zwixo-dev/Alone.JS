@@ -358,8 +358,12 @@ void cartesian_to_polar(double x, double y, double *result) {
 }
 
 // polar_to_cartesian
-void polar_to_cartesian(double radius, double angle, double *x, double *y){
-    
+void polar_to_cartesian(double radius, double angle, double *result){
+    if(!result) return;
+    // x
+    result[0] = radius * cos(angle); 
+    // y
+    result[1] = radius * sin(angle);
 }
 
 void cartesian_to_spherical(double x, double y, double z, double *radius, double *theta, double *phi){
