@@ -366,8 +366,22 @@ void polar_to_cartesian(double radius, double angle, double *result){
     result[1] = radius * sin(angle);
 }
 
-void cartesian_to_spherical(double x, double y, double z, double *radius, double *theta, double *phi){
+void cartesian_to_spherical(double x, double y, double z, double *result){
+    if(!result) return;
+  
+    // radius
+    double temp_radius = sqrt((x * x) + (y * y) + (z * z));
     
+    // theta
+    double temp_theta = atan2(y, x);
+    
+    // phi
+    double temp_phi = atan2(sqrt((x * x) + (y * y)), z);
+    
+    // i need to return an obj instead of array in js
+    result[0] = temp_radius;
+    result[1] = temp_theta;
+    result[2] = temp_phi;
 }
 
 void spherical_to_cartesian(double radius, double theta, double phi, double *x, double *y, double *z){
