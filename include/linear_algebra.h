@@ -67,7 +67,8 @@ void cartesian_to_polar(double x, double y, double *result);
 // void polar_to_cartesian(double radius, double angle, double *x, double *y);
 void polar_to_cartesian(double radius, double angle, double *result);
 
-void cartesian_to_spherical(double x, double y, double z, double *radius, double *theta, double *phi);
+// void cartesian_to_spherical(double x, double y, double z, double *radius, double *theta, double *phi);
+void cartesian_to_spherical(double x, double y, double z, double *result);
 
 void spherical_to_cartesian(double radius, double theta, double phi, double *x, double *y, double *z);
 
