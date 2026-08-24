@@ -356,3 +356,71 @@ void cartesian_to_polar(double x, double y, double *result) {
     result[0] = sqrt((x * x) + (y * y));
     result[1] = atan2(y, x);
 }
+
+// polar_to_cartesian
+void polar_to_cartesian(double radius, double angle, double *x, double *y){
+    
+}
+
+void cartesian_to_spherical(double x, double y, double z, double *radius, double *theta, double *phi){
+    
+}
+
+void spherical_to_cartesian(double radius, double theta, double phi, double *x, double *y, double *z){
+    
+}
+
+
+void cartesian_to_cylindrical(double x, double y, double z, double *radius, double *angle, double *height){
+    
+}
+
+void cylindrical_to_cartesian(double radius, double angle, double height, double *x, double *y, double *z){
+    
+}
+
+// Graphics coordinate systems
+void world_to_screen_2d(double x, double y,
+                        double camera_x, double camera_y,
+                        double zoom,
+                        double screen_width, double screen_height,
+                        double *screen_x, double *screen_y){
+
+
+                            
+}
+                        
+
+void screen_to_world_2d(double screen_x, double screen_y,
+                        double camera_x, double camera_y,
+                        double zoom,
+                        double screen_width, double screen_height,
+                        double *world_x, double *world_y){
+
+                            
+}
+
+
+void world_to_ndc(double x, double y, double z,
+                  double viewport_width, double viewport_height,
+                  double near_plane, double far_plane,
+                  double *result){
+
+                      
+}
+
+
+void ndc_to_screen(double x, double y,
+                   double screen_width, double screen_height,
+                   double *screen_x, double *screen_y){
+
+                       
+}
+
+
+void screen_to_ndc(double x, double y,
+                   double screen_width, double screen_height,
+                   double *ndc_x, double *ndc_y){
+
+                       
+}
