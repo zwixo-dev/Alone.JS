@@ -347,3 +347,12 @@ void transform_point_3d(double x, double y, double z, double tx, double ty, doub
     // Translate
     translate_point_3d(rot_z[0], rot_z[1], rot_z[2], tx, ty, tz, result);
 }
+
+// cartesian_to_polar
+void cartesian_to_polar(double x, double y, double *result) {
+    if (!result) return;
+
+    // raduis and angle result
+    result[0] = sqrt((x * x) + (y * y));
+    result[1] = atan2(y, x);
+}
