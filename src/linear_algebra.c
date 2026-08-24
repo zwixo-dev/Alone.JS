@@ -386,7 +386,7 @@ void cartesian_to_spherical(double x, double y, double z, double *result){
 }
 
 // spherical_to_cartesian
-void spherical_to_cartesian(double radius, double theta, double phi, double *x, double *y, double *z, double *result){
+void spherical_to_cartesian(double radius, double theta, double phi, double *result){
     
     if(!result) return;
     
