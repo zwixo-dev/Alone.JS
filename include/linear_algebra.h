@@ -95,7 +95,7 @@ void screen_to_world_2d(double screen_x, double screen_y,
 void world_to_ndc(double x, double y, double z,
                   double viewport_width, double viewport_height,
                   double near_plane, double far_plane,
-                  double *result);
+                  double *NDC_x, double *NDC_y, double *NDC_z);
 
 void ndc_to_screen(double x, double y,
                    double screen_width, double screen_height,
