@@ -439,10 +439,15 @@ void world_to_screen_2d(double x, double y,
                         double camera_x, double camera_y,
                         double zoom,
                         double screen_width, double screen_height,
-                        double *screen_x, double *screen_y){
-
-
-                            
+                        double *screen_x, double *screen_y) {
+    
+    if(!screen_x || !screen_y) return;
+    //world coord relative to the camera and apply zoom                    
+    double NDC_x = (x - camera_x) * zoom;
+    double NDC_y = (y - camera_y) * zoom;
+    // map Normalized Device coord to screen space coord
+    *screen_x = (screen_width / 2)+ ( NDC_x *  (screen_width / 2) );
+    *screen_y =  (screen_height / 2)+ ( NDC_y *  (screen_height / 2) );
 }
                         
 
