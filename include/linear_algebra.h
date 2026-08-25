@@ -76,7 +76,8 @@ void spherical_to_cartesian(double radius, double theta, double phi, double *res
 // void cartesian_to_cylindrical(double x, double y, double z, double *radius, double *angle, double *height);
 void cartesian_to_cylindrical(double x, double y, double z, double *result);
 
-void cylindrical_to_cartesian(double radius, double angle, double height, double *x, double *y, double *z);
+// void cylindrical_to_cartesian(double radius, double angle, double height, double *x, double *y, double *z);
+void cylindrical_to_cartesian(double radius, double angle, double height, double *result);
 
 // Graphics coordinate systems
 void world_to_screen_2d(double x, double y,
