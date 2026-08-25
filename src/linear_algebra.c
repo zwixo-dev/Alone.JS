@@ -455,9 +455,14 @@ void screen_to_world_2d(double screen_x, double screen_y,
                         double camera_x, double camera_y,
                         double zoom,
                         double screen_width, double screen_height,
-                        double *world_x, double *world_y){
-
-                            
+                        double *world_x, double *world_y) {
+    
+    if(!world_x || !world_y) return;
+    // check if zoom != 0 because we devide with it
+    if (zoom == 0.0) return;
+    
+    *world_x = ((((2 * screen_x) /screen_width)-1.0) / zoom) + camera_x;
+    *world_y = ((((2 * screen_y) /screen_width)-1.0) / zoom) + camera_y; 
 }
 
 
