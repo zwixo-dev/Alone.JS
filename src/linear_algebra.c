@@ -469,10 +469,19 @@ void screen_to_world_2d(double screen_x, double screen_y,
 void world_to_ndc(double x, double y, double z,
                   double viewport_width, double viewport_height,
                   double near_plane, double far_plane,
-                  double *result){
+                  double *NDC_x, double *NDC_y, double *NDC_z) {
+    
+    if (!NDC_x || !NDC_y || !NDC_z) return;
+    if (z == 0.0) return;
 
-                      
+    // NDC X
+    *NDC_x = (2.0 * near_plane * x) / (viewport_width * (-z));
+    // NDC Y
+    *NDC_y = (2.0 * near_plane * y) / (viewport_height * (-z));
+    // NDC Z
+    *NDC_z = (-(far_plane + near_plane) * (-z) - 2.0 * far_plane * near_plane) / ((far_plane - near_plane) * (-z)); 
 }
+
 
 
 void ndc_to_screen(double x, double y,
