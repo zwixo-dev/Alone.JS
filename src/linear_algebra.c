@@ -418,9 +418,21 @@ void cartesian_to_cylindrical(double x, double y, double z, double *result){
     result[2] = height;
 }
 
-void cylindrical_to_cartesian(double radius, double angle, double height, double *x, double *y, double *z){
+void cylindrical_to_cartesian(double radius, double angle, double height, double *result) {
+    if(!result) return;
     
+	double out_x = radius * cos(angle);
+	double out_y = radius * sin(angle);
+	double out_z = height;
+
+	// x
+	result[0] = out_x;
+	// y
+	result[1] = out_y;
+	//z
+	result[2] = out_z;
 }
+
 
 // Graphics coordinate systems
 void world_to_screen_2d(double x, double y,
