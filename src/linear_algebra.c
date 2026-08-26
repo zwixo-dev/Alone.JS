@@ -509,7 +509,12 @@ void screen_to_ndc(double x, double y,
 void perspective_project(double x, double y, double z,
                          double focal_length,
                          double *projected_x,
-                         double *projected_y);
+                         double *projected_y){
+    if(!projected_x || !projected_y || z== 0.0) return;
+    
+    *projected_x = (focal_length * x) / z;
+    *projected_y = (focal_length * y) / z;
+}
 
 void perspective_divide(double x, double y, double z,
                         double *result);
