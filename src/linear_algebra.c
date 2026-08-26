@@ -531,7 +531,18 @@ void orthographic_project(double x, double y, double z,
                           double left, double right,
                           double bottom, double top,
                           double near_plane, double far_plane,
-                          double *result);
+                          double *result){
+                              
+    if(!result || right == left || top == bottom || far_plane == near_plane) return;
+    
+    // Xndc
+    result[0] = (2.0 * x - (right + left)) / (right - left); 
+    // Yndc
+    result[1] = (2.0 * y - (top + bottom)) / (top - bottom);
+    // Zndc
+    result[2] = (-2.0 * z - (far_plane + near_plane)) / (far_plane - near_plane);
+}
+
 
 void perspective_project_screen(double x, double y, double z,
                                 double fov,
