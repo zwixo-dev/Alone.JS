@@ -486,9 +486,12 @@ void world_to_ndc(double x, double y, double z,
 
 void ndc_to_screen(double x, double y,
                    double screen_width, double screen_height,
-                   double *screen_x, double *screen_y){
+                   double *screen_x, double *screen_y) {
 
-                       
+    if(!screen_x || !screen_y) return; 
+    
+    *screen_x = ((x + 1.0) / 2.0) * screen_width; 
+    *screen_y = ((y + 1.0) / 2.0) * screen_height;
 }
 
 
