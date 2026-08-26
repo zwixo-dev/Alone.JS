@@ -497,7 +497,9 @@ void ndc_to_screen(double x, double y,
 
 void screen_to_ndc(double x, double y,
                    double screen_width, double screen_height,
-                   double *ndc_x, double *ndc_y){
-
-                       
+                   double *ndc_x, double *ndc_y) {
+   if (!ndc_x || !ndc_y) return;
+    
+    *ndc_x = (x / screen_width) * 2.0 - 1.0;
+    *ndc_y = 1.0 - (y / screen_height) * 2.0; 
 }
