@@ -517,7 +517,15 @@ void perspective_project(double x, double y, double z,
 }
 
 void perspective_divide(double x, double y, double z,
-                        double *result);
+                        double *projected_x, double *projected_y){
+
+    if(!projected_x || !projected_y || z==0.0) return;
+    
+    // x
+    *projected_x = x/z;
+    // y
+    *projected_y = y/z;
+}
 
 void orthographic_project(double x, double y, double z,
                           double left, double right,
