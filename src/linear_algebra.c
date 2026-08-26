@@ -552,4 +552,28 @@ void perspective_project_screen(double x, double y, double z,
                                 double screen_width,
                                 double screen_height,
                                 double *screen_x,
-                                double *screen_y);
+                                double *screen_y,
+                                double *screen_z){
+                                    
+    if (!screen_x || !screen_y || !screen_z ||
+        z == 0.0 ||
+        aspect_ratio == 0.0 ||
+        far_plane == near_plane) return;
+
+    double f = 1.0 / tan(fov / 2.0);
+
+    // Perspective projection to NDC
+    double ndc_x = (x * f / aspect_ratio) / z;
+    double ndc_y = (y * f) / z;
+
+    double ndc_z =
+        ((far_plane + near_plane) * z -
+         2.0 * far_plane * near_plane) /
+        ((far_plane - near_plane) * z);
+
+    // NDC to Screen coordinates
+    *screen_x = (ndc_x + 1.0) * 0.5 * screen_width;
+    *screen_y = (1.0 - ndc_y) * 0.5 * screen_height;
+
+    *screen_z = ndc_z;
+}
