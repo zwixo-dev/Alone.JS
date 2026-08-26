@@ -129,7 +129,8 @@ void perspective_project_screen(double x, double y, double z,
                                 double screen_width,
                                 double screen_height,
                                 double *screen_x,
-                                double *screen_y);
+                                double *screen_y,
+                                double *screen_z);
 
 //Linear combinations / spaces
 
