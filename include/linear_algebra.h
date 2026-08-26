@@ -113,7 +113,7 @@ void perspective_project(double x, double y, double z,
                          double *projected_y);
 
 void perspective_divide(double x, double y, double z,
-                        double *result);
+                        double *projected_x, double *projected_y);
 
 void orthographic_project(double x, double y, double z,
                           double left, double right,
