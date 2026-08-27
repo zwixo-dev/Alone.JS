@@ -1,4 +1,7 @@
 #include "../include/linear_algebra.h"
+#include "../include/operations.h"
+#include "math.h"
+#include "stdlib.h"
 
 
 // clamp 
