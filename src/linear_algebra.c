@@ -580,7 +580,20 @@ void perspective_project_screen(double x, double y, double z,
 
 //Linear combinations / spaces
 
-void linear_combination( int size, int vector_count, const double *vectors, const double *coefficients,double *result);
+void linear_combination( int size, int vector_count, const double *vectors, const double *coefficients,double *result){
+    if(!vectors || !coefficients || !result || size<=0 || vector_count<=0) return;
+
+    for(int i=0; i<size; i++){
+        // reseting
+        result[i] = 0.0;
+        
+        for (int j=0 ; j<vector_count; j++){
+            result[i] += coefficients[j] * vectors[j*size+i];
+        }
+    }
+    
+}
+
 
 int is_linear_independent( int size, int vector_count,const double *vectors);
 
