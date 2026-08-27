@@ -577,3 +577,17 @@ void perspective_project_screen(double x, double y, double z,
 
     *screen_z = ndc_z;
 }
+
+//Linear combinations / spaces
+
+void linear_combination( int size, int vector_count, const double *vectors, const double *coefficients,double *result);
+
+int is_linear_independent( int size, int vector_count,const double *vectors);
+
+int is_in_span( int size, int vector_count, const double *vectors, const double *target);
+
+int is_linear_combination( int size, int vector_count, const double *vectors, const double *target);
+
+int find_dimension( int size, int vector_count, const double *vectors);
+
+int find_basis( int size, int vector_count, const double *vectors, double *basis, int *basis_count);
