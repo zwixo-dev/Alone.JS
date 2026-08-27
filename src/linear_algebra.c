@@ -595,7 +595,23 @@ void linear_combination( int size, int vector_count, const double *vectors, cons
 }
 
 
-int is_linear_independent( int size, int vector_count,const double *vectors);
+int is_linear_independent(int size, int vector_count, const double *vectors) {
+    if (size <= 0 || vector_count <= 0 || !vectors) return -1; // undefined
+    
+    //  i need calculate the rank  to verifie it so it's not completed for now 
+
+    if (vector_count > size) return 0;
+    
+    for (int i = 0; i < size; i++) {
+        for (int j = 0; j < vector_count; j++) { 
+            if (vectors[j * size + i] != 0) {
+                return 0;
+            }
+        }
+    }
+    
+    return 1; // true
+}
 
 int is_in_span( int size, int vector_count, const double *vectors, const double *target);
 
