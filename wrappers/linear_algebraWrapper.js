@@ -9,7 +9,7 @@ Module.onRuntimeInitialized = () => {
         remap: Module.cwrap("remap", "number", ["number", "number", "number", "number", "number"]),
         smoothstep: Module.cwrap("smoothstep", "number", ["number", "number", "number"]),
         smootherstep: Module.cwrap("smootherstep", "number", ["number", "number", "number"]),
-        // clamp,
+        clamp: Module.cwrap("clamp", "number", ["number", "number", "number"]),
         // lerp_vector,
         // lerp_points_2d,
         // lerp_points_3d,
@@ -54,6 +54,7 @@ Module.onRuntimeInitialized = () => {
     console.log("remap func : ", remap(5, 0, 10, 0, 100));
     console.log("smoothstep : ", smoothstep(0, 1, 0.4));
     console.log("smootherstep : ", smootherstep(0, 1, 0.4));
+    console.log("clamp : ", clamp(20, 5, 30))
 }
 
 
@@ -94,4 +95,12 @@ function smootherstep(edge0, edge1, x){
     const smootherstep = linear_algebra.smootherstep(edge0, edge1, x);
 
     return smootherstep; 
+}
+
+// clamp  double value, double min, double max
+function clamp(value, min, max){
+    // clamp result
+    const clamp = linear_algebra.clamp(value, min, max);
+
+    return clamp;
 }
