@@ -11,7 +11,7 @@ Module.onRuntimeInitialized = () => {
         smootherstep: Module.cwrap("smootherstep", "number", ["number", "number", "number"]),
         clamp: Module.cwrap("clamp", "number", ["number", "number", "number"]),
         lerp_vector: Module.cwrap("clamp", "number", ["number", "number", "number"]),
-        // lerp_points_2d,
+        lerp_points_2d: Module.cwrap("clamp", null, ["number", "number", "number", "number", "number"]),
         // lerp_points_3d,
         // rotate_point_2d,
         // scale_point_2d,
@@ -121,4 +121,27 @@ function liberation(pointer){
     Module._free(pointer);
 }
 
+// lerp_vector(int size, const double *vectorA, const double *vectorB, double t, double *result)
+function lerp_points_2d(vectorA, vectorB, t){
+    if(!Array.isArray(vectorA) || !Array.isArray(vectorB) || vectorA.length !== vectorB.length) return NaN;
+
+    const pointerA = allocateMemory(vectorA.length, vectorA); 
+    const pointerB =  allocateMemory(vectorB.length, vectorB);
+    const outputPointer = Module._malloc(vectorA.length * 8);
+    
+    linear_algebra.lerp_points_2d(vectorA.length, pointerA, pointerB, t, outputPointer);
+
+    const lerp_points_2d = Array.from(
+            Module.HEAPF64.subarray(
+                outputPointer / 8,
+                outputPointer / 8 + vectorA.length
+            )
+    );
+    
+    liberation(pointerA);
+    liberation(pointerB);
+    liberation(outputPointer);
+
+    return lerp_points_2d;
+}
 
