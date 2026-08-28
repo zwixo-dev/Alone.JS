@@ -5,7 +5,7 @@ let linear_algebra;
 Module.onRuntimeInitialized = () => {
     linear_algebra = {
         lerp: Module.cwrap("lerp", "number", ["number", "number", "number"]),
-        // inverse_lerp,
+        inverse_lerp: Module.cwrap("inverse_lerp", "number", ["number", "number", "number"]),
         // remap,
         // smoothstep,
         // smootherstep,
@@ -50,14 +50,21 @@ Module.onRuntimeInitialized = () => {
     }
     console.log("==================== wrappers Test ====================\n")
     console.log("Lerp func : ",lerp(0, 10, 0.5))
-
+    console.log("inverse_lerp func : ", inverse_lerp(0, 10, 25))
 }
 
 
 
 function lerp(a, b, t){
-    // result
+    // lerp result
     const lerp = linear_algebra.lerp(a, b, t);
 
     return lerp;
+}
+
+function inverse_lerp(a, b, value){
+    // inverse_lerp resut 
+    const inverse_lerp = linear_algebra.inverse_lerp(a, b, value);
+
+    return inverse_lerp;
 }
