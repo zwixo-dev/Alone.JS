@@ -10,7 +10,7 @@ Module.onRuntimeInitialized = () => {
         smoothstep: Module.cwrap("smoothstep", "number", ["number", "number", "number"]),
         smootherstep: Module.cwrap("smootherstep", "number", ["number", "number", "number"]),
         clamp: Module.cwrap("clamp", "number", ["number", "number", "number"]),
-        lerp_vector: Module.cwrap("lerp_vector", "number", ["number", "number", "number", "number", "number"]),
+        lerp_vector: Module.cwrap("lerp_vector", null, ["number", "number", "number", "number", "number"]),
         lerp_points_2d: Module.cwrap("lerp_points_2d", null, ["number", "number", "number", "number"]),
         // lerp_points_3d,
         // rotate_point_2d,
@@ -51,27 +51,28 @@ Module.onRuntimeInitialized = () => {
 
     const vector_A = [0.0, 0.0];
     const vector_B = [10.0, 10.0];
-    
+
     console.log("==================== wrappers Test ====================\n")
-    console.log("Lerp func : ",lerp(0, 10, 0.5));
+    console.log("Lerp func : ", lerp(0, 10, 0.5));
     console.log("inverse_lerp func : ", inverse_lerp(0, 10, 25));
     console.log("remap func : ", remap(5, 0, 10, 0, 100));
     console.log("smoothstep : ", smoothstep(0, 1, 0.4));
     console.log("smootherstep : ", smootherstep(0, 1, 0.4));
     console.log("clamp : ", clamp(20, 5, 30))
     console.log("lerp_vector : ", lerp_vector(vector_A, vector_B, 0.5));
+    console.log("lerp_points_2d : ", lerp_points_2d([-5, 2], [5, -2], 0.25))
 }
 
 
 
-function lerp(a, b, t){
+function lerp(a, b, t) {
     // lerp result
     const lerp = linear_algebra.lerp(a, b, t);
 
     return lerp;
 }
 
-function inverse_lerp(a, b, value){
+function inverse_lerp(a, b, value) {
     // inverse_lerp resut 
     const inverse_lerp = linear_algebra.inverse_lerp(a, b, value);
 
@@ -79,7 +80,7 @@ function inverse_lerp(a, b, value){
 }
 
 // double value, double in_min, double in_max, double out_min, double out_max
-function remap(value, in_min, in_max, out_min, out_max){
+function remap(value, in_min, in_max, out_min, out_max) {
     // remap result
     const remap = linear_algebra.remap(value, in_min, in_max, out_min, out_max);
 
@@ -87,7 +88,7 @@ function remap(value, in_min, in_max, out_min, out_max){
 }
 
 // double edge0, double edge1, double x
-function smoothstep(edge0, edge1, x){
+function smoothstep(edge0, edge1, x) {
     // smoothstep result
     const smoothstep = linear_algebra.smoothstep(edge0, edge1, x)
 
@@ -95,15 +96,15 @@ function smoothstep(edge0, edge1, x){
 }
 
 // double edge0, double edge1, double x
-function smootherstep(edge0, edge1, x){
+function smootherstep(edge0, edge1, x) {
     // smootherstep result
     const smootherstep = linear_algebra.smootherstep(edge0, edge1, x);
 
-    return smootherstep; 
+    return smootherstep;
 }
 
 // clamp  double value, double min, double max
-function clamp(value, min, max){
+function clamp(value, min, max) {
     // clamp result
     const clamp = linear_algebra.clamp(value, min, max);
 
@@ -113,36 +114,36 @@ function clamp(value, min, max){
 // ----------------------------------------------------------
 
 // func to allocate memory
-function allocateMemory(size, vector){
-  const pointer = Module._malloc(size * 8);
+function allocateMemory(size, vector) {
+    const pointer = Module._malloc(size * 8);
 
-  Module.HEAPF64.set(vector, pointer / 8);
+    Module.HEAPF64.set(vector, pointer / 8);
 
-  return pointer;
+    return pointer;
 }
 
 // func to liberate
-function liberation(pointer){
+function liberation(pointer) {
     Module._free(pointer);
 }
 
 // lerp_vector(int size, const double *vectorA, const double *vectorB, double t, double *result)
-function lerp_vector(vectorA, vectorB, t){
-    if(!Array.isArray(vectorA) || !Array.isArray(vectorB) || vectorA.length !== vectorB.length) return NaN;
+function lerp_vector(vectorA, vectorB, t) {
+    if (!Array.isArray(vectorA) || !Array.isArray(vectorB) || vectorA.length !== vectorB.length) return NaN;
 
-    const pointerA = allocateMemory(vectorA.length, vectorA); 
-    const pointerB =  allocateMemory(vectorB.length, vectorB);
+    const pointerA = allocateMemory(vectorA.length, vectorA);
+    const pointerB = allocateMemory(vectorB.length, vectorB);
     const outputPointer = Module._malloc(vectorA.length * 8);
-    
+
     linear_algebra.lerp_vector(vectorA.length, pointerA, pointerB, t, outputPointer);
     //  lerp_vector result
     const lerp_vector = Array.from(
-            Module.HEAPF64.subarray(
-                outputPointer / 8,
-                outputPointer / 8 + vectorA.length
-            )
+        Module.HEAPF64.subarray(
+            outputPointer / 8,
+            outputPointer / 8 + vectorA.length
+        )
     );
-    
+
     liberation(pointerA);
     liberation(pointerB);
     liberation(outputPointer);
@@ -151,3 +152,26 @@ function lerp_vector(vectorA, vectorB, t){
 }
 
 // void lerp_points_2d(const double *vectorA, const double *vectorB, double t, double *result)
+function lerp_points_2d(vectorA, vectorB, t) {
+    if (!Array.isArray(vectorA) || !Array.isArray(vectorB) || vectorA.length !== 2 || vectorB.length !== 2) return NaN;
+
+    const pointerA = allocateMemory(vectorA.length, vectorA);
+    const pointerB = allocateMemory(vectorB.length, vectorB);
+    const outputPointer = Module._malloc(vectorA.length * 8);
+
+    linear_algebra.lerp_points_2d(pointerA, pointerB, t, outputPointer);
+
+    const lerp_points_2d = Array.from(
+        Module.HEAPF64.subarray(
+            outputPointer / 8,
+            outputPointer / 8 + vectorA.length
+        )
+    );
+
+    liberation(vectorA);
+    liberation(vectorB);
+    liberation(outputPointer);
+
+    return lerp_points_2d;
+}
+
