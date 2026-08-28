@@ -10,7 +10,7 @@ Module.onRuntimeInitialized = () => {
         smoothstep: Module.cwrap("smoothstep", "number", ["number", "number", "number"]),
         smootherstep: Module.cwrap("smootherstep", "number", ["number", "number", "number"]),
         clamp: Module.cwrap("clamp", "number", ["number", "number", "number"]),
-        // lerp_vector,
+        lerp_vector: Module.cwrap("clamp", "number", ["number", "number", "number"]),
         // lerp_points_2d,
         // lerp_points_3d,
         // rotate_point_2d,
@@ -103,4 +103,15 @@ function clamp(value, min, max){
     const clamp = linear_algebra.clamp(value, min, max);
 
     return clamp;
+}
+
+// ----------------------------------------------------------
+
+// func to allocate memory
+function allocateMemory(size, vector){
+  const pointer = Module._malloc(size * 8);
+
+  Module.HEAPF64.set(vector, pointer / 8);
+
+  return pointer;
 }
