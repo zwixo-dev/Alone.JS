@@ -8,7 +8,7 @@ Module.onRuntimeInitialized = () => {
         inverse_lerp: Module.cwrap("inverse_lerp", "number", ["number", "number", "number"]),
         remap: Module.cwrap("remap", "number", ["number", "number", "number", "number", "number"]),
         smoothstep: Module.cwrap("smoothstep", "number", ["number", "number", "number"]),
-        // smootherstep,
+        smootherstep: Module.cwrap("smootherstep", "number", ["number", "number", "number"]),
         // clamp,
         // lerp_vector,
         // lerp_points_2d,
@@ -53,6 +53,7 @@ Module.onRuntimeInitialized = () => {
     console.log("inverse_lerp func : ", inverse_lerp(0, 10, 25));
     console.log("remap func : ", remap(5, 0, 10, 0, 100));
     console.log("smoothstep : ", smoothstep(0, 1, 0.4));
+    console.log("smootherstep : ", smootherstep(0, 1, 0.4));
 }
 
 
@@ -85,4 +86,12 @@ function smoothstep(edge0, edge1, x){
     const smoothstep = linear_algebra.smoothstep(edge0, edge1, x)
 
     return smoothstep;
+}
+
+// double edge0, double edge1, double x
+function smootherstep(edge0, edge1, x){
+    // smootherstep result
+    const smootherstep = linear_algebra.smootherstep(edge0, edge1, x);
+
+    return smootherstep; 
 }
