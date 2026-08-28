@@ -10,8 +10,8 @@ Module.onRuntimeInitialized = () => {
         smoothstep: Module.cwrap("smoothstep", "number", ["number", "number", "number"]),
         smootherstep: Module.cwrap("smootherstep", "number", ["number", "number", "number"]),
         clamp: Module.cwrap("clamp", "number", ["number", "number", "number"]),
-        lerp_vector: Module.cwrap("lerp_vector", "number", ["number", "number", "number"]),
-        // lerp_points_2d: Module.cwrap("lerp_points_2d", null, ["number", "number", "number", "number", "number"]),
+        lerp_vector: Module.cwrap("lerp_vector", "number", ["number", "number", "number", "number", "number"]),
+        lerp_points_2d: Module.cwrap("lerp_points_2d", null, ["number", "number", "number", "number"]),
         // lerp_points_3d,
         // rotate_point_2d,
         // scale_point_2d,
@@ -128,7 +128,7 @@ function liberation(pointer){
 
 // lerp_vector(int size, const double *vectorA, const double *vectorB, double t, double *result)
 function lerp_vector(vectorA, vectorB, t){
-    if(!Array.isArray(vectorA) || !Array.isArray(vectorB) || vectorA.length !==2 || vectorB.length!==2) return NaN;
+    if(!Array.isArray(vectorA) || !Array.isArray(vectorB) || vectorA.length !== vectorB.length) return NaN;
 
     const pointerA = allocateMemory(vectorA.length, vectorA); 
     const pointerB =  allocateMemory(vectorB.length, vectorB);
@@ -150,3 +150,4 @@ function lerp_vector(vectorA, vectorB, t){
     return lerp_vector;
 }
 
+// void lerp_points_2d(const double *vectorA, const double *vectorB, double t, double *result)
