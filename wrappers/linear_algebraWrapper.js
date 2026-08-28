@@ -115,3 +115,10 @@ function allocateMemory(size, vector){
 
   return pointer;
 }
+
+// func to liberate
+function liberation(pointer){
+    Module._free(pointer);
+}
+
+
