@@ -6,7 +6,7 @@ Module.onRuntimeInitialized = () => {
     linear_algebra = {
         lerp: Module.cwrap("lerp", "number", ["number", "number", "number"]),
         inverse_lerp: Module.cwrap("inverse_lerp", "number", ["number", "number", "number"]),
-        // remap,
+        remap: Module.cwrap("remap", "number", ["number", "number", "number", "number", "number"]),
         // smoothstep,
         // smootherstep,
         // clamp,
@@ -49,8 +49,9 @@ Module.onRuntimeInitialized = () => {
         // is_linear_independent
     }
     console.log("==================== wrappers Test ====================\n")
-    console.log("Lerp func : ",lerp(0, 10, 0.5))
-    console.log("inverse_lerp func : ", inverse_lerp(0, 10, 25))
+    console.log("Lerp func : ",lerp(0, 10, 0.5));
+    console.log("inverse_lerp func : ", inverse_lerp(0, 10, 25));
+    console.log("remap func : ", remap(5, 0, 10, 0, 100));
 }
 
 
@@ -67,4 +68,12 @@ function inverse_lerp(a, b, value){
     const inverse_lerp = linear_algebra.inverse_lerp(a, b, value);
 
     return inverse_lerp;
+}
+
+// double value, double in_min, double in_max, double out_min, double out_max
+function remap(value, in_min, in_max, out_min, out_max){
+    // remap result
+    const remap = linear_algebra.remap(value, in_min, in_max, out_min, out_max);
+
+    return remap;
 }
