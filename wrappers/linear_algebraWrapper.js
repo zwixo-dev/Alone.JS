@@ -24,7 +24,7 @@ Module.onRuntimeInitialized = () => {
         rotate_point_3d_x: Module.cwrap("rotate_point_3d_x", null, ["number", "number", "number", "number", "number"]),
         rotate_point_3d_y: Module.cwrap("rotate_point_3d_y", null, ["number", "number", "number", "number", "number"]),
         rotate_point_3d_z: Module.cwrap("rotate_point_3d_z", null, ["number", "number", "number", "number", "number"]),
-        // rotate_point_3d,
+        rotate_point_3d: Module.cwrap("rotate_point_3d", null, ["number", "number", "number", "number", "number", "number", "number"]),
         // scale_point_3d,
         // translate_point_3d,
         // reflect_point_3d,
@@ -73,6 +73,7 @@ Module.onRuntimeInitialized = () => {
     console.log("rotate_point_3d_x : ", rotate_point_3d_x(x= 2, y= 4, z= 511, angle= 114*Math.PI/180));
     console.log("rotate_point_3d_y : ", rotate_point_3d_y(x= 2, y=4, z= 511 , angle=90 * Math.PI / 180));
     console.log("rotate_point_3d_z : ", rotate_point_3d_z(x= 2, y=4, z= 511 , angle=90 * Math.PI / 180));
+    console.log("rotate_point_3d : ", rotate_point_3d(x=2 , y=4 , z=511 , angle_x=90 * Math.PI / 180, angle_y=90 * Math.PI / 180, angle_z=90 * Math.PI / 180));
 }
 
 
@@ -432,5 +433,22 @@ function rotate_point_3d_z(x, y, z, angle){
 }
 
 // void rotate_point_3d(double x, double y, double z, double angle_x, double angle_y, double angle_z, double *result);
+function rotate_point_3d(x, y, z, angle_x, angle_y, angle_z){
+    const positions = [x, y, z];
 
+    const outputPointer = Module._malloc(positions.length * 8);
+
+    linear_algebra.rotate_point_3d(positions[0], positions[1], positions[2], angle_x, angle_y, angle_z, outputPointer);
+
+    const rotate_point_3d = Array.from(
+        Module.HEAPF64.subarray(
+            outputPointer / 8,
+            outputPointer / 8 + positions.length      
+        )
+    );
+
+    liberation(outputPointer);
+
+    return rotate_point_3d;
+}
 // void scale_point_3d(double x, double y, double z, double scale_x, double scale_y, double scale_z, double *result);
