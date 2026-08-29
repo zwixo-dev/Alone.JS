@@ -22,7 +22,7 @@ Module.onRuntimeInitialized = () => {
         rotate_around_point_2d: Module.cwrap("rotate_around_point_2d", null, ["number", "number", "number", "number", "number", "number"]),
         rotate_vector_2d: Module.cwrap("rotate_vector_2d", null, ["number", "number", "number", "number"]),
         rotate_point_3d_x: Module.cwrap("rotate_point_3d_x", null, ["number", "number", "number", "number", "number"]),
-        // rotate_point_3d_y,
+        rotate_point_3d_y: Module.cwrap("rotate_point_3d_y", null, ["number", "number", "number", "number", "number"]),
         // rotate_point_3d_z,
         // rotate_point_3d,
         // scale_point_3d,
@@ -71,6 +71,7 @@ Module.onRuntimeInitialized = () => {
     console.log("rotate_around_point_2d : ", rotate_around_point_2d(x=1, y= 0, center_x= 0, center_y= 0, angle= 90 * Math.PI / 180));
     console.log("rotate_vector_2d : ", rotate_vector_2d(x=2, y=3, angle=90*Math.PI/180));
     console.log("rotate_point_3d_x : ", rotate_point_3d_x(x= 2, y= 4, z= 511, angle= 114*Math.PI/180));
+    console.log("rotate_point_3d_y : ", rotate_point_3d_y(x= 2, y=4, z= 511 , angle=90 * Math.PI / 180));
 }
 
 
@@ -388,3 +389,30 @@ function rotate_point_3d_x(x, y, z, angle){
     
     return rotate_point_3d_x;
 }
+
+// void rotate_point_3d_y(double x, double y, double z, double angle, double *result);
+
+function rotate_point_3d_y( x, y, z, angle){
+    const positions = [x, y, z];
+
+    const outputPointer = Module._malloc(positions.length * 8);
+
+    linear_algebra.rotate_point_3d_y(positions[0], positions[1], positions[2], angle, outputPointer);
+
+    const rotate_point_3d_y = Array.from(
+        Module.HEAPF64.subarray(
+            outputPointer / 8,
+            outputPointer / 8 + positions.length      
+        )
+    );
+
+    liberation(outputPointer);
+
+    return rotate_point_3d_y
+}
+
+// void rotate_point_3d_z(double x, double y, double z, double angle, double *result);
+
+// void rotate_point_3d(double x, double y, double z, double angle_x, double angle_y, double angle_z, double *result);
+
+// void scale_point_3d(double x, double y, double z, double scale_x, double scale_y, double scale_z, double *result);
