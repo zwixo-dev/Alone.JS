@@ -13,7 +13,7 @@ Module.onRuntimeInitialized = () => {
         lerp_vector: Module.cwrap("lerp_vector", null, ["number", "number", "number", "number", "number"]),
         lerp_points_2d: Module.cwrap("lerp_points_2d", null, ["number", "number", "number", "number"]),
         lerp_points_3d: Module.cwrap("lerp_points_3d", null, ["number", "number", "number", "number"]),
-        // rotate_point_2d,
+        rotate_point_2d: Module.cwrap("rotate_point_2d", null, ["number", "number", "number", "number"]),
         // scale_point_2d,
         // translate_point_2d,
         // shear_point_2d,
@@ -62,6 +62,7 @@ Module.onRuntimeInitialized = () => {
     console.log("lerp_vector : ", lerp_vector(vector_A, vector_B, 0.5));
     console.log("lerp_points_2d : ", lerp_points_2d([-5, 2], [5, -2], 0.25));
     console.log("lerp_points_3d : ", lerp_points_3d([1, 2, 3], [4, 6, 11], 0.25));
+    console.log("rotate_point_2d : ", rotate_point_2d(1, 0, angle=Math.PI/2));
 }
 
 
@@ -202,4 +203,20 @@ function lerp_points_3d(vectorA, vectorB, t){
     return lerp_points_3d;
 }
 
+// void rotate_point_2d(double x, double y, double angle, double *result);
+function rotate_point_2d(x_pos, y_pos, angle){
+    const positions = [x_pos, y_pos];
+    const outputPointer =  Module._malloc(positions.length * 8);
 
+    linear_algebra.rotate_point_2d(positions[0], positions[1], angle, outputPointer);
+
+    const rotate_point_2d = Array.from(
+        Module.HEAPF64.subarray(
+            outputPointer / 8,
+            outputPointer / 8 + positions.length
+        )
+    );
+
+    liberation(outputPointer);
+    return rotate_point_2d;
+}
