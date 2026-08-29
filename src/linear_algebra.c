@@ -177,7 +177,7 @@ void rotate_vector_2d(double x, double y, double angle, double *result){
     // x = ycos(teta) - ysin(teta)
     result[0] = x * cos(angle) -  y * sin(angle)  ;
     // y = ysin(teta) + xcos(teta)
-    result[1] = y * sin(angle) +  x * cos(angle) ;
+    result[1] = x * sin(angle) +  y * cos(angle) ;
 }
 
 // rotate_point_3d_x
