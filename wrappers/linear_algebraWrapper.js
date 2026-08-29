@@ -19,7 +19,7 @@ Module.onRuntimeInitialized = () => {
         shear_point_2d: Module.cwrap("shear_point_2d", null, ["number", "number", "number", "number", "number"]),
         reflect_point_2d: Module.cwrap("reflect_point_2d", null, ["number", "number", "number", "number", "number"]),
         transform_point_2d: Module.cwrap("transform_point_2d", null, ["number", "number", "number", "number", "number", "number", "number", "number"]),
-        // rotate_around_point_2d,
+        rotate_around_point_2d: Module.cwrap("rotate_around_point_2d", null, ["number", "number", "number", "number", "number", "number"]),
         // rotate_vector_2d,
         // rotate_point_3d_x,
         // rotate_point_3d_y,
@@ -68,6 +68,7 @@ Module.onRuntimeInitialized = () => {
     console.log("shear_point_2d : ", shear_point_2d(x=2 , y=3 , shear_x=1.5 , shear_y=2));
     console.log("reflect_point_2d : ", reflect_point_2d(x=3 , y=4 , axis_x=3, axis_y=-4));
     console.log("transform_point_2d : ", transform_point_2d(x=2 , y= 4, tx=4, ty=2, rotation=20*Math.PI/180, scale_x=3, scale_y=5));
+    console.log("rotate_around_point_2d : ", rotate_around_point_2d(x=1, y= 0, center_x= 0, center_y= 0, angle= 90 * Math.PI / 180));
 }
 
 
@@ -324,4 +325,24 @@ function transform_point_2d(x, y, tx, ty, rotation, scale_x, scale_y){
     liberation(outputPointer);
 
     return transform_point_2d;
+}
+
+// void rotate_around_point_2d(double x, double y, double center_x, double center_y, double angle, double *result);
+function rotate_around_point_2d(x, y, center_x, center_y, angle){
+    const positions = [x, y];
+
+    const outputPointer = Module._malloc(positions.length * 8);
+
+    linear_algebra.rotate_around_point_2d(positions[0], positions[1],center_x, center_y, angle, outputPointer);
+
+    const rotate_around_point_2d = Array.from(
+        Module.HEAPF64.subarray(
+            outputPointer / 8,
+            outputPointer / 8 + positions.length
+        )
+    );
+
+    liberation(outputPointer)
+
+    return rotate_around_point_2d;
 }
