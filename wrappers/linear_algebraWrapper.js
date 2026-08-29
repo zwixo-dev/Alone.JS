@@ -14,7 +14,7 @@ Module.onRuntimeInitialized = () => {
         lerp_points_2d: Module.cwrap("lerp_points_2d", null, ["number", "number", "number", "number"]),
         lerp_points_3d: Module.cwrap("lerp_points_3d", null, ["number", "number", "number", "number"]),
         rotate_point_2d: Module.cwrap("rotate_point_2d", null, ["number", "number", "number", "number"]),
-        // scale_point_2d,
+        scale_point_2d: Module.cwrap("scale_point_2d", null, ["number", "number", "number", "number", "number"]),
         // translate_point_2d,
         // shear_point_2d,
         // reflect_point_2d,
@@ -63,6 +63,7 @@ Module.onRuntimeInitialized = () => {
     console.log("lerp_points_2d : ", lerp_points_2d([-5, 2], [5, -2], 0.25));
     console.log("lerp_points_3d : ", lerp_points_3d([1, 2, 3], [4, 6, 11], 0.25));
     console.log("rotate_point_2d : ", rotate_point_2d(1, 0, angle=Math.PI/2));
+    console.log("scale_point_2d : ", scale_point_2d(x=2, y=3, scale_x=2, scale_y=3));
 }
 
 
@@ -219,4 +220,24 @@ function rotate_point_2d(x_pos, y_pos, angle){
 
     liberation(outputPointer);
     return rotate_point_2d;
+}
+
+// void scale_point_2d(double x, double y, double scale_x, double scale_y, double *result);
+function scale_point_2d(x, y, scale_x, scale_y){
+    const positions = [x, y];
+
+    const outputPointer = Module._malloc(positions.length * 8);
+
+    linear_algebra.scale_point_2d(positions[0], positions[1], scale_x, scale_y, outputPointer);
+    
+    const scale_point_2d = Array.from(
+        Module.HEAPF64.subarray(
+            outputPointer / 8,
+            outputPointer / 8 + positions.length  
+        )
+    );
+
+    liberation(outputPointer);
+
+    return scale_point_2d;
 }
