@@ -16,7 +16,7 @@ Module.onRuntimeInitialized = () => {
         rotate_point_2d: Module.cwrap("rotate_point_2d", null, ["number", "number", "number", "number"]),
         scale_point_2d: Module.cwrap("scale_point_2d", null, ["number", "number", "number", "number", "number"]),
         translate_point_2d: Module.cwrap("translate_point_2d", null, ["number", "number", "number", "number", "number"]),
-        // shear_point_2d,
+        shear_point_2d: Module.cwrap("shear_point_2d", null, ["number", "number", "number", "number", "number"]),
         // reflect_point_2d,
         // transform_point_2d,
         // rotate_around_point_2d,
@@ -64,7 +64,8 @@ Module.onRuntimeInitialized = () => {
     console.log("lerp_points_3d : ", lerp_points_3d([1, 2, 3], [4, 6, 11], 0.25));
     console.log("rotate_point_2d : ", rotate_point_2d(1, 0, angle=Math.PI/2));
     console.log("scale_point_2d : ", scale_point_2d(x=2, y=3, scale_x=2, scale_y=3));
-    console.log("translate_point_2d : ", translate_point_2d(1, 2, 4, 6));
+    console.log("translate_point_2d : ", translate_point_2d(x=1, y=2, tx=4, ty=6));
+    console.log("shear_point_2d : ", shear_point_2d(x=2 , y=3 , shear_x=1.5 , shear_y=2));
 }
 
 
@@ -261,4 +262,24 @@ function translate_point_2d(x, y, tx, ty){
     liberation(translate_point_2d);
     
     return translate_point_2d;
+}
+
+// void shear_point_2d(double x, double y, double shear_x, double shear_y, double *result);
+function shear_point_2d(x, y, shear_x, shear_y){
+    const positions = [x, y];
+
+    const outputPointer = Module._malloc(positions.length * 8);
+
+    linear_algebra.shear_point_2d(positions[0], positions[1], shear_x, shear_y, outputPointer);
+
+    const shear_point_2d = Array.from(
+        Module.HEAPF64.subarray(
+            outputPointer / 8,
+            outputPointer / 8 + positions.length
+        )
+    );
+
+    liberation(outputPointer);
+
+    return shear_point_2d;
 }
