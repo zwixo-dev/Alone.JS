@@ -12,7 +12,7 @@ Module.onRuntimeInitialized = () => {
         clamp: Module.cwrap("clamp", "number", ["number", "number", "number"]),
         lerp_vector: Module.cwrap("lerp_vector", null, ["number", "number", "number", "number", "number"]),
         lerp_points_2d: Module.cwrap("lerp_points_2d", null, ["number", "number", "number", "number"]),
-        // lerp_points_3d,
+        lerp_points_3d: Module.cwrap("lerp_points_3d", null, ["number", "number", "number", "number"]),
         // rotate_point_2d,
         // scale_point_2d,
         // translate_point_2d,
@@ -60,7 +60,8 @@ Module.onRuntimeInitialized = () => {
     console.log("smootherstep : ", smootherstep(0, 1, 0.4));
     console.log("clamp : ", clamp(20, 5, 30))
     console.log("lerp_vector : ", lerp_vector(vector_A, vector_B, 0.5));
-    console.log("lerp_points_2d : ", lerp_points_2d([-5, 2], [5, -2], 0.25))
+    console.log("lerp_points_2d : ", lerp_points_2d([-5, 2], [5, -2], 0.25));
+    console.log("lerp_points_3d : ", lerp_points_3d([1, 2, 3], [4, 6, 11], 0.25));
 }
 
 
@@ -174,4 +175,31 @@ function lerp_points_2d(vectorA, vectorB, t) {
 
     return lerp_points_2d;
 }
+
+// void lerp_points_3d(const double *vectorA, const double *vectorB, double t, double *result);
+
+function lerp_points_3d(vectorA, vectorB, t){
+    if(!Array.isArray(vectorA) || !Array.isArray(vectorB) || vectorA.length !== 3 || vectorB.length !== 3) return NaN;
+
+    const pointerA = allocateMemory(vectorA.length, vectorA);
+    const pointerB = allocateMemory(vectorB.length, vectorB);
+    const outputPointer = Module._malloc(vectorA.length * 8);
+
+    linear_algebra.lerp_points_3d(pointerA, pointerB, t, outputPointer);
+
+    const lerp_points_3d = Array.from(
+        Module.HEAPF64.subarray(
+            outputPointer / 8,
+            outputPointer / 8 + vectorA.length
+        )
+    ); 
+
+
+    liberation(pointerA);
+    liberation(pointerB);
+    liberation(outputPointer);
+
+    return lerp_points_3d;
+}
+
 
