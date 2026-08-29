@@ -18,7 +18,7 @@ Module.onRuntimeInitialized = () => {
         translate_point_2d: Module.cwrap("translate_point_2d", null, ["number", "number", "number", "number", "number"]),
         shear_point_2d: Module.cwrap("shear_point_2d", null, ["number", "number", "number", "number", "number"]),
         reflect_point_2d: Module.cwrap("reflect_point_2d", null, ["number", "number", "number", "number", "number"]),
-        // transform_point_2d,
+        transform_point_2d: Module.cwrap("transform_point_2d", null, ["number", "number", "number", "number", "number", "number", "number", "number"]),
         // rotate_around_point_2d,
         // rotate_vector_2d,
         // rotate_point_3d_x,
@@ -67,6 +67,7 @@ Module.onRuntimeInitialized = () => {
     console.log("translate_point_2d : ", translate_point_2d(x=1, y=2, tx=4, ty=6));
     console.log("shear_point_2d : ", shear_point_2d(x=2 , y=3 , shear_x=1.5 , shear_y=2));
     console.log("reflect_point_2d : ", reflect_point_2d(x=3 , y=4 , axis_x=3, axis_y=-4));
+    console.log("transform_point_2d : ", transform_point_2d(x=2 , y= 4, tx=4, ty=2, rotation=20*Math.PI/180, scale_x=3, scale_y=5));
 }
 
 
@@ -303,4 +304,24 @@ function reflect_point_2d(x, y, axis_x, axis_y){
     liberation(outputPointer);
 
     return reflect_point_2d;
+}
+
+// void transform_point_2d(double x, double y, double tx, double ty, double rotation, double scale_x, double scale_y, double *result);
+function transform_point_2d(x, y, tx, ty, rotation, scale_x, scale_y){
+    const positions = [x, y];
+
+    const outputPointer = Module._malloc(positions.length * 8);
+
+    linear_algebra.transform_point_2d(positions[0], positions[1], tx, ty, rotation, scale_x, scale_y, outputPointer);
+
+    const transform_point_2d = Array.from(
+        Module.HEAPF64.subarray(
+            outputPointer / 8,
+            outputPointer / 8 + positions.length
+        )
+    );
+
+    liberation(outputPointer);
+
+    return transform_point_2d;
 }
