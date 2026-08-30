@@ -29,7 +29,7 @@ Module.onRuntimeInitialized = () => {
         translate_point_3d: Module.cwrap("translate_point_3d", null, ["number", "number", "number", "number", "number", "number", "number"]),
         reflect_point_3d: Module.cwrap("reflect_point_3d", null, ["number", "number", "number", "number", "number", "number", "number"]),
         rotate_around_point_3d: Module.cwrap("rotate_around_point_3d", null, ["number", "number", "number", "number", "number", "number", "number", "number", "number", "number"]),
-        // transform_point_3d,
+        transform_point_3d: Module.cwrap("transform_point_3d", null, ["number", "number", "number", "number", "number", "number", "number", "number", "number", "number", "number", "number", "number"]),
         // cartesian_to_polar,
         // polar_to_cartesian,
         // cartesian_to_spherical,
@@ -77,7 +77,8 @@ Module.onRuntimeInitialized = () => {
     console.log("scale_point_3d : ", scale_point_3d(x=2, y=3, z=4, scale_x=1.5, scale_y=2, scale_z=0.5));
     console.log("translate_point_3d : ", translate_point_3d(x=2, y=3, z=5, tx=4, ty=7, tz=9));
     console.log("reflect_point_3d : ", reflect_point_3d(x= 2, y=3, z=1, nx=2, ny=4, nz=5)); // NOT CORRECT for now
-    console.log("rotate_around_point_3d  : ", rotate_around_point_3d(x=2, y=3, z=4, cx=1, cy=1, cz=1, angle_x=90*Math.PI/180, angle_y=0, angle_z=0))
+    console.log("rotate_around_point_3d  : ", rotate_around_point_3d(x=2, y=3, z=4, cx=1, cy=1, cz=1, angle_x=90 * Math.PI/180, angle_y=0, angle_z=0));
+    console.log("transform_point_3d : ", transform_point_3d(x=1, y=1, z=0, tx=5, ty=5, tz=5, rx=0, ry=0, rz=90 * Math.PI / 180, sx=2, sy=3, sz=1));
 }
 
 
@@ -539,6 +540,26 @@ function rotate_around_point_3d(x, y, z, cx, cy, cz, angle_x, angle_y, angle_z){
     return rotate_around_point_3d;
 }
 // transform_point_3d
+// transform_point_3d(double x, double y, double z, double tx, double ty, double tz, double rx, double ry, double rz, double sx, double sy, double sz, double *result);
+function transform_point_3d(x, y, z, tx, ty, tz, rx, ry, rz, sx, sy, sz){
+    const positions = [x, y, z];
+
+    const outputPointer = Module._malloc(positions.length * 8);
+
+    linear_algebra.transform_point_3d(positions[0], positions[1], positions[2], tx, ty, tz, rx, ry, rz, sx, sy, sz, outputPointer);
+
+    const transform_point_3d = Array.from(
+        Module.HEAPF64.subarray(
+            outputPointer / 8,
+            outputPointer / 8 + positions.length      
+        )
+    );
+
+    liberation(outputPointer);
+
+    return transform_point_3d;
+}
+
 // cartesian_to_polar
 // polar_to_cartesian
 // cartesian_to_spherical
