@@ -31,7 +31,7 @@ Module.onRuntimeInitialized = () => {
         rotate_around_point_3d: Module.cwrap("rotate_around_point_3d", null, ["number", "number", "number", "number", "number", "number", "number", "number", "number", "number"]),
         transform_point_3d: Module.cwrap("transform_point_3d", null, ["number", "number", "number", "number", "number", "number", "number", "number", "number", "number", "number", "number", "number"]),
         cartesian_to_polar: Module.cwrap("cartesian_to_polar", null, ["number", "number", "number"]),
-        // polar_to_cartesian,
+        polar_to_cartesian: Module.cwrap("polar_to_cartesian", null, ["number", "number", "number"]),
         // cartesian_to_spherical,
         // spherical_to_cartesian,
         // cartesian_to_cylindrical,
@@ -80,6 +80,7 @@ Module.onRuntimeInitialized = () => {
     console.log("rotate_around_point_3d  : ", rotate_around_point_3d(x=2, y=3, z=4, cx=1, cy=1, cz=1, angle_x=90 * Math.PI/180, angle_y=0, angle_z=0));
     console.log("transform_point_3d : ", transform_point_3d(x=1, y=1, z=0, tx=5, ty=5, tz=5, rx=0, ry=0, rz=90 * Math.PI / 180, sx=2, sy=3, sz=1));
     console.log("cartesian_to_polar : ", cartesian_to_polar(x= 2, y=4));
+    console.log("polar_to_cartesian : ", polar_to_cartesian(radius=4, angle=90*Math.PI/180));
 }
 
 
@@ -582,6 +583,28 @@ function cartesian_to_polar(x, y){
     return cartesian_to_polar;
 }
 // polar_to_cartesian
+// void polar_to_cartesian(double radius, double angle, double *result);
+function polar_to_cartesian(radius, angle){
+    
+    const outputPointer = Module._malloc([radius, angle].length * 8); 
+
+    linear_algebra.polar_to_cartesian(radius, angle, outputPointer);
+
+    const polar_to_cartesian = Array.from(
+        Module.HEAPF64.subarray(
+            outputPointer / 8,
+            outputPointer / 8 + [radius, angle].length      
+        )
+    );
+
+    liberation(outputPointer);
+
+    return polar_to_cartesian;
+}
+
+
 // cartesian_to_spherical
+
 // spherical_to_cartesian
+
 // cartesian_to_cylindrical
