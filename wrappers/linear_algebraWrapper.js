@@ -626,6 +626,7 @@ function cartesian_to_spherical(x, y, z){
 
     return cartesian_to_spherical;
 }
+
 // spherical_to_cartesian
 // void spherical_to_cartesian(double radius, double theta, double phi, double *result);
 function spherical_to_cartesian(radius, theta, phi){
@@ -648,3 +649,22 @@ function spherical_to_cartesian(radius, theta, phi){
 
 
 // cartesian_to_cylindrical
+// void cartesian_to_cylindrical(double x, double y, double z, double *result);
+function cartesian_to_cylindrical(x, y, z){
+    const positions = [x, y, z];
+
+    const outputPointer = Module._malloc(positions.length * 8); 
+
+    linear_algebra.cartesian_to_spherical(positions[0], positions[1], positions[2], outputPointer);
+
+    const cartesian_to_cylindrical = Array.from(
+        Module.HEAPF64.subarray(
+            outputPointer / 8,
+            outputPointer / 8 + positions.length      
+        )
+    );
+
+    liberation(outputPointer);
+
+    return cartesian_to_cylindrical;
+}
