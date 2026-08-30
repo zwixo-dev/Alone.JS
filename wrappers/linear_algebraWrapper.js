@@ -32,7 +32,7 @@ Module.onRuntimeInitialized = () => {
         transform_point_3d: Module.cwrap("transform_point_3d", null, ["number", "number", "number", "number", "number", "number", "number", "number", "number", "number", "number", "number", "number"]),
         cartesian_to_polar: Module.cwrap("cartesian_to_polar", null, ["number", "number", "number"]),
         polar_to_cartesian: Module.cwrap("polar_to_cartesian", null, ["number", "number", "number"]),
-        // cartesian_to_spherical,
+        cartesian_to_spherical: Module.cwrap("cartesian_to_spherical", null, ["number", "number", "number", "number"]),
         // spherical_to_cartesian,
         // cartesian_to_cylindrical,
         // cylindrical_to_cartesian,
@@ -81,6 +81,7 @@ Module.onRuntimeInitialized = () => {
     console.log("transform_point_3d : ", transform_point_3d(x=1, y=1, z=0, tx=5, ty=5, tz=5, rx=0, ry=0, rz=90 * Math.PI / 180, sx=2, sy=3, sz=1));
     console.log("cartesian_to_polar : ", cartesian_to_polar(x= 2, y=4));
     console.log("polar_to_cartesian : ", polar_to_cartesian(radius=4, angle=90*Math.PI/180));
+    console.log("cartesian_to_spherical : ", cartesian_to_spherical(x=2, y=4, z=5));
 }
 
 
@@ -604,7 +605,26 @@ function polar_to_cartesian(radius, angle){
 
 
 // cartesian_to_spherical
+// //
+// void cartesian_to_spherical(double x, double y, double z, double *result);
+function cartesian_to_spherical(x, y, z){
+    const positions = [x, y, z];
 
+    const outputPointer = Module._malloc(positions.length * 8); 
+
+    linear_algebra.cartesian_to_spherical(positions[0], positions[1], positions[2], outputPointer);
+
+    const cartesian_to_spherical = Array.from(
+        Module.HEAPF64.subarray(
+            outputPointer / 8,
+            outputPointer / 8 + positions.length      
+        )
+    );
+
+    liberation(outputPointer);
+
+    return cartesian_to_spherical;
+}
 // spherical_to_cartesian
 
 // cartesian_to_cylindrical
