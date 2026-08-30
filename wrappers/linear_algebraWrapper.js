@@ -27,7 +27,7 @@ Module.onRuntimeInitialized = () => {
         rotate_point_3d: Module.cwrap("rotate_point_3d", null, ["number", "number", "number", "number", "number", "number", "number"]),
         scale_point_3d: Module.cwrap("scale_point_3d", null, ["number", "number", "number", "number", "number", "number", "number"]),
         translate_point_3d: Module.cwrap("translate_point_3d", null, ["number", "number", "number", "number", "number", "number", "number"]),
-        // reflect_point_3d,
+        reflect_point_3d: Module.cwrap("reflect_point_3d", null, ["number", "number", "number", "number", "number", "number", "number"]),
         // rotate_around_point_3d,
         // transform_point_3d,
         // cartesian_to_polar,
@@ -76,6 +76,7 @@ Module.onRuntimeInitialized = () => {
     console.log("rotate_point_3d : ", rotate_point_3d(x=2 , y=4 , z=511 , angle_x=90 * Math.PI / 180, angle_y=90 * Math.PI / 180, angle_z=90 * Math.PI / 180));
     console.log("scale_point_3d : ", scale_point_3d(x=2, y=3, z=4, scale_x=1.5, scale_y=2, scale_z=0.5));
     console.log("translate_point_3d : ", translate_point_3d(x=2, y=3, z=5, tx=4, ty=7, tz=9));
+    console.log("reflect_point_3d : ", reflect_point_3d(x= 2, y=3, z=1, nx=2, ny=4, nz=5)); // NOT CORRECT for now
 }
 
 
@@ -496,6 +497,26 @@ function translate_point_3d(x, y, z, tx, ty, tz){
 }
 
 // reflect_point_3d
+// void reflect_point_3d(double x, double y, double z, double nx, double ny, double nz, double *result);
+function reflect_point_3d(x, y, z, nx, ny, nz){
+    const positions = [x, y, z];
+
+    const outputPointer = Module._malloc(positions.length * 8);
+
+    linear_algebra.reflect_point_3d(positions[0], positions[1], positions[2], nx, ny, nz, outputPointer);
+
+    const reflect_point_3d = Array.from(
+        Module.HEAPF64.subarray(
+            outputPointer / 8,
+            outputPointer / 8 + positions.length      
+        )
+    );
+
+    liberation(outputPointer);
+
+    return reflect_point_3d;
+}
+
 // rotate_around_point_3d
 // transform_point_3d
 // cartesian_to_polar
