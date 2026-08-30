@@ -26,7 +26,7 @@ Module.onRuntimeInitialized = () => {
         rotate_point_3d_z: Module.cwrap("rotate_point_3d_z", null, ["number", "number", "number", "number", "number"]),
         rotate_point_3d: Module.cwrap("rotate_point_3d", null, ["number", "number", "number", "number", "number", "number", "number"]),
         scale_point_3d: Module.cwrap("scale_point_3d", null, ["number", "number", "number", "number", "number", "number", "number"]),
-        // translate_point_3d,
+        translate_point_3d: Module.cwrap("translate_point_3d", null, ["number", "number", "number", "number", "number", "number", "number"]),
         // reflect_point_3d,
         // rotate_around_point_3d,
         // transform_point_3d,
@@ -75,7 +75,7 @@ Module.onRuntimeInitialized = () => {
     console.log("rotate_point_3d_z : ", rotate_point_3d_z(x= 2, y=4, z= 511 , angle=90 * Math.PI / 180));
     console.log("rotate_point_3d : ", rotate_point_3d(x=2 , y=4 , z=511 , angle_x=90 * Math.PI / 180, angle_y=90 * Math.PI / 180, angle_z=90 * Math.PI / 180));
     console.log("scale_point_3d : ", scale_point_3d(x=2, y=3, z=4, scale_x=1.5, scale_y=2, scale_z=0.5));
-
+    console.log("translate_point_3d : ", translate_point_3d(x=2, y=3, z=5, tx=4, ty=7, tz=9));
 }
 
 
@@ -472,3 +472,34 @@ function scale_point_3d(x, y, z, scale_x, scale_y, scale_z){
 
     return scale_point_3d;
 }
+
+
+// translate_point_3d
+// void translate_point_3d(double x, double y, double z, double tx, double ty, double tz, double *result);
+function translate_point_3d(x, y, z, tx, ty, tz){
+    const positions = [x, y, z];
+
+    const outputPointer = Module._malloc(positions.length * 8);
+
+    linear_algebra.translate_point_3d(positions[0], positions[1], positions[2], tx, ty, tz, outputPointer);
+
+    const translate_point_3d = Array.from(
+        Module.HEAPF64.subarray(
+            outputPointer / 8,
+            outputPointer / 8 + positions.length      
+        )
+    );
+
+    liberation(outputPointer);
+
+    return translate_point_3d;
+}
+
+// reflect_point_3d
+// rotate_around_point_3d
+// transform_point_3d
+// cartesian_to_polar
+// polar_to_cartesian
+// cartesian_to_spherical
+// spherical_to_cartesian
+// cartesian_to_cylindrical
