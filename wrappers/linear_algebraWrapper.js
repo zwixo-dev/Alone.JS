@@ -30,7 +30,7 @@ Module.onRuntimeInitialized = () => {
         reflect_point_3d: Module.cwrap("reflect_point_3d", null, ["number", "number", "number", "number", "number", "number", "number"]),
         rotate_around_point_3d: Module.cwrap("rotate_around_point_3d", null, ["number", "number", "number", "number", "number", "number", "number", "number", "number", "number"]),
         transform_point_3d: Module.cwrap("transform_point_3d", null, ["number", "number", "number", "number", "number", "number", "number", "number", "number", "number", "number", "number", "number"]),
-        // cartesian_to_polar,
+        cartesian_to_polar: Module.cwrap("cartesian_to_polar", null, ["number", "number", "number"]),
         // polar_to_cartesian,
         // cartesian_to_spherical,
         // spherical_to_cartesian,
@@ -79,6 +79,7 @@ Module.onRuntimeInitialized = () => {
     console.log("reflect_point_3d : ", reflect_point_3d(x= 2, y=3, z=1, nx=2, ny=4, nz=5)); // NOT CORRECT for now
     console.log("rotate_around_point_3d  : ", rotate_around_point_3d(x=2, y=3, z=4, cx=1, cy=1, cz=1, angle_x=90 * Math.PI/180, angle_y=0, angle_z=0));
     console.log("transform_point_3d : ", transform_point_3d(x=1, y=1, z=0, tx=5, ty=5, tz=5, rx=0, ry=0, rz=90 * Math.PI / 180, sx=2, sy=3, sz=1));
+    console.log("cartesian_to_polar : ", cartesian_to_polar(x= 2, y=4));
 }
 
 
@@ -561,6 +562,25 @@ function transform_point_3d(x, y, z, tx, ty, tz, rx, ry, rz, sx, sy, sz){
 }
 
 // cartesian_to_polar
+// cartesian_to_polar(double x, double y, double *result)
+function cartesian_to_polar(x, y){
+    const positions = [x, y];
+
+    const outputPointer = Module._malloc(positions.length * 8);
+    
+    linear_algebra.cartesian_to_polar(positions[0], positions[1], outputPointer);
+
+    const cartesian_to_polar = Array.from(
+        Module.HEAPF64.subarray(
+            outputPointer / 8,
+            outputPointer / 8 + positions.length      
+        )
+    );
+
+    liberation(outputPointer);
+
+    return cartesian_to_polar;
+}
 // polar_to_cartesian
 // cartesian_to_spherical
 // spherical_to_cartesian
