@@ -33,7 +33,7 @@ Module.onRuntimeInitialized = () => {
         cartesian_to_polar: Module.cwrap("cartesian_to_polar", null, ["number", "number", "number"]),
         polar_to_cartesian: Module.cwrap("polar_to_cartesian", null, ["number", "number", "number"]),
         cartesian_to_spherical: Module.cwrap("cartesian_to_spherical", null, ["number", "number", "number", "number"]),
-        // spherical_to_cartesian,
+        spherical_to_cartesian: Module.cwrap("spherical_to_cartesian", null, ["number", "number", "number", "number"]),
         // cartesian_to_cylindrical,
         // cylindrical_to_cartesian,
         // world_to_screen_2d,
@@ -82,6 +82,7 @@ Module.onRuntimeInitialized = () => {
     console.log("cartesian_to_polar : ", cartesian_to_polar(x= 2, y=4));
     console.log("polar_to_cartesian : ", polar_to_cartesian(radius=4, angle=90*Math.PI/180));
     console.log("cartesian_to_spherical : ", cartesian_to_spherical(x=2, y=4, z=5));
+    console.log("spherical_to_cartesian : ", spherical_to_cartesian());
 }
 
 
@@ -626,5 +627,24 @@ function cartesian_to_spherical(x, y, z){
     return cartesian_to_spherical;
 }
 // spherical_to_cartesian
+// void spherical_to_cartesian(double radius, double theta, double phi, double *result);
+function spherical_to_cartesian(radius, theta, phi){
+
+    const outputPointer = Module._malloc([radius, theta, phi].length * 8); 
+
+    linear_algebra.cartesian_to_spherical(radius, theta, phi, outputPointer);
+
+    const spherical_to_cartesian = Array.from(
+        Module.HEAPF64.subarray(
+            outputPointer / 8,
+            outputPointer / 8 + positions.length      
+        )
+    );
+
+    liberation(outputPointer);
+
+    return spherical_to_cartesian;
+}
+
 
 // cartesian_to_cylindrical
