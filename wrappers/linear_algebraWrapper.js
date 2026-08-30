@@ -28,7 +28,7 @@ Module.onRuntimeInitialized = () => {
         scale_point_3d: Module.cwrap("scale_point_3d", null, ["number", "number", "number", "number", "number", "number", "number"]),
         translate_point_3d: Module.cwrap("translate_point_3d", null, ["number", "number", "number", "number", "number", "number", "number"]),
         reflect_point_3d: Module.cwrap("reflect_point_3d", null, ["number", "number", "number", "number", "number", "number", "number"]),
-        // rotate_around_point_3d,
+        rotate_around_point_3d: Module.cwrap("rotate_around_point_3d", null, ["number", "number", "number", "number", "number", "number", "number", "number", "number", "number"]),
         // transform_point_3d,
         // cartesian_to_polar,
         // polar_to_cartesian,
@@ -77,6 +77,7 @@ Module.onRuntimeInitialized = () => {
     console.log("scale_point_3d : ", scale_point_3d(x=2, y=3, z=4, scale_x=1.5, scale_y=2, scale_z=0.5));
     console.log("translate_point_3d : ", translate_point_3d(x=2, y=3, z=5, tx=4, ty=7, tz=9));
     console.log("reflect_point_3d : ", reflect_point_3d(x= 2, y=3, z=1, nx=2, ny=4, nz=5)); // NOT CORRECT for now
+    console.log("rotate_around_point_3d  : ", rotate_around_point_3d(x=2, y=3, z=4, cx=1, cy=1, cz=1, angle_x=90*Math.PI/180, angle_y=0, angle_z=0))
 }
 
 
@@ -518,6 +519,25 @@ function reflect_point_3d(x, y, z, nx, ny, nz){
 }
 
 // rotate_around_point_3d
+// rotate_around_point_3d(double x, double y, double z, double cx, double cy, double cz, double angle_x, double angle_y, double angle_z, double *result)
+function rotate_around_point_3d(x, y, z, cx, cy, cz, angle_x, angle_y, angle_z){
+    const positions = [x, y, z];
+    
+    const outputPointer = Module._malloc(positions.length * 8);
+
+    linear_algebra.rotate_around_point_3d(positions[0], positions[1], positions[2], cx, cy, cz, angle_x, angle_y, angle_z, outputPointer);
+
+    const rotate_around_point_3d = Array.from(
+        Module.HEAPF64.subarray(
+            outputPointer / 8,
+            outputPointer / 8 + positions.length      
+        )
+    );
+
+    liberation(outputPointer);
+
+    return rotate_around_point_3d;
+}
 // transform_point_3d
 // cartesian_to_polar
 // polar_to_cartesian
