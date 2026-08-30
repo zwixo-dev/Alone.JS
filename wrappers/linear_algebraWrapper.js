@@ -82,7 +82,7 @@ Module.onRuntimeInitialized = () => {
     console.log("cartesian_to_polar : ", cartesian_to_polar(x= 2, y=4));
     console.log("polar_to_cartesian : ", polar_to_cartesian(radius=4, angle=90*Math.PI/180));
     console.log("cartesian_to_spherical : ", cartesian_to_spherical(x=2, y=4, z=5));
-    console.log("spherical_to_cartesian : ", spherical_to_cartesian());
+    console.log("spherical_to_cartesian : ", spherical_to_cartesian(radius=6.708203932499369, theta=1.1071487177940904, phi=0.7297276562269664));
 }
 
 
@@ -633,12 +633,12 @@ function spherical_to_cartesian(radius, theta, phi){
 
     const outputPointer = Module._malloc([radius, theta, phi].length * 8); 
 
-    linear_algebra.cartesian_to_spherical(radius, theta, phi, outputPointer);
+    linear_algebra.spherical_to_cartesian(radius, theta, phi, outputPointer);
 
     const spherical_to_cartesian = Array.from(
         Module.HEAPF64.subarray(
             outputPointer / 8,
-            outputPointer / 8 + positions.length      
+            outputPointer / 8 + [radius, theta, phi].length      
         )
     );
 
