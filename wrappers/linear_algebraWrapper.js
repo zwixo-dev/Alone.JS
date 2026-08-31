@@ -35,7 +35,7 @@ Module.onRuntimeInitialized = () => {
         cartesian_to_spherical: Module.cwrap("cartesian_to_spherical", null, ["number", "number", "number", "number"]),
         spherical_to_cartesian: Module.cwrap("spherical_to_cartesian", null, ["number", "number", "number", "number"]),
         cartesian_to_cylindrical: Module.cwrap("cartesian_to_cylindrical", null, ["number", "number", "number", "number"]),
-        // cylindrical_to_cartesian,
+        cylindrical_to_cartesian: Module.cwrap("cylindrical_to_cartesian", null, ["number", "number", "number", "number"]),
         // world_to_screen_2d,
         // screen_to_world_2d,
         // world_to_ndc,
@@ -84,6 +84,7 @@ Module.onRuntimeInitialized = () => {
     console.log("cartesian_to_spherical : ", cartesian_to_spherical(x=2, y=4, z=5));
     console.log("spherical_to_cartesian : ", spherical_to_cartesian(radius=6.708203932499369, theta=1.1071487177940904, phi=0.7297276562269664));
     console.log("cartesian_to_cylindrical : ", cartesian_to_cylindrical(x=3, y=4, z=5));
+    console.log("cylindrical_to_cartesian: ", cylindrical_to_cartesian(radius=4, angle=80*Math.PI/180, height=80));
 }
 
 
@@ -669,3 +670,31 @@ function cartesian_to_cylindrical(x, y, z){
 
     return cartesian_to_cylindrical;
 }
+
+// cylindrical_to_cartesian
+// void cylindrical_to_cartesian(double radius, double angle, double height, double *result);
+function cylindrical_to_cartesian(radius, angle, height){
+
+    const outputPointer = Module._malloc([radius, angle, height].length * 8);
+
+    linear_algebra.cylindrical_to_cartesian(radius, angle, height, outputPointer);
+
+    const cylindrical_to_cartesian = Array.from(
+        Module.HEAPF64.subarray(
+            outputPointer / 8,
+            outputPointer / 8 + [radius, angle, height].length      
+        )
+    );
+
+    liberation(outputPointer);
+
+    return cylindrical_to_cartesian;
+}
+
+// world_to_screen_2d
+// screen_to_world_2d
+// world_to_ndc
+// ndc_to_screen
+// screen_to_ndc
+// perspective_project
+// perspective_divide
