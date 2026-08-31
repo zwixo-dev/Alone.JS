@@ -38,7 +38,7 @@ Module.onRuntimeInitialized = () => {
         cylindrical_to_cartesian: Module.cwrap("cylindrical_to_cartesian", null, ["number", "number", "number", "number"]),
         world_to_screen_2d: Module.cwrap("world_to_screen_2d", null, ["number", "number", "number", "number", "number", "number", "number", "number", "number"]),
         screen_to_world_2d: Module.cwrap("screen_to_world_2d", null, ["number", "number", "number", "number", "number", "number", "number", "number", "number"]),
-        // world_to_ndc,
+        world_to_ndc: Module.cwrap("world_to_ndc", null, ["number", "number", "number", "number", "number", "number", "number", "number", "number", "number"]),
         // ndc_to_screen,
         // screen_to_ndc,
         // perspective_project,
@@ -87,6 +87,7 @@ Module.onRuntimeInitialized = () => {
     console.log("cylindrical_to_cartesian: ", cylindrical_to_cartesian(radius=4, angle=80*Math.PI/180, height=80));
     console.log("world_to_screen_2d : ", world_to_screen_2d(x=200, y=150, camera_x=100, camera_y=100, zoom=2.0, screen_width=800, screen_height=600)); // NOT CORRECT for now
     console.log("screen_to_world_2d : ", screen_to_world_2d(screen_x=300, screen_y=200, camera_x=500, camera_y=500, zoom=0.5, screen_width=800, screen_height=600)); // M missing something here i will back to it later 
+    console.log("world_to_ndc : ", world_to_ndc(x=200, y=-75, z=15, viewport_width=800, viewport_height=600, near_plane=10, far_plane=110)); // almost corr 99.99999% 
 }
 
 
@@ -742,6 +743,31 @@ function screen_to_world_2d(screen_x, screen_y, camera_x, camera_y, zoom, screen
 }
 
 // world_to_ndc
+// void world_to_ndc(double x, double y, double z,
+//                   double viewport_width, double viewport_height,
+//                   double near_plane, double far_plane,
+//                   double *NDC_x, double *NDC_y, double *NDC_z);
+function world_to_ndc(x, y, z, viewport_width, viewport_height, near_plane, far_plane){
+
+    const NDC_x_pointer = Module._malloc(8);
+    const NDC_y_pointer = Module._malloc(8);
+    const NDC_z_pointer = Module._malloc(8);
+
+    linear_algebra.world_to_ndc(x, y, z, viewport_width, viewport_height, near_plane, far_plane, NDC_x_pointer, NDC_y_pointer, NDC_z_pointer); 
+
+    const world_to_ndc = [
+        Module.HEAPF64[NDC_x_pointer / 8],
+        Module.HEAPF64[NDC_y_pointer / 8],
+        Module.HEAPF64[NDC_z_pointer / 8],
+    ];
+
+    liberation(NDC_x_pointer);
+    liberation(NDC_y_pointer);
+    liberation(NDC_z_pointer);
+
+    return world_to_ndc;
+}
+
 // ndc_to_screen
 // screen_to_ndc
 // perspective_project
