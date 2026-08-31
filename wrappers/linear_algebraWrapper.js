@@ -39,7 +39,7 @@ Module.onRuntimeInitialized = () => {
         world_to_screen_2d: Module.cwrap("world_to_screen_2d", null, ["number", "number", "number", "number", "number", "number", "number", "number", "number"]),
         screen_to_world_2d: Module.cwrap("screen_to_world_2d", null, ["number", "number", "number", "number", "number", "number", "number", "number", "number"]),
         world_to_ndc: Module.cwrap("world_to_ndc", null, ["number", "number", "number", "number", "number", "number", "number", "number", "number", "number"]),
-        // ndc_to_screen,
+        ndc_to_screen:  Module.cwrap("ndc_to_screen", null, ["number", "number", "number", "number", "number", "number"]),
         // screen_to_ndc,
         // perspective_project,
         // perspective_divide,
@@ -88,6 +88,7 @@ Module.onRuntimeInitialized = () => {
     console.log("world_to_screen_2d : ", world_to_screen_2d(x=200, y=150, camera_x=100, camera_y=100, zoom=2.0, screen_width=800, screen_height=600)); // NOT CORRECT for now
     console.log("screen_to_world_2d : ", screen_to_world_2d(screen_x=300, screen_y=200, camera_x=500, camera_y=500, zoom=0.5, screen_width=800, screen_height=600)); // M missing something here i will back to it later 
     console.log("world_to_ndc : ", world_to_ndc(x=200, y=-75, z=15, viewport_width=800, viewport_height=600, near_plane=10, far_plane=110)); // almost corr 99.99999% 
+    console.log("ndc_to_screen : ", ndc_to_screen(x=0.5, y=-0.5, screen_width=800, screen_height=600))
 }
 
 
@@ -769,6 +770,27 @@ function world_to_ndc(x, y, z, viewport_width, viewport_height, near_plane, far_
 }
 
 // ndc_to_screen
+// void ndc_to_screen(double x, double y,
+//                    double screen_width, double screen_height,
+//                    double *screen_x, double *screen_y);
+
+function ndc_to_screen(x, y, screen_width, screen_height){
+    const screen_x = Module._malloc(8); 
+    const screen_y = Module._malloc(8); 
+
+    linear_algebra.ndc_to_screen(x, y, screen_width, screen_height, screen_x, screen_y);
+
+    const ndc_to_screen = [
+        Module.HEAPF64[screen_x / 8],
+        Module.HEAPF64[screen_y / 8]
+    ];
+
+    liberation(screen_x);
+    liberation(screen_y);
+
+    return ndc_to_screen;
+}
+
 // screen_to_ndc
 // perspective_project
 // perspective_divide
