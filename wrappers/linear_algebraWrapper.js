@@ -36,8 +36,8 @@ Module.onRuntimeInitialized = () => {
         spherical_to_cartesian: Module.cwrap("spherical_to_cartesian", null, ["number", "number", "number", "number"]),
         cartesian_to_cylindrical: Module.cwrap("cartesian_to_cylindrical", null, ["number", "number", "number", "number"]),
         cylindrical_to_cartesian: Module.cwrap("cylindrical_to_cartesian", null, ["number", "number", "number", "number"]),
-        world_to_screen_2d:  Module.cwrap("world_to_screen_2d", null, ["number", "number", "number", "number", "number", "number", "number", "number", "number"]),
-        // screen_to_world_2d,
+        world_to_screen_2d: Module.cwrap("world_to_screen_2d", null, ["number", "number", "number", "number", "number", "number", "number", "number", "number"]),
+        screen_to_world_2d: Module.cwrap("screen_to_world_2d", null, ["number", "number", "number", "number", "number", "number", "number", "number", "number"]),
         // world_to_ndc,
         // ndc_to_screen,
         // screen_to_ndc,
@@ -86,6 +86,7 @@ Module.onRuntimeInitialized = () => {
     console.log("cartesian_to_cylindrical : ", cartesian_to_cylindrical(x=3, y=4, z=5));
     console.log("cylindrical_to_cartesian: ", cylindrical_to_cartesian(radius=4, angle=80*Math.PI/180, height=80));
     console.log("world_to_screen_2d : ", world_to_screen_2d(x=200, y=150, camera_x=100, camera_y=100, zoom=2.0, screen_width=800, screen_height=600)); // NOT CORRECT for now
+    console.log("screen_to_world_2d : ", screen_to_world_2d(screen_x=300, screen_y=200, camera_x=500, camera_y=500, zoom=0.5, screen_width=800, screen_height=600)); // M missing something here i will back to it later 
 }
 
 
@@ -717,6 +718,29 @@ function world_to_screen_2d(x, y, camera_x, camera_y, zoom, screen_width, screen
 }
 
 // screen_to_world_2d
+// void screen_to_world_2d(double screen_x, double screen_y,
+//                         double camera_x, double camera_y,
+//                         double zoom,
+//                         double screen_width, double screen_height,
+//                         double *world_x, double *world_y);
+function screen_to_world_2d(screen_x, screen_y, camera_x, camera_y, zoom, screen_width, screen_height){
+
+    const world_x_pointer = Module._malloc(8);
+    const world_y_pointer = Module._malloc(8);
+
+    linear_algebra.screen_to_world_2d(screen_x, screen_y, camera_x, camera_y, zoom, screen_width, screen_height, world_x_pointer, world_y_pointer);
+
+    const screen_to_world_2d = [
+        Module.HEAPF64[world_x_pointer / 8],
+        Module.HEAPF64[world_y_pointer / 8]
+    ];
+
+    liberation(world_x_pointer);
+    liberation(world_y_pointer);
+ 
+    return screen_to_world_2d;
+}
+
 // world_to_ndc
 // ndc_to_screen
 // screen_to_ndc
