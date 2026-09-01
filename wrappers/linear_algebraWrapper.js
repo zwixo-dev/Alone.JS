@@ -42,7 +42,7 @@ Module.onRuntimeInitialized = () => {
         ndc_to_screen: Module.cwrap("ndc_to_screen", null, ["number", "number", "number", "number", "number", "number"]),
         screen_to_ndc:  Module.cwrap("screen_to_ndc", null, ["number", "number", "number", "number", "number", "number"]),
         perspective_project: Module.cwrap("perspective_project", null, ["number", "number", "number", "number", "number", "number"]),
-        // perspective_divide,
+        perspective_divide: Module.cwrap("perspective_divide", null, ["number", "number", "number", "number", "number"]),
         // orthographic_project,
         // perspective_project_screen,
         // linear_combination,
@@ -858,3 +858,39 @@ function perspective_divide(x, y, z){
 
     return perspective_divide;
 }
+
+
+// void orthographic_project(double x, double y, double z,
+//                           double left, double right,
+//                           double bottom, double top,
+//                           double near_plane, double far_plane,
+//                           double *result);
+function orthographic_project(x, y, z, left, right, bottom, top, near_plane, far_plane){
+    const positions = [x, y, z];
+
+    const outputPointer = Module._malloc(positions * 8);
+    
+    linear_algebra.orthographic_project(positions[0], positions[1], positions[2], left, right, bottom, top, near_plane, far_plane, outputPointer);
+
+    const orthographic_project = Array.from(
+        Module.HEAPF64.subarray(
+            outputPointer / 8,
+            outputPointer / 8 + positions.length      
+        )
+    );
+
+    liberation(outputPointer);
+
+    return orthographic_project;
+}
+
+// void perspective_project_screen(double x, double y, double z,
+//                                 double fov,
+//                                 double aspect_ratio,
+//                                 double near_plane,
+//                                 double far_plane,
+//                                 double screen_width,
+//                                 double screen_height,
+//                                 double *screen_x,
+//                                 double *screen_y,
+//                                 double *screen_z);
