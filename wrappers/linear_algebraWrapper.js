@@ -1,4 +1,3 @@
-const { isValidElement } = require("react");
 const Module = require("../wasm/linear_algebraWrapper");
 
 let linear_algebra;
@@ -839,5 +838,23 @@ function perspective_project(x, y, z, focal_length){
 }
 
 // perspective_divide
+// void perspective_divide(double x, double y, double z,
+//                         double *projected_x, double *projected_y);
 
+function perspective_divide(x, y, z){
 
+    const projected_x_pointer = Module._malloc();
+    const projected_y_pointer = Module._malloc();
+    
+    linear_algebra.perspective_divide(x, y, z, projected_x_pointer, projected_y_pointer);
+
+    const perspective_divide = [
+        Module.HEAPF64[projected_x_pointer / 8],
+        Module.HEAPF64[projected_y_pointer / 8]
+    ];
+    
+    liberation(projected_x_pointer);
+    liberation(projected_y_pointer);
+
+    return perspective_divide;
+}
