@@ -1,3 +1,4 @@
+const { isValidElement } = require("react");
 const Module = require("../wasm/linear_algebraWrapper");
 
 let linear_algebra;
@@ -41,7 +42,7 @@ Module.onRuntimeInitialized = () => {
         world_to_ndc: Module.cwrap("world_to_ndc", null, ["number", "number", "number", "number", "number", "number", "number", "number", "number", "number"]),
         ndc_to_screen: Module.cwrap("ndc_to_screen", null, ["number", "number", "number", "number", "number", "number"]),
         screen_to_ndc:  Module.cwrap("screen_to_ndc", null, ["number", "number", "number", "number", "number", "number"]),
-        // perspective_project,
+        perspective_project: Module.cwrap("perspective_project", null, ["number", "number", "number", "number", "number", "number"]),
         // perspective_divide,
         // orthographic_project,
         // perspective_project_screen,
@@ -796,12 +797,11 @@ function ndc_to_screen(x, y, screen_width, screen_height){
 //                    double screen_width, double screen_height,
 //                    double *ndc_x, double *ndc_y);
 function screen_to_ndc(x, y, screen_width, screen_height){
-    const positions = [x, y];
 
-    const ndc_x_pointer = Module._malloc(positions.length * 8);
-    const ndc_y_pointer = Module._malloc(positions.length * 8);
+    const ndc_x_pointer = Module._malloc(8);
+    const ndc_y_pointer = Module._malloc(8);
 
-    linear_algebra.screen_to_ndc(positions[0], positions[1], screen_width, screen_height, ndc_x_pointer, ndc_y_pointer);
+    linear_algebra.screen_to_ndc(x, y, screen_width, screen_height, ndc_x_pointer, ndc_y_pointer);
 
     const screen_to_ndc = [
         Module.HEAPF64[ndc_x_pointer / 8],
@@ -814,7 +814,30 @@ function screen_to_ndc(x, y, screen_width, screen_height){
     return screen_to_ndc;
 
 }
-// perspective_project
 
+// perspective_project
+// void perspective_project(double x, double y, double z,
+//                          double focal_length,
+//                          double *projected_x,
+//                          double *projected_y);
+function perspective_project(x, y, z, focal_length){
+
+    const projected_x_pointer = Module._malloc(8);
+    const projected_y_pointer = Module._malloc(8);
+
+    linear_algebra.perspective_project(x, y, z, focal_length, projected_x_pointer, projected_y_pointer);
+
+    const perspective_project = [
+        Module.HEAPF64[projected_x_pointer / 8],
+        Module.HEAPF64[projected_y_pointer / 8],
+    ];
+
+    liberation(projected_x_pointer);
+    liberation(projected_y_pointer);
+
+    return perspective_project;
+}
 
 // perspective_divide
+
+
