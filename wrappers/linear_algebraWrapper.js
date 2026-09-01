@@ -39,8 +39,8 @@ Module.onRuntimeInitialized = () => {
         world_to_screen_2d: Module.cwrap("world_to_screen_2d", null, ["number", "number", "number", "number", "number", "number", "number", "number", "number"]),
         screen_to_world_2d: Module.cwrap("screen_to_world_2d", null, ["number", "number", "number", "number", "number", "number", "number", "number", "number"]),
         world_to_ndc: Module.cwrap("world_to_ndc", null, ["number", "number", "number", "number", "number", "number", "number", "number", "number", "number"]),
-        ndc_to_screen:  Module.cwrap("ndc_to_screen", null, ["number", "number", "number", "number", "number", "number"]),
-        // screen_to_ndc,
+        ndc_to_screen: Module.cwrap("ndc_to_screen", null, ["number", "number", "number", "number", "number", "number"]),
+        screen_to_ndc:  Module.cwrap("screen_to_ndc", null, ["number", "number", "number", "number", "number", "number"]),
         // perspective_project,
         // perspective_divide,
         // orthographic_project,
@@ -791,6 +791,30 @@ function ndc_to_screen(x, y, screen_width, screen_height){
     return ndc_to_screen;
 }
 
-// screen_to_ndc
+// // screen_to_ndc
+// void screen_to_ndc(double x, double y,
+//                    double screen_width, double screen_height,
+//                    double *ndc_x, double *ndc_y);
+function screen_to_ndc(x, y, screen_width, screen_height){
+    const positions = [x, y];
+
+    const ndc_x_pointer = Module._malloc(positions.length * 8);
+    const ndc_y_pointer = Module._malloc(positions.length * 8);
+
+    linear_algebra.screen_to_ndc(positions[0], positions[1], screen_width, screen_height, ndc_x_pointer, ndc_y_pointer);
+
+    const screen_to_ndc = [
+        Module.HEAPF64[ndc_x_pointer / 8],
+        Module.HEAPF64[ndc_y_pointer / 8]
+    ];
+
+    liberation(ndc_x_pointer);
+    liberation(ndc_y_pointer);
+
+    return screen_to_ndc;
+
+}
 // perspective_project
+
+
 // perspective_divide
