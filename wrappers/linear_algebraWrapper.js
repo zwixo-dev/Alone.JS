@@ -45,7 +45,7 @@ Module.onRuntimeInitialized = () => {
         perspective_divide: Module.cwrap("perspective_divide", null, ["number", "number", "number", "number", "number"]),
         orthographic_project: Module.cwrap("orthographic_project", null, ["number", "number", "number", "number", "number", "number", "number", "number", "number", "number"]),
         perspective_project_screen: Module.cwrap("perspective_project_screen", null, ["number", "number", "number", "number", "number", "number", "number", "number", "number", "number", "number", "number"]),
-        // linear_combination,
+        linear_combination: Module.cwrap("linear_combination", null, ["number", "number", "number", "number", "number"]),
         // is_linear_independent
     }
 
@@ -914,3 +914,11 @@ function perspective_project_screen(x, y, z, fov, aspect_ratio, near_plane, far_
     
     return perspective_project_screen;
 }
+
+// void linear_combination( int size, int vector_count, const double *vectors, const double *coefficients,double *result);
+function linear_combination(vectors, coefficients){
+    if(!Array.isArray(vectors) || !Array.isArray(coefficients) || vectors.length !== coefficients.length) return NaN;
+
+}
+
+// int is_linear_independent( int size, int vector_count,const double *vectors);
