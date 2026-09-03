@@ -46,7 +46,7 @@ Module.onRuntimeInitialized = () => {
         orthographic_project: Module.cwrap("orthographic_project", null, ["number", "number", "number", "number", "number", "number", "number", "number", "number", "number"]),
         perspective_project_screen: Module.cwrap("perspective_project_screen", null, ["number", "number", "number", "number", "number", "number", "number", "number", "number", "number", "number", "number"]),
         linear_combination: Module.cwrap("linear_combination", null, ["number", "number", "number", "number", "number"]),
-        // is_linear_independent
+        is_linear_independent: Module.cwrap("linear_combination", "number", ["number", "number", "number"]),
     }
 
     const vector_A = [0.0, 0.0];
@@ -922,3 +922,6 @@ function linear_combination(vectors, coefficients){
 }
 
 // int is_linear_independent( int size, int vector_count,const double *vectors);
+function is_linear_independent(){
+
+}
