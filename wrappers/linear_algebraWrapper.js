@@ -43,8 +43,8 @@ Module.onRuntimeInitialized = () => {
         screen_to_ndc:  Module.cwrap("screen_to_ndc", null, ["number", "number", "number", "number", "number", "number"]),
         perspective_project: Module.cwrap("perspective_project", null, ["number", "number", "number", "number", "number", "number"]),
         perspective_divide: Module.cwrap("perspective_divide", null, ["number", "number", "number", "number", "number"]),
-        // orthographic_project,
-        // perspective_project_screen,
+        orthographic_project: Module.cwrap("orthographic_project", null, ["number", "number", "number", "number", "number", "number", "number", "number", "number", "number"]),
+        perspective_project_screen: Module.cwrap("perspective_project_screen", null, ["number", "number", "number", "number", "number", "number", "number", "number", "number", "number", "number", "number"]),
         // linear_combination,
         // is_linear_independent
     }
@@ -894,3 +894,23 @@ function orthographic_project(x, y, z, left, right, bottom, top, near_plane, far
 //                                 double *screen_x,
 //                                 double *screen_y,
 //                                 double *screen_z);
+function perspective_project_screen(x, y, z, fov, aspect_ratio, near_plane, far_plane, screen_width, screen_height){
+
+    const screen_x_pointer = Module._malloc(8);
+    const screen_y_pointyer = Module._malloc(8);
+    const screen_z_pointyer = Module._malloc(8);
+
+    linear_algebra.perspective_project_screen(x, y, z, fov, aspect_ratio, near_plane, far_plane, screen_width, screen_height, screen_x_pointer, screen_y_pointyer, screen_z_pointyer);
+
+    const perspective_project_screen = [
+        Module.HEAPF64[screen_x_pointer / 8],
+        Module.HEAPF64[screen_y_pointyer / 8],
+        Module.HEAPF64[screen_z_pointyer / 8]
+    ];
+
+    liberation(screen_x_pointer);
+    liberation(screen_y_pointyer);
+    liberation(screen_z_pointyer);
+    
+    return perspective_project_screen;
+}
