@@ -85,9 +85,9 @@ Module.onRuntimeInitialized = () => {
     console.log("spherical_to_cartesian : ", spherical_to_cartesian(radius=6.708203932499369, theta=1.1071487177940904, phi=0.7297276562269664));
     console.log("cartesian_to_cylindrical : ", cartesian_to_cylindrical(x=3, y=4, z=5));
     console.log("cylindrical_to_cartesian: ", cylindrical_to_cartesian(radius=4, angle=80*Math.PI/180, height=80));
-    console.log("world_to_screen_2d : ", world_to_screen_2d(x=200, y=150, camera_x=100, camera_y=100, zoom=2.0, screen_width=800, screen_height=600)); // NOT CORRECT for now
-    console.log("screen_to_world_2d : ", screen_to_world_2d(screen_x=300, screen_y=200, camera_x=500, camera_y=500, zoom=0.5, screen_width=800, screen_height=600)); // M missing something here i will back to it later 
-    console.log("world_to_ndc : ", world_to_ndc(x=200, y=-75, z=15, viewport_width=800, viewport_height=600, near_plane=10, far_plane=110)); // almost corr 99.99999% 
+    console.log("world_to_screen_2d : ", world_to_screen_2d(x=200, y=150, camera_x=100, camera_y=100, zoom=2.0, screen_width=800, screen_height=600));
+    console.log("screen_to_world_2d : ", screen_to_world_2d(screen_x=300, screen_y=200, camera_x=500, camera_y=500, zoom=0.5, screen_width=800, screen_height=600));
+    console.log("world_to_ndc : ", world_to_ndc(x=200, y=-75, z=15, viewport_width=800, viewport_height=600, near_plane=10, far_plane=110));
     console.log("ndc_to_screen : ", ndc_to_screen(x=0.5, y=-0.5, screen_width=800, screen_height=600))
 }
 
