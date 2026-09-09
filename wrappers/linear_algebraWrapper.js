@@ -196,8 +196,8 @@ function lerp_points_2d(vectorA, vectorB, t) {
         )
     );
 
-    liberation(vectorA);
-    liberation(vectorB);
+    liberation(pointerA);
+    liberation(pointerB);
     liberation(outputPointer);
 
     return lerp_points_2d;
