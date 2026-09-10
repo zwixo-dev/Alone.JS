@@ -107,7 +107,6 @@ function inverse_lerp(a, b, value) {
     return inverse_lerp;
 }
 
-// double value, double in_min, double in_max, double out_min, double out_max
 function remap(value, in_min, in_max, out_min, out_max) {
     // remap result
     const remap = linear_algebra.remap(value, in_min, in_max, out_min, out_max);
@@ -115,7 +114,6 @@ function remap(value, in_min, in_max, out_min, out_max) {
     return remap;
 }
 
-// double edge0, double edge1, double x
 function smoothstep(edge0, edge1, x) {
     // smoothstep result
     const smoothstep = linear_algebra.smoothstep(edge0, edge1, x)
@@ -123,7 +121,6 @@ function smoothstep(edge0, edge1, x) {
     return smoothstep;
 }
 
-// double edge0, double edge1, double x
 function smootherstep(edge0, edge1, x) {
     // smootherstep result
     const smootherstep = linear_algebra.smootherstep(edge0, edge1, x);
@@ -131,7 +128,6 @@ function smootherstep(edge0, edge1, x) {
     return smootherstep;
 }
 
-// clamp  double value, double min, double max
 function clamp(value, min, max) {
     // clamp result
     const clamp = linear_algebra.clamp(value, min, max);
@@ -155,7 +151,6 @@ function liberation(pointer) {
     Module._free(pointer);
 }
 
-// lerp_vector(int size, const double *vectorA, const double *vectorB, double t, double *result)
 function lerp_vector(vectorA, vectorB, t) {
     if (!Array.isArray(vectorA) || !Array.isArray(vectorB) || vectorA.length !== vectorB.length) return NaN;
 
@@ -179,7 +174,6 @@ function lerp_vector(vectorA, vectorB, t) {
     return lerp_vector;
 }
 
-// void lerp_points_2d(const double *vectorA, const double *vectorB, double t, double *result)
 function lerp_points_2d(vectorA, vectorB, t) {
     if (!Array.isArray(vectorA) || !Array.isArray(vectorB) || vectorA.length !== 2 || vectorB.length !== 2) return NaN;
 
@@ -203,7 +197,6 @@ function lerp_points_2d(vectorA, vectorB, t) {
     return lerp_points_2d;
 }
 
-// void lerp_points_3d(const double *vectorA, const double *vectorB, double t, double *result);
 
 function lerp_points_3d(vectorA, vectorB, t){
     if(!Array.isArray(vectorA) || !Array.isArray(vectorB) || vectorA.length !== 3 || vectorB.length !== 3) return NaN;
@@ -229,7 +222,6 @@ function lerp_points_3d(vectorA, vectorB, t){
     return lerp_points_3d;
 }
 
-// void rotate_point_2d(double x, double y, double angle, double *result);
 function rotate_point_2d(x_pos, y_pos, angle){
     const positions = [x_pos, y_pos];
     const outputPointer =  Module._malloc(positions.length * 8);
@@ -247,7 +239,6 @@ function rotate_point_2d(x_pos, y_pos, angle){
     return rotate_point_2d;
 }
 
-// void scale_point_2d(double x, double y, double scale_x, double scale_y, double *result);
 function scale_point_2d(x, y, scale_x, scale_y){
     const positions = [x, y];
 
@@ -267,7 +258,6 @@ function scale_point_2d(x, y, scale_x, scale_y){
     return scale_point_2d;
 }
 
-// void translate_point_2d(double x, double y, double tx, double ty, double *result);
 function translate_point_2d(x, y, tx, ty){
     const positions = [x, y];
 
@@ -287,7 +277,6 @@ function translate_point_2d(x, y, tx, ty){
     return translate_point_2d;
 }
 
-// void shear_point_2d(double x, double y, double shear_x, double shear_y, double *result);
 function shear_point_2d(x, y, shear_x, shear_y){
     const positions = [x, y];
 
@@ -307,7 +296,6 @@ function shear_point_2d(x, y, shear_x, shear_y){
     return shear_point_2d;
 }
 
-// void reflect_point_2d(double x, double y, double axis_x, double axis_y, double *result);
 function reflect_point_2d(x, y, axis_x, axis_y){
     const positions = [x, y];
 
@@ -327,7 +315,6 @@ function reflect_point_2d(x, y, axis_x, axis_y){
     return reflect_point_2d;
 }
 
-// void transform_point_2d(double x, double y, double tx, double ty, double rotation, double scale_x, double scale_y, double *result);
 function transform_point_2d(x, y, tx, ty, rotation, scale_x, scale_y){
     const positions = [x, y];
 
@@ -347,7 +334,6 @@ function transform_point_2d(x, y, tx, ty, rotation, scale_x, scale_y){
     return transform_point_2d;
 }
 
-// void rotate_around_point_2d(double x, double y, double center_x, double center_y, double angle, double *result);
 function rotate_around_point_2d(x, y, center_x, center_y, angle){
     const positions = [x, y];
 
@@ -367,7 +353,6 @@ function rotate_around_point_2d(x, y, center_x, center_y, angle){
     return rotate_around_point_2d;
 }
 
-//void rotate_vector_2d(double x, double y, double angle, double *result);
 function rotate_vector_2d(x, y, angle){
     const positions = [x, y];
 
@@ -387,7 +372,6 @@ function rotate_vector_2d(x, y, angle){
     return rotate_vector_2d;
 }
 
-// void rotate_point_3d_x(double x, double y, double z, double angle, double *result);
 function rotate_point_3d_x(x, y, z, angle){
     const positions = [x, y,  z];
 
@@ -407,7 +391,6 @@ function rotate_point_3d_x(x, y, z, angle){
     return rotate_point_3d_x;
 }
 
-// void rotate_point_3d_y(double x, double y, double z, double angle, double *result);
 function rotate_point_3d_y(x, y, z, angle){
     const positions = [x, y, z];
 
@@ -427,7 +410,6 @@ function rotate_point_3d_y(x, y, z, angle){
     return rotate_point_3d_y
 }
 
-// void rotate_point_3d_z(double x, double y, double z, double angle, double *result);
 function rotate_point_3d_z(x, y, z, angle){
     const positions = [x, y, z];
 
@@ -447,7 +429,6 @@ function rotate_point_3d_z(x, y, z, angle){
     return rotate_point_3d_z;
 }
 
-// void rotate_point_3d(double x, double y, double z, double angle_x, double angle_y, double angle_z, double *result);
 function rotate_point_3d(x, y, z, angle_x, angle_y, angle_z){
     const positions = [x, y, z];
 
@@ -466,7 +447,7 @@ function rotate_point_3d(x, y, z, angle_x, angle_y, angle_z){
 
     return rotate_point_3d;
 }
-// void scale_point_3d(double x, double y, double z, double scale_x, double scale_y, double scale_z, double *result);
+
 function scale_point_3d(x, y, z, scale_x, scale_y, scale_z){
     const positions = [x, y, z];
     
@@ -486,9 +467,6 @@ function scale_point_3d(x, y, z, scale_x, scale_y, scale_z){
     return scale_point_3d;
 }
 
-
-// translate_point_3d
-// void translate_point_3d(double x, double y, double z, double tx, double ty, double tz, double *result);
 function translate_point_3d(x, y, z, tx, ty, tz){
     const positions = [x, y, z];
 
@@ -508,8 +486,6 @@ function translate_point_3d(x, y, z, tx, ty, tz){
     return translate_point_3d;
 }
 
-// reflect_point_3d
-// void reflect_point_3d(double x, double y, double z, double nx, double ny, double nz, double *result);
 function reflect_point_3d(x, y, z, nx, ny, nz){
     const positions = [x, y, z];
 
@@ -529,8 +505,6 @@ function reflect_point_3d(x, y, z, nx, ny, nz){
     return reflect_point_3d;
 }
 
-// rotate_around_point_3d
-// rotate_around_point_3d(double x, double y, double z, double cx, double cy, double cz, double angle_x, double angle_y, double angle_z, double *result)
 function rotate_around_point_3d(x, y, z, cx, cy, cz, angle_x, angle_y, angle_z){
     const positions = [x, y, z];
     
@@ -549,8 +523,7 @@ function rotate_around_point_3d(x, y, z, cx, cy, cz, angle_x, angle_y, angle_z){
 
     return rotate_around_point_3d;
 }
-// transform_point_3d
-// transform_point_3d(double x, double y, double z, double tx, double ty, double tz, double rx, double ry, double rz, double sx, double sy, double sz, double *result);
+
 function transform_point_3d(x, y, z, tx, ty, tz, rx, ry, rz, sx, sy, sz){
     const positions = [x, y, z];
 
@@ -570,8 +543,6 @@ function transform_point_3d(x, y, z, tx, ty, tz, rx, ry, rz, sx, sy, sz){
     return transform_point_3d;
 }
 
-// cartesian_to_polar
-// cartesian_to_polar(double x, double y, double *result)
 function cartesian_to_polar(x, y){
     const positions = [x, y];
 
@@ -590,8 +561,7 @@ function cartesian_to_polar(x, y){
 
     return cartesian_to_polar;
 }
-// polar_to_cartesian
-// void polar_to_cartesian(double radius, double angle, double *result);
+
 function polar_to_cartesian(radius, angle){
     
     const outputPointer = Module._malloc([radius, angle].length * 8); 
@@ -611,9 +581,6 @@ function polar_to_cartesian(radius, angle){
 }
 
 
-// cartesian_to_spherical
-// //
-// void cartesian_to_spherical(double x, double y, double z, double *result);
 function cartesian_to_spherical(x, y, z){
     const positions = [x, y, z];
 
@@ -633,8 +600,6 @@ function cartesian_to_spherical(x, y, z){
     return cartesian_to_spherical;
 }
 
-// spherical_to_cartesian
-// void spherical_to_cartesian(double radius, double theta, double phi, double *result);
 function spherical_to_cartesian(radius, theta, phi){
 
     const outputPointer = Module._malloc([radius, theta, phi].length * 8); 
@@ -653,9 +618,6 @@ function spherical_to_cartesian(radius, theta, phi){
     return spherical_to_cartesian;
 }
 
-
-// cartesian_to_cylindrical
-// void cartesian_to_cylindrical(double x, double y, double z, double *result);
 function cartesian_to_cylindrical(x, y, z){
     const positions = [x, y, z];
 
@@ -675,8 +637,6 @@ function cartesian_to_cylindrical(x, y, z){
     return cartesian_to_cylindrical;
 }
 
-// cylindrical_to_cartesian
-// void cylindrical_to_cartesian(double radius, double angle, double height, double *result);
 function cylindrical_to_cartesian(radius, angle, height){
 
     const outputPointer = Module._malloc([radius, angle, height].length * 8);
@@ -695,12 +655,6 @@ function cylindrical_to_cartesian(radius, angle, height){
     return cylindrical_to_cartesian;
 }
 
-// world_to_screen_2d
-// void world_to_screen_2d(double x, double y,
-//                         double camera_x, double camera_y,
-//                         double zoom,
-//                         double screen_width, double screen_height,
-//                         double *screen_x, double *screen_y)
 function world_to_screen_2d(x, y, camera_x, camera_y, zoom, screen_width, screen_height){
 
     const screen_x_pointer = Module._malloc(8);
@@ -719,12 +673,6 @@ function world_to_screen_2d(x, y, camera_x, camera_y, zoom, screen_width, screen
     return world_to_screen_2d;
 }
 
-// screen_to_world_2d
-// void screen_to_world_2d(double screen_x, double screen_y,
-//                         double camera_x, double camera_y,
-//                         double zoom,
-//                         double screen_width, double screen_height,
-//                         double *world_x, double *world_y);
 function screen_to_world_2d(screen_x, screen_y, camera_x, camera_y, zoom, screen_width, screen_height){
 
     const world_x_pointer = Module._malloc(8);
@@ -743,11 +691,6 @@ function screen_to_world_2d(screen_x, screen_y, camera_x, camera_y, zoom, screen
     return screen_to_world_2d;
 }
 
-// world_to_ndc
-// void world_to_ndc(double x, double y, double z,
-//                   double viewport_width, double viewport_height,
-//                   double near_plane, double far_plane,
-//                   double *NDC_x, double *NDC_y, double *NDC_z);
 function world_to_ndc(x, y, z, viewport_width, viewport_height, near_plane, far_plane){
 
     const NDC_x_pointer = Module._malloc(8);
@@ -769,11 +712,6 @@ function world_to_ndc(x, y, z, viewport_width, viewport_height, near_plane, far_
     return world_to_ndc;
 }
 
-// ndc_to_screen
-// void ndc_to_screen(double x, double y,
-//                    double screen_width, double screen_height,
-//                    double *screen_x, double *screen_y);
-
 function ndc_to_screen(x, y, screen_width, screen_height){
     const screen_x = Module._malloc(8); 
     const screen_y = Module._malloc(8); 
@@ -791,10 +729,6 @@ function ndc_to_screen(x, y, screen_width, screen_height){
     return ndc_to_screen;
 }
 
-// // screen_to_ndc
-// void screen_to_ndc(double x, double y,
-//                    double screen_width, double screen_height,
-//                    double *ndc_x, double *ndc_y);
 function screen_to_ndc(x, y, screen_width, screen_height){
 
     const ndc_x_pointer = Module._malloc(8);
@@ -814,11 +748,6 @@ function screen_to_ndc(x, y, screen_width, screen_height){
 
 }
 
-// perspective_project
-// void perspective_project(double x, double y, double z,
-//                          double focal_length,
-//                          double *projected_x,
-//                          double *projected_y);
 function perspective_project(x, y, z, focal_length){
 
     const projected_x_pointer = Module._malloc(8);
@@ -836,10 +765,6 @@ function perspective_project(x, y, z, focal_length){
 
     return perspective_project;
 }
-
-// perspective_divide
-// void perspective_divide(double x, double y, double z,
-//                         double *projected_x, double *projected_y);
 
 function perspective_divide(x, y, z){
 
@@ -859,12 +784,6 @@ function perspective_divide(x, y, z){
     return perspective_divide;
 }
 
-
-// void orthographic_project(double x, double y, double z,
-//                           double left, double right,
-//                           double bottom, double top,
-//                           double near_plane, double far_plane,
-//                           double *result);
 function orthographic_project(x, y, z, left, right, bottom, top, near_plane, far_plane){
     const positions = [x, y, z];
 
@@ -884,16 +803,6 @@ function orthographic_project(x, y, z, left, right, bottom, top, near_plane, far
     return orthographic_project;
 }
 
-// void perspective_project_screen(double x, double y, double z,
-//                                 double fov,
-//                                 double aspect_ratio,
-//                                 double near_plane,
-//                                 double far_plane,
-//                                 double screen_width,
-//                                 double screen_height,
-//                                 double *screen_x,
-//                                 double *screen_y,
-//                                 double *screen_z);
 function perspective_project_screen(x, y, z, fov, aspect_ratio, near_plane, far_plane, screen_width, screen_height){
 
     const screen_x_pointer = Module._malloc(8);
