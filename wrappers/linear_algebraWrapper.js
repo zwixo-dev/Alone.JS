@@ -89,7 +89,8 @@ Module.onRuntimeInitialized = () => {
     console.log("screen_to_world_2d : ", screen_to_world_2d(screen_x=300, screen_y=200, camera_x=500, camera_y=500, zoom=0.5, screen_width=800, screen_height=600));
     console.log("world_to_ndc : ", world_to_ndc(x=200, y=-75, z=15, viewport_width=800, viewport_height=600, near_plane=10, far_plane=110));
     console.log("ndc_to_screen : ", ndc_to_screen(x=0.5, y=-0.5, screen_width=800, screen_height=600));
-    console.log("screen_to_ndc : ", screen_to_ndc(x=0, y=0, screen_width=800, screen_height=600))
+    console.log("screen_to_ndc : ", screen_to_ndc(x=0, y=0, screen_width=800, screen_height=600));
+    console.log("perspective_divide : ", perspective_divide(x=2, y=-1.5, z=1))
 }
 
 
@@ -804,8 +805,8 @@ function perspective_project(x, y, z, focal_length){
 // perspective_divide
 function perspective_divide(x, y, z){
 
-    const projected_x_pointer = Module._malloc();
-    const projected_y_pointer = Module._malloc();
+    const projected_x_pointer = Module._malloc(8);
+    const projected_y_pointer = Module._malloc(8);
     
     linear_algebra.perspective_divide(x, y, z, projected_x_pointer, projected_y_pointer);
 
