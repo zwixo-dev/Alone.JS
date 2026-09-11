@@ -43,7 +43,7 @@ Module.onRuntimeInitialized = () => {
         screen_to_ndc:  Module.cwrap("screen_to_ndc", null, ["number", "number", "number", "number", "number", "number"]),
         perspective_project: Module.cwrap("perspective_project", null, ["number", "number", "number", "number", "number", "number"]),
         perspective_divide: Module.cwrap("perspective_divide", null, ["number", "number", "number", "number", "number"]),
-        orthographic_project: Module.cwrap("orthographic_project", null, ["number", "number", "number", "number", "number", "number", "number", "number", "number", "number"]),
+        orthographic_project: Module.cwrap("orthographic_project", null, ["number", "number", "number", "number", "number", "number", "number", "number", "number"]),
         perspective_project_screen: Module.cwrap("perspective_project_screen", null, ["number", "number", "number", "number", "number", "number", "number", "number", "number", "number", "number", "number"]),
         linear_combination: Module.cwrap("linear_combination", null, ["number", "number", "number", "number", "number"]),
         is_linear_independent: Module.cwrap("linear_combination", "number", ["number", "number", "number"]),
@@ -92,6 +92,7 @@ Module.onRuntimeInitialized = () => {
     console.log("screen_to_ndc : ", screen_to_ndc(x=0, y=0, screen_width=800, screen_height=600));
     console.log("perspective_project : ", perspective_project(x=2, y=-4, z=50, focal_length=50));
     console.log("perspective_divide : ", perspective_divide(x=2, y=-1.5, z=1));
+    console.log("orthographic_project : ", orthographic_project(x=-10, y=5, z=1, left=-10, right=10, bottom=-5, top=5, near_plane=1, far_plane=100));
 }
 
 
@@ -826,7 +827,7 @@ function perspective_divide(x, y, z){
 function orthographic_project(x, y, z, left, right, bottom, top, near_plane, far_plane){
     const positions = [x, y, z];
 
-    const outputPointer = Module._malloc(positions * 8);
+    const outputPointer = Module._malloc(positions.length * 8);
     
     linear_algebra.orthographic_project(positions[0], positions[1], positions[2], left, right, bottom, top, near_plane, far_plane, outputPointer);
 
