@@ -88,7 +88,8 @@ Module.onRuntimeInitialized = () => {
     console.log("world_to_screen_2d : ", world_to_screen_2d(x=200, y=150, camera_x=100, camera_y=100, zoom=2.0, screen_width=800, screen_height=600));
     console.log("screen_to_world_2d : ", screen_to_world_2d(screen_x=300, screen_y=200, camera_x=500, camera_y=500, zoom=0.5, screen_width=800, screen_height=600));
     console.log("world_to_ndc : ", world_to_ndc(x=200, y=-75, z=15, viewport_width=800, viewport_height=600, near_plane=10, far_plane=110));
-    console.log("ndc_to_screen : ", ndc_to_screen(x=0.5, y=-0.5, screen_width=800, screen_height=600))
+    console.log("ndc_to_screen : ", ndc_to_screen(x=0.5, y=-0.5, screen_width=800, screen_height=600));
+    console.log("screen_to_ndc : ", screen_to_ndc(x=0, y=0, screen_width=800, screen_height=600))
 }
 
 
