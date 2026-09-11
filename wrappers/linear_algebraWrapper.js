@@ -93,6 +93,10 @@ Module.onRuntimeInitialized = () => {
     console.log("perspective_project : ", perspective_project(x=2, y=-4, z=50, focal_length=50));
     console.log("perspective_divide : ", perspective_divide(x=2, y=-1.5, z=1));
     console.log("orthographic_project : ", orthographic_project(x=-10, y=5, z=1, left=-10, right=10, bottom=-5, top=5, near_plane=1, far_plane=100));
+    console.log("perspective_project_screen : ", perspective_project_screen(x=0, y=0, z=10,
+                                                                            fov=Math.PI/2, aspect_ratio=(4/3),
+                                                                             near_plane=1, far_plane=100,
+                                                                              screen_width=800, screen_height=600));
 }
 
 
