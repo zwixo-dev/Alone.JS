@@ -90,7 +90,8 @@ Module.onRuntimeInitialized = () => {
     console.log("world_to_ndc : ", world_to_ndc(x=200, y=-75, z=15, viewport_width=800, viewport_height=600, near_plane=10, far_plane=110));
     console.log("ndc_to_screen : ", ndc_to_screen(x=0.5, y=-0.5, screen_width=800, screen_height=600));
     console.log("screen_to_ndc : ", screen_to_ndc(x=0, y=0, screen_width=800, screen_height=600));
-    console.log("perspective_divide : ", perspective_divide(x=2, y=-1.5, z=1))
+    console.log("perspective_project : ", perspective_project(x=2, y=-4, z=50, focal_length=50));
+    console.log("perspective_divide : ", perspective_divide(x=2, y=-1.5, z=1));
 }
 
 
