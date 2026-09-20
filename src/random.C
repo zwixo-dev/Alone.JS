@@ -40,3 +40,9 @@ int random_int_range(int min, int max){
     
     return (min + rand() % (max - min + 1));
 }
+
+double random_double_range(double min, double max){
+    double rand_double_num = random_double();
+    
+    return min + rand_double_num * (max - min);
+}
