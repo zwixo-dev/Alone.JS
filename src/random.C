@@ -8,3 +8,7 @@
 int random_int(void){
     return rand();
 }
+
+double random_double(void){
+    return (double)rand() / RAND_MAX;
+}
