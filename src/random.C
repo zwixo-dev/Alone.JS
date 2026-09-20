@@ -12,3 +12,14 @@ int random_int(void){
 double random_double(void){
     return (double)rand() / RAND_MAX;
 }
+
+int random_bool(void){
+    
+    if (rand() % 2 == 0){
+        return true;
+        
+    } else{
+        return false;
+    }
+    
+}
