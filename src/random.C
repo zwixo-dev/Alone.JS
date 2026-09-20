@@ -34,3 +34,9 @@ int random_sign(void){
     
     return charset[rand() % (sizeof(charset) -1)];
 }
+
+// Range
+int random_int_range(int min, int max){
+    
+    return (min + rand() % (max - min + 1));
+}
