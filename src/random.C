@@ -23,3 +23,14 @@ int random_bool(void){
     }
     
 }
+
+int random_sign(void){
+    
+    const char *charset =
+    "abcdefghijklmnopqrstuvwxyz"
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    "0123456789"
+    "!@#$%^&*()_+-=[]{}|;:',.<>/?`~\\\"";
+    
+    return charset[rand() % (sizeof(charset) -1)];
+}
