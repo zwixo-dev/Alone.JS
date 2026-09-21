@@ -46,3 +46,8 @@ double random_double_range(double min, double max){
     
     return min + rand_double_num * (max - min);
 }
+
+// Arrays
+void random_fill_int(int size, int *array, int min, int max);
+void random_fill_double(int size, double *array, double min, double max);
+void random_shuffle(int size, double *array);
