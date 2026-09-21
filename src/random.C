@@ -53,7 +53,7 @@ void random_fill_int(int size, int *array, int min, int max) {
     if (size <= 0 || array == NULL) return; 
 
     for (int i = 0; i < size; i++) {
-        array[i] = min + rand() % (max - min + 1); 
+        array[i] = random_int_range(min, max); 
     }
 }
 
