@@ -66,4 +66,16 @@ void random_fill_double(int size, double *array, double min, double max){
     
 }
 
-void random_shuffle(int size, double *array);
+void random_shuffle(int size, double *array) {
+    if (size <= 1 || array == NULL) return;
+
+
+    for (int i = size - 1; i > 0; i--) {
+
+        int j = random_int_range(0, i);
+        
+        double temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+}
