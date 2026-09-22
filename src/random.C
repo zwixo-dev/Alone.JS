@@ -97,7 +97,17 @@ void random_sample(int size, const double *array, int sample_size, double *resul
 void random_coord_2d(double min_x, double max_x,
                      double min_y, double max_y,
                      double *result) {
-
+    if(!result) return;
     result[0] = random_double_range(min_x, max_x); // X
     result[1] = random_double_range(min_y, max_y); // Y
+}
+
+void random_coord_3d(double min_x, double max_x,
+                     double min_y, double max_y,
+                     double min_z, double max_z,
+                     double *result){
+    if(!result) return;  
+    result[0] = random_double_range(min_x, max_x); // X
+    result[1] = random_double_range(min_y, max_y); // Y  
+    result[2] = random_double_range(min_z, max_z); // Z
 }
