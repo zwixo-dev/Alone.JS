@@ -79,3 +79,9 @@ void random_shuffle(int size, double *array) {
         array[j] = temp;
     }
 }
+
+// Selection
+
+int random_index(int size){
+    return random_int_range(0, size-1);
+} 
