@@ -84,4 +84,8 @@ void random_shuffle(int size, double *array) {
 
 int random_index(int size){
     return random_int_range(0, size-1);
-} 
+}  
+
+double random_choice(int size, const double *array){
+    return array[random_index(size)];
+}
