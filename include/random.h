@@ -30,12 +30,4 @@ void random_coord_3d(double min_x, double max_x,
                      double min_z, double max_z,
                      double *result);
 
-
-// Character
-char random_digit(void);
-char random_letter(void);
-char random_digit_range(char min, char max);
-char random_letter_case(int uppercase);
-int random_sign(void);
-
 #endif
