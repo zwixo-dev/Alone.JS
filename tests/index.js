@@ -32,7 +32,7 @@ function drawBall(ball_x_pos, ball_y_pos, ball_radius, ball_color) {
 }
 
 // Corrected function call (Positional arguments only)
-drawBall(200+count, 200+count, 40, "red")
+drawBall(200, 200, 40, "red")
 
 // for (let count = 0; count < 10; i++) {
 
