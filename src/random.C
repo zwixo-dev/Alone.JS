@@ -90,8 +90,33 @@ double random_choice(int size, const double *array){
     return array[random_index(size)];
 }
 
-void random_sample(int size, const double *array, int sample_size, double *result){
-    
+void random_sample(int size,
+                   const double *array,
+                   int sample_size,
+                   double *result) {
+
+    if (!array || !result || size <= 0 ||
+        sample_size <= 0 || sample_size > size) {
+        return;
+    }
+
+    int used[size];
+
+    for (int i = 0; i < size; i++) {
+        used[i] = 0;
+    }
+
+    for (int i = 0; i < sample_size; i++) {
+
+        int index;
+
+        do {
+            index = rand() % size;
+        } while (used[index]);
+
+        used[index] = 1;
+        result[i] = array[index];
+    }
 }
 
 void random_coord_2d(double min_x, double max_x,
