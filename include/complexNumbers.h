@@ -13,4 +13,9 @@ Complex complex_subtract(Complex a, Complex b);
 Complex complex_multiply(Complex a, Complex b);
 Complex complex_divide(Complex a, Complex b);
 
+// Utilities
+Complex complex_conjugate(Complex z);
+double complex_magnitude(Complex z);
+double complex_argument(Complex z);
+
 #endif
