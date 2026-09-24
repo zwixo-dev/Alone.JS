@@ -22,4 +22,10 @@ double complex_argument(Complex z);
 Complex polar_to_complex(double radius, double theta);
 void complex_to_polar(Complex z, double *radius, double *theta);
 
+// Powers & Roots
+Complex complex_square(Complex z);
+Complex complex_cube(Complex z);
+Complex complex_power(Complex z, double exponent);
+Complex complex_sqrt(Complex z);
+
 #endif
