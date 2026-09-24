@@ -18,4 +18,8 @@ Complex complex_conjugate(Complex z);
 double complex_magnitude(Complex z);
 double complex_argument(Complex z);
 
+// Conversions
+Complex polar_to_complex(double radius, double theta);
+void complex_to_polar(Complex z, double *radius, double *theta);
+
 #endif
