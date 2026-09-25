@@ -28,4 +28,9 @@ Complex complex_cube(Complex z);
 Complex complex_power(Complex z, double exponent);
 Complex complex_sqrt(Complex z);
 
+// Trigonometric
+Complex complex_sin(Complex z);
+Complex complex_cos(Complex z);
+Complex complex_tan(Complex z);
+
 #endif
