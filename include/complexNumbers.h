@@ -46,4 +46,7 @@ Complex polar_to_complex(double radius, double theta);
 Complex complex_inverse(Complex z);
 Complex complex_negate(Complex z);
 
+// Scalar Operations
+Complex complex_scale(Complex z, double scalar);
+
 #endif
