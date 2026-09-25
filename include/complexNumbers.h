@@ -33,4 +33,9 @@ Complex complex_sin(Complex z);
 Complex complex_cos(Complex z);
 Complex complex_tan(Complex z);
 
+// Properties
+double complex_magnitude(Complex z);
+double complex_magnitude_squared(Complex z);
+double complex_argument(Complex z);
+
 #endif
