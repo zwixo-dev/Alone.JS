@@ -38,4 +38,9 @@ double complex_magnitude(Complex z);
 double complex_magnitude_squared(Complex z);
 double complex_argument(Complex z);
 
+// Constructors
+Complex complex_create(double real, double imaginary);
+Complex polar_to_complex(double radius, double theta);
+
+
 #endif
