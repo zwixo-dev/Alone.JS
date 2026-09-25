@@ -42,5 +42,8 @@ double complex_argument(Complex z);
 Complex complex_create(double real, double imaginary);
 Complex polar_to_complex(double radius, double theta);
 
+//  Unary Operations
+Complex complex_inverse(Complex z);
+Complex complex_negate(Complex z);
 
 #endif
