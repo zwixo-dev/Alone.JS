@@ -61,4 +61,7 @@ double complex_dot(Complex a, Complex b);
 // Distance
 double complex_distance(Complex a, Complex b);
 
+// Rotation
+Complex complex_rotate(Complex z, double theta);
+
 #endif
