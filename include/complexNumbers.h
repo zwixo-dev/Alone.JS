@@ -64,4 +64,7 @@ double complex_distance(Complex a, Complex b);
 // Rotation
 Complex complex_rotate(Complex z, double theta);
 
+// Linear interpolation
+Complex complex_lerp(Complex a, Complex b, double t);
+
 #endif
