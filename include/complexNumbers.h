@@ -57,4 +57,8 @@ Complex complex_normalize(Complex z);
 
 // Dot product (treating complex as 2D vector)
 double complex_dot(Complex a, Complex b);
+
+// Distance
+double complex_distance(Complex a, Complex b);
+
 #endif
