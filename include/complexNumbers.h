@@ -71,4 +71,8 @@ Complex complex_lerp(Complex a, Complex b, double t);
 Complex complex_exp(Complex z);
 Complex complex_log(Complex z);
 
+// Reciprocal trigonometric
+Complex complex_sec(Complex z);
+Complex complex_cot(Complex z);
+
 #endif
