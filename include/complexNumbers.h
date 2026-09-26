@@ -49,4 +49,7 @@ Complex complex_negate(Complex z);
 // Scalar Operations
 Complex complex_scale(Complex z, double scalar);
 
+// Comparison
+int complex_equal(Complex a, Complex b);
+
 #endif
