@@ -67,4 +67,8 @@ Complex complex_rotate(Complex z, double theta);
 // Linear interpolation
 Complex complex_lerp(Complex a, Complex b, double t);
 
+// Exponential & Logarithmic
+Complex complex_exp(Complex z);
+Complex complex_log(Complex z);
+
 #endif
