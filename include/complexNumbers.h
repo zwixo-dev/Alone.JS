@@ -52,4 +52,7 @@ Complex complex_scale(Complex z, double scalar);
 // Comparison
 int complex_equal(Complex a, Complex b);
 
+// Normalization
+Complex complex_normalize(Complex z);
+
 #endif
