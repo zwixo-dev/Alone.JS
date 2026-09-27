@@ -79,4 +79,7 @@ Complex complex_cot(Complex z);
 Complex complex_sinh(Complex z);
 Complex complex_cosh(Complex z);
 
+// Projection
+Complex complex_project(Complex z);
+
 #endif
