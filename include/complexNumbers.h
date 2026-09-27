@@ -82,4 +82,7 @@ Complex complex_cosh(Complex z);
 // Projection
 Complex complex_project(Complex z);
 
+// Reflection across the real axis
+Complex complex_reflect_real(Complex z);
+
 #endif
