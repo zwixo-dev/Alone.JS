@@ -85,4 +85,7 @@ Complex complex_project(Complex z);
 // Reflection across the real axis
 Complex complex_reflect_real(Complex z);
 
+// Reflection across the imaginary axis
+Complex complex_reflect_imaginary(Complex z);
+
 #endif
