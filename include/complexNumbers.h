@@ -75,4 +75,8 @@ Complex complex_log(Complex z);
 Complex complex_sec(Complex z);
 Complex complex_cot(Complex z);
 
+// Hyperbolic functions
+Complex complex_sinh(Complex z);
+Complex complex_cosh(Complex z);
+
 #endif
