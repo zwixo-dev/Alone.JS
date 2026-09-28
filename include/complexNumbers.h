@@ -88,4 +88,7 @@ Complex complex_reflect_real(Complex z);
 // Reflection across the imaginary axis
 Complex complex_reflect_imaginary(Complex z);
 
+// Polar transformations
+Complex complex_from_angle(double theta);
+
 #endif
