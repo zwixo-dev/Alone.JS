@@ -91,4 +91,7 @@ Complex complex_reflect_imaginary(Complex z);
 // Polar transformations
 Complex complex_from_angle(double theta);
 
+// Phase shifting
+Complex complex_phase_shift(Complex z, double theta);
+
 #endif
