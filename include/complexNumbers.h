@@ -94,4 +94,7 @@ Complex complex_from_angle(double theta);
 // Phase shifting
 Complex complex_phase_shift(Complex z, double theta);
 
+// Midpoint between two complex numbers
+Complex complex_midpoint(Complex a, Complex b);
+
 #endif
