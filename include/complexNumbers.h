@@ -112,4 +112,7 @@ void complex_nth_roots(Complex z, int n, Complex *roots);
 // Hyperbolic tangent
 Complex complex_tanh(Complex z);
 
+// Check for special values
+int complex_is_zero(Complex z);
+
 #endif
