@@ -106,4 +106,7 @@ double complex_angle_between(Complex a, Complex b);
 // Reflection through the origin
 Complex complex_reflect_origin(Complex z);
 
+// Complex roots
+void complex_nth_roots(Complex z, int n, Complex *roots);
+
 #endif
