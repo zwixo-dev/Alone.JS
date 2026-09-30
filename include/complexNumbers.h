@@ -109,4 +109,7 @@ Complex complex_reflect_origin(Complex z);
 // Complex roots
 void complex_nth_roots(Complex z, int n, Complex *roots);
 
+// Hyperbolic tangent
+Complex complex_tanh(Complex z);
+
 #endif
