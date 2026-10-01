@@ -115,4 +115,7 @@ Complex complex_tanh(Complex z);
 // Check for special values
 int complex_is_zero(Complex z);
 
+Complex complex_abs(Complex z);
+
+
 #endif
