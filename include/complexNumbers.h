@@ -119,4 +119,7 @@ Complex complex_abs(Complex z);
 
 Complex complex_reciprocal(Complex z);
 
+Complex complex_expm1(Complex z);
+
+
 #endif
