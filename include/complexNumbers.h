@@ -117,5 +117,6 @@ int complex_is_zero(Complex z);
 
 Complex complex_abs(Complex z);
 
+Complex complex_reciprocal(Complex z);
 
 #endif
