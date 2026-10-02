@@ -125,4 +125,10 @@ Complex complex_log10(Complex z);
 
 int complex_is_finite(Complex z);
 
+// Inverse trigonometric functions
+Complex complex_asin(Complex z);
+Complex complex_acos(Complex z);
+Complex complex_atan(Complex z);
+
+
 #endif
