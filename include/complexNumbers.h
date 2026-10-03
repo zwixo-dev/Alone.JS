@@ -134,4 +134,8 @@ Complex complex_atan(Complex z);
 int complex_is_nan(Complex z);
 int complex_is_infinite(Complex z);
 
+// Complex exponential variants
+Complex complex_pow_real(Complex z, double exponent);
+Complex complex_root(Complex z, int n);
+
 #endif
