@@ -142,5 +142,8 @@ Complex complex_root(Complex z, int n);
 double complex_real_part(Complex z);
 double complex_imaginary_part(Complex z);
 
-
+// Complex rounding / decomposition
+Complex complex_floor(Complex z);
+Complex complex_ceil(Complex z);
+Complex complex_round(Complex z);
 #endif
