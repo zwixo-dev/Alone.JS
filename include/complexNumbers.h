@@ -138,4 +138,9 @@ int complex_is_infinite(Complex z);
 Complex complex_pow_real(Complex z, double exponent);
 Complex complex_root(Complex z, int n);
 
+// Cartesian / polar utilities
+double complex_real_part(Complex z);
+double complex_imaginary_part(Complex z);
+
+
 #endif
