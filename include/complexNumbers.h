@@ -153,5 +153,7 @@ Complex complex_sech(Complex z);
 Complex complex_coth(Complex z);
 
 int complex_is_real(Complex z);
+int complex_is_imaginary(Complex z);
+
 
 #endif
