@@ -155,5 +155,6 @@ Complex complex_coth(Complex z);
 int complex_is_real(Complex z);
 int complex_is_imaginary(Complex z);
 
+double complex_distance_squared(Complex a, Complex b);
 
 #endif
