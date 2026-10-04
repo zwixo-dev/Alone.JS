@@ -149,5 +149,6 @@ Complex complex_round(Complex z);
 
 Complex complex_csc(Complex z);
 Complex complex_csch(Complex z);
+Complex complex_sech(Complex z);
 
 #endif
