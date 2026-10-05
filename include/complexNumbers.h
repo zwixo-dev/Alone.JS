@@ -159,5 +159,6 @@ double complex_distance_squared(Complex a, Complex b);
 Complex complex_mul_i(Complex z);
 
 Complex complex_div_i(Complex z);
+Complex complex_conjugate_product(Complex z);
 
 #endif
