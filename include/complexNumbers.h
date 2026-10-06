@@ -161,4 +161,6 @@ Complex complex_mul_i(Complex z);
 Complex complex_div_i(Complex z);
 Complex complex_conjugate_product(Complex z);
 
+Complex complex_from_real(double real);
+
 #endif
