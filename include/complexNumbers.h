@@ -164,4 +164,6 @@ Complex complex_conjugate_product(Complex z);
 Complex complex_from_real(double real);
 Complex complex_from_imaginary(double imaginary);
 
+int complex_is_unit(Complex z);
+
 #endif
