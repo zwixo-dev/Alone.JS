@@ -165,5 +165,6 @@ Complex complex_from_real(double real);
 Complex complex_from_imaginary(double imaginary);
 
 int complex_is_unit(Complex z);
+double complex_norm_squared(Complex z);
 
 #endif
