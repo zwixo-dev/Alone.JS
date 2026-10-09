@@ -171,5 +171,6 @@ Complex complex_signum(Complex z);
 double complex_phase_difference(Complex a, Complex b);
 
 Complex complex_cbrt(Complex z);
+int complex_is_pure_imaginary(Complex z);
 
 #endif
