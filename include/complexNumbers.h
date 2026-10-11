@@ -177,6 +177,7 @@ Complex complex_log2(Complex z);
 Complex complex_log1p(Complex z);
 
 Complex complex_log_base(Complex z, double base);
+double complex_manhattan_distance(Complex a, Complex b);
 
 
 #endif
