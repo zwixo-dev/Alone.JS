@@ -179,5 +179,6 @@ Complex complex_log1p(Complex z);
 Complex complex_log_base(Complex z, double base);
 double complex_manhattan_distance(Complex a, Complex b);
 double complex_chebyshev_distance(Complex a, Complex b);
+Complex complex_reflect_line(Complex z, double theta);
 
 #endif
