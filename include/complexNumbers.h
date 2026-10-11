@@ -176,4 +176,7 @@ int complex_is_pure_imaginary(Complex z);
 Complex complex_log2(Complex z);
 Complex complex_log1p(Complex z);
 
+Complex complex_log_base(Complex z, double base);
+
+
 #endif
