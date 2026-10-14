@@ -183,4 +183,6 @@ Complex complex_reflect_line(Complex z, double theta);
 Complex complex_log2p(Complex z);
 double complex_l1_norm(Complex z);
 
+Complex complex_acot(Complex z);
+
 #endif
