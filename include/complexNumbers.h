@@ -184,5 +184,6 @@ Complex complex_log2p(Complex z);
 double complex_l1_norm(Complex z);
 
 Complex complex_acot(Complex z);
+Complex complex_acoth(Complex z);
 
 #endif
