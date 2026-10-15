@@ -189,5 +189,6 @@ int complex_is_integer(Complex z);
 double complex_l2_norm(Complex z);
 
 Complex complex_asinpi(Complex z);
+Complex complex_acospi(Complex z);
 
 #endif
