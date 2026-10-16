@@ -27,3 +27,12 @@ Complex complex_subtract(Complex a, Complex b){
 
     return subtract_result;
 }
+
+Complex complex_multiply(Complex a, Complex b){
+    Complex multiply_result;
+
+    multiply_result.real = (a.real * b.real) - (a.imaginary * b.imaginary);
+    multiply_result.imaginary = (a.real * b.imaginary) + (b.real * a.imaginary);
+
+    return multiply_result;
+}
