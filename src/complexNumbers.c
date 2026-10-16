@@ -9,3 +9,12 @@ typedef struct {
 } Complex;
 
 
+// Basic operations
+Complex complex_add(Complex a, Complex b){   
+    Complex add_result; 
+
+    add_result.real = a.real + b.real; 
+    add_result.imaginary = a.imaginary + b.imaginary;
+
+    return add_result;
+}
