@@ -97,3 +97,11 @@ Complex complex_create(double real, double imaginary){
     return complex;
 }
 
+Complex polar_to_complex(double radius, double theta){
+    Complex polar_to_complex_result;
+
+    polar_to_complex_result.real = radius * cos(theta);
+    polar_to_complex_result.imaginary = radius * sin(theta);
+    
+    return polar_to_complex_result;
+}
