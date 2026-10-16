@@ -52,3 +52,14 @@ Complex complex_divide(Complex a, Complex b){
 
     return devide_result;
 }
+
+// Utilities 
+Complex complex_conjugate(Complex z){
+    Complex conjugate;
+    
+    conjugate.real = z.real;
+    conjugate.imaginary = -z.imaginary;
+    
+    return conjugate;
+}
+ 
