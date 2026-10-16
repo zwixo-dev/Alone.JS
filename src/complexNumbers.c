@@ -88,3 +88,12 @@ double complex_argument(Complex z){
     }
     
 }
+
+// Constructors
+Complex complex_create(double real, double imaginary){
+    Complex complex;
+    complex.real = real;
+    complex.imaginary = imaginary; 
+    return complex;
+}
+
