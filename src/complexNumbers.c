@@ -69,4 +69,22 @@ double complex_magnitude(Complex z){
     return  sqrt(( (z.real * z.real) + (z.imaginary * z.imaginary) ));
     
 }
- 
+
+double complex_argument(Complex z){
+    
+    if (z.real > 0) {
+        return atan(z.imaginary / z.real);
+    } else if (z.real < 0 && z.imaginary >= 0) {
+        return atan(z.imaginary / z.real) + M_PI; 
+    } else if (z.real < 0 && z.imaginary < 0) {
+        return atan(z.imaginary / z.real) - M_PI;
+    } else if (z.real == 0 && z.imaginary > 0) {
+        return M_PI / 2;
+    } else if (z.real == 0 && z.imaginary < 0) {
+        return -(M_PI / 2);
+    } else {
+        // z.real == 0 and z.imaginary == 0
+        return NAN; 
+    }
+    
+}
