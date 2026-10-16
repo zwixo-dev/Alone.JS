@@ -62,4 +62,11 @@ Complex complex_conjugate(Complex z){
     
     return conjugate;
 }
+
+double complex_magnitude(Complex z){
+    // √ pow(a, 2) + pow(b, 2)    
+    
+    return  sqrt(( (z.real * z.real) + (z.imaginary * z.imaginary) ));
+    
+}
  
