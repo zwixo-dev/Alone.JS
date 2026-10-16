@@ -18,3 +18,12 @@ Complex complex_add(Complex a, Complex b){
 
     return add_result;
 }
+
+Complex complex_subtract(Complex a, Complex b){
+    Complex subtract_result;
+
+    subtract_result.real = a.real - b.real;
+    subtract_result.imaginary = a.imaginary - b.imaginary;
+
+    return subtract_result;
+}
