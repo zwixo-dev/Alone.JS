@@ -145,3 +145,15 @@ int complex_equal(Complex a, Complex b){
         return false;
     }
 }
+
+// Normalization
+Complex complex_normalize(Complex z){
+    Complex complex_normalize_result;
+
+double modulus = sqrt( ((z.real*z.real) + (z.imaginary*z.imaginary)) );
+    
+    complex_normalize_result.real = z.real / modulus;
+    complex_normalize_result.imaginary = z.imaginary / modulus;
+    
+    return complex_normalize_result;
+}
