@@ -136,3 +136,12 @@ Complex complex_scale(Complex z, double scalar){
 
     return complex_scale_result;
 }
+
+// Comparison
+int complex_equal(Complex a, Complex b){
+    if(a.real == b.real && a.imaginary == b.imaginary){
+        return true;
+    } else{
+        return false;
+    }
+}
