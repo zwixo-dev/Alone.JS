@@ -162,3 +162,9 @@ double modulus = sqrt( ((z.real*z.real) + (z.imaginary*z.imaginary)) );
 double complex_dot(Complex a, Complex b){
     return ( (a.real * b.real) + (a.imaginary  * b.imaginary) );
 }
+
+// Distance
+double complex_distance(Complex a, Complex b){
+return sqrt( ( (b.real - a.real) * (b.real - a.real)
+    + (b.imaginary - a.imaginary) * (b.imaginary - a.imaginary) ) ); 
+}
