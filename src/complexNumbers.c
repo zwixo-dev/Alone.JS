@@ -126,3 +126,13 @@ Complex complex_negate(Complex z){
     
     return complex_negate;
 }
+
+// Scalar Operations
+Complex complex_scale(Complex z, double scalar){
+    Complex complex_scale_result;
+
+    complex_scale_result.real = scalar * z.real; 
+    complex_scale_result.imaginary = scalar * z.imaginary;
+
+    return complex_scale_result;
+}
