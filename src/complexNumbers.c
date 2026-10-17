@@ -165,6 +165,14 @@ double complex_dot(Complex a, Complex b){
 
 // Distance
 double complex_distance(Complex a, Complex b){
-return sqrt( ( (b.real - a.real) * (b.real - a.real)
-    + (b.imaginary - a.imaginary) * (b.imaginary - a.imaginary) ) ); 
+    return sqrt( ( (b.real - a.real) * (b.real - a.real) + (b.imaginary - a.imaginary) * (b.imaginary - a.imaginary) ) ); 
+}
+
+Complex complex_rotate(Complex z, double theta){
+    Complex complex_rotate_result;
+
+complex_rotate_result.real = z.real * cos(theta) - z.imaginary * sin(theta);
+complex_rotate_result.imaginary = z.real * sin(theta) + z.imaginary * cos(theta);
+
+    return complex_rotate_result;
 }
