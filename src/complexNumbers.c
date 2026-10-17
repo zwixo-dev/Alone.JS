@@ -117,3 +117,12 @@ Complex complex_inverse(Complex z){
 
     return complex_inverse_result;
 }
+
+Complex complex_negate(Complex z){
+    Complex complex_negate; 
+    
+    complex_negate.real = -z.real; 
+    complex_negate.imaginary = -z.imaginary;
+    
+    return complex_negate;
+}
