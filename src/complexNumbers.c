@@ -105,3 +105,15 @@ Complex polar_to_complex(double radius, double theta){
     
     return polar_to_complex_result;
 }
+
+//  Unary Operations
+Complex complex_inverse(Complex z){
+    Complex complex_inverse_result;
+    Complex conjug_z = complex_conjugate(z);
+    
+    double denominator = ((z.real * z.real) + (z.imaginary * z.imaginary)); 
+    complex_inverse_result.real = conjug_z.real / denominator;
+    complex_inverse_result.imaginary = conjug_z.imaginary / denominator;
+
+    return complex_inverse_result;
+}
