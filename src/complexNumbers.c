@@ -157,3 +157,8 @@ double modulus = sqrt( ((z.real*z.real) + (z.imaginary*z.imaginary)) );
     
     return complex_normalize_result;
 }
+
+// Dot product (treating complex as 2D vector)
+double complex_dot(Complex a, Complex b){
+    return ( (a.real * b.real) + (a.imaginary  * b.imaginary) );
+}
