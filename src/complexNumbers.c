@@ -171,8 +171,18 @@ double complex_distance(Complex a, Complex b){
 Complex complex_rotate(Complex z, double theta){
     Complex complex_rotate_result;
 
-complex_rotate_result.real = z.real * cos(theta) - z.imaginary * sin(theta);
-complex_rotate_result.imaginary = z.real * sin(theta) + z.imaginary * cos(theta);
+    complex_rotate_result.real = z.real * cos(theta) - z.imaginary * sin(theta);
+    complex_rotate_result.imaginary = z.real * sin(theta) + z.imaginary * cos(theta);
 
     return complex_rotate_result;
+}
+
+// Linear interpolation
+Complex complex_lerp(Complex a, Complex b, double t){
+    Complex complex_lerp_result;
+
+    complex_lerp_result.real = (1-t)*a.real + t*b.real;
+    complex_lerp_result.imaginary = (1-t)*a.imaginary + t*b.imaginary;
+
+    return complex_lerp_result;
 }
