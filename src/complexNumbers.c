@@ -196,3 +196,14 @@ Complex complex_exp(Complex z){
 
     return complex_exp_result;
 }
+
+Complex complex_log(Complex z){
+    Complex complex_log_result;
+
+    double modulus = sqrt( ((z.real*z.real) + (z.imaginary*z.imaginary)) );
+
+    complex_log_result.real = log(modulus);
+    complex_log_result.imaginary = atan2(z.imaginary, z.real);
+
+    return complex_log_result;
+}
