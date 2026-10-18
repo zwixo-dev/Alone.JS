@@ -207,3 +207,21 @@ Complex complex_log(Complex z){
 
     return complex_log_result;
 }
+
+// Reciprocal trigonometric
+Complex complex_sec(Complex z){
+    Complex complex_sec_result;
+
+    double denominator = cos(2*z.real) + cosh(2*z.imaginary);
+
+    if(denominator == 0.0){
+        complex_sec_result.real = NAN;
+        complex_sec_result.imaginary = NAN;
+        return complex_sec_result;
+    }
+    
+    complex_sec_result.real = 2*cos(z.real) * cosh(z.imaginary) / denominator;
+    complex_sec_result.imaginary = 2*sin(z.real) * sinh(z.imaginary) / denominator;
+
+    return complex_sec_result;
+}
