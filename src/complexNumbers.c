@@ -186,3 +186,13 @@ Complex complex_lerp(Complex a, Complex b, double t){
 
     return complex_lerp_result;
 }
+
+// Exponential & Logarithmic
+Complex complex_exp(Complex z){
+    Complex complex_exp_result;
+    
+    complex_exp_result.real = exp(z.real) * cos(z.imaginary);
+    complex_exp_result.imaginary = exp(z.real) * sin(z.imaginary);
+
+    return complex_exp_result;
+}
