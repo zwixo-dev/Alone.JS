@@ -279,3 +279,13 @@ Complex complex_cot(Complex z)
 
     return complex_cot_result;
 }
+
+Complex complex_sinh(Complex z)
+{
+    Complex complex_sinh_result;
+
+    complex_sinh_result.real = sinh(z.real) * cos(z.imaginary);
+    complex_sinh_result.imaginary = cosh(z.real) * sin(z.imaginary);
+
+    return complex_sinh_result;
+}
