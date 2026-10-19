@@ -318,3 +318,13 @@ Complex complex_reflect_real(Complex z){
 
     return complex_reflect_real_result;
 }
+
+// Reflection across the imaginary axis
+Complex complex_reflect_imaginary(Complex z){
+    Complex complex_reflect_imaginaryt_result;
+
+    complex_reflect_imaginaryt_result.real = -z.real;
+    complex_reflect_imaginaryt_result.imaginary = z.imaginary;
+
+    return complex_reflect_imaginaryt_result;
+}
