@@ -348,3 +348,13 @@ Complex complex_phase_shift(Complex z, double theta){
 
     return complex_phase_shift_result;
 }
+
+// Midpoint between two complex numbers
+Complex complex_midpoint(Complex a, Complex b){
+    Complex complex_midpoint_result;
+
+    complex_midpoint_result.real = ( a.real + b.real ) / 2;
+    complex_midpoint_result.imaginary = ( a.imaginary + b.imaginary )/ 2;
+
+    return complex_midpoint_result;
+}
