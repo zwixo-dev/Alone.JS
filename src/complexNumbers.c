@@ -328,3 +328,13 @@ Complex complex_reflect_imaginary(Complex z){
 
     return complex_reflect_imaginaryt_result;
 }
+
+// Polar transformations
+Complex complex_from_angle(double theta){
+    Complex complex_from_angle_result;
+    
+    complex_from_angle_result.real = cos(theta);
+    complex_from_angle_result.imaginary = sin(theta);
+    
+    return complex_from_angle_result;
+}
