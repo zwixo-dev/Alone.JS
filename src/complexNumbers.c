@@ -358,3 +358,23 @@ Complex complex_midpoint(Complex a, Complex b){
 
     return complex_midpoint_result;
 }
+
+// Complex averages
+Complex complex_average( Complex *array, int size){
+    Complex complex_average_result = {0.0, 0.0};
+
+    
+    if(size <= 0){
+        return complex_average_result;
+    }
+
+    for(int i=0; i<size; i++){
+        complex_average_result.real += array[i].real;
+        complex_average_result.imaginary += array[i].imaginary;
+    }
+
+    complex_average_result.real/=size;
+    complex_average_result.imaginary/=size;
+    
+    return complex_average_result;
+}
