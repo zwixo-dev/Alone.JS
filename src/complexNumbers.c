@@ -225,3 +225,20 @@ Complex complex_sec(Complex z){
 
     return complex_sec_result;
 }
+
+Complex complex_cot(Complex z){
+    Complex complex_cot_result;
+
+double denominator = cosh(2*z.imaginary) - cos(2*z.real);
+
+if(denominator == 0.0){
+    complex_cot_result.real = NAN;
+    complex_cot_result.imaginary = NAN;
+    return complex_cot_result;
+}
+
+complex_cot_result.real = sin(2*z.real) / denominator; 
+complex_cot_result.imaginary = -sinh(2*z.imaginary);
+
+    return complex_cot_result;
+}
