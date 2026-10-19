@@ -298,3 +298,13 @@ Complex complex_cosh(Complex z){
 
     return complex_cosh_result;
 }
+
+// Projection
+Complex complex_project(Complex z){
+    Complex complex_project_result;
+
+    complex_project_result.real = z.real;
+    complex_project_result.imaginary = 0.0;
+
+    return complex_project_result;
+}
