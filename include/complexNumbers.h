@@ -98,7 +98,7 @@ Complex complex_phase_shift(Complex z, double theta);
 Complex complex_midpoint(Complex a, Complex b);
 
 // Complex averages
-Complex complex_average(const Complex *array, int size);
+Complex complex_average(Complex *array, int size);
 
 // Angle between two complex numbers (radians)
 double complex_angle_between(Complex a, Complex b);
