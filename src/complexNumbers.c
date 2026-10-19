@@ -338,3 +338,13 @@ Complex complex_from_angle(double theta){
     
     return complex_from_angle_result;
 }
+
+// Phase shifting
+Complex complex_phase_shift(Complex z, double theta){
+    Complex complex_phase_shift_result;
+
+    complex_phase_shift_result.real = z.real * cos(theta) - z.imaginary * sin(theta);
+    complex_phase_shift_result.imaginary = z.real * sin(theta) + z.imaginary * cos(theta);
+
+    return complex_phase_shift_result;
+}
