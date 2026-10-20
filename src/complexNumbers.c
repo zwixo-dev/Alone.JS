@@ -290,7 +290,8 @@ Complex complex_sinh(Complex z)
     return complex_sinh_result;
 }
 
-Complex complex_cosh(Complex z){
+Complex complex_cosh(Complex z)
+{
     Complex complex_cosh_result;
 
     complex_cosh_result.real = cosh(z.real) * cos(z.imaginary);
@@ -300,7 +301,8 @@ Complex complex_cosh(Complex z){
 }
 
 // Projection
-Complex complex_project(Complex z){
+Complex complex_project(Complex z)
+{
     Complex complex_project_result;
 
     complex_project_result.real = z.real;
@@ -310,7 +312,8 @@ Complex complex_project(Complex z){
 }
 
 // Reflection across the real axis
-Complex complex_reflect_real(Complex z){
+Complex complex_reflect_real(Complex z)
+{
     Complex complex_reflect_real_result;
 
     complex_reflect_real_result.real = z.real;
@@ -320,7 +323,8 @@ Complex complex_reflect_real(Complex z){
 }
 
 // Reflection across the imaginary axis
-Complex complex_reflect_imaginary(Complex z){
+Complex complex_reflect_imaginary(Complex z)
+{
     Complex complex_reflect_imaginaryt_result;
 
     complex_reflect_imaginaryt_result.real = -z.real;
@@ -330,17 +334,19 @@ Complex complex_reflect_imaginary(Complex z){
 }
 
 // Polar transformations
-Complex complex_from_angle(double theta){
+Complex complex_from_angle(double theta)
+{
     Complex complex_from_angle_result;
-    
+
     complex_from_angle_result.real = cos(theta);
     complex_from_angle_result.imaginary = sin(theta);
-    
+
     return complex_from_angle_result;
 }
 
 // Phase shifting
-Complex complex_phase_shift(Complex z, double theta){
+Complex complex_phase_shift(Complex z, double theta)
+{
     Complex complex_phase_shift_result;
 
     complex_phase_shift_result.real = z.real * cos(theta) - z.imaginary * sin(theta);
@@ -350,88 +356,118 @@ Complex complex_phase_shift(Complex z, double theta){
 }
 
 // Midpoint between two complex numbers
-Complex complex_midpoint(Complex a, Complex b){
+Complex complex_midpoint(Complex a, Complex b)
+{
     Complex complex_midpoint_result;
 
-    complex_midpoint_result.real = ( a.real + b.real ) / 2;
-    complex_midpoint_result.imaginary = ( a.imaginary + b.imaginary )/ 2;
+    complex_midpoint_result.real = (a.real + b.real) / 2;
+    complex_midpoint_result.imaginary = (a.imaginary + b.imaginary) / 2;
 
     return complex_midpoint_result;
 }
 
 // Complex averages
-Complex complex_average( Complex *array, int size){
+Complex complex_average(Complex *array, int size)
+{
     Complex complex_average_result = {0.0, 0.0};
 
-    
-    if(size <= 0){
+    if (size <= 0)
+    {
         return complex_average_result;
     }
 
-    for(int i=0; i<size; i++){
+    for (int i = 0; i < size; i++)
+    {
         complex_average_result.real += array[i].real;
         complex_average_result.imaginary += array[i].imaginary;
     }
 
-    complex_average_result.real/=size;
-    complex_average_result.imaginary/=size;
-    
+    complex_average_result.real /= size;
+    complex_average_result.imaginary /= size;
+
     return complex_average_result;
 }
 
 // Angle between two complex numbers (radians)
-double complex_angle_between(Complex a, Complex b){
-    if ((a.real == 0 && a.imaginary == 0) || (b.real == 0 && b.imaginary == 0)) {
+double complex_angle_between(Complex a, Complex b)
+{
+    if ((a.real == 0 && a.imaginary == 0) || (b.real == 0 && b.imaginary == 0))
+    {
         return 0.0;
     }
-    
-    double angle = complex_argument(b) - complex_argument(a);  
-    
-    while (angle > M_PI)  angle -= 2.0 * M_PI;
-    while (angle < -M_PI) angle += 2.0 * M_PI;
-    
+
+    double angle = complex_argument(b) - complex_argument(a);
+
+    while (angle > M_PI)
+        angle -= 2.0 * M_PI;
+    while (angle < -M_PI)
+        angle += 2.0 * M_PI;
+
     return angle;
 }
 
 // Reflection through the origin
-Complex complex_reflect_origin(Complex z){
+Complex complex_reflect_origin(Complex z)
+{
     Complex complex_reflect_origin_result;
 
     complex_reflect_origin_result.real = -z.real;
     complex_reflect_origin_result.imaginary = -z.imaginary;
 
-    return complex_reflect_origin_result; 
+    return complex_reflect_origin_result;
 }
 
 // Complex roots
-void complex_nth_roots(Complex z, int n, Complex *roots){
-
-    
+void complex_nth_roots(Complex z, int n, Complex *roots)
+{
 }
 // Hyperbolic tangent
-Complex complex_tanh(Complex z){
+Complex complex_tanh(Complex z)
+{
     Complex complex_tanh_result;
 
-    complex_tanh_result.real = sinh(2*z.real) / ( cosh(2*z.real) + cos(2*z.imaginary) );
-    complex_tanh_result.imaginary = sin(2*z.imaginary) / ( cosh(2*z.real) + cos(2*z.imaginary) );
+    complex_tanh_result.real = sinh(2 * z.real) / (cosh(2 * z.real) + cos(2 * z.imaginary));
+    complex_tanh_result.imaginary = sin(2 * z.imaginary) / (cosh(2 * z.real) + cos(2 * z.imaginary));
 
     return complex_tanh_result;
 }
 
 // Check for special values
-bool complex_is_zero(Complex z){
-    if(z.real == 0.0 && z.imaginary == 0.0) return true;
-    
+bool complex_is_zero(Complex z)
+{
+    if (z.real == 0.0 && z.imaginary == 0.0)
+        return true;
+
     return false;
 }
 
-Complex complex_abs(Complex z){
+Complex complex_abs(Complex z)
+{
     Complex complex_abs_result;
-    
+
     complex_abs_result.real = sqrt((z.real * z.real) + (z.imaginary * z.imaginary));
-    
-    // the absolute value/magnitude has no imaginary 
+
+    // the absolute value/magnitude has no imaginary
     complex_abs_result.imaginary = 0.0;
 
     return complex_abs_result;
+}
+
+Complex complex_reciprocal(Complex z)
+{
+    Complex complex_reciprocal_result;
+
+    double denominator = (z.real * z.real) + (z.imaginary * z.imaginary);
+
+    if (denominator == 0)
+    {
+        complex_reciprocal_result.real = NAN;
+        complex_reciprocal_result.imaginary = NAN;
+        return complex_reciprocal_result;
+    }
+
+    complex_reciprocal_result.real = z.real / denominator;
+    complex_reciprocal_result.imaginary = -z.imaginary / denominator;
+
+    return complex_reciprocal_result;
 }
