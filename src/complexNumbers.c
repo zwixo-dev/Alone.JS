@@ -378,3 +378,17 @@ Complex complex_average( Complex *array, int size){
     
     return complex_average_result;
 }
+
+// Angle between two complex numbers (radians)
+double complex_angle_between(Complex a, Complex b){
+    if ((a.real == 0 && a.imaginary == 0) || (b.real == 0 && b.imaginary == 0)) {
+        return 0.0;
+    }
+    
+    double angle = complex_argument(b) - complex_argument(a);  
+    
+    while (angle > M_PI)  angle -= 2.0 * M_PI;
+    while (angle < -M_PI) angle += 2.0 * M_PI;
+    
+    return angle;
+}
