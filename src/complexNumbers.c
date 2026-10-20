@@ -424,3 +424,14 @@ bool complex_is_zero(Complex z){
     
     return false;
 }
+
+Complex complex_abs(Complex z){
+    Complex complex_abs_result;
+    
+    complex_abs_result.real = sqrt((z.real * z.real) + (z.imaginary * z.imaginary));
+    
+    // the absolute value/magnitude has no imaginary 
+    complex_abs_result.imaginary = 0.0;
+
+    return complex_abs_result;
+}
