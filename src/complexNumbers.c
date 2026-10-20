@@ -417,3 +417,10 @@ Complex complex_tanh(Complex z){
 
     return complex_tanh_result;
 }
+
+// Check for special values
+bool complex_is_zero(Complex z){
+    if(z.real == 0.0 && z.imaginary == 0.0) return true;
+    
+    return false;
+}
