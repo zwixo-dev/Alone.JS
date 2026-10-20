@@ -113,7 +113,7 @@ void complex_nth_roots(Complex z, int n, Complex *roots);
 Complex complex_tanh(Complex z);
 
 // Check for special values
-int complex_is_zero(Complex z);
+bool complex_is_zero(Complex z);
 
 Complex complex_abs(Complex z);
 
