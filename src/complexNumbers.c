@@ -403,3 +403,17 @@ Complex complex_reflect_origin(Complex z){
     return complex_reflect_origin_result; 
 }
 
+// Complex roots
+void complex_nth_roots(Complex z, int n, Complex *roots){
+
+    
+}
+// Hyperbolic tangent
+Complex complex_tanh(Complex z){
+    Complex complex_tanh_result;
+
+    complex_tanh_result.real = sinh(2*z.real) / ( cosh(2*z.real) + cos(2*z.imaginary) );
+    complex_tanh_result.imaginary = sin(2*z.imaginary) / ( cosh(2*z.real) + cos(2*z.imaginary) );
+
+    return complex_tanh_result;
+}
