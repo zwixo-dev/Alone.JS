@@ -392,3 +392,14 @@ double complex_angle_between(Complex a, Complex b){
     
     return angle;
 }
+
+// Reflection through the origin
+Complex complex_reflect_origin(Complex z){
+    Complex complex_reflect_origin_result;
+
+    complex_reflect_origin_result.real = -z.real;
+    complex_reflect_origin_result.imaginary = -z.imaginary;
+
+    return complex_reflect_origin_result; 
+}
+
