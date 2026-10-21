@@ -501,3 +501,7 @@ Complex complex_log10(Complex z){
 
     return complex_log10_result;
 }
+
+bool complex_is_finite(Complex z){
+    return isfinite(z.real) && isfinite(z.imaginary);
+}
