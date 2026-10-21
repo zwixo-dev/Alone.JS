@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include "../include/complexNumbers.h"
 
 // Complex number structure
 typedef struct
@@ -471,3 +472,16 @@ Complex complex_reciprocal(Complex z)
 
     return complex_reciprocal_result;
 }
+
+Complex complex_expm1(Complex z){
+    Complex complex_expm1_result;
+    
+    double sin_half_y = sin(z.imaginary / 2.0);
+    complex_expm1_result.real = expm1(z.real) * cos(z.imaginary) - 2.0 *
+        sin_half_y * sin_half_y;
+    
+    complex_expm1_result.imaginary = exp(z.real) * sin(z.imaginary);
+    
+    return complex_expm1_result;
+}
+
