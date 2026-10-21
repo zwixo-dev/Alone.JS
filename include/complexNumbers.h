@@ -123,7 +123,7 @@ Complex complex_expm1(Complex z);
 
 Complex complex_log10(Complex z);
 
-int complex_is_finite(Complex z);
+bool complex_is_finite(Complex z);
 
 // Inverse trigonometric functions
 Complex complex_asin(Complex z);
