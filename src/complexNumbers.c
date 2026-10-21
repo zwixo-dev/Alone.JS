@@ -485,3 +485,19 @@ Complex complex_expm1(Complex z){
     return complex_expm1_result;
 }
 
+Complex complex_log10(Complex z){
+    Complex complex_log10_result;
+    
+    if (z.real == 0.0 && z.imaginary == 0.0) {
+        complex_log10_result.real = -INFINITY;
+        complex_log10_result.imaginary = 0.0;
+        return complex_log10_result;
+    }
+    
+    double log_10 = log(10.0); 
+    
+    complex_log10_result.real = log(complex_magnitude(z)) / log_10;
+    complex_log10_result.imaginary = atan2(z.imaginary, z.real) / log_10;
+
+    return complex_log10_result;
+}
