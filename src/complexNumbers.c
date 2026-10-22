@@ -545,3 +545,20 @@ Complex complex_acos(Complex z){
 
     return complex_acos_result;
 }
+
+Complex complex_atan(Complex z){
+    Complex complex_atan_result;
+
+    complex_atan_result.real = 0.5 * atan2(2.0 * z.real, 1.0 - z.real * z.real - z.imaginary * z.imaginary);
+
+    double x_squared = z.real * z.real;
+    double y_plus_1  = z.imaginary + 1.0;
+    double y_minus_1 = z.imaginary - 1.0;
+
+    double numerator   = x_squared + (y_plus_1 * y_plus_1);
+    double denominator = x_squared + (y_minus_1 * y_minus_1);
+
+    complex_atan_result.imaginary = 0.25 * log(numerator / denominator);
+
+    return complex_atan_result;
+}
