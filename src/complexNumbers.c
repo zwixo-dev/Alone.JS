@@ -505,3 +505,24 @@ Complex complex_log10(Complex z){
 bool complex_is_finite(Complex z){
     return isfinite(z.real) && isfinite(z.imaginary);
 }
+
+// Inverse trigonometric functions
+Complex complex_asin(Complex z){
+    Complex complex_asin_result; 
+    
+    // Calculate focal distances p and q 
+    // (-1, 0)
+    double p = sqrt((z.real + 1.0) * (z.real + 1.0) + z.imaginary * z.imaginary);
+    // (1, 0)
+    double q = sqrt((z.real - 1.0) * (z.real - 1.0) + z.imaginary * z.imaginary);
+
+    double half_p_minus_q = (p - q) / 2.0;
+    double half_p_add_q   = (p + q) / 2.0;
+
+    complex_asin_result.real = asin(half_p_minus_q);
+
+    double sign_y = (z.imaginary >= 0.0) ? 1.0 : -1.0;
+    complex_asin_result.imaginary = sign_y * log(half_p_add_q + sqrt(half_p_add_q * half_p_add_q - 1.0));
+
+    return complex_asin_result;
+}
