@@ -526,3 +526,22 @@ Complex complex_asin(Complex z){
 
     return complex_asin_result;
 }
+
+Complex complex_acos(Complex z){
+    Complex complex_acos_result; 
+    
+    // Calculate focal distances p and q 
+    double p = sqrt((z.real + 1.0) * (z.real + 1.0) + z.imaginary * z.imaginary);
+    double q = sqrt((z.real - 1.0) * (z.real - 1.0) + z.imaginary * z.imaginary);
+
+    double half_p_minus_q = (p - q) / 2.0;
+    double half_p_add_q   = (p + q) / 2.0;
+
+    // FIX: Changed asin() to acos() right here
+    complex_acos_result.real = acos(half_p_minus_q);
+
+    double sign_y = (z.imaginary >= 0.0) ? 1.0 : -1.0;
+    complex_acos_result.imaginary = -sign_y * log(half_p_add_q + sqrt(half_p_add_q * half_p_add_q - 1.0));
+
+    return complex_acos_result;
+}
