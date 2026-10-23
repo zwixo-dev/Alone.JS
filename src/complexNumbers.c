@@ -567,3 +567,35 @@ Complex complex_atan(Complex z){
 bool complex_is_nan(Complex z){
     return isnan(z.real) || isnan(z.imaginary);
 }
+
+// Complex exponential variants
+Complex complex_pow_real(Complex z, double exponent){
+    Complex complex_pow_real_result;
+
+    double r_squared = z.real * z.real + z.imaginary * z.imaginary;
+    double new_r = pow(r_squared, exponent / 2.0);
+    
+    double new_theta = exponent * atan2(z.imaginary, z.real);
+    
+    complex_pow_real_result.real = new_r * cos(new_theta);
+    complex_pow_real_result.imaginary = new_r * sin(new_theta);
+
+    return complex_pow_real_result;
+}
+
+int complex_is_infinite(Complex z);
+
+// Complex exponential variants
+Complex complex_pow_real(Complex z, double exponent){
+    Complex complex_pow_real_result;
+
+    double r_squared = z.real * z.real + z.imaginary * z.imaginary;
+    double new_r = pow(r_squared, exponent / 2.0);
+    
+    double new_theta = exponent * atan2(z.imaginary, z.real);
+    
+    complex_pow_real_result.real = new_r * cos(new_theta);
+    complex_pow_real_result.imaginary = new_r * sin(new_theta);
+
+    return complex_pow_real_result;
+}
