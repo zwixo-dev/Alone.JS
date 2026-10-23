@@ -599,3 +599,16 @@ Complex complex_pow_real(Complex z, double exponent){
 
     return complex_pow_real_result;
 }
+
+Complex complex_root(Complex z, int n){
+    Complex complex_root_result;
+
+    double r_squared = z.real * z.real + z.imaginary * z.imaginary;
+    double new_r = pow(r_squared, 1.0 / (2.0 * n));
+    double theta = atan2(z.imaginary, z.real) / n;
+    
+    complex_root_result.real = new_r * cos(theta);
+    complex_root_result.imaginary = new_r * sin(theta);
+    
+    return complex_root_result;
+}
