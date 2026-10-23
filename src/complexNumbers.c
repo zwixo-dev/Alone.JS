@@ -562,3 +562,8 @@ Complex complex_atan(Complex z){
 
     return complex_atan_result;
 }
+
+// Complex number classification
+bool complex_is_nan(Complex z){
+    return isnan(z.real) || isnan(z.imaginary);
+}
