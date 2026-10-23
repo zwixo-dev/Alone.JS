@@ -131,7 +131,7 @@ Complex complex_acos(Complex z);
 Complex complex_atan(Complex z);
 
 // Complex number classification
-int complex_is_nan(Complex z);
+bool complex_is_nan(Complex z);
 int complex_is_infinite(Complex z);
 
 // Complex exponential variants
