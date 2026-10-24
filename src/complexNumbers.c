@@ -612,3 +612,12 @@ Complex complex_root(Complex z, int n){
     
     return complex_root_result;
 }
+
+// Cartesian / polar utilities
+double complex_real_part(Complex z){
+    return z.real;
+}
+
+double complex_imaginary_part(Complex z){
+    return z.imaginary;
+}
