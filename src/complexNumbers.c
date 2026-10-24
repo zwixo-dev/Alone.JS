@@ -645,3 +645,13 @@ Complex complex_floor(Complex z)
 
     return complex_floor_result;
 }
+
+Complex complex_ceil(Complex z)
+{
+    Complex complex_ceil_result;
+
+    complex_ceil_result.real = ceil(z.real);
+    complex_ceil_result.imaginary = ceil(z.imaginary);
+
+    return complex_ceil_result;
+}
