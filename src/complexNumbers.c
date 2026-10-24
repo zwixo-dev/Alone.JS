@@ -473,51 +473,56 @@ Complex complex_reciprocal(Complex z)
     return complex_reciprocal_result;
 }
 
-Complex complex_expm1(Complex z){
+Complex complex_expm1(Complex z)
+{
     Complex complex_expm1_result;
-    
+
     double sin_half_y = sin(z.imaginary / 2.0);
     complex_expm1_result.real = expm1(z.real) * cos(z.imaginary) - 2.0 *
-        sin_half_y * sin_half_y;
-    
+                                                                       sin_half_y * sin_half_y;
+
     complex_expm1_result.imaginary = exp(z.real) * sin(z.imaginary);
-    
+
     return complex_expm1_result;
 }
 
-Complex complex_log10(Complex z){
+Complex complex_log10(Complex z)
+{
     Complex complex_log10_result;
-    
-    if (z.real == 0.0 && z.imaginary == 0.0) {
+
+    if (z.real == 0.0 && z.imaginary == 0.0)
+    {
         complex_log10_result.real = -INFINITY;
         complex_log10_result.imaginary = 0.0;
         return complex_log10_result;
     }
-    
-    double log_10 = log(10.0); 
-    
+
+    double log_10 = log(10.0);
+
     complex_log10_result.real = log(complex_magnitude(z)) / log_10;
     complex_log10_result.imaginary = atan2(z.imaginary, z.real) / log_10;
 
     return complex_log10_result;
 }
 
-bool complex_is_finite(Complex z){
+bool complex_is_finite(Complex z)
+{
     return isfinite(z.real) && isfinite(z.imaginary);
 }
 
 // Inverse trigonometric functions
-Complex complex_asin(Complex z){
-    Complex complex_asin_result; 
-    
-    // Calculate focal distances p and q 
+Complex complex_asin(Complex z)
+{
+    Complex complex_asin_result;
+
+    // Calculate focal distances p and q
     // (-1, 0)
     double p = sqrt((z.real + 1.0) * (z.real + 1.0) + z.imaginary * z.imaginary);
     // (1, 0)
     double q = sqrt((z.real - 1.0) * (z.real - 1.0) + z.imaginary * z.imaginary);
 
     double half_p_minus_q = (p - q) / 2.0;
-    double half_p_add_q   = (p + q) / 2.0;
+    double half_p_add_q = (p + q) / 2.0;
 
     complex_asin_result.real = asin(half_p_minus_q);
 
@@ -527,15 +532,16 @@ Complex complex_asin(Complex z){
     return complex_asin_result;
 }
 
-Complex complex_acos(Complex z){
-    Complex complex_acos_result; 
-    
-    // Calculate focal distances p and q 
+Complex complex_acos(Complex z)
+{
+    Complex complex_acos_result;
+
+    // Calculate focal distances p and q
     double p = sqrt((z.real + 1.0) * (z.real + 1.0) + z.imaginary * z.imaginary);
     double q = sqrt((z.real - 1.0) * (z.real - 1.0) + z.imaginary * z.imaginary);
 
     double half_p_minus_q = (p - q) / 2.0;
-    double half_p_add_q   = (p + q) / 2.0;
+    double half_p_add_q = (p + q) / 2.0;
 
     // FIX: Changed asin() to acos() right here
     complex_acos_result.real = acos(half_p_minus_q);
@@ -546,16 +552,17 @@ Complex complex_acos(Complex z){
     return complex_acos_result;
 }
 
-Complex complex_atan(Complex z){
+Complex complex_atan(Complex z)
+{
     Complex complex_atan_result;
 
     complex_atan_result.real = 0.5 * atan2(2.0 * z.real, 1.0 - z.real * z.real - z.imaginary * z.imaginary);
 
     double x_squared = z.real * z.real;
-    double y_plus_1  = z.imaginary + 1.0;
+    double y_plus_1 = z.imaginary + 1.0;
     double y_minus_1 = z.imaginary - 1.0;
 
-    double numerator   = x_squared + (y_plus_1 * y_plus_1);
+    double numerator = x_squared + (y_plus_1 * y_plus_1);
     double denominator = x_squared + (y_minus_1 * y_minus_1);
 
     complex_atan_result.imaginary = 0.25 * log(numerator / denominator);
@@ -564,19 +571,21 @@ Complex complex_atan(Complex z){
 }
 
 // Complex number classification
-bool complex_is_nan(Complex z){
+bool complex_is_nan(Complex z)
+{
     return isnan(z.real) || isnan(z.imaginary);
 }
 
 // Complex exponential variants
-Complex complex_pow_real(Complex z, double exponent){
+Complex complex_pow_real(Complex z, double exponent)
+{
     Complex complex_pow_real_result;
 
     double r_squared = z.real * z.real + z.imaginary * z.imaginary;
     double new_r = pow(r_squared, exponent / 2.0);
-    
+
     double new_theta = exponent * atan2(z.imaginary, z.real);
-    
+
     complex_pow_real_result.real = new_r * cos(new_theta);
     complex_pow_real_result.imaginary = new_r * sin(new_theta);
 
@@ -586,38 +595,53 @@ Complex complex_pow_real(Complex z, double exponent){
 int complex_is_infinite(Complex z);
 
 // Complex exponential variants
-Complex complex_pow_real(Complex z, double exponent){
+Complex complex_pow_real(Complex z, double exponent)
+{
     Complex complex_pow_real_result;
 
     double r_squared = z.real * z.real + z.imaginary * z.imaginary;
     double new_r = pow(r_squared, exponent / 2.0);
-    
+
     double new_theta = exponent * atan2(z.imaginary, z.real);
-    
+
     complex_pow_real_result.real = new_r * cos(new_theta);
     complex_pow_real_result.imaginary = new_r * sin(new_theta);
 
     return complex_pow_real_result;
 }
 
-Complex complex_root(Complex z, int n){
+Complex complex_root(Complex z, int n)
+{
     Complex complex_root_result;
 
     double r_squared = z.real * z.real + z.imaginary * z.imaginary;
     double new_r = pow(r_squared, 1.0 / (2.0 * n));
     double theta = atan2(z.imaginary, z.real) / n;
-    
+
     complex_root_result.real = new_r * cos(theta);
     complex_root_result.imaginary = new_r * sin(theta);
-    
+
     return complex_root_result;
 }
 
 // Cartesian / polar utilities
-double complex_real_part(Complex z){
+double complex_real_part(Complex z)
+{
     return z.real;
 }
 
-double complex_imaginary_part(Complex z){
+double complex_imaginary_part(Complex z)
+{
     return z.imaginary;
+}
+
+// Complex rounding / decomposition
+Complex complex_floor(Complex z)
+{
+    Complex complex_floor_result;
+
+    complex_floor_result.real = floor(z.real);
+    complex_floor_result.imaginary = floor(z.imaginary);
+
+    return complex_floor_result;
 }
