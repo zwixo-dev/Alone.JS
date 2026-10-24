@@ -655,3 +655,12 @@ Complex complex_ceil(Complex z)
 
     return complex_ceil_result;
 }
+
+Complex complex_round(Complex z){
+    Complex  complex_round_result;
+
+    complex_round_result.real = round(z.real);
+    complex_round_result.imaginary = round(z.imaginary);
+
+    return complex_round_result;
+}
