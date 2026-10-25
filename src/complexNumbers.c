@@ -664,3 +664,19 @@ Complex complex_round(Complex z){
 
     return complex_round_result;
 }
+
+Complex complex_csc(Complex z){
+    Complex complex_csc_result;
+    double denominator = cosh(2.0 * z.imaginary) - cos(2.0 * z.real);
+
+    if (denominator == 0.0) {
+        complex_csc_result.real = NAN;
+        complex_csc_result.imaginary = NAN;
+        return complex_csc_result;
+    }
+
+    complex_csc_result.real = (2.0 * sin(z.real) * cosh(z.imaginary)) / denominator; 
+    complex_csc_result.imaginary = (2.0 * cos(z.real) * sinh(z.imaginary)) / denominator;
+
+    return complex_csc_result;
+}
