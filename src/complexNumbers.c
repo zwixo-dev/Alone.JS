@@ -713,3 +713,19 @@ Complex complex_sech(Complex z){
 
     return complex_sech_result;
 }
+
+Complex complex_coth(Complex z){
+    Complex complex_coth_result;
+    double denominator = cosh(2.0 * z.real) - cos(2.0 * z.imaginary);
+
+    if (denominator == 0.0) {
+        complex_coth_result.real = NAN;
+        complex_coth_result.imaginary = NAN;
+        return complex_coth_result;
+    }
+
+    complex_coth_result.real = sinh(2.0 * z.real) / denominator;
+    complex_coth_result.imaginary = -sin(2.0 * z.imaginary) / denominator;
+
+    return complex_coth_result;
+}
