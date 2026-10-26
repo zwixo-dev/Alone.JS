@@ -737,3 +737,11 @@ bool complex_is_real(Complex z){
 bool complex_is_imaginary(Complex z){
     return (z.real == 0.0);
 }
+
+double complex_distance_squared(Complex a, Complex b){
+    double diff_real = a.real - b.real;
+    double diff_imag = a.imaginary - b.imaginary;
+    
+    //(x)² + (y)²
+    return (diff_real * diff_real) + (diff_imag * diff_imag);
+}
