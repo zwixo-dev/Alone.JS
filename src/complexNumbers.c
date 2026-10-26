@@ -745,3 +745,12 @@ double complex_distance_squared(Complex a, Complex b){
     //(x)² + (y)²
     return (diff_real * diff_real) + (diff_imag * diff_imag);
 }
+
+Complex complex_mul_i(Complex z){
+    Complex complex_mul_i_result;
+
+    complex_mul_i_result.real = -z.imaginary;
+    complex_mul_i_result.imaginary = z.real;
+
+    return complex_mul_i_result;
+}
