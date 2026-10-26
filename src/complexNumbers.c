@@ -656,8 +656,9 @@ Complex complex_ceil(Complex z)
     return complex_ceil_result;
 }
 
-Complex complex_round(Complex z){
-    Complex  complex_round_result;
+Complex complex_round(Complex z)
+{
+    Complex complex_round_result;
 
     complex_round_result.real = round(z.real);
     complex_round_result.imaginary = round(z.imaginary);
@@ -665,60 +666,68 @@ Complex complex_round(Complex z){
     return complex_round_result;
 }
 
-Complex complex_csc(Complex z){
+Complex complex_csc(Complex z)
+{
     Complex complex_csc_result;
     double denominator = cosh(2.0 * z.imaginary) - cos(2.0 * z.real);
 
-    if (denominator == 0.0) {
+    if (denominator == 0.0)
+    {
         complex_csc_result.real = NAN;
         complex_csc_result.imaginary = NAN;
         return complex_csc_result;
     }
 
-    complex_csc_result.real = (2.0 * sin(z.real) * cosh(z.imaginary)) / denominator; 
+    complex_csc_result.real = (2.0 * sin(z.real) * cosh(z.imaginary)) / denominator;
     complex_csc_result.imaginary = (2.0 * cos(z.real) * sinh(z.imaginary)) / denominator;
 
     return complex_csc_result;
 }
 
-Complex complex_csch(Complex z){
+Complex complex_csch(Complex z)
+{
     Complex complex_csch_result;
     double denominator = cosh(2.0 * z.real) - cos(2.0 * z.imaginary);
 
-    if (denominator == 0.0) {
+    if (denominator == 0.0)
+    {
         complex_csch_result.real = NAN;
         complex_csch_result.imaginary = NAN;
         return complex_csch_result;
     }
 
-    complex_csch_result.real = (2.0 * sinh(z.real) * cos(z.imaginary)) / denominator; 
-    complex_csch_result.imaginary = (-2.0 * cosh(z.real) * sin(z.imaginary)) / denominator; 
+    complex_csch_result.real = (2.0 * sinh(z.real) * cos(z.imaginary)) / denominator;
+    complex_csch_result.imaginary = (-2.0 * cosh(z.real) * sin(z.imaginary)) / denominator;
 
     return complex_csch_result;
 }
 
-Complex complex_sech(Complex z){
+Complex complex_sech(Complex z)
+{
     Complex complex_sech_result;
     double denominator = cosh(2.0 * z.real) + cos(2.0 * z.imaginary);
-    
-    if (denominator == 0.0) {
+
+    if (denominator == 0.0)
+    {
         complex_sech_result.real = NAN;
         complex_sech_result.imaginary = NAN;
         return complex_sech_result;
     }
 
     complex_sech_result.real = (2.0 * cosh(z.real) * cos(z.imaginary)) / denominator;
-    
+
     complex_sech_result.imaginary = (-2.0 * sinh(z.real) * sin(z.imaginary)) / denominator;
 
     return complex_sech_result;
 }
 
-Complex complex_coth(Complex z){
+Complex complex_coth(Complex z)
+{
     Complex complex_coth_result;
     double denominator = cosh(2.0 * z.real) - cos(2.0 * z.imaginary);
 
-    if (denominator == 0.0) {
+    if (denominator == 0.0)
+    {
         complex_coth_result.real = NAN;
         complex_coth_result.imaginary = NAN;
         return complex_coth_result;
@@ -730,23 +739,27 @@ Complex complex_coth(Complex z){
     return complex_coth_result;
 }
 
-bool complex_is_real(Complex z){
+bool complex_is_real(Complex z)
+{
     return (z.imaginary == 0.0);
 }
 
-bool complex_is_imaginary(Complex z){
+bool complex_is_imaginary(Complex z)
+{
     return (z.real == 0.0);
 }
 
-double complex_distance_squared(Complex a, Complex b){
+double complex_distance_squared(Complex a, Complex b)
+{
     double diff_real = a.real - b.real;
     double diff_imag = a.imaginary - b.imaginary;
-    
+
     //(x)² + (y)²
     return (diff_real * diff_real) + (diff_imag * diff_imag);
 }
 
-Complex complex_mul_i(Complex z){
+Complex complex_mul_i(Complex z)
+{
     Complex complex_mul_i_result;
 
     complex_mul_i_result.real = -z.imaginary;
@@ -755,7 +768,8 @@ Complex complex_mul_i(Complex z){
     return complex_mul_i_result;
 }
 
-Complex complex_div_i(Complex z){
+Complex complex_div_i(Complex z)
+{
     Complex complex_div_i_result;
 
     complex_div_i_result.real = z.imaginary;
@@ -764,11 +778,23 @@ Complex complex_div_i(Complex z){
     return complex_div_i_result;
 }
 
-Complex complex_conjugate_product(Complex z){
+Complex complex_conjugate_product(Complex z)
+{
     Complex complex_conjugate_product_result;
 
     complex_conjugate_product_result.real = (z.real * z.real) + (z.imaginary * z.imaginary);
     complex_conjugate_product_result.imaginary = 0;
 
     return complex_conjugate_product_result;
+}
+
+Complex complex_from_real(double real)
+{
+    Complex complex_from_real_result;
+
+    complex_from_real_result.real = real;
+
+    complex_from_real_result.imaginary = 0.0;
+
+    return complex_from_real_result;
 }
