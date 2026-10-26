@@ -152,8 +152,8 @@ Complex complex_csch(Complex z);
 Complex complex_sech(Complex z);
 Complex complex_coth(Complex z);
 
-int complex_is_real(Complex z);
-int complex_is_imaginary(Complex z);
+bool complex_is_real(Complex z);
+bool complex_is_imaginary(Complex z);
 
 double complex_distance_squared(Complex a, Complex b);
 Complex complex_mul_i(Complex z);
