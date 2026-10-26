@@ -729,3 +729,7 @@ Complex complex_coth(Complex z){
 
     return complex_coth_result;
 }
+
+bool complex_is_real(Complex z){
+    return (z.imaginary == 0.0);
+}
