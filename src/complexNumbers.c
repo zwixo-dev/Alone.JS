@@ -754,3 +754,12 @@ Complex complex_mul_i(Complex z){
 
     return complex_mul_i_result;
 }
+
+Complex complex_div_i(Complex z){
+    Complex complex_div_i_result;
+
+    complex_div_i_result.real = z.imaginary;
+    complex_div_i_result.imaginary = -z.real;
+
+    return complex_div_i_result;
+}
