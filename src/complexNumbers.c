@@ -763,3 +763,12 @@ Complex complex_div_i(Complex z){
 
     return complex_div_i_result;
 }
+
+Complex complex_conjugate_product(Complex z){
+    Complex complex_conjugate_product_result;
+
+    complex_conjugate_product_result.real = (z.real * z.real) + (z.imaginary * z.imaginary);
+    complex_conjugate_product_result.imaginary = 0;
+
+    return complex_conjugate_product_result;
+}
