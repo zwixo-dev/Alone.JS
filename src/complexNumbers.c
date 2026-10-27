@@ -837,3 +837,20 @@ Complex complex_signum(Complex z)
 
     return complex_signum_result;
 }
+
+double complex_phase_difference(Complex a, Complex b)
+{
+    if ((a.real == 0.0 && a.imaginary == 0.0) || (b.real == 0.0 && b.imaginary == 0.0))
+    {
+        return 0.0;
+    }
+
+    double phase_diff = atan2(b.imaginary, b.real) - atan2(a.imaginary, a.real);
+    //  Keeping the phase difference between -PI and +PI (Wrap around)
+    while (phase_diff > M_PI)
+        phase_diff -= 2.0 * M_PI;
+    while (phase_diff < -M_PI)
+        phase_diff += 2.0 * M_PI;
+
+    return phase_diff;
+}
