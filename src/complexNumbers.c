@@ -854,3 +854,15 @@ double complex_phase_difference(Complex a, Complex b)
 
     return phase_diff;
 }
+
+Complex complex_cbrt(Complex z){
+    Complex complex_cbrt_result;
+    double magnitude = complex_magnitude(z);
+    double magnitude_final = pow(magnitude, 1.0/3.0); 
+    double angle_final = 1.0/3.0 * atan2(z.imaginary, z.real);
+
+    complex_cbrt_result.real = magnitude_final * cos(angle_final);
+    complex_cbrt_result.imaginary = magnitude_final * sin(angle_final);
+
+    return complex_cbrt_result;
+}
