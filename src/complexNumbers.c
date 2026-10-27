@@ -866,3 +866,7 @@ Complex complex_cbrt(Complex z){
 
     return complex_cbrt_result;
 }
+
+bool complex_is_pure_imaginary(Complex z){
+    return ( z.real==0.0 && z.imaginary !=0.0)? true: false;
+}
