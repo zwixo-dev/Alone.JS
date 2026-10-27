@@ -807,3 +807,7 @@ Complex complex_from_imaginary(double imaginary){
 
     return complex_from_imaginary_result;
 }
+
+bool complex_is_unit(Complex z){
+    return (complex_magnitude(z) == 1.0) ? true : false;
+}
