@@ -870,3 +870,14 @@ Complex complex_cbrt(Complex z){
 bool complex_is_pure_imaginary(Complex z){
     return ( z.real==0.0 && z.imaginary !=0.0)? true: false;
 }
+
+Complex complex_log2(Complex z){
+    Complex complex_log2_result;
+    double magnitude = complex_magnitude(z);
+    double phase = atan2(z.imaginary, z.real);
+
+    complex_log2_result.real = log2(magnitude);
+    complex_log2_result.imaginary = phase / log2(2.0);
+
+    return complex_log2_result;
+} 
