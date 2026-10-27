@@ -799,7 +799,8 @@ Complex complex_from_real(double real)
     return complex_from_real_result;
 }
 
-Complex complex_from_imaginary(double imaginary){
+Complex complex_from_imaginary(double imaginary)
+{
     Complex complex_from_imaginary_result;
 
     complex_from_imaginary_result.real = 0.0;
@@ -808,10 +809,31 @@ Complex complex_from_imaginary(double imaginary){
     return complex_from_imaginary_result;
 }
 
-bool complex_is_unit(Complex z){
+bool complex_is_unit(Complex z)
+{
     return (complex_magnitude(z) == 1.0) ? true : false;
 }
 
-double complex_norm_squared(Complex z){
-    return ( (z.real * z.real) + (z.imaginary * z.imaginary) );
+double complex_norm_squared(Complex z)
+{
+    return ((z.real * z.real) + (z.imaginary * z.imaginary));
+}
+
+Complex complex_signum(Complex z)
+{
+    Complex complex_signum_result;
+    double magnitude = complex_magnitude(z);
+
+    if (magnitude == 0.0)
+    {
+        complex_signum_result.real = NAN;
+        complex_signum_result.imaginary = NAN;
+
+        return complex_signum_result;
+    }
+
+    complex_signum_result.real = z.real / magnitude;
+    complex_signum_result.imaginary = z.imaginary / magnitude;
+
+    return complex_signum_result;
 }
