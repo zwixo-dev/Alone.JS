@@ -798,3 +798,12 @@ Complex complex_from_real(double real)
 
     return complex_from_real_result;
 }
+
+Complex complex_from_imaginary(double imaginary){
+    Complex complex_from_imaginary_result;
+
+    complex_from_imaginary_result.real = 0.0;
+    complex_from_imaginary_result.imaginary = imaginary;
+
+    return complex_from_imaginary_result;
+}
