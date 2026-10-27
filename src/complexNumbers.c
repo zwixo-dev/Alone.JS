@@ -811,3 +811,7 @@ Complex complex_from_imaginary(double imaginary){
 bool complex_is_unit(Complex z){
     return (complex_magnitude(z) == 1.0) ? true : false;
 }
+
+double complex_norm_squared(Complex z){
+    return ( (z.real * z.real) + (z.imaginary * z.imaginary) );
+}
