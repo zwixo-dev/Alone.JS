@@ -902,3 +902,7 @@ Complex complex_log_base(Complex z, double base){
 
     return complex_log_base_result;
 }
+
+double complex_manhattan_distance(Complex a, Complex b){
+    return fabs(a.real - b.real) + fabs(a.imaginary - b.imaginary);
+}
