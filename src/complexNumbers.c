@@ -906,3 +906,7 @@ Complex complex_log_base(Complex z, double base){
 double complex_manhattan_distance(Complex a, Complex b){
     return fabs(a.real - b.real) + fabs(a.imaginary - b.imaginary);
 }
+
+double complex_chebyshev_distance(Complex a, Complex b){
+    return fmax( fabs(a.real - b.real), fabs(a.imaginary - b.imaginary) );
+}
