@@ -880,4 +880,15 @@ Complex complex_log2(Complex z){
     complex_log2_result.imaginary = phase / log2(2.0);
 
     return complex_log2_result;
-} 
+}
+
+Complex complex_log1p(Complex z){
+    Complex complex_log1p_result;
+
+    complex_log1p_result.real = 0.5 * log( (1 + z.real) * (1 + z.real) + z.imaginary * z.imaginary);
+    
+    complex_log1p_result.imaginary = atan2(z.imaginary, 1 + z.real);
+
+    
+    return complex_log1p_result;
+}
