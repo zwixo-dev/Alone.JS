@@ -892,3 +892,13 @@ Complex complex_log1p(Complex z){
     
     return complex_log1p_result;
 }
+
+Complex complex_log_base(Complex z, double base){
+    Complex complex_log_base_result;
+
+    complex_log_base_result.real = 0.5 * log((z.real * z.real) + (z.imaginary * z.imaginary)) / log(base);
+
+    complex_log_base_result.imaginary = atan2(z.imaginary, z.real) /log(base);
+
+    return complex_log_base_result;
+}
