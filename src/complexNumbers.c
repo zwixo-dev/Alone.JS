@@ -910,3 +910,16 @@ double complex_manhattan_distance(Complex a, Complex b){
 double complex_chebyshev_distance(Complex a, Complex b){
     return fmax( fabs(a.real - b.real), fabs(a.imaginary - b.imaginary) );
 }
+
+Complex complex_reflect_line(Complex z, double theta){
+    Complex complex_reflect_line_result;
+
+    complex_reflect_line_result.real = z.real * cos(2 * theta) + z.imaginary * sin(2 * theta);
+    complex_reflect_line_result.imaginary = z.real * sin(2 * theta) - z.imaginary * cos(2 * theta);
+
+    return complex_reflect_line_result;
+}
+
+double complex_l1_norm(Complex z){
+    return ( fabs(z.real) + fabs(z.imaginary) );
+}
