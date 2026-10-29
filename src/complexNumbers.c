@@ -855,11 +855,12 @@ double complex_phase_difference(Complex a, Complex b)
     return phase_diff;
 }
 
-Complex complex_cbrt(Complex z){
+Complex complex_cbrt(Complex z)
+{
     Complex complex_cbrt_result;
     double magnitude = complex_magnitude(z);
-    double magnitude_final = pow(magnitude, 1.0/3.0); 
-    double angle_final = 1.0/3.0 * atan2(z.imaginary, z.real);
+    double magnitude_final = pow(magnitude, 1.0 / 3.0);
+    double angle_final = 1.0 / 3.0 * atan2(z.imaginary, z.real);
 
     complex_cbrt_result.real = magnitude_final * cos(angle_final);
     complex_cbrt_result.imaginary = magnitude_final * sin(angle_final);
@@ -867,11 +868,13 @@ Complex complex_cbrt(Complex z){
     return complex_cbrt_result;
 }
 
-bool complex_is_pure_imaginary(Complex z){
-    return ( z.real==0.0 && z.imaginary !=0.0)? true: false;
+bool complex_is_pure_imaginary(Complex z)
+{
+    return (z.real == 0.0 && z.imaginary != 0.0) ? true : false;
 }
 
-Complex complex_log2(Complex z){
+Complex complex_log2(Complex z)
+{
     Complex complex_log2_result;
     double magnitude = complex_magnitude(z);
     double phase = atan2(z.imaginary, z.real);
@@ -882,36 +885,40 @@ Complex complex_log2(Complex z){
     return complex_log2_result;
 }
 
-Complex complex_log1p(Complex z){
+Complex complex_log1p(Complex z)
+{
     Complex complex_log1p_result;
 
-    complex_log1p_result.real = 0.5 * log( (1 + z.real) * (1 + z.real) + z.imaginary * z.imaginary);
-    
+    complex_log1p_result.real = 0.5 * log((1 + z.real) * (1 + z.real) + z.imaginary * z.imaginary);
+
     complex_log1p_result.imaginary = atan2(z.imaginary, 1 + z.real);
 
-    
     return complex_log1p_result;
 }
 
-Complex complex_log_base(Complex z, double base){
+Complex complex_log_base(Complex z, double base)
+{
     Complex complex_log_base_result;
 
     complex_log_base_result.real = 0.5 * log((z.real * z.real) + (z.imaginary * z.imaginary)) / log(base);
 
-    complex_log_base_result.imaginary = atan2(z.imaginary, z.real) /log(base);
+    complex_log_base_result.imaginary = atan2(z.imaginary, z.real) / log(base);
 
     return complex_log_base_result;
 }
 
-double complex_manhattan_distance(Complex a, Complex b){
+double complex_manhattan_distance(Complex a, Complex b)
+{
     return fabs(a.real - b.real) + fabs(a.imaginary - b.imaginary);
 }
 
-double complex_chebyshev_distance(Complex a, Complex b){
-    return fmax( fabs(a.real - b.real), fabs(a.imaginary - b.imaginary) );
+double complex_chebyshev_distance(Complex a, Complex b)
+{
+    return fmax(fabs(a.real - b.real), fabs(a.imaginary - b.imaginary));
 }
 
-Complex complex_reflect_line(Complex z, double theta){
+Complex complex_reflect_line(Complex z, double theta)
+{
     Complex complex_reflect_line_result;
 
     complex_reflect_line_result.real = z.real * cos(2 * theta) + z.imaginary * sin(2 * theta);
@@ -920,6 +927,17 @@ Complex complex_reflect_line(Complex z, double theta){
     return complex_reflect_line_result;
 }
 
-double complex_l1_norm(Complex z){
-    return ( fabs(z.real) + fabs(z.imaginary) );
+Complex complex_log2p(Complex z)
+{
+    Complex complex_log2p_result;
+
+    complex_log2p_result.real = log((z.real * z.real) + (z.imaginary * z.imaginary)) / (2 * log(2));
+    complex_log2p_result.imaginary = atan2(z.imaginary, z.real) / log(2);
+
+    return complex_log2p_result;
+}
+
+double complex_l1_norm(Complex z)
+{
+    return (fabs(z.real) + fabs(z.imaginary));
 }
