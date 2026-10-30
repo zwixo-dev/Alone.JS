@@ -970,3 +970,8 @@ bool complex_is_integer(Complex z)
 {
     return (z.real == (int)z.real && z.imaginary == (int)z.imaginary);
 }
+
+double complex_l2_norm(Complex z)
+{
+    return sqrt((z.real * z.real) + (z.imaginary * z.imaginary));
+}
