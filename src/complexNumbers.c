@@ -942,24 +942,31 @@ double complex_l1_norm(Complex z)
     return (fabs(z.real) + fabs(z.imaginary));
 }
 
-Complex complex_acot(Complex z){
+Complex complex_acot(Complex z)
+{
     Complex complex_acot_result;
 
     double x2_plus_y2 = (z.real * z.real) + (z.imaginary * z.imaginary);
 
     complex_acot_result.real = 0.5 * atan2(2.0 * z.real, x2_plus_y2 - 1.0);
     complex_acot_result.imaginary = -0.5 * atanh((2.0 * z.imaginary) / (x2_plus_y2 + 1.0));
-    
+
     return complex_acot_result;
 }
 
-Complex complex_acoth(Complex z){
+Complex complex_acoth(Complex z)
+{
     Complex complex_acoth_result;
 
     double x2_plus_y2 = (z.real * z.real) + (z.imaginary * z.imaginary);
-    
+
     complex_acoth_result.real = 0.5 * atanh((2.0 * z.real) / (x2_plus_y2 + 1.0));
     complex_acoth_result.imaginary = -0.5 * atan2(2.0 * z.imaginary, 1.0 - x2_plus_y2);
 
     return complex_acoth_result;
+}
+
+bool complex_is_integer(Complex z)
+{
+    return (z.real == (int)z.real && z.imaginary == (int)z.imaginary);
 }
