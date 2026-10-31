@@ -975,3 +975,32 @@ double complex_l2_norm(Complex z)
 {
     return sqrt((z.real * z.real) + (z.imaginary * z.imaginary));
 }
+
+// ----------- sgn func -----------
+int sgn(double real)
+{
+    return (real > 0) - (real < 0); // return 1 or -1 or 0
+}
+
+Complex complex_asinpi(Complex z)
+{
+    Complex complex_asinpi_result;
+
+    // distance from -1
+    double d_plus = sqrt((fabs(z.real) + 1) * (fabs(z.real) + 1) + (z.imaginary * z.imaginary));
+    // distance from 1
+    double d_minus = sqrt((fabs(z.real) - 1) * (fabs(z.real) - 1) + (z.imaginary * z.imaginary));
+    // half Difference of Distances
+    double term_minus = 0.5 * (d_plus - d_minus);
+    // half sum of Distances
+    double term_plus = 0.5 * (d_plus + d_minus);
+
+    if (term_minus > 1.0)
+        term_minus = 1.0;
+
+    complex_asinpi_result.real = sgn(z.real) * (1.0 / M_PI) * asin(term_minus);
+    complex_asinpi_result.imaginary = sgn(z.imaginary) * (1.0 / M_PI) * asinh(term_plus);
+
+    return complex_asinpi_result;
+}
+
