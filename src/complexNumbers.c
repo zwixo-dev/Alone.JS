@@ -1004,3 +1004,25 @@ Complex complex_asinpi(Complex z)
     return complex_asinpi_result;
 }
 
+Complex complex_acospi(Complex z)
+{
+    Complex complex_acospi_result;
+
+    // distance from -1
+    double d_plus = sqrt((fabs(z.real) + 1) * (fabs(z.real) + 1) + (z.imaginary * z.imaginary));
+    // distance from 1
+    double d_minus = sqrt((fabs(z.real) - 1) * (fabs(z.real) - 1) + (z.imaginary * z.imaginary));
+    // half Difference of Distances
+    double term_minus = 0.5 * (d_plus - d_minus);
+    // half sum of Distances
+    double term_plus = 0.5 * (d_plus + d_minus);
+
+    if (term_minus > 1.0)
+        term_minus = 1.0;
+
+    complex_acospi_result.real = (1.0 / M_PI) * acos(sgn(z.real) * term_minus);
+
+    complex_acospi_result.imaginary = -(1.0 / M_PI) * sgn(z.imaginary) * asinh(term_plus);
+
+    return complex_acospi_result;
+}
