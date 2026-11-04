@@ -33,7 +33,7 @@ Module.onRuntimeInitialized = () =>{
     chi_square_pdf:  Module.cwrap("chi_square_pdf", "number", ["number", "number"]),
     chi_square_cdf:  Module.cwrap("chi_square_cdf", "number", ["number", "number"]),
     f_distribution_pdf:  Module.cwrap("f_distribution_pdf", "number", ["number", "number", "number"]),
-    // f_distribution_cdf:  Module.cwrap("f_distribution_cdf", "number", ["number", "number"]),
+    f_distribution_cdf:  Module.cwrap("f_distribution_cdf", "number", ["number", "number", "number"]),
     }
 
 
@@ -63,6 +63,7 @@ Module.onRuntimeInitialized = () =>{
     console.log("chi_square_pdf : ", chi_square_pdf(6, 3));
     console.log("chi_square_cdf : ", chi_square_cdf(10, 2));
     console.log("f_distribution_pdf : ", f_distribution_pdf(2,4,8));
+    console.log("f_distribution_cdf : ", f_distribution_cdf(2, 2, 2));
 }
 
 
@@ -216,3 +217,7 @@ function f_distribution_pdf(x, d1, d2){
     return probability.f_distribution_pdf(x, d1, d2);
 }
 // double f_distribution_cdf(double x, double d1, double d2);
+// f_distribution_cdf
+function f_distribution_cdf(x, d1, d2){
+    return probability.f_distribution_cdf(x, d1, d2);
+}

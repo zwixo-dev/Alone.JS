@@ -2,156 +2,195 @@
 #include "../include/operations.h"
 #include <math.h>
 
-
 // geometry_distance_2d
-double geometry_distance_2d(double x1, double y1, double x2, double y2){
+double geometry_distance_2d(double x1, double y1, double x2, double y2)
+{
     double dx = x2 - x1;
     double dy = y2 - y1;
     return sqrt(dx * dx + dy * dy);
 }
 
 // geometry_distance_3d
-double geometry_distance_3d(double x1, double y1, double z1, double x2, double y2, double z2) {
+double geometry_distance_3d(double x1, double y1, double z1, double x2, double y2, double z2)
+{
     double dx = x2 - x1;
     double dy = y2 - y1;
     double dz = z2 - z1;
-    
+
     return sqrt(dx * dx + dy * dy + dz * dz);
 }
 
 // geometry_midpoint_x
-double geometry_midpoint_x(double x1, double x2){
-    return (x1 + x2) / 2.0; 
+double geometry_midpoint_x(double x1, double x2)
+{
+    return (x1 + x2) / 2.0;
 }
 
 // geometry_midpoint_y
-double geometry_midpoint_y(double y1, double y2){
+double geometry_midpoint_y(double y1, double y2)
+{
     return (y1 + y2) / 2.0;
 }
 
 // geometry_slope
-double geometry_slope(double x1, double y1, double x2, double y2) {
-    if (x1 == x2) {
-        if (y1 == y2) {
-            return NAN; 
+double geometry_slope(double x1, double y1, double x2, double y2)
+{
+    if (x1 == x2)
+    {
+        if (y1 == y2)
+        {
+            return NAN;
         }
         return (y2 > y1) ? INFINITY : -INFINITY;
     }
-    
+
     return (y2 - y1) / (x2 - x1);
 }
 
 // triangle_area
-double triangle_area(double base, double height){
-    if (base <= 0.0 || height <= 0.0) return -1;
-        
+double triangle_area(double base, double height)
+{
+    if (base <= 0.0 || height <= 0.0)
+        return -1;
+
     return (base * height) / 2.0;
 }
 
 // triangle_perimeter
-double triangle_perimeter(double a, double b, double c){
-    if (a <= 0.0 || b <= 0.0 || c <= 0.0) return -1;
-    
-    if ((a + b <= c) || (a + c <= b) || (b + c <= a)) return -1;
-    
+double triangle_perimeter(double a, double b, double c)
+{
+    if (a <= 0.0 || b <= 0.0 || c <= 0.0)
+        return -1;
+
+    if ((a + b <= c) || (a + c <= b) || (b + c <= a))
+        return -1;
+
     return a + b + c;
 }
 
 // triangle_semiperimeter
-double triangle_semiperimeter(double a, double b, double c) {
+double triangle_semiperimeter(double a, double b, double c)
+{
     // if positifs
-    if (a <= 0.0 || b <= 0.0 || c <= 0.0) return -1.0;
-    
+    if (a <= 0.0 || b <= 0.0 || c <= 0.0)
+        return -1.0;
+
     // check
-    if ((a + b <= c) || (a + c <= b) || (b + c <= a)) return -1.0;
-    
+    if ((a + b <= c) || (a + c <= b) || (b + c <= a))
+        return -1.0;
+
     return (a + b + c) / 2.0;
 }
 
 // triangle_heron_area
-double triangle_heron_area(double a, double b, double c) {
-    
+double triangle_heron_area(double a, double b, double c)
+{
+
     double s = triangle_semiperimeter(a, b, c);
-    if (s < 0.0) return -1.0; // Invalide 
-    
+    if (s < 0.0)
+        return -1.0; // Invalide
+
     // 2. Application de la formule de Héron
     return sqrt(s * (s - a) * (s - b) * (s - c));
 }
 
 // triangle_is_valid
-int triangle_is_valid(double a, double b, double c){
-    if(a <= 0 || b <= 0 || c <= 0) return 0;
-    
-    if ((a + b > c) && (a + c > b) && (b + c > a)) return 1; // true 
-    
+int triangle_is_valid(double a, double b, double c)
+{
+    if (a <= 0 || b <= 0 || c <= 0)
+        return 0;
+
+    if ((a + b > c) && (a + c > b) && (b + c > a))
+        return 1; // true
+
     // else
-    return 0;  // false 
+    return 0; // false
 }
 
 // triangle_is_equilateral
-int triangle_is_equilateral(double a, double b, double c){
-    if(a <= 0 || b <= 0 || c <= 0) return 0;
-    
-    if(a == b && b == c) return 1; // true
-    
+int triangle_is_equilateral(double a, double b, double c)
+{
+    if (a <= 0 || b <= 0 || c <= 0)
+        return 0;
+
+    if (a == b && b == c)
+        return 1; // true
+
     // else
     return 0; // false
 }
 
 // triangle_is_isosceles
-int triangle_is_isosceles(double a, double b, double c){
-    if(a <= 0 || b <= 0 || c <= 0) return 0;
-    
-    if (!(a + b > c && a + c > b && b + c > a)) return 0;
-    
-    if (a == b || b == c || a == c) return 1; // true
+int triangle_is_isosceles(double a, double b, double c)
+{
+    if (a <= 0 || b <= 0 || c <= 0)
+        return 0;
+
+    if (!(a + b > c && a + c > b && b + c > a))
+        return 0;
+
+    if (a == b || b == c || a == c)
+        return 1; // true
     // else
     return 0;
 }
 
 // triangle_is_scalene
-int triangle_is_scalene(double a, double b, double c){
-    if(a <= 0 || b <= 0 || c <= 0) return 0;
-     
-    if (!(a + b > c && a + c > b && b + c > a)) {
-         return 0;
+int triangle_is_scalene(double a, double b, double c)
+{
+    if (a <= 0 || b <= 0 || c <= 0)
+        return 0;
+
+    if (!(a + b > c && a + c > b && b + c > a))
+    {
+        return 0;
     }
-     
-     if (a != b && b != c && a != c) return 1;
-     
-     return 0;
+
+    if (a != b && b != c && a != c)
+        return 1;
+
+    return 0;
 }
 
 // triangle_is_right
-int triangle_is_right(double a, double b, double c){
-     if(a <= 0 || b <= 0 || c <= 0) return 0;
-     double a2 = a * a;
-     double b2 = b * b;
-     double c2 = c * c;
-     
-     if ((a2 + b2 == c2) || (a2 + c2 == b2) || (b2 + c2 == a2)) return 1;
+int triangle_is_right(double a, double b, double c)
+{
+    if (a <= 0 || b <= 0 || c <= 0)
+        return 0;
+    double a2 = a * a;
+    double b2 = b * b;
+    double c2 = c * c;
 
-     return 0;
+    if ((a2 + b2 == c2) || (a2 + c2 == b2) || (b2 + c2 == a2))
+        return 1;
+
+    return 0;
 }
 
 // rectangle_area
-double rectangle_area(double length, double width){
-    if (length <= 0.0 || width <= 0.0) return -1.0;
+double rectangle_area(double length, double width)
+{
+    if (length <= 0.0 || width <= 0.0)
+        return -1.0;
 
     return width * length;
 }
 
 // rectangle_perimeter
-double rectangle_perimeter(double length, double width){
-    if (length <= 0.0 || width <= 0.0) return -1.0;
+double rectangle_perimeter(double length, double width)
+{
+    if (length <= 0.0 || width <= 0.0)
+        return -1.0;
 
     // P = 2(l + w)
-    return 2.0 *(length + width);
+    return 2.0 * (length + width);
 }
 
 // rectangle_diagonal
-double rectangle_diagonal(double length, double width) {
-    if (length <= 0.0 || width <= 0.0) return -1.0;
+double rectangle_diagonal(double length, double width)
+{
+    if (length <= 0.0 || width <= 0.0)
+        return -1.0;
 
     return sqrt((width * width) + (length * length));
 }
@@ -159,23 +198,29 @@ double rectangle_diagonal(double length, double width) {
 // square
 
 // square_area
-double square_area(double side){
-    if (side <= 0.0) return -1.0;
+double square_area(double side)
+{
+    if (side <= 0.0)
+        return -1.0;
 
     return side * side;
 }
 
 // square_perimeter
-double square_perimeter(double side){
-    if (side <= 0.0) return -1.0;
+double square_perimeter(double side)
+{
+    if (side <= 0.0)
+        return -1.0;
 
-        // P = 4 * side
+    // P = 4 * side
     return 4.0 * side;
 }
 
 // square_diagonal
-double square_diagonal(double side){
-    if (side <= 0.0) return -1.0;
+double square_diagonal(double side)
+{
+    if (side <= 0.0)
+        return -1.0;
 
     // √2 * side
     return sqrt(2) * side;
@@ -184,77 +229,91 @@ double square_diagonal(double side){
 // circle
 
 // circle_area
-double circle_area(double radius){
-    if (radius <= 0.0) return -1;
+double circle_area(double radius)
+{
+    if (radius <= 0.0)
+        return -1;
     // A = PI * r^2
     return M_PI * (radius * radius);
 }
 
 // circle_circumference
-double circle_circumference(double radius){
-    if (radius <= 0.0) return -1;
+double circle_circumference(double radius)
+{
+    if (radius <= 0.0)
+        return -1;
 
-    // C = 2 * Pi * r 
+    // C = 2 * Pi * r
     return 2.0 * M_PI * radius;
 }
 
 // circle_diameter
-double circle_diameter(double radius){
-     if (radius <= 0.0) return -1.0;
+double circle_diameter(double radius)
+{
+    if (radius <= 0.0)
+        return -1.0;
 
     // d=2r
     return 2.0 * radius;
 }
 
 // circle_arc_length
-double circle_arc_length(double radius, double angle){
-    if (radius <= 0.0 || angle < 0.0) return -1;
+double circle_arc_length(double radius, double angle)
+{
+    if (radius <= 0.0 || angle < 0.0)
+        return -1;
 
     // s = (Angle_theta/360) * 2 PI  * r
     return (angle / 360.0) * 2 * M_PI * radius;
 }
 
 // circle_sector_area
-double circle_sector_area(double radius, double angle){
-    if (radius <= 0.0 || angle < 0.0) return -1;
+double circle_sector_area(double radius, double angle)
+{
+    if (radius <= 0.0 || angle < 0.0)
+        return -1;
 
     // (angle / 360) * PI * r^2
     return ((angle / 360.0) * M_PI) * (radius * radius);
 }
 
-
-
 // ellipse funcs
 
 // ellipse_area
-double ellipse_area(double a, double b){
+double ellipse_area(double a, double b)
+{
     // A=Pi ab
-    
-    if (a <= 0.0 || b <= 0.0) return -1;
+
+    if (a <= 0.0 || b <= 0.0)
+        return -1;
     return M_PI * a * b;
 }
 
 // ellipse_perimeter_basic
-double ellipse_perimeter_basic(double a, double b) {
-    if (a <= 0.0 || b <= 0.0) return -1;
+double ellipse_perimeter_basic(double a, double b)
+{
+    if (a <= 0.0 || b <= 0.0)
+        return -1;
     // 2 * PI √(a^2 + b^2) / 2.0
     return 2.0 * M_PI * sqrt((a * a + b * b) / 2.0);
 }
 
-
-
-//polygon
+// polygon
 
 // regular_polygon_perimeter
-double regular_polygon_perimeter(int sides, double side_length) {
-    if (sides < 3 || side_length <= 0.0) return -1;
-        
+double regular_polygon_perimeter(int sides, double side_length)
+{
+    if (sides < 3 || side_length <= 0.0)
+        return -1;
+
     return sides * side_length;
 }
 
 // regular_polygon_area
-double regular_polygon_area(int sides, double side_length) {
-    if (sides < 3 || side_length <= 0.0) return -1;
+double regular_polygon_area(int sides, double side_length)
+{
+    if (sides < 3 || side_length <= 0.0)
+        return -1;
 
     double perimeter = regular_polygon_perimeter(sides, side_length);
     double apothem = side_length / (2.0 * tan(M_PI / sides));
@@ -262,128 +321,160 @@ double regular_polygon_area(int sides, double side_length) {
 }
 
 // polygon_interior_angle_sum
-double polygon_interior_angle_sum(int sides) {
-    if (sides < 3) return -1;
-    
+double polygon_interior_angle_sum(int sides)
+{
+    if (sides < 3)
+        return -1;
+
     return (sides - 2) * 180.0;
 }
 
 // regular_polygon_interior_angle
-double regular_polygon_interior_angle(int sides) {
-    if (sides < 3) return -1;
-    
+double regular_polygon_interior_angle(int sides)
+{
+    if (sides < 3)
+        return -1;
+
     return (sides - 2) * 180.0 / (double)sides;
 }
 
-
 // Cube
 // cube_volume
-double cube_volume(double side) {
-    if (side <= 0.0)  return -1;
+double cube_volume(double side)
+{
+    if (side <= 0.0)
+        return -1;
     return side * side * side;
 }
 
 // cube_surface_area
-double cube_surface_area(double side) {
-    if (side <= 0.0) return -1;
+double cube_surface_area(double side)
+{
+    if (side <= 0.0)
+        return -1;
     return 6.0 * (side * side);
 }
 
 // cube_space_diagonal
-double cube_space_diagonal(double side) {
-    if (side <= 0.0) return -1;
+double cube_space_diagonal(double side)
+{
+    if (side <= 0.0)
+        return -1;
     return sqrt(3.0) * side;
 }
 
-//Rectangular Prism
+// Rectangular Prism
 
 // cuboid_volume
-double cuboid_volume(double length, double width, double height){
-    if(length <= 0.0 || width <= 0.0 || height <= 0.0) return -1;
-    
+double cuboid_volume(double length, double width, double height)
+{
+    if (length <= 0.0 || width <= 0.0 || height <= 0.0)
+        return -1;
+
     return length * width * height;
 }
 
 // cuboid_surface_area
-double cuboid_surface_area(double length, double width, double height){
-   if(length <= 0.0 || width <= 0.0 || height <= 0.0) return -1; 
-    //  \(2(lw + wh + lh)\) 
-    
+double cuboid_surface_area(double length, double width, double height)
+{
+    if (length <= 0.0 || width <= 0.0 || height <= 0.0)
+        return -1;
+    //  \(2(lw + wh + lh)\)
+
     return 2 * (length * width + width * height + length * height);
 }
 
 // cuboid_space_diagonal
-double cuboid_space_diagonal(double length, double width, double height){
-    if(length <= 0.0 || width <= 0.0 || height <= 0.0) return -1;
-    
+double cuboid_space_diagonal(double length, double width, double height)
+{
+    if (length <= 0.0 || width <= 0.0 || height <= 0.0)
+        return -1;
+
     return sqrt(length * length + width * width + height * height);
 }
 
 // Cylinder
 
-
 // cylinder_volume
-double cylinder_volume(double radius, double height){
+double cylinder_volume(double radius, double height)
+{
     // V = π * r² * h
-    if(radius <= 0.0 || height <= 0.0) return -1;
+    if (radius <= 0.0 || height <= 0.0)
+        return -1;
     return M_PI * radius * radius * height;
 }
 
 // cylinder_surface_area
-double cylinder_surface_area(double radius, double height){
-    if(radius <= 0.0 || height <= 0.0) return -1;
+double cylinder_surface_area(double radius, double height)
+{
+    if (radius <= 0.0 || height <= 0.0)
+        return -1;
     // A = 2*π*r*h + 2*π*r²
-    return (2.0 * M_PI * radius * height) + (2.0 * M_PI * radius * radius); 
+    return (2.0 * M_PI * radius * height) + (2.0 * M_PI * radius * radius);
 }
 
 // cylinder_lateral_area
-double cylinder_lateral_area(double radius, double height){
-    if(radius <= 0.0 || height <= 0.0) return -1;
+double cylinder_lateral_area(double radius, double height)
+{
+    if (radius <= 0.0 || height <= 0.0)
+        return -1;
     // AL = 2*π*r*h
     return 2.0 * M_PI * radius * height;
 }
 
 // sphere
 
-double sphere_volume(double radius){
-    if(radius <= 0.0) return -1;
+double sphere_volume(double radius)
+{
+    if (radius <= 0.0)
+        return -1;
     // v = (4/3) * PI  * r^3
-    return (4.0 / 3.0) * M_PI *  radius * radius * radius;
+    return (4.0 / 3.0) * M_PI * radius * radius * radius;
 }
 
-double sphere_surface_area(double radius){
+double sphere_surface_area(double radius)
+{
     // A=4πr^2
-    if(radius <= 0.0) return -1;
-    
-    return 4 * M_PI * radius * radius; 
+    if (radius <= 0.0)
+        return -1;
+
+    return 4 * M_PI * radius * radius;
 }
 
 // cone
 
-double cone_volume(double radius, double height){
-    if(radius <= 0.0 || height <= 0.0) return -1;
-    
+double cone_volume(double radius, double height)
+{
+    if (radius <= 0.0 || height <= 0.0)
+        return -1;
+
     return M_PI * radius * radius * (height / 3.0);
 }
 
-double cone_surface_area(double radius, double height){
-    if(radius <= 0 || height <= 0) return -1;
+double cone_surface_area(double radius, double height)
+{
+    if (radius <= 0 || height <= 0)
+        return -1;
     // A=πr(r+√(h^2+r^2)
-    return M_PI * radius * (radius + sqrt( (height * height) + (radius * radius) ));
+    return M_PI * radius * (radius + sqrt((height * height) + (radius * radius)));
 }
 
-double cone_slant_height(double radius, double height){
-    if(radius <= 0 || height <= 0) return -1;
+double cone_slant_height(double radius, double height)
+{
+    if (radius <= 0 || height <= 0)
+        return -1;
     // l=r2+h2
-    return sqrt( (radius * radius) + (height * height) );
+    return sqrt((radius * radius) + (height * height));
 }
 
 // unit Conversion
 
-double degrees_to_radians(double degrees){
+double degrees_to_radians(double degrees)
+{
     return degrees * (M_PI / 180.0);
 }
 
-double radians_to_degrees(double radians){
+double radians_to_degrees(double radians)
+{
     return radians * (180.0 / M_PI);
 }
