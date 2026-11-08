@@ -27,7 +27,7 @@ Module.onRuntimeInitialized = () => {
     // polar_to_complex
     complex_inverse: Module.cwrap("complex_inverse", null, ["number"]),
     complex_negate: Module.cwrap("complex_negate", null, ["number"]),
-    // complex_scale
+    complex_scale: Module.cwrap("complex_scale", null, ["number", "number"]),
     // complex_equal
     // complex_normalize
     // complex_dot
@@ -115,6 +115,7 @@ Module.onRuntimeInitialized = () => {
   console.log("complex_inverse : ", complex_inverse( complex_create(1, 2) ) );
   console.log("complex_negate : ", complex_negate( complex_create(3, 4) ) );
   console.log("complex_negate : ", complex_negate( complex_create(3, -4) ) );
+  console.log("complex_scale : ", complex_scale( complex_create(4, -3), 2.5 ) );
 };
 
 // ----------------------------------------------------------
@@ -413,3 +414,29 @@ function complex_negate(z){
         liberation(outputPointer);
     }
 }
+
+// Scalar Operations
+// Complex complex_scale(Complex z, double scalar);
+function complex_scale(z, scalar){
+    const inputPointer  = allocateMemory(COMPLEX_SIZE);
+    const outputPointer = allocateMemory(COMPLEX_SIZE);
+
+    if(!inputPointer || !outputPointer){
+        liberation(inputPointer);
+        liberation(outputPointer);
+        throw new Error("Memory allocation failed");
+    }
+
+    try{
+        writeComplex(z, inputPointer);
+
+        complexNumbers.complex_scale(outputPointer, inputPointer, scalar);
+
+        return readComplex(outputPointer);
+    }
+    finally{
+        liberation(inputPointer);
+        liberation(outputPointer);
+    }
+}
+
