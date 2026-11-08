@@ -1,14 +1,8 @@
 #include <stdio.h>
+#include <stdbool.h>
 #include <stdlib.h>
 #include <math.h>
 #include "../include/complexNumbers.h"
-
-// Complex number structure
-typedef struct
-{
-    double real;
-    double imaginary;
-} Complex;
 
 // Basic operations
 Complex complex_add(Complex a, Complex b)
@@ -593,22 +587,6 @@ Complex complex_pow_real(Complex z, double exponent)
 }
 
 int complex_is_infinite(Complex z);
-
-// Complex exponential variants
-Complex complex_pow_real(Complex z, double exponent)
-{
-    Complex complex_pow_real_result;
-
-    double r_squared = z.real * z.real + z.imaginary * z.imaginary;
-    double new_r = pow(r_squared, exponent / 2.0);
-
-    double new_theta = exponent * atan2(z.imaginary, z.real);
-
-    complex_pow_real_result.real = new_r * cos(new_theta);
-    complex_pow_real_result.imaginary = new_r * sin(new_theta);
-
-    return complex_pow_real_result;
-}
 
 Complex complex_root(Complex z, int n)
 {
