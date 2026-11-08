@@ -30,7 +30,7 @@ Module.onRuntimeInitialized = () => {
     complex_negate: Module.cwrap("complex_negate", null, ["number"]),
     complex_scale: Module.cwrap("complex_scale", null, ["number", "number"]),
     complex_equal: Module.cwrap("complex_equal", null, ["number", "number"]),
-    // complex_normalize
+    complex_normalize: Module.cwrap("complex_normalize", null, ["number"]),
     // complex_dot
     // complex_distance
     // complex_rotate
@@ -119,6 +119,7 @@ Module.onRuntimeInitialized = () => {
   console.log("complex_scale : ", complex_scale( complex_create(4, -3), 2.5 ) );
   console.log("complex_equal : ", complex_equal( complex_create(1, 2), complex_create(1, 2) ));
   console.log("complex_equal : ", complex_equal( complex_create(1, 2), complex_create(1, 3) ));
+  console.log("complex_normalize : ", complex_normalize( complex_create(3, 4) ));
 
 };
 
@@ -476,3 +477,27 @@ function complex_equal(a, b){
     }
 }
 
+// Normalization
+// Complex complex_normalize(Complex z);
+function complex_normalize(z){
+    const inputPointer = allocateMemory(COMPLEX_SIZE);
+    const outputPointer = allocateMemory(COMPLEX_SIZE);
+    
+    if(!inputPointer || !outputPointer){
+        liberation(inputPointer);
+        liberation(outputPointer);
+        throw new Error("Memory allocation failed");
+    }
+
+    try{
+        writeComplex(z, inputPointer);
+        
+        complexNumbers.complex_normalize(outputPointer, inputPointer);
+
+        return readComplex(outputPointer);
+    }
+    finally{
+        liberation(inputPointer);
+        liberation(outputPointer);
+    }
+}
