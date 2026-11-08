@@ -8,10 +8,10 @@ Module.onRuntimeInitialized = () => {
     complex_add: Module.cwrap("complex_add", null, ["number", "number"]),
     complex_subtract: Module.cwrap("complex_subtract", null, ["number", "number"]),
     complex_multiply: Module.cwrap("complex_multiply", null, ["number", "number"]),
-    complex_divide: Module.cwrap("complex_divide", null, ["number", "number"])
-    // complex_conjugate
-    // complex_magnitude
-    // complex_argument
+    complex_divide: Module.cwrap("complex_divide", null, ["number", "number"]),
+    complex_conjugate: Module.cwrap("complex_conjugate", null, ["number"]),
+    complex_magnitude: Module.cwrap("complex_magnitude", null, ["number"]),
+    complex_argument: Module.cwrap("complex_argument", null, ["number"]),
     // polar_to_complex
     // complex_to_polar
     // complex_square
@@ -108,10 +108,11 @@ Module.onRuntimeInitialized = () => {
   console.log("complex_subtract : ", complex_subtract( complex_create(1, 2), complex_create(3, 4) ));
   console.log("complex_multiply : ", complex_multiply( complex_create(1, 2), complex_create(3, 4) ))
   console.log("complex_divide : ", complex_divide( complex_create(1, 2), complex_create(3, 4) ));
+  console.log("complex_conjugate : ", complex_conjugate( complex_create(1, 3) ) );
+  console.log("complex_magnitude : ", complex_magnitude( complex_create(1, 4) ));
+  console.log("complex_argument : ", complex_argument( complex_create(1, 5) ));
 
 };
-
-
 
 // ----------------------------------------------------------
 const COMPLEX_SIZE = 2 * Float64Array.BYTES_PER_ELEMENT; // 16 BYTES
@@ -268,6 +269,73 @@ const inputPointerA = allocateMemory(COMPLEX_SIZE);
         liberation(inputPointerA);
         liberation(inputPointerB);
         liberation(outputPointer);
+    }
+}
+
+// Utilities
+// Complex complex_conjugate(Complex z);
+function complex_conjugate(z){
+    const inputPointer  = allocateMemory(COMPLEX_SIZE);
+    const outputPointer = allocateMemory(COMPLEX_SIZE); 
+
+    if(!inputPointer || !outputPointer) { 
+        liberation(inputPointer);
+        liberation(outputPointer);
+        throw new Error("Memory allocation failed");
+    }
+
+    try{
+        writeComplex(z, inputPointer);
+
+        complexNumbers.complex_conjugate(outputPointer, inputPointer);
+
+        return readComplex(outputPointer);
+    }
+    finally{
+        liberation(inputPointer);
+        liberation(outputPointer);
+    }
+}
+
+// double complex_magnitude(Complex z);
+function complex_magnitude(z){
+    const inputPointer  = allocateMemory(COMPLEX_SIZE);
+
+    if(!inputPointer){
+        liberation(inputPointer);
+        throw new Error("Memory allocation failed");
+    }
+
+    try{
+        writeComplex(z, inputPointer);
+
+        const complex_magnitude = complexNumbers.complex_magnitude(inputPointer);
+
+        return complex_magnitude; 
+    }
+    finally{
+        liberation(inputPointer);
+    }
+}
+
+// double complex_argument(Complex z);
+function complex_argument(z){
+    const inputPointer  = allocateMemory(COMPLEX_SIZE);
+
+    if(!inputPointer){
+        liberation(inputPointer);
+        throw new Error("Memory allocation failed");
+    }
+
+    try{
+        writeComplex(z, inputPointer);
+
+        const complex_argument = complexNumbers.complex_argument(inputPointer);
+
+        return complex_argument;
+    }
+    finally{
+        liberation(inputPointer);
     }
 }
 
