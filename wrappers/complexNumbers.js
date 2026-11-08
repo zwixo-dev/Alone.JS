@@ -1,3 +1,4 @@
+const { treatAsHtml } = require("vitepress/dist/client/shared.js");
 const Module = require("../wasm/complexNumbers.js");
 
 let complexNumbers;
@@ -28,7 +29,7 @@ Module.onRuntimeInitialized = () => {
     complex_inverse: Module.cwrap("complex_inverse", null, ["number"]),
     complex_negate: Module.cwrap("complex_negate", null, ["number"]),
     complex_scale: Module.cwrap("complex_scale", null, ["number", "number"]),
-    // complex_equal
+    complex_equal: Module.cwrap("complex_equal", null, ["number", "number"]),
     // complex_normalize
     // complex_dot
     // complex_distance
@@ -116,6 +117,9 @@ Module.onRuntimeInitialized = () => {
   console.log("complex_negate : ", complex_negate( complex_create(3, 4) ) );
   console.log("complex_negate : ", complex_negate( complex_create(3, -4) ) );
   console.log("complex_scale : ", complex_scale( complex_create(4, -3), 2.5 ) );
+  console.log("complex_equal : ", complex_equal( complex_create(1, 2), complex_create(1, 2) ));
+  console.log("complex_equal : ", complex_equal( complex_create(1, 2), complex_create(1, 3) ));
+
 };
 
 // ----------------------------------------------------------
@@ -437,6 +441,38 @@ function complex_scale(z, scalar){
     finally{
         liberation(inputPointer);
         liberation(outputPointer);
+    }
+}
+
+// Comparison
+// int complex_equal(Complex a, Complex b);
+
+function complex_equal(a, b){
+    const inputPointerA = allocateMemory(COMPLEX_SIZE);
+    const inputPointerB = allocateMemory(COMPLEX_SIZE);
+
+    if(!inputPointerA || !inputPointerB){
+        liberation(inputPointerA);
+        liberation(inputPointerB);
+        throw new Error("Memory allocation failed");
+    }
+
+    try{
+        writeComplex(a, inputPointerA);
+        writeComplex(b, inputPointerB);
+
+        const complex_equal = complexNumbers.complex_equal(inputPointerA, inputPointerB);
+
+        if(complex_equal === 1){
+            return true
+        } else{
+            return false;
+        }
+
+    }
+    finally{
+        liberation(inputPointerA);
+        liberation(inputPointerB);
     }
 }
 
