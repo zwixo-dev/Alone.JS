@@ -12,7 +12,7 @@ Module.onRuntimeInitialized = () => {
     complex_conjugate: Module.cwrap("complex_conjugate", null, ["number"]),
     complex_magnitude: Module.cwrap("complex_magnitude", null, ["number"]),
     complex_argument: Module.cwrap("complex_argument", null, ["number"]),
-    // polar_to_complex
+    polar_to_complex: Module.cwrap("polar_to_complex", null, ["number", "number"]),
     // complex_to_polar
     // complex_square
     // complex_cube
@@ -25,8 +25,8 @@ Module.onRuntimeInitialized = () => {
     // complex_magnitude_squared
     // complex_argument
     // polar_to_complex
-    // complex_inverse
-    // complex_negate
+    complex_inverse: Module.cwrap("complex_inverse", null, ["number"]),
+    complex_negate: Module.cwrap("complex_negate", null, ["number"]),
     // complex_scale
     // complex_equal
     // complex_normalize
@@ -111,7 +111,10 @@ Module.onRuntimeInitialized = () => {
   console.log("complex_conjugate : ", complex_conjugate( complex_create(1, 3) ) );
   console.log("complex_magnitude : ", complex_magnitude( complex_create(1, 4) ));
   console.log("complex_argument : ", complex_argument( complex_create(1, 5) ));
-
+  console.log("polar_to_complex : ", polar_to_complex( 1, Math.PI/2) );
+  console.log("complex_inverse : ", complex_inverse( complex_create(1, 2) ) );
+  console.log("complex_negate : ", complex_negate( complex_create(3, 4) ) );
+  console.log("complex_negate : ", complex_negate( complex_create(3, -4) ) );
 };
 
 // ----------------------------------------------------------
@@ -146,12 +149,14 @@ function complex_create(real, imaginary) {
     }
 
     const outputPointer = allocateMemory(COMPLEX_SIZE);
-    if (!outputPointer) throw new Error("Memory allocation failed");
+    if (!outputPointer){
+        liberation(outputPointer);
+        throw new Error("Memory allocation failed");
+    }
     
     try {
         complexNumbers.complex_create(outputPointer, real, imaginary);
         return readComplex(outputPointer);
-        liberation(outputPointer);
     }
     finally{
         liberation(outputPointer);
@@ -339,3 +344,72 @@ function complex_argument(z){
     }
 }
 
+// Complex polar_to_complex(double radius, double theta);
+function polar_to_complex(radius, theta){
+    const outputPointer = allocateMemory(COMPLEX_SIZE);
+
+    if(!outputPointer){
+        liberation(outputPointer);
+        throw new Error("Memory allocation failed");
+    }
+
+    try{
+        complexNumbers.polar_to_complex(outputPointer,radius, theta);
+
+        return readComplex(outputPointer);
+    }
+    finally{
+        liberation(outputPointer);
+    }
+}
+
+//  Unary Operations
+// complex_inverse
+// Complex complex_inverse(Complex z);
+function complex_inverse(z){
+    const inputPointer  = allocateMemory(COMPLEX_SIZE);
+    const outputPointer = allocateMemory(COMPLEX_SIZE);
+
+    if(!inputPointer || !outputPointer){
+        liberation(inputPointer);
+        liberation(outputPointer);
+        throw new Error("Memory allocation failed");
+    }
+
+    try{
+        writeComplex(z, inputPointer);
+
+        complexNumbers.complex_inverse(outputPointer, inputPointer);
+
+        return readComplex(outputPointer);
+    }
+    finally{
+        liberation(inputPointer);
+        liberation(outputPointer);
+    }
+}
+
+// Complex complex_negate(Complex z);
+// complex_negate
+function complex_negate(z){
+    const inputPointer  = allocateMemory(COMPLEX_SIZE);
+    const outputPointer = allocateMemory(COMPLEX_SIZE);
+
+    if(!inputPointer || !outputPointer){
+        liberation(inputPointer);
+        liberation(outputPointer);
+        throw new Error("Memory allocation failed");
+    }
+
+    try{
+        writeComplex(z, inputPointer);
+
+        complexNumbers.complex_negate(outputPointer, inputPointer);
+
+        return readComplex(outputPointer);
+    }
+    finally{
+        liberation(inputPointer);
+        liberation(outputPointer);
+    }
+}
