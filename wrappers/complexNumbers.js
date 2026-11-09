@@ -32,7 +32,7 @@ Module.onRuntimeInitialized = () => {
     complex_equal: Module.cwrap("complex_equal", null, ["number", "number"]),
     complex_normalize: Module.cwrap("complex_normalize", null, ["number"]),
     complex_dot: Module.cwrap("complex_dot", null, ["number", "number"]),
-    // complex_distance
+    complex_distance: Module.cwrap("complex_distance", null, ["number", "number"]),
     // complex_rotate
     // complex_lerp
     // complex_exp
@@ -121,7 +121,7 @@ Module.onRuntimeInitialized = () => {
   console.log("complex_equal : ", complex_equal( complex_create(1, 2), complex_create(1, 3) ));
   console.log("complex_normalize : ", complex_normalize( complex_create(3, 4) ));
   console.log("complex_dot : ", complex_dot( complex_create(3, 4), complex_create(2, -5) ));
-
+  console.log("complex_distance : ", complex_distance( complex_create(1, 2), complex_create(4, 6) ));
 };
 
 // ----------------------------------------------------------
@@ -528,11 +528,33 @@ function complex_dot(a, b){
         liberation(inputPointerA);
         liberation(inputPointerB);
     }
-
 }
 
 // Distance
 // double complex_distance(Complex a, Complex b);
+function complex_distance(a, b){
+    const inputPointerA = allocateMemory(COMPLEX_SIZE);
+    const inputPointerB = allocateMemory(COMPLEX_SIZE);
+
+    if(!inputPointerA || !inputPointerB){
+        liberation(inputPointerA);
+        liberation(inputPointerB);
+        throw new Error("Memory allocation failed");
+    }
+
+    try{
+        writeComplex(a, inputPointerA);
+        writeComplex(b, inputPointerB);
+
+        const complex_distance = complexNumbers.complex_distance(inputPointerA, inputPointerB);
+
+        return complex_distance;
+    }
+    finally{
+        liberation(inputPointerA);
+        liberation(inputPointerB);
+    }
+}
 
 // Rotation
 // Complex complex_rotate(Complex z, double theta);
