@@ -1,4 +1,4 @@
-const { treatAsHtml } = require("vitepress/dist/client/shared.js");
+const { treatAsHtml, notFoundPageData } = require("vitepress/dist/client/shared.js");
 const Module = require("../wasm/complexNumbers.js");
 
 let complexNumbers;
@@ -34,11 +34,11 @@ Module.onRuntimeInitialized = () => {
     complex_dot: Module.cwrap("complex_dot", null, ["number", "number"]),
     complex_distance: Module.cwrap("complex_distance", null, ["number", "number"]),
     complex_rotate: Module.cwrap("complex_rotate", null, ["number", "number"]),
-    // complex_lerp
-    // complex_exp
-    // complex_log
-    // complex_sec
-    // complex_cot
+    complex_lerp: Module.cwrap("complex_lerp", null, ["number", "number", "number"]),
+    complex_exp: Module.cwrap("complex_exp", null, ["number"]),
+    complex_log: Module.cwrap("complex_log", null, ["number"]),
+    complex_sec: Module.cwrap("complex_sec", null, ["number"]),
+    complex_cot: Module.cwrap("complex_cot", null, ["number"]),
     // complex_sinh
     // complex_cosh
     // complex_project
@@ -123,6 +123,12 @@ Module.onRuntimeInitialized = () => {
   console.log("complex_dot : ", complex_dot( complex_create(3, 4), complex_create(2, -5) ));
   console.log("complex_distance : ", complex_distance( complex_create(1, 2), complex_create(4, 6) ));
   console.log("complex_rotate : ", complex_rotate( complex_create(1, 2), Math.PI/2 ));
+  console.log("complex_lerp : ", complex_lerp( complex_create(1, 2), complex_create(1, 6), Math.PI/2 ));
+  console.log("complex_exp : ", complex_exp( complex_create(0, 0) ) );
+  console.log("complex_log : ", complex_log( complex_create(1, 0) ) );
+  console.log("complex_sec : ", complex_sec( complex_create(1, 2) ));
+  console.log("complex_cot : ", complex_cot( complex_create(1, 2) ));
+
 };
 
 // ----------------------------------------------------------
@@ -592,7 +598,7 @@ function complex_lerp(a, b, t){
         liberation(inputPointerA);
         liberation(inputPointerB);
         liberation(outputPointer);
-        throw new Error("");
+        throw new Error("Memory allocation failed");
     }
 
     try{
@@ -610,5 +616,101 @@ function complex_lerp(a, b, t){
     }
 }
 
+// Exponential & Logarithmic
+// Complex complex_exp(Complex z);
+function complex_exp(z){
+    const inputPointer  = allocateMemory(COMPLEX_SIZE); 
+    const outputPointer = allocateMemory(COMPLEX_SIZE); 
 
+    if(!inputPointer || !outputPointer){
+        liberation(inputPointer);
+        liberation(outputPointer);
+        throw new Error("Memory allocation failed");
+    }
 
+    try{
+        writeComplex(z, inputPointer);
+
+        complexNumbers.complex_exp(outputPointer, inputPointer);
+
+        return readComplex(outputPointer);
+    }
+    finally{
+        liberation(inputPointer);
+        liberation(outputPointer);
+    }
+
+}
+
+// Complex complex_log(Complex z);
+function complex_log(z){
+    const inputPointer  = allocateMemory(COMPLEX_SIZE);
+    const outputPointer = allocateMemory(COMPLEX_SIZE);
+
+    if(!inputPointer || !outputPointer){
+        liberation(inputPointer);
+        liberation(outputPointer);
+        throw new Error("Memory allocation failed");
+    }
+
+    try{
+        writeComplex(z, inputPointer);
+
+        complexNumbers.complex_log(outputPointer, inputPointer);
+    
+        return readComplex(outputPointer);
+    }
+    finally{
+        liberation(inputPointer);
+        liberation(outputPointer);
+    }
+}
+
+// Reciprocal trigonometric
+// Complex complex_sec(Complex z);
+function complex_sec(z){
+    const inputPointer  = allocateMemory(COMPLEX_SIZE);
+    const outputPointer = allocateMemory(COMPLEX_SIZE);
+
+    if(!inputPointer || !outputPointer){
+        liberation(inputPointer);
+        liberation(outputPointer);
+        throw new Error("Memory allocation failed");
+    }
+
+    try{
+        writeComplex(z, inputPointer);
+
+        complexNumbers.complex_sec(outputPointer, inputPointer);
+
+        return readComplex(outputPointer);
+    }
+    finally{
+        liberation(inputPointer);
+        liberation(outputPointer);
+    }
+}
+
+// Complex complex_cot(Complex z);
+function complex_cot(z){
+    const inputPointer  = allocateMemory(COMPLEX_SIZE);
+    const outputPointer = allocateMemory(COMPLEX_SIZE);
+
+    if(!inputPointer || !outputPointer){
+        liberation(inputPointer);
+        liberation(outputPointer);
+        throw new Error("Memory allocation failed");
+    }
+
+    try{
+        writeComplex(z, inputPointer);
+
+        complexNumbers.complex_cot(outputPointer, inputPointer);
+
+        return readComplex(outputPointer);
+    }
+    finally{
+        liberation(inputPointer);
+        liberation(outputPointer);
+    }
+}
