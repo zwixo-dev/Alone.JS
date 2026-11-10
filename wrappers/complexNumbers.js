@@ -583,3 +583,32 @@ function complex_rotate(z, theta){
 }
 // Linear interpolation
 // Complex complex_lerp(Complex a, Complex b, double t);
+function complex_lerp(a, b, t){
+    const inputPointerA = allocateMemory(COMPLEX_SIZE);
+    const inputPointerB = allocateMemory(COMPLEX_SIZE);
+    const outputPointer = allocateMemory(COMPLEX_SIZE);
+
+    if(!inputPointerA || !inputPointerB || !outputPointer){
+        liberation(inputPointerA);
+        liberation(inputPointerB);
+        liberation(outputPointer);
+        throw new Error("");
+    }
+
+    try{
+        writeComplex(a, inputPointerA);
+        writeComplex(b, inputPointerB);
+
+        complexNumbers.complex_lerp(outputPointer, inputPointerA, inputPointerB, t);
+
+        return readComplex(outputPointer);
+    }
+    finally{
+        liberation(inputPointerA);
+        liberation(inputPointerB);
+        liberation(outputPointer);
+    }
+}
+
+
+
