@@ -39,8 +39,8 @@ Module.onRuntimeInitialized = () => {
     complex_log: Module.cwrap("complex_log", null, ["number"]),
     complex_sec: Module.cwrap("complex_sec", null, ["number"]),
     complex_cot: Module.cwrap("complex_cot", null, ["number"]),
-    // complex_sinh
-    // complex_cosh
+    complex_sinh: Module.cwrap("complex_sinh", null, ["number"]),
+    complex_cosh: Module.cwrap("complex_cosh", null, ["number"]),
     // complex_project
     // complex_reflect_real
     // complex_reflect_imaginary
@@ -128,6 +128,8 @@ Module.onRuntimeInitialized = () => {
   console.log("complex_log : ", complex_log( complex_create(1, 0) ) );
   console.log("complex_sec : ", complex_sec( complex_create(1, 2) ));
   console.log("complex_cot : ", complex_cot( complex_create(1, 2) ));
+  console.log("complex_sinh : ", complex_sinh( complex_create(0, 0) ));
+  console.log("complex_cosh : ", complex_cosh( complex_create(1000, -1) ));
 
 };
 
@@ -707,6 +709,55 @@ function complex_cot(z){
 
         complexNumbers.complex_cot(outputPointer, inputPointer);
 
+        return readComplex(outputPointer);
+    }
+    finally{
+        liberation(inputPointer);
+        liberation(outputPointer);
+    }
+}
+
+// Hyperbolic functions
+// Complex complex_sinh(Complex z);
+function complex_sinh(z){
+    const inputPointer  = allocateMemory(COMPLEX_SIZE);
+    const outputPointer = allocateMemory(COMPLEX_SIZE);
+
+    if(!inputPointer || !outputPointer){
+        liberation(inputPointer);
+        liberation(outputPointer);
+        throw new Error("Memory allocation failed");
+    }
+
+    try{
+        writeComplex(z, inputPointer);
+
+        complexNumbers.complex_sinh(outputPointer, inputPointer);
+
+        return readComplex(outputPointer);
+    }
+    finally{
+        liberation(inputPointer);
+        liberation(outputPointer);
+    }
+
+}
+// Complex complex_cosh(Complex z);
+function complex_cosh(z){
+    const inputPointer = allocateMemory(COMPLEX_SIZE);
+    const outputPointer = allocateMemory(COMPLEX_SIZE);
+
+    if(!inputPointer || !outputPointer){
+        liberation(inputPointer);
+        liberation(outputPointer);
+        throw new Error("Memory allocation failed");
+    }
+
+    try{
+        writeComplex(z, inputPointer);
+        
+        complexNumbers.complex_cosh(outputPointer, inputPointer);
+        
         return readComplex(outputPointer);
     }
     finally{
