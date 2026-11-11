@@ -48,7 +48,7 @@ Module.onRuntimeInitialized = () => {
     complex_phase_shift: Module.cwrap("complex_phase_shift", null, ["number", "number"]),
     complex_midpoint: Module.cwrap("complex_midpoint", null, ["number", "number"]),
     complex_average: Module.cwrap("complex_average", null, ["number"]),
-    // complex_angle_between
+    complex_angle_between: Module.cwrap("complex_angle_between", null, ["number", "number"]),
     // complex_reflect_origin
     // complex_nth_roots
     // complex_tanh
@@ -143,7 +143,7 @@ Module.onRuntimeInitialized = () => {
   ]
 
   console.log("complex_average : ", complex_average( randomArrayValues ) );
-
+  console.log("complex_angle_between : ", complex_angle_between( complex_create(1, 0) , complex_create(0, 1) ));
 };
 
 // ----------------------------------------------------------
@@ -956,3 +956,25 @@ function complex_average(array){
 
 // Angle between two complex numbers (radians)
 // double complex_angle_between(Complex a, Complex b);
+function complex_angle_between(a, b){
+    const inputPointerA = allocateMemory(COMPLEX_SIZE);
+    const inputPointerB = allocateMemory(COMPLEX_SIZE);
+
+    if(!inputPointerA || !inputPointerB){
+        liberation(inputPointerA);
+        liberation(inputPointerB);
+        throw new Error("Memory allocation failed");
+    }
+
+    try{
+        writeComplex(a, inputPointerA);
+        writeComplex(b, inputPointerB);
+
+        const complex_angle_between = complexNumbers.complex_angle_between(inputPointerA, inputPointerB);
+
+        return complex_angle_between;
+    } finally{
+        liberation(inputPointerA);
+        liberation(inputPointerB);
+    }
+}
