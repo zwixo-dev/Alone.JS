@@ -41,12 +41,12 @@ Module.onRuntimeInitialized = () => {
     complex_cot: Module.cwrap("complex_cot", null, ["number"]),
     complex_sinh: Module.cwrap("complex_sinh", null, ["number"]),
     complex_cosh: Module.cwrap("complex_cosh", null, ["number"]),
-    // complex_project
-    // complex_reflect_real
-    // complex_reflect_imaginary
-    // complex_from_angle
-    // complex_phase_shift
-    // complex_midpoint
+    complex_project: Module.cwrap("complex_project", null, ["number"]),
+    complex_reflect_real: Module.cwrap("complex_reflect_real", null, ["number"]),
+    complex_reflect_imaginary: Module.cwrap("complex_reflect_imaginary", null, ["number"]),
+    complex_from_angle: Module.cwrap("complex_from_angle", null, ["number"]),
+    complex_phase_shift: Module.cwrap("complex_phase_shift", null, ["number", "number"]),
+    complex_midpoint: Module.cwrap("complex_midpoint", null, ["number", "number"])
     // complex_average
     // complex_angle_between
     // complex_reflect_origin
@@ -130,7 +130,11 @@ Module.onRuntimeInitialized = () => {
   console.log("complex_cot : ", complex_cot( complex_create(1, 2) ));
   console.log("complex_sinh : ", complex_sinh( complex_create(0, 0) ));
   console.log("complex_cosh : ", complex_cosh( complex_create(1000, -1) ));
-
+  console.log("complex_project : ", complex_project( complex_create(3, 4) ));
+  console.log("complex_reflect_real : ", complex_reflect_real( complex_create(5,3) ));
+  console.log("complex_from_angle : ", complex_from_angle( Math.PI/90 ) );
+  console.log("complex_phase_shift : ", complex_phase_shift( complex_create(2, 3), Math.PI/2 ));
+  console.log("complex_midpoint : ", complex_midpoint(  complex_create(2, 3), complex_create(4, 7) ) );
 };
 
 // ----------------------------------------------------------
@@ -762,6 +766,150 @@ function complex_cosh(z){
     }
     finally{
         liberation(inputPointer);
+        liberation(outputPointer);
+    }
+}
+
+// Projection
+// Complex complex_project(Complex z);
+function complex_project(z){
+    const inputPointer  = allocateMemory(COMPLEX_SIZE);
+    const outputPointer = allocateMemory(COMPLEX_SIZE);
+
+    if(!inputPointer || !outputPointer){
+        liberation(inputPointer);
+        liberation(outputPointer);
+        throw new Error("Memory allocation failed");
+    }
+
+    try{
+        writeComplex(z, inputPointer);
+
+        complexNumbers.complex_project(outputPointer, inputPointer);
+
+        return readComplex(outputPointer);
+    }finally{
+        liberation(inputPointer);
+        liberation(outputPointer);
+    }
+}
+
+// Reflection across the real axis
+// Complex complex_reflect_real(Complex z);
+function complex_reflect_real(z){
+    const inputPointer  = allocateMemory(COMPLEX_SIZE);
+    const outputPointer = allocateMemory(COMPLEX_SIZE);
+
+    if(!inputPointer || !outputPointer){
+        liberation(inputPointer);
+        liberation(outputPointer);
+        throw new Error("Memory allocation failed");
+    }
+
+    try{
+        writeComplex(z, inputPointer);
+
+        complexNumbers.complex_reflect_real(outputPointer, inputPointer);
+
+        return readComplex(outputPointer);
+    }finally{
+        liberation(inputPointer);
+        liberation(outputPointer);
+    }
+}
+
+// Reflection across the imaginary axis
+// Complex complex_reflect_imaginary(Complex z);
+function complex_reflect_imaginary(z){
+    const inputPointer  = allocateMemory(COMPLEX_SIZE);
+    const outputPointer = allocateMemory(COMPLEX_SIZE);
+
+    if(!inputPointer || !outputPointer){
+        liberation(inputPointer);
+        liberation(outputPointer);
+        throw new Error("Memory allocation failed");
+    }
+
+    try{
+        writeComplex(z, inputPointer);
+
+        complexNumbers.complex_reflect_imaginary(outputPointer, inputPointer);
+
+        return readComplex(outputPointer);
+    }finally{
+        liberation(inputPointer);
+        liberation(outputPointer);
+    }
+}
+
+// Polar transformations
+// Complex complex_from_angle(double theta);
+function  complex_from_angle(theta){
+    const outputPointer = allocateMemory(COMPLEX_SIZE); 
+
+    if(!outputPointer){
+        liberation(inputPointer);
+        liberation(outputPointer);
+        throw new Error("Memory allocation failed");
+    }
+
+    try{
+
+        complexNumbers.complex_from_angle(outputPointer, theta);
+        
+        return readComplex(outputPointer);
+    }finally{
+        liberation(outputPointer);
+    }
+}
+
+// Phase shifting
+// Complex complex_phase_shift(Complex z, double theta);
+function complex_phase_shift(z, theta){
+    const inputPointer  = allocateMemory(COMPLEX_SIZE);
+    const outputPointer = allocateMemory(COMPLEX_SIZE);
+
+    if(!inputPointer || !outputPointer){
+        liberation(inputPointer);
+        liberation(outputPointer);
+        throw new Error("Memory allocation failed");
+    }
+
+    try{
+        writeComplex(z, inputPointer);
+
+        complexNumbers.complex_phase_shift(outputPointer, inputPointer, theta);
+
+        return readComplex(outputPointer);
+    } finally{
+        liberation(inputPointer);
+        liberation(outputPointer);
+    }
+}
+
+// Midpoint between two complex numbers
+// Complex complex_midpoint(Complex a, Complex b);
+function complex_midpoint(a, b){
+    const inputPointerA = allocateMemory(COMPLEX_SIZE);
+    const inputPointerB = allocateMemory(COMPLEX_SIZE);
+    const outputPointer = allocateMemory(COMPLEX_SIZE); 
+
+    if(!inputPointerA || !inputPointerB || !outputPointer){
+        liberation(inputPointerA);
+        liberation(inputPointerB);
+        liberation(outputPointer);
+    }
+
+    try{
+        writeComplex(a, inputPointerA);
+        writeComplex(b, inputPointerB);
+
+        complexNumbers.complex_midpoint(outputPointer, inputPointerA, inputPointerB);
+
+        return readComplex(outputPointer);
+    }finally{
+        liberation(inputPointerA);
+        liberation(inputPointerB);
         liberation(outputPointer);
     }
 }
