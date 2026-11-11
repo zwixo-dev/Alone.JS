@@ -46,8 +46,8 @@ Module.onRuntimeInitialized = () => {
     complex_reflect_imaginary: Module.cwrap("complex_reflect_imaginary", null, ["number"]),
     complex_from_angle: Module.cwrap("complex_from_angle", null, ["number"]),
     complex_phase_shift: Module.cwrap("complex_phase_shift", null, ["number", "number"]),
-    complex_midpoint: Module.cwrap("complex_midpoint", null, ["number", "number"])
-    // complex_average
+    complex_midpoint: Module.cwrap("complex_midpoint", null, ["number", "number"]),
+    complex_average: Module.cwrap("complex_average", null, ["number"]),
     // complex_angle_between
     // complex_reflect_origin
     // complex_nth_roots
@@ -135,6 +135,15 @@ Module.onRuntimeInitialized = () => {
   console.log("complex_from_angle : ", complex_from_angle( Math.PI/90 ) );
   console.log("complex_phase_shift : ", complex_phase_shift( complex_create(2, 3), Math.PI/2 ));
   console.log("complex_midpoint : ", complex_midpoint(  complex_create(2, 3), complex_create(4, 7) ) );
+
+  const randomArrayValues = [
+        {real: 2.0, imaginary:3.0},
+        {real:4.0, imaginary:5.0},
+        {real:6.0, imaginary:7.0}
+  ]
+
+  console.log("complex_average : ", complex_average( randomArrayValues ) );
+
 };
 
 // ----------------------------------------------------------
@@ -898,6 +907,7 @@ function complex_midpoint(a, b){
         liberation(inputPointerA);
         liberation(inputPointerB);
         liberation(outputPointer);
+        throw new Error("Memory allocation failed");
     }
 
     try{
@@ -913,3 +923,36 @@ function complex_midpoint(a, b){
         liberation(outputPointer);
     }
 }
+
+// Complex averages
+// Complex complex_average(Complex *array, int size);
+function complex_average(array){
+    if(!Array.isArray(array) || array.length == 0){
+        return {real: NaN, imaginary: NaN};
+    }
+
+    const inputPointer = allocateMemory(array.length * COMPLEX_SIZE);
+    const outputPointer = allocateMemory(COMPLEX_SIZE);
+
+    if(!inputPointer || !outputPointer){
+        liberation(inputPointer);
+        liberation(outputPointer);
+        throw new Error("Memory allocation failed");
+    }
+
+    try{
+        for (const idx in array) {
+            writeComplex(array[idx], inputPointer + (idx * COMPLEX_SIZE));
+        }
+
+        complexNumbers.complex_average(outputPointer, inputPointer, array.length);
+
+        return readComplex(outputPointer);
+    } finally{
+        liberation(inputPointer);
+        liberation(outputPointer);
+    }
+}
+
+// Angle between two complex numbers (radians)
+// double complex_angle_between(Complex a, Complex b);
