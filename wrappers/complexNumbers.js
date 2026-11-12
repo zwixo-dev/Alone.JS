@@ -49,9 +49,9 @@ Module.onRuntimeInitialized = () => {
     complex_midpoint: Module.cwrap("complex_midpoint", null, ["number", "number"]),
     complex_average: Module.cwrap("complex_average", null, ["number"]),
     complex_angle_between: Module.cwrap("complex_angle_between", null, ["number", "number"]),
-    // complex_reflect_origin
+    complex_reflect_origin: Module.cwrap("complex_reflect_origin", null, ["number", "number"]),
     // complex_nth_roots
-    // complex_tanh
+    complex_tanh: Module.cwrap("complex_tanh", null, ["number"])
     // complex_is_zero
     // complex_abs
     // complex_reciprocal
@@ -144,6 +144,8 @@ Module.onRuntimeInitialized = () => {
 
   console.log("complex_average : ", complex_average( randomArrayValues ) );
   console.log("complex_angle_between : ", complex_angle_between( complex_create(1, 0) , complex_create(0, 1) ));
+  console.log("complex_reflect_origin : ", complex_reflect_origin( complex_create(1, 3) ));
+  console.log("complex_tanh : ", complex_tanh( complex_create(0, 0.7854) ));
 };
 
 // ----------------------------------------------------------
@@ -976,5 +978,56 @@ function complex_angle_between(a, b){
     } finally{
         liberation(inputPointerA);
         liberation(inputPointerB);
+    }
+}
+
+// Reflection through the origin
+// Complex c(Complex z);
+function complex_reflect_origin(z){
+    const inputPointer  = allocateMemory(COMPLEX_SIZE); 
+    const outputPointer = allocateMemory(COMPLEX_SIZE);
+
+    if(!inputPointer || !outputPointer){
+        liberation(inputPointer);
+        liberation(outputPointer);
+        throw new Error("Memory allocation failed");
+    }
+
+    try{
+        writeComplex(z, inputPointer);
+
+        complexNumbers.complex_reflect_origin(outputPointer, inputPointer);
+
+        return readComplex(outputPointer);
+    } finally{
+        liberation(inputPointer);
+        liberation(outputPointer);
+    }
+}
+
+// Complex roots
+// void complex_nth_roots(Complex z, int n, Complex *roots); // not completed
+
+// Hyperbolic tangent
+// Complex complex_tanh(Complex z);
+function complex_tanh(z){
+    const inputPointer = allocateMemory(COMPLEX_SIZE);
+    const outputPointer = allocateMemory(COMPLEX_SIZE);
+
+    if(!inputPointer || !outputPointer){
+        liberation(inputPointer);
+        liberation(outputPointer);
+        throw new Error("Memory allocation failed");
+    }
+
+    try{
+        writeComplex(z, inputPointer);
+
+        complexNumbers.complex_tanh(outputPointer, inputPointer);
+
+        return readComplex(outputPointer);
+    } finally{
+        liberation(inputPointer);
+        liberation(outputPointer);
     }
 }
