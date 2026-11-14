@@ -51,13 +51,13 @@ Module.onRuntimeInitialized = () => {
     complex_angle_between: Module.cwrap("complex_angle_between", null, ["number", "number"]),
     complex_reflect_origin: Module.cwrap("complex_reflect_origin", null, ["number", "number"]),
     // complex_nth_roots
-    complex_tanh: Module.cwrap("complex_tanh", null, ["number"])
-    // complex_is_zero
-    // complex_abs
-    // complex_reciprocal
-    // complex_expm1
-    // complex_log10
-    // complex_is_finite
+    complex_tanh: Module.cwrap("complex_tanh", null, ["number"]),
+    complex_is_zero: Module.cwrap("complex_is_zero",  null, ["number"]),
+    complex_abs: Module.cwrap("complex_abs", null, ["number"]),
+    complex_reciprocal: Module.cwrap("complex_reciprocal", null, ["number"]),
+    complex_expm1: Module.cwrap("complex_expm1", null, ["number"]),
+    complex_log10: Module.cwrap("complex_log10", null, ["number"]),
+    complex_is_finite: Module.cwrap("complex_is_finite", null, ["number"]),
     // complex_asin
     // complex_acos
     // complex_atan
@@ -146,6 +146,13 @@ Module.onRuntimeInitialized = () => {
   console.log("complex_angle_between : ", complex_angle_between( complex_create(1, 0) , complex_create(0, 1) ));
   console.log("complex_reflect_origin : ", complex_reflect_origin( complex_create(1, 3) ));
   console.log("complex_tanh : ", complex_tanh( complex_create(0, 0.7854) ));
+  console.log("complex_is_zero : ", complex_is_zero( complex_create(0.0, 0.0) ));
+  console.log("complex_reciprocal : ", complex_reciprocal( complex_create(1, 2) ));
+  console.log("complex_expm1 : ", complex_expm1( complex_create(0, 4) ));
+  console.log("complex_log10 : ", complex_log10( complex_create(4, 4.8) ) );
+  console.log("complex_is_finite : ", complex_is_finite( complex_create( NaN, NaN ) ));
+  console.log("complex_is_finite : ", complex_is_finite( complex_create( Infinity, Infinity) ));
+  console.log("complex_is_finite : ", complex_is_finite( complex_create( -2.5, 2) ));
 };
 
 // ----------------------------------------------------------
@@ -1029,5 +1036,148 @@ function complex_tanh(z){
     } finally{
         liberation(inputPointer);
         liberation(outputPointer);
+    }
+}
+
+// Check for special values
+// bool complex_is_zero(Complex z);
+function complex_is_zero(z){
+    const inputPointer = allocateMemory(COMPLEX_SIZE);
+
+    if(!inputPointer){
+        liberation(inputPointer);
+        throw new Error("Memory allocation failed");
+    }
+
+    try{
+        writeComplex(z, inputPointer);
+
+        const complex_is_zero = complexNumbers.complex_is_zero(inputPointer);
+
+        if(complex_is_zero === 1){
+            return true;
+        } else{
+            return false;
+        }
+        
+    } finally{
+        liberation(inputPointer);
+    }
+}
+
+// Complex complex_abs(Complex z);
+function complex_abs(z){
+    const inputPointer  = allocateMemory(COMPLEX_SIZE);
+    const outputPointer = allocateMemory(COMPLEX_SIZE);
+
+    if(!inputPointer || !outputPointer){
+        liberation(inputPointer);
+        liberation(outputPointer);
+        throw new Error("Memory allocation failed");
+    }
+
+    try{
+        writeComplex(z, inputPointer);
+
+        complexNumbers.complex_abs(outputPointer, inputPointer);
+
+        return readComplex(outputPointer);
+    } finally{
+        liberation(inputPointer);
+        liberation(outputPointer);
+    }
+}
+
+// Complex complex_reciprocal(Complex z);
+function complex_reciprocal(z){
+    const inputPointer  = allocateMemory(COMPLEX_SIZE);
+    const outputPointer = allocateMemory(COMPLEX_SIZE);
+
+    if(!inputPointer || !outputPointer){
+        liberation(inputPointer);
+        liberation(outputPointer);
+        throw new Error("Memory allocation failed");
+    }
+
+    try{
+        writeComplex(z, inputPointer);
+
+        complexNumbers.complex_reciprocal(outputPointer, inputPointer);
+
+        return readComplex(outputPointer);
+    } finally{
+        liberation(inputPointer);
+        liberation(outputPointer);
+    }
+}
+
+// Complex complex_expm1(Complex z);
+function complex_expm1(z){
+    const inputPointer  = allocateMemory(COMPLEX_SIZE);
+    const outputPointer = allocateMemory(COMPLEX_SIZE);
+
+    if(!inputPointer || !outputPointer){
+        liberation(inputPointer);
+        liberation(outputPointer);
+        throw new Error("Memory allocation failed");
+    }
+
+    try{
+        writeComplex(z, inputPointer);
+
+        complexNumbers.complex_expm1(outputPointer, inputPointer);
+
+        return readComplex(outputPointer);
+    } finally{
+        liberation(inputPointer);
+        liberation(outputPointer);
+    }
+}
+
+// Complex complex_log10(Complex z);
+function complex_log10(z){
+    const inputPointer  = allocateMemory(COMPLEX_SIZE);
+    const outputPointer = allocateMemory(COMPLEX_SIZE);
+
+    if(!inputPointer || !outputPointer){
+        liberation(inputPointer);
+        liberation(outputPointer);
+        throw new Error("Memory allocation failed");
+    }
+
+    try{
+        writeComplex(z, inputPointer);
+
+        complexNumbers.complex_log10(outputPointer, inputPointer);
+
+        return readComplex(outputPointer);
+    } finally{
+        liberation(inputPointer);
+        liberation(outputPointer);
+    }
+}
+
+// bool complex_is_finite(Complex z);
+function complex_is_finite(z){
+    const inputPointer = allocateMemory(COMPLEX_SIZE);
+
+    if(!inputPointer){
+        liberation(inputPointer);
+        throw new Error("Memory allocation failed");
+    }
+
+    try{
+        writeComplex(z, inputPointer);
+
+        const complex_is_finite = complexNumbers.complex_is_finite(inputPointer);
+
+        if(complex_is_finite === 1){
+            return true;
+        } else{
+            return false;
+        }
+
+    } finally{
+        liberation(inputPointer);
     }
 }
