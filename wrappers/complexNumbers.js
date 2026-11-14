@@ -60,8 +60,8 @@ Module.onRuntimeInitialized = () => {
     complex_is_finite: Module.cwrap("complex_is_finite", null, ["number"]),
     complex_asin: Module.cwrap("complex_asin", null, ["number"]),
     complex_acos: Module.cwrap("complex_acos", null, ["number"]), 
-    complex_atan: Module.cwrap("complex_atan", null, ["number"])
-    // complex_is_nan
+    complex_atan: Module.cwrap("complex_atan", null, ["number"]),
+    complex_is_nan: Module.cwrap("complex_is_nan", null, ["number"]),
     // complex_is_infinite
     // complex_pow_real
     // complex_root
@@ -156,6 +156,9 @@ Module.onRuntimeInitialized = () => {
   console.log("complex_asin : ", complex_asin( complex_create( 1, 9 ) ));
   console.log("complex_acos : ", complex_acos( complex_create(2, 1) ));
   console.log("complex_atan : ", complex_atan( complex_create(3, 1) ));
+  console.log("complex_is_nan : ", complex_is_nan( complex_create(4, 2) ));
+  console.log("complex_is_nan : ", complex_is_nan( complex_create(Infinity, -Infinity) ));
+  console.log("complex_is_nan : ", complex_is_nan( complex_create(NaN, 0) ));
 };
 
 // ----------------------------------------------------------
@@ -1257,6 +1260,29 @@ function complex_atan(z){
 
 // Complex number classification
 // bool complex_is_nan(Complex z);
+function complex_is_nan(z){
+    const inputPointer  = allocateMemory(COMPLEX_SIZE);
+
+    if(!inputPointer){
+        liberation(inputPointer);
+        throw new Error("Memory allocation failed");
+    }
+
+    try{
+        writeComplex(z, inputPointer);
+
+        const complex_is_nan = complexNumbers.complex_is_nan(inputPointer);
+
+        if(complex_is_nan === 1){
+            return true;
+        } else{
+            return false;
+        }
+
+    } finally{
+        liberation(inputPointer);
+    }
+}
 // int complex_is_infinite(Complex z);
 
 // Complex exponential variants
