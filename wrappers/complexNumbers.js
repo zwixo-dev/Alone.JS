@@ -1,4 +1,4 @@
-const { treatAsHtml, notFoundPageData } = require("vitepress/dist/client/shared.js");
+const { treatAsHtml, notFoundPageData, inBrowser } = require("vitepress/dist/client/shared.js");
 const Module = require("../wasm/complexNumbers.js");
 
 let complexNumbers;
@@ -63,8 +63,8 @@ Module.onRuntimeInitialized = () => {
     complex_atan: Module.cwrap("complex_atan", null, ["number"]),
     complex_is_nan: Module.cwrap("complex_is_nan", null, ["number"]),
     // complex_is_infinite
-    // complex_pow_real
-    // complex_root
+    complex_pow_real: Module.cwrap("complex_pow_real", null, ["number"]),
+    complex_root: Module.cwrap("complex_root", null, ["number"]),
     // complex_real_part
     // complex_imaginary_part
     // complex_floor
@@ -159,6 +159,8 @@ Module.onRuntimeInitialized = () => {
   console.log("complex_is_nan : ", complex_is_nan( complex_create(4, 2) ));
   console.log("complex_is_nan : ", complex_is_nan( complex_create(Infinity, -Infinity) ));
   console.log("complex_is_nan : ", complex_is_nan( complex_create(NaN, 0) ));
+  console.log("complex_pow_real : ", complex_pow_real( complex_create(0, 2), 2 ));
+  console.log("complex_root : ", complex_root( complex_create(2, 2), 3 ));
 };
 
 // ----------------------------------------------------------
@@ -1287,4 +1289,47 @@ function complex_is_nan(z){
 
 // Complex exponential variants
 // Complex complex_pow_real(Complex z, double exponent);
+function complex_pow_real(z, exponent){
+    const inputPointer  = allocateMemory(COMPLEX_SIZE);
+    const outputPointer = allocateMemory(COMPLEX_SIZE);
+
+    if(!inputPointer || !outputPointer){
+        liberation(inputPointer);
+        liberation(outputPointer);
+        throw new Error("Memory allocation failed");
+    }
+
+    try {
+        writeComplex(z, inputPointer);
+
+        complexNumbers.complex_pow_real(outputPointer, inputPointer, exponent);
+
+        return readComplex(outputPointer);
+    } finally{
+        liberation(inputPointer);
+        liberation(outputPointer);
+    }
+}
+
 // Complex complex_root(Complex z, int n);
+function complex_root(z, n){
+    const inputPointer  = allocateMemory(COMPLEX_SIZE);
+    const outputPointer = allocateMemory(COMPLEX_SIZE);
+
+    if(!inputPointer || !outputPointer){
+        liberation(inputPointer);
+        liberation(outputPointer);
+        throw new Error("Memory allocation failed");
+    }
+
+    try{
+        writeComplex(z, inputPointer);
+
+        complexNumbers.complex_root(outputPointer, inputPointer, n);
+
+        return readComplex(outputPointer);
+    } finally{
+        liberation(inputPointer);
+        liberation(outputPointer);
+    }
+}
