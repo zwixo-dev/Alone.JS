@@ -65,11 +65,11 @@ Module.onRuntimeInitialized = () => {
     // complex_is_infinite
     complex_pow_real: Module.cwrap("complex_pow_real", null, ["number"]),
     complex_root: Module.cwrap("complex_root", null, ["number"]),
-    // complex_real_part
-    // complex_imaginary_part
-    // complex_floor
-    // complex_ceil
-    // complex_round
+    complex_real_part: Module.cwrap("complex_real_part", null, ["number"]),
+    complex_imaginary_part: Module.cwrap("complex_imaginary_part", null, ["number"]),
+    complex_floor: Module.cwrap("complex_floor", null, ["number"]),
+    complex_ceil: Module.cwrap("complex_ceil", null, ["number"]),
+    complex_round: Module.cwrap("complex_round", null, ["number"]),
     // complex_csc
     // complex_csch
     // complex_sech
@@ -161,6 +161,11 @@ Module.onRuntimeInitialized = () => {
   console.log("complex_is_nan : ", complex_is_nan( complex_create(NaN, 0) ));
   console.log("complex_pow_real : ", complex_pow_real( complex_create(0, 2), 2 ));
   console.log("complex_root : ", complex_root( complex_create(2, 2), 3 ));
+  console.log("complex_real_part : ", complex_real_part( complex_create(4, 3) ));
+  console.log("complex_imaginary_part : ", complex_imaginary_part( complex_create(4, 1) ));
+  console.log("complex_floor : ", complex_floor( complex_create(1.8, 2) ));
+  console.log("complex_ceil : ",complex_ceil( complex_create(1.8, 4) ) );
+  console.log("complex_round : ",complex_round( complex_create(1.6, 1.5) ));
 };
 
 // ----------------------------------------------------------
@@ -1333,3 +1338,115 @@ function complex_root(z, n){
         liberation(outputPointer);
     }
 }
+
+// Cartesian / polar utilities
+// double complex_real_part(Complex z);
+function complex_real_part(z){
+    const inputPointer = allocateMemory(COMPLEX_SIZE);    
+
+    if(!inputPointer){
+        liberation(inputPointer);
+        throw new Error("Memory allocation failed");
+    }
+
+    try{
+        writeComplex(z, inputPointer);
+
+        const complex_real_part = complexNumbers.complex_real_part(inputPointer);
+
+        return complex_real_part;
+    } finally{
+        liberation(inputPointer);
+    }
+}
+
+// double complex_imaginary_part(Complex z);
+function complex_imaginary_part(z){
+    const inputPointer = allocateMemory(COMPLEX_SIZE);
+
+    if(!inputPointer){
+        liberation(COMPLEX_SIZE);
+        throw new Error("Memory allocation failed");
+    }
+
+    try{
+        writeComplex(z, inputPointer);
+
+        const complex_imaginary_part = complexNumbers.complex_imaginary_part(inputPointer);
+
+        return complex_imaginary_part;
+    } finally{
+        liberation(inputPointer);
+    }
+}
+
+// Complex rounding / decomposition
+// Complex complex_floor(Complex z);
+function complex_floor(z){
+    const inputPointer  = allocateMemory(COMPLEX_SIZE);
+    const outputPointer = allocateMemory(COMPLEX_SIZE);
+
+    if(!inputPointer){
+        liberation(inputPointer);
+        liberation(outputPointer);
+        throw new Error("Memory allocation failed");
+    }
+
+    try{
+        writeComplex(z, inputPointer);
+
+        complexNumbers.complex_floor(outputPointer, inputPointer);
+
+        return readComplex(outputPointer);
+    } finally{
+        liberation(inputPointer);
+        liberation(outputPointer);
+    }
+}
+
+// Complex complex_ceil(Complex z);
+function complex_ceil(z){
+    const inputPointer  = allocateMemory(COMPLEX_SIZE);
+    const outputPointer = allocateMemory(COMPLEX_SIZE);
+
+    if(!inputPointer || !outputPointer){
+        liberation(inputPointer);
+        liberation(outputPointer);
+        throw new Error("Memory allocation failed");
+    }
+
+    try{
+        writeComplex(z, inputPointer);
+
+        complexNumbers.complex_ceil(outputPointer, inputPointer);
+
+        return readComplex(outputPointer);
+    } finally{
+        liberation(inputPointer);
+        liberation(outputPointer);
+    }
+}
+
+// Complex complex_round(Complex z);
+function complex_round(z){
+    const inputPointer  = allocateMemory(COMPLEX_SIZE);
+    const outputPointer = allocateMemory(COMPLEX_SIZE);
+
+    if(!inputPointer || !outputPointer){
+        liberation(inputPointer);
+        liberation(outputPointer);
+        throw new Error("Memory allocation failed");
+    }
+
+    try{
+        writeComplex(z, inputPointer);
+
+        complexNumbers.complex_round(outputPointer, inputPointer);
+
+        return readComplex(outputPointer);
+    } finally{
+        liberation(inputPointer);
+        liberation(outputPointer);
+    }
+}
+
