@@ -1703,9 +1703,113 @@ function complex_from_real(real){
 }
 
 // Complex complex_from_imaginary(double imaginary);
+function complex_from_imaginary(imaginary){
+    const outputPointer = allocateMemory(COMPLEX_SIZE);
+
+    if(!outputPointer){
+        liberation(outputPointer);
+        throw new Error("Memory allocation failed");
+    }
+
+    try{
+        complexNumbers.complex_from_imaginary(outputPointer, imaginary);
+        throw new Error("Memory allocation failed");
+    } finally{
+        liberation(outputPointer);
+    }
+}
 
 // bool complex_is_unit(Complex z);
+function complex_is_unit(z){
+    const inputPointer = allocateMemory(COMPLEX_SIZE);
+
+    if(!inputPointer){
+        liberation(inputPointer);
+        throw new Error("Memory allocation failed");
+    }
+
+    try{
+        writeComplex(z, inputPointer);
+
+        const complex_is_unit = complexNumbers.complex_is_unit(inputPointer);
+
+        if(complex_is_unit === 1){
+            return true;
+        }else{
+            return false;   
+        }
+         
+    } finally{
+        liberation(inputPointer);
+    }
+}
+
 // double complex_norm_squared(Complex z);
+function complex_norm_squared(z){
+    const inputPointer = allocateMemory(COMPLEX_SIZE);
+
+    if(!inputPointer){
+        liberation(inputPointer);
+        throw new Error("Memory allocation failed");
+    }
+
+    try{
+        writeComplex(z, inputPointer);
+        
+        const complex_norm_squared = complexNumbers.complex_norm_squared(inputPointer);
+
+        return complex_norm_squared;
+    } finally{
+        liberation(inputPointer);
+    }
+}
 
 // Complex complex_signum(Complex z);
+function complex_signum(z){
+    const inputPointer  = allocateMemory(COMPLEX_SIZE);
+    const outputPointer = allocateMemory(COMPLEX_SIZE);
+
+    if(!inputPointer || !outputPointer){
+        liberation(inputPointer);
+        liberation(outputPointer);
+        throw new Error("Memory allocation failed");
+    }
+
+    try{
+        writeComplex(z, inputPointer);
+
+        complexNumbers.complex_signum(outputPointer, inputPointer);
+
+        return readComplex(outputPointer);
+    } finally{
+        liberation(inputPointer);
+        liberation(outputPointer);
+    }
+}
+
 // double complex_phase_difference(Complex a, Complex b);
+function complex_phase_difference(a, b){
+    const inputPointerA = allocateMemory(COMPLEX_SIZE);
+    const inputPointerB = allocateMemory(COMPLEX_SIZE);
+    const outputPointer = allocateMemory(COMPLEX_SIZE);
+
+    if(!inputPointerA || !inputPointerB || !outputPointer){
+        liberation(inputPointerA);
+        liberation(inputPointerB);
+        liberation(outputPointer);
+        throw new Error("Memory allocation failed");
+    }
+
+    try{
+        writeComplex(a, inputPointerA);
+        writeComplex(b, inputPointerB);
+
+        complexNumbers.complex_phase_difference(outputPointer, inputPointerA, inputPointerB);
+
+        return readComplex(outputPointer);
+    } finally{
+        liberation(inputPointerA);
+        liberation(inputPointerB);
+        liberation(outputPointer);
+    }
+}
