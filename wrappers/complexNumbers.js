@@ -69,22 +69,22 @@ Module.onRuntimeInitialized = () => {
     complex_floor: Module.cwrap("complex_floor", null, ["number"]),
     complex_ceil: Module.cwrap("complex_ceil", null, ["number"]),
     complex_round: Module.cwrap("complex_round", null, ["number"]),
-    // complex_csc
-    // complex_csch
-    // complex_sech
-    // complex_coth
-    // complex_is_real
-    // complex_is_imaginary
-    // complex_distance_squared
-    // complex_mul_i
-    // complex_div_i
-    // complex_conjugate_product
-    // complex_from_real
-    // complex_from_imaginary
-    // complex_is_unit
-    // complex_norm_squared
-    // complex_signum
-    // complex_phase_difference
+    complex_csc: Module.cwrap("complex_csc", null, ["number"]),
+    complex_csch: Module.cwrap("complex_csch", null, ["number"]),
+    complex_sech: Module.cwrap("complex_sech", null, ["number"]),
+    complex_coth: Module.cwrap("complex_coth", null, ["number"]),
+    complex_is_real: Module.cwrap("complex_is_real", null, ["number"]),
+    complex_is_imaginary: Module.cwrap("complex_is_imaginary", null, ["number"]),
+    complex_distance_squared: Module.cwrap("complex_distance_squared", null, ["number", "number"]),
+    complex_mul_i: Module.cwrap("complex_mul_i", null, ["number"]),
+    complex_div_i: Module.cwrap("complex_div_i", null, ["number"]),
+    complex_conjugate_product: Module.cwrap("complex_conjugate_product", null, ["number"]),
+    complex_from_real: Module.cwrap("complex_from_real", null, ["number"]),
+    complex_from_imaginary: Module.cwrap("complex_from_imaginary", null, ["number"]),
+    complex_is_unit: Module.cwrap("complex_is_unit", "number", ["number"]),
+    complex_norm_squared: Module.cwrap("complex_norm_squared", "number", ["number"]),
+    complex_signum: Module.cwrap("complex_signum", null, ["number"]),
+    complex_phase_difference: Module.cwrap("complex_phase_difference", "number", ["number", "number"]),
     // complex_cbrt
     // complex_is_pure_imaginary
     // complex_log2
