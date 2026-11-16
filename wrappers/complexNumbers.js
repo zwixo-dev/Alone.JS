@@ -1,4 +1,3 @@
-const { treatAsHtml, notFoundPageData, inBrowser } = require("vitepress/dist/client/shared.js");
 const Module = require("../wasm/complexNumbers.js");
 
 let complexNumbers;
@@ -1450,3 +1449,263 @@ function complex_round(z){
     }
 }
 
+// Complex complex_csc(Complex z);
+function complex_csc(z){
+    const inputPointer  = allocateMemory(COMPLEX_SIZE);
+    const outputPointer = allocateMemory(COMPLEX_SIZE);
+
+    if(!inputPointer || !outputPointer){
+        liberation(inputPointer);
+        liberation(outputPointer);
+        throw new Error("Memory allocation failed");
+    }
+
+    try{
+        writeComplex(z, inputPointer);
+
+        complexNumbers.complex_csc(outputPointer, inputPointer);
+
+        return readComplex(outputPointer);
+    } finally{
+        liberation(inputPointer);
+        liberation(outputPointer);
+    }
+}
+
+// Complex complex_csch(Complex z);
+function complex_csch(z){
+    const inputPointer  = allocateMemory(COMPLEX_SIZE);
+    const outputPointer = allocateMemory(COMPLEX_SIZE);
+
+    if(!inputPointer || !outputPointer){
+        liberation(inputPointer);
+        liberation(outputPointer);
+        throw new Error("Memory allocation failed");
+    }
+
+    try{
+        writeComplex(z, inputPointer);
+
+        complexNumbers.complex_csch(outputPointer, inputPointer);
+
+        return readComplex(outputPointer);
+    } finally{
+        liberation(inputPointer);
+        liberation(outputPointer);
+    }
+}
+
+// Complex complex_sech(Complex z);
+function complex_sech(z){
+    const inputPointer  = allocateMemory();
+    const outputPointer = allocateMemory();
+
+    if(!inputPointer || !outputPointer){
+        liberation(inputPointer);
+        liberation(outputPointer);
+        throw new Error("Memory allocation failed");
+    }
+
+    try{
+        writeComplex(z, inputPointer);
+
+        complexNumbers.complex_sech(inputPointer, outputPointer);
+
+        return readComplex(outputPointer);
+    } finally{
+        liberation(inputPointer);
+        liberation(outputPointer);
+    }
+}
+// Complex complex_coth(Complex z);
+function complex_coth(z){
+    const inputPointer  = allocateMemory(COMPLEX_SIZE);
+    const outputPointer = allocateMemory(COMPLEX_SIZE);
+
+    if(!inputPointer || !outputPointer){
+        liberation(inputPointer);
+        liberation(outputPointer);
+        throw new Error("Memory allocation failed");
+    }
+
+    try{
+        writeComplex(z, inputPointer);
+
+        complexNumbers.complex_coth(outputPointer, inputPointer);
+
+    } finally{
+        liberation(inputPointer);
+        liberation(outputPointer);
+    }
+}
+
+// bool complex_is_real(Complex z);
+function complex_is_real(z){
+    const inputPointer = allocateMemory(COMPLEX_SIZE);
+
+    if(!inputPointer){
+        liberation(inputPointer);
+        throw new Error("Memory allocation failed");
+    }
+
+    try{
+        writeComplex(z, inputPointer);
+
+        const complex_is_real = complexNumbers.complex_is_real(inputPointer);
+
+        if(complex_is_real === 1){
+            return true;
+        } else{
+            return false;
+        }
+
+    } finally{
+        liberation(inputPointer);
+    }
+}
+
+// bool complex_is_imaginary(Complex z);
+function complex_is_imaginary(z){
+    const inputPointer = allocateMemory(COMPLEX_SIZE);
+
+    if(!inputPointer){
+        liberation(inputPointer);
+        throw new Error("Memory allocation failed");
+    }
+
+    try{
+        writeComplex(z);
+
+        const complex_is_imaginary = complexNumbers.complex_is_imaginary(inputPointer);
+
+        if(complex_is_imaginary === 1){
+            return true;
+        } else{
+            return false;
+        }
+
+    } finally{
+        liberation(inputPointer);
+    }
+}
+
+// double complex_distance_squared(Complex a, Complex b);
+function complex_distance_squared(a, b){
+    const inputPointerA = allocateMemory(COMPLEX_SIZE);
+    const inputPointerB = allocateMemory(COMPLEX_SIZE);
+    const outputPointer = allocateMemory(COMPLEX_SIZE);
+
+    if(!inputPointerA || !inputPointerB || !outputPointer){
+        liberation(inputPointerA);
+        liberation(inputPointerB);
+        liberation(outputPointer);
+        throw new Error("Memory allocation failed");
+    }
+
+    try{
+        writeComplex(a, inputPointerA);
+        writeComplex(b, inputPointerA);
+
+        complexNumbers.complex_distance_squared(outputPointer, inputPointerA, inputPointerB);
+
+        return readComplex(outputPointer);
+    } finally{
+        liberation(inputPointerA);
+        liberation(inputPointerB);
+        liberation(outputPointer);
+    }
+}
+
+// Complex complex_mul_i(Complex z);
+function complex_mul_i(z){
+    const inputPointer  = allocateMemory(COMPLEX_SIZE);
+    const outputPointer = allocateMemory(COMPLEX_SIZE);
+
+    if(!inputPointer || !outputPointer){
+        liberation(inputPointer);
+        liberation(outputPointer);
+        throw new Error("Memory allocation failed");
+    }
+
+    try{
+        writeComplex(z, inputPointer);
+
+        complexNumbers.complex_mul_i(outputPointer, inputPointer);
+
+        return readComplex(outputPointer);
+    } finally{
+        liberation(inputPointer);
+        liberation(outputPointer);
+    }
+}
+
+// Complex complex_div_i(Complex z);
+function complex_div_i(z){
+    const inputPointer  = allocateMemory(COMPLEX_SIZE);
+    const outputPointer = allocateMemory(COMPLEX_SIZE);
+
+    if(!inputPointer || !outputPointer){
+        liberation(inputPointer);
+        liberation(outputPointer);
+        throw new Error("Memory allocation failed");
+    }
+
+    try{
+        writeComplex(z, inputPointer);
+
+        complexNumbers.complex_div_i(outputPointer, inputPointer);
+
+        return readComplex(outputPointer);
+    } finally{
+        liberation(inputPointer);
+        liberation(outputPointer);
+    }
+}
+
+// Complex complex_conjugate_product(Complex z);
+function complex_conjugate_product(z){
+    const inputPointer  = allocateMemory(COMPLEX_SIZE);
+    const outputPointer = allocateMemory(COMPLEX_SIZE);
+
+    if(!inputPointer || !outputPointer){
+        liberation(inputPointer);
+        liberation(outputPointer);
+        throw new Error("Memory allocation failed");
+    }
+
+    try{
+        writeComplex(z, inputPointer);
+
+        complexNumbers.complex_conjugate_product(outputPointer, inputPointer);
+
+        return readComplex(outputPointer);
+    } finally{
+        liberation(inputPointer);
+        liberation(outputPointer);
+    }
+}
+
+// Complex complex_from_real(double real);
+function complex_from_real(real){
+    const outputPointer = allocateMemory(COMPLEX_SIZE);
+
+    if(!outputPointer){
+        liberation(outputPointer);
+        throw new Error("Memory allocation failed");
+    }
+
+    try{
+        complexNumbers.complex_from_real(outputPointer, real);
+        return readComplex(outputPointer);
+    } finally{
+        liberation(outputPointer);
+    }
+}
+
+// Complex complex_from_imaginary(double imaginary);
+
+// bool complex_is_unit(Complex z);
+// double complex_norm_squared(Complex z);
+
+// Complex complex_signum(Complex z);
+// double complex_phase_difference(Complex a, Complex b);
