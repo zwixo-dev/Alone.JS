@@ -34,13 +34,10 @@ Complex complex_cos(Complex z);
 Complex complex_tan(Complex z);
 
 // Properties
-// double complex_magnitude(Complex z);
 double complex_magnitude_squared(Complex z);
-// double complex_argument(Complex z);
 
 // Constructors
 Complex complex_create(double real, double imaginary);
-// Complex polar_to_complex(double radius, double theta);
 
 //  Unary Operations
 Complex complex_inverse(Complex z);
@@ -50,7 +47,7 @@ Complex complex_negate(Complex z);
 Complex complex_scale(Complex z, double scalar);
 
 // Comparison
-int complex_equal(Complex a, Complex b);
+int complex_equal(Complex a, Complex b); // this should be bool
 
 // Normalization
 Complex complex_normalize(Complex z);
@@ -132,7 +129,7 @@ Complex complex_atan(Complex z);
 
 // Complex number classification
 bool complex_is_nan(Complex z);
-int complex_is_infinite(Complex z);
+int complex_is_infinite(Complex z); // should be bool as well
 
 // Complex exponential variants
 Complex complex_pow_real(Complex z, double exponent);
