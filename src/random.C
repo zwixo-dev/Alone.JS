@@ -125,7 +125,7 @@ void random_coord_2d(double min_x, double max_x,
     if(!result) return;
     result[0] = random_double_range(min_x, max_x); // X
     result[1] = random_double_range(min_y, max_y); // Y
-}
+}   
 
 void random_coord_3d(double min_x, double max_x,
                      double min_y, double max_y,
